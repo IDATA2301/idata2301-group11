@@ -2,37 +2,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
 
 /* ============================================
-   Page Container
+   MOBILE-FIRST BASE STYLES
    ============================================ */
 
 .contact-page {
   font-family: 'Quicksand', sans-serif;
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* ============================================
-   Header Section
+   Header Section - Mobile
    ============================================ */
 
 .contact-header {
-  text-align: center;
+  text-align: left;
+  margin-bottom: 30px;
 }
 
 .contact-title {
   color: #0EA7EC;
   font-weight: 600;
   margin-bottom: 10px;
+  font-size: 1.8em;
 }
 
 .contact-subtitle {
   color: #555;
+  font-size: 0.95em;
+  line-height: 1.5;
 }
 
 /* ============================================
-   Contact Form
+   Contact Form - Mobile
    ============================================ */
 
 .contact-form {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 .form-field {
@@ -42,8 +50,9 @@
 .form-label {
   color: #333;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-weight: 600;
+  font-size: 0.95em;
 }
 
 .form-label::after {
@@ -51,27 +60,28 @@
   color: red;
 }
 
-/* Form Inputs */
+/* Form Inputs - Mobile */
 .form-input,
 .form-textarea {
   background-color: white;
   color: #333;
   border: 2px solid #ddd;
   border-radius: 8px;
-  padding: 12px;
-  font-size: 1em;
+  padding: 14px;
+  font-size: 16px;
   font-family: 'Quicksand', sans-serif;
-  width: 40%;
+  width: 100%;
   box-sizing: border-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
 }
 
 .form-input {
-  height: 40px;
+  height: 45px;
 }
 
 .form-textarea {
-  min-height: 150px;
+  min-height: 120px;
   resize: vertical;
 }
 
@@ -79,16 +89,18 @@
 .form-textarea:focus {
   border-color: #0EA7EC;
   outline: none;
+  box-shadow: 0 2px 8px rgba(14, 167, 236, 0.2);
 }
 
-/* Submit Button */
+/* Submit Button - Mobile */
 .form-submit {
-  margin-top: 10px;
-  margin-left: -225px;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 0;
   background-color: #0EA7EC;
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 14px 24px;
   font-size: 1em;
   font-weight: bold;
   border-radius: 8px;
@@ -98,21 +110,26 @@
   transition: background-color 0.3s ease;
 }
 
+.form-submit:active {
+  background-color: #0c8bc9;
+  transform: scale(0.98);
+}
+
 .form-submit:hover {
   background-color: #0c8bc9;
 }
 
 /* ============================================
-   Contact Information Section
+   Contact Information Section - Mobile
    ============================================ */
 
 .contact-info {
   background-color: white;
-  border-radius: 8px;
-  width: 35%;
-  margin: 35px auto 0;
+  border-radius: 12px;
+  width: 87%;
+  margin: 0;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .contact-details,
@@ -122,20 +139,23 @@
 }
 
 .contact-hours {
-  margin-top: 30px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
 }
 
 .contact-details p {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: #555;
-  margin: 8px 0;
+  margin: 12px 0;
+  font-size: 0.95em;
 }
 
 .contact-info .icon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   color: #0EA7EC;
   flex-shrink: 0;
 }
@@ -143,10 +163,126 @@
 .contact-info p {
   color: #555;
   margin: 5px 0;
+  font-size: 0.95em;
 }
 
 .hours-title {
   font-weight: 600;
   color: #333;
-  
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+/* ============================================
+   TABLET - Media Query (768px and up)
+   ============================================ */
+
+@media (min-width: 768px) {
+  .contact-page {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .contact-title {
+    font-size: 2.2em;
+  }
+
+  .contact-subtitle {
+    font-size: 1em;
+  }
+
+  .contact-form {
+    margin-top: 40px;
+    margin-bottom: 50px;
+  }
+
+  .form-field {
+    margin-bottom: 25px;
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 60%;
+    padding: 14px 16px;
+  }
+
+  .form-input {
+    height: 45px;
+  }
+
+  .form-submit {
+    width: auto;
+    padding: 12px 32px;
+    margin-top: 20px;
+  }
+
+  .contact-info {
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px;
+  }
+
+  .contact-details,
+  .contact-hours {
+    margin-bottom: 25px;
+  }
+
+  .contact-hours {
+    margin-top: 25px;
+    padding-top: 25px;
+  }
+
+  .contact-details p {
+    margin: 14px 0;
+    gap: 14px;
+  }
+
+  .contact-info .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ============================================
+   DESKTOP - Media Query (1024px and up)
+   ============================================ */
+
+@media (min-width: 1024px) {
+  .contact-page {
+    padding: 50px 40px;
+    max-width: 1200px;
+  }
+
+  .contact-title {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+  }
+
+  .contact-subtitle {
+    font-size: 1.05em;
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 50%;
+  }
+
+  .contact-info {
+    width: 50%;
+    padding: 35px;
+  }
+
+  .contact-details p {
+    font-size: 1em;
+  }
+
+  .contact-info p {
+    font-size: 1em;
+  }
 }
