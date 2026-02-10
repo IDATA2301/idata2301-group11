@@ -1,0 +1,152 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+
+/* ============================================
+   Page Container
+   ============================================ */
+
+.contact-page {
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* ============================================
+   Header Section
+   ============================================ */
+
+.contact-header {
+  text-align: center;
+}
+
+.contact-title {
+  color: #0EA7EC;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.contact-subtitle {
+  color: #555;
+}
+
+/* ============================================
+   Contact Form
+   ============================================ */
+
+.contact-form {
+  margin-top: 20px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.form-label::after {
+  content: ' *';
+  color: red;
+}
+
+/* Form Inputs */
+.form-input,
+.form-textarea {
+  background-color: white;
+  color: #333;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1em;
+  font-family: 'Quicksand', sans-serif;
+  width: 40%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-input {
+  height: 40px;
+}
+
+.form-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #0EA7EC;
+  outline: none;
+}
+
+/* Submit Button */
+.form-submit {
+  margin-top: 10px;
+  margin-left: -225px;
+  background-color: #0EA7EC;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+  background-color: #0c8bc9;
+}
+
+/* ============================================
+   Contact Information Section
+   ============================================ */
+
+.contact-info {
+  background-color: white;
+  border-radius: 8px;
+  width: 35%;
+  margin: 35px auto 0;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-details,
+.contact-hours {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.contact-hours {
+  margin-top: 30px;
+}
+
+.contact-details p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #555;
+  margin: 8px 0;
+}
+
+.contact-info .icon {
+  width: 20px;
+  height: 20px;
+  color: #0EA7EC;
+  flex-shrink: 0;
+}
+
+.contact-info p {
+  color: #555;
+  margin: 5px 0;
+}
+
+.hours-title {
+  font-weight: 600;
+  color: #333;
+  
+}

@@ -29,9 +29,14 @@ function About() {
       name: "Sebastian Nesvik",
       role: "Chief Financial Officer",
       image: "https://via.placeholder.com/150"  
+    },
+    {
+      id: 3,
+      name: "Jonas Framnes",
+      role: "Chief Technology Officer",
+      image: "https://via.placeholder.com/150"
     }
   ];
-
 
   return (
     <main>
