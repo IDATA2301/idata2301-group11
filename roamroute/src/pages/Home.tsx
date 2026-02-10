@@ -1,5 +1,6 @@
 import barcelonaImg from '../assets/images/barcelona.png';
 import athensImg from '../assets/images/athens.png';
+import './styling/Home.css';
 
 function Home() {
   const destinations = [
@@ -33,12 +34,15 @@ function Home() {
   ];
 
   return (
-    <main>
+    <main> 
       {/* Hero section */ }
       <section className="hero">
         <h1>Dream away at your destination</h1>
-        <div>
-          <input type="text" placeholder="Where are you roaming?" />
+        <div className="search-bar">
+          <input 
+            type="text" 
+            placeholder="Where are you roaming?" 
+            />
           <button>Search</button>
         </div>
       </section>
