@@ -1,16 +1,36 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
 import "./header.css"
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <header className="header">
       <nav className="nav">
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
+        <button 
+          className="hamburger" 
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span className={isMenuOpen ? "hamburger-line open" : "hamburger-line"}></span>
+          <span className={isMenuOpen ? "hamburger-line open" : "hamburger-line"}></span>
+          <span className={isMenuOpen ? "hamburger-line open" : "hamburger-line"}></span>
+        </button>
+        
+        <div className={isMenuOpen ? "nav-links open" : "nav-links"}>
+          <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+          <Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
+          <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+          <Link to="/login" onClick={() => setIsMenuOpen(false)}>Login</Link>
+          <Link to="/signup" onClick={() => setIsMenuOpen(false)}>Sign Up</Link>
+          <Link to ="/favorites" onClick={() => setIsMenuOpen(false)}>Favorites</Link>
+        </div>
       </nav>
     </header>
   )
-
-  
 }
