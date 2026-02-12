@@ -45,50 +45,37 @@
 
 .form-field {
   margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
 }
 
-.form-label-email {
-  color: #333;
+.form-label {
   display: block;
+  width: 100%;
+  color: black;
   margin-bottom: 8px;
-  margin-right: 445px;
   font-weight: 600;
   font-size: 0.95em;
+  line-height: 1.2;
 }
 
-.form-label-regarding {
-  color: #333;
-  display: block;
-  margin-bottom: 8px;
-  margin-right: 415px;
-  font-weight: 600;
-  font-size: 0.95em;
-}
-
-.form-label-message {
-  color: #333;
-  display: block;
-  margin-bottom: 8px;
-  margin-right: 425px;
-  font-weight: 600;
-  font-size: 0.95em;
-}
-
-.form-label-email::after,
-.form-label-regarding::after,
-.form-label-message::after {
+.form-label::after {
   content: ' *';
   color: red;
 }
 
+
 /* Form Inputs - Mobile */
-.form-input,
+.form-input {}
 .form-textarea {
   background-color: white;
   color: #333;
   border: 1px solid #455DAE;
   border-radius: 8px;
   padding: 14px;
+  line-height: 1.4;
+  vertical-align: top;;
+  text-align: left ;
   font-size: 16px;
   font-family: 'Quicksand', sans-serif;
   width: 100%;
@@ -96,13 +83,12 @@
   transition: border-color 0.3s ease;
 }
 
-.form-input {
-  height: 45px;
+.form-textarea::placeholder {
+  padding-left: 0;
 }
 
-.form-textarea {
-  min-height: 120px;
-  resize: vertical;
+.form-input {
+  height: 45px;
 }
 
 .form-input:focus,
