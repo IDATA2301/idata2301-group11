@@ -25,7 +25,6 @@
   gap: var(--space-sm);
   padding: var(--space-sm);
   border-radius: var(--radius-md);
-  background-color: var(--color-primary);
 }
 
 .home__search-input {
@@ -34,12 +33,6 @@
   border: none;
   border-radius: var(--radius-sm);
   padding: var(--space-sm) var(--space-md);
-}
-
-.home__search-button {
-  border-radius: var(--radius-sm);
-  background-color: var(--color-on-primary);
-  color: var(--color-primary);
 }
 
 .home__destinations,
