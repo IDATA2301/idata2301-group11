@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
-
 /* ============================================
    MOBILE-FIRST BASE STYLES
    ============================================ */
 
 .home-page {
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   padding: 20px;
   max-width: 100%;
   margin: 0 auto;
@@ -16,12 +14,11 @@
    ============================================ */
 
 .hero {
-
   text-align: left;
   margin-bottom: 30px;
+  gap: 20px;
 }
 
 .search-bar {
-  background-color: #0EA7EC;
-  margin-top: 20px;
+  background-color: #0ea7ec;
 }
