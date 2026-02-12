@@ -65,6 +65,7 @@ function Contact() {
           <p>Sat – Sun: 11:00 – 18:00</p>
         </div>
       </section>
+
     </main>
   );
 }

@@ -9,23 +9,40 @@ export default function LoginPage() {
       </div>
 
       {/* Login form */}
-      <form className="login__form">
-        <input 
-        type="text" 
-        placeholder="name@example.com" />
-        <input 
-        type="password" 
-        placeholder="*********" />
-        <button type="submit" className="btn">Sign In</button>
+      <form className="login-form">
+        <label className="email-label" htmlFor="login-email">
+          Email address
+        </label>
+        <div className="input-with-icon">
+          <EnvelopeIcon className="login-icon" aria-hidden="true" />
+          <input 
+            id="login-email"
+            type="email" 
+            placeholder="name@example.com"
+          />
+        </div>
+        <label className="password-label" htmlFor="login-password">
+          Password
+        </label>
+        <div className="input-with-icon">
+          <LockClosedIcon className="login-icon" aria-hidden="true" />
+          <input 
+            id="login-password"
+            type="password" 
+            placeholder="*********"
+          />
+        </div>
+        <div className="forgot-password">
+          <a href="/forgot-password">Forgot password?</a>
+        </div>
+        <button type="submit">Sign In</button>
       </form>
 
       {/* Additional links */}
-      <div className="login__forgot">
-        <a href="/forgot-password">Forgot password?</a>
-      </div>
-
-      <div className="login__signup">
-        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+      <div className="signup-link">
+        <p>
+          Don&apos;t have an account? <a href="/signup">Sign Up</a>
+        </p>
       </div>
     </main>
   )
