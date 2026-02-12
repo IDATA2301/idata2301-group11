@@ -47,15 +47,36 @@
   margin-bottom: 20px;
 }
 
-.form-label {
+.form-label-email {
   color: #333;
   display: block;
   margin-bottom: 8px;
+  margin-right: 445px;
   font-weight: 600;
   font-size: 0.95em;
 }
 
-.form-label::after {
+.form-label-regarding {
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
+  margin-right: 415px;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.form-label-message {
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
+  margin-right: 425px;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.form-label-email::after,
+.form-label-regarding::after,
+.form-label-message::after {
   content: ' *';
   color: red;
 }
@@ -65,14 +86,13 @@
 .form-textarea {
   background-color: white;
   color: #333;
-  border: 2px solid #ddd;
+  border: 1px solid #455DAE;
   border-radius: 8px;
   padding: 14px;
   font-size: 16px;
   font-family: 'Quicksand', sans-serif;
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease;
 }
 
@@ -89,14 +109,12 @@
 .form-textarea:focus {
   border-color: #0EA7EC;
   outline: none;
-  box-shadow: 0 2px 8px rgba(14, 167, 236, 0.2);
 }
 
 /* Submit Button - Mobile */
 .form-submit {
   width: 100%;
-  margin-top: 20px;
-  margin-left: 0;
+  margin-right: 340px;
   background-color: #0EA7EC;
   color: white;
   border: none;
@@ -106,7 +124,6 @@
   border-radius: 8px;
   cursor: pointer;
   font-family: 'Quicksand', sans-serif;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
 }
 
@@ -129,7 +146,6 @@
   width: 87%;
   margin: 0;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .contact-details,
