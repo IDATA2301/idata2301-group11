@@ -6,8 +6,8 @@ function Contact() {
     <main className="contact-page">
       {/* Header Section */}
       <section className="contact-header">
-        <h1 className="contact-title">Get in Touch</h1>
-        <p className="contact-subtitle">We are here to help your journey stay on track</p>
+        <h1>Get in Touch</h1>
+        <p>We are here to help your journey stay on track</p>
       </section>
 
       {/* Contact Form */}
@@ -60,7 +60,7 @@ function Contact() {
       </div>
 
         <div className="contact-hours">
-          <p className="hours-title">Available</p>
+          <h4>Available</h4>
           <p>Mon – Fri: 08:00 – 21:00</p>
           <p>Sat – Sun: 11:00 – 18:00</p>
         </div>

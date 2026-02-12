@@ -37,7 +37,7 @@ function Home() {
     <main> 
       {/* Hero section */ }
       <section className="hero">
-        <h1>Dream away at your destination</h1>
+        <h1 className="hero-title">Dream away at your destination</h1>
         <div className="search-bar">
           <input 
             type="text" 

@@ -17,19 +17,6 @@
   margin-bottom: 30px;
 }
 
-.contact-title {
-  color: #0EA7EC;
-  font-weight: 600;
-  margin-bottom: 10px;
-  font-size: 1.8em;
-}
-
-.contact-subtitle {
-  color: #555;
-  font-size: 0.95em;
-  line-height: 1.5;
-}
-
 /* ============================================
    Contact Form - Mobile
    ============================================ */
@@ -141,9 +128,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #555;
   margin: 12px 0;
-  font-size: 0.95em;
 }
 
 .contact-info .icon {
@@ -154,16 +139,7 @@
 }
 
 .contact-info p {
-  color: #555;
   margin: 5px 0;
-  font-size: 0.95em;
-}
-
-.hours-title {
-  font-weight: 600;
-  color: #333;
-  font-size: 1em;
-  margin-bottom: 10px;
 }
 
 /* ============================================
@@ -180,14 +156,6 @@
   .contact-header {
     text-align: center;
     margin-bottom: 40px;
-  }
-
-  .contact-title {
-    font-size: 2.2em;
-  }
-
-  .contact-subtitle {
-    font-size: 1em;
   }
 
   .contact-form {
@@ -252,15 +220,6 @@
     max-width: 1200px;
   }
 
-  .contact-title {
-    font-size: 2.5em;
-    margin-bottom: 15px;
-  }
-
-  .contact-subtitle {
-    font-size: 1.05em;
-  }
-
   .form-input,
   .form-textarea {
     width: 50%;
@@ -271,11 +230,4 @@
     padding: 35px;
   }
 
-  .contact-details p {
-    font-size: 1em;
-  }
-
-  .contact-info p {
-    font-size: 1em;
-  }
 }
