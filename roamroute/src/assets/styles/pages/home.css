@@ -1,29 +1,17 @@
 /* ============================================
-   MOBILE-FIRST BASE STYLES
-   ============================================ */
-
-.home-page {
-  padding: 20px;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-/* ============================================
    Hero Section - Mobile
    ============================================ */
 
 .hero {
   text-align: left;
   margin-bottom: 30px;
-  gap: 20px;
 }
 
 .hero-title {
   font-size: clamp(2.25rem, 5vw, 3.5rem);
   margin-bottom: 12px;
-  color: var(--color-text-heading); /* Update til --color-background når vi har fikset bg-bilde og gradient */
 }
 
 .search-bar {
-  background-color: #0ea7ec;
+  background-color: var(--color-primary);
 }

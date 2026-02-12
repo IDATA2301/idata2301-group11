@@ -31,7 +31,7 @@
 }
 
 .form-label {
-  color: #333;
+  color: var(--color-text-muted);
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
@@ -40,20 +40,20 @@
 
 .form-label::after {
   content: ' *';
-  color: red;
+  color: var(--color-danger);
 }
 
 /* Form Inputs - Mobile */
 .form-input,
 .form-textarea {
-  background-color: white;
-  color: #333;
-  border: 2px solid #ddd;
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 2px solid var(--color-border);
   border-radius: 8px;
   padding: 14px;
   font-size: 16px;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--color-shadow-sm);
   transition: border-color 0.3s ease;
 }
 
@@ -68,9 +68,9 @@
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: #0EA7EC;
+  border-color: var(--color-primary);
   outline: none;
-  box-shadow: 0 2px 8px rgba(14, 167, 236, 0.2);
+  box-shadow: 0 2px 8px var(--color-primary-glow);
 }
 
 /* Submit Button - Mobile */
@@ -78,25 +78,25 @@
   width: 100%;
   margin-top: 20px;
   margin-left: 0;
-  background-color: #0EA7EC;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
   border: none;
   padding: 14px 24px;
   font-size: 1em;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 4px var(--color-shadow-sm);
   transition: background-color 0.3s ease;
 }
 
 .form-submit:active {
-  background-color: #0c8bc9;
+  background-color: var(--color-primary-strong);
   transform: scale(0.98);
 }
 
 .form-submit:hover {
-  background-color: #0c8bc9;
+  background-color: var(--color-primary-strong);
 }
 
 /* ============================================
@@ -104,12 +104,12 @@
    ============================================ */
 
 .contact-info {
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: 12px;
   width: 87%;
   margin: 0;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--color-shadow-md);
 }
 
 .contact-details,
@@ -121,7 +121,7 @@
 .contact-hours {
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border-light);
 }
 
 .contact-details p {
@@ -134,7 +134,7 @@
 .contact-info .icon {
   width: 22px;
   height: 22px;
-  color: #0EA7EC;
+  color: var(--color-primary);
   flex-shrink: 0;
 }
 
