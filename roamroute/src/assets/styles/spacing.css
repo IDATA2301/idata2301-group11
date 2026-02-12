@@ -1,34 +1,35 @@
 :root {
   --space-0: 0;
-  --space-1: 0.25rem; /* 4px */
-  --space-2: 0.5rem; /* 8px */
-  --space-2-5: 0.625rem; /* 10px */
-  --space-3: 0.75rem; /* 12px */
-  --space-3-5: 0.875rem; /* 14px */
-  --space-4: 1rem; /* 16px */
-  --space-5: 1.25rem; /* 20px */
-  --space-6: 1.5rem; /* 24px */
-  --space-7: 1.875rem; /* 30px */
-  --space-8: 2.5rem; /* 40px */
-  --space-9: 3rem; /* 48px */
-  --space-10: 4rem; /* 64px */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.75rem;
+  --space-lg: 1rem;
+  --space-xl: 1.25rem;
+  --space-2xl: 1.5rem;
+  --space-3xl: 1.75rem;
+  --space-4xl: 2rem;
+  --space-5xl: 2.25rem;
+  --space-6xl: 2.5rem;
+  --space-7xl: 2.75rem;
+  --space-8xl: 3rem;
 
-  --header-height: 4rem; /* 64px */
-  --size-hamburger: 2rem; /* 32px */
-  --size-hamburger-line: 0.1875rem; /* 3px */
-  --size-input: 2.75rem; /* 44px */
-  --size-textarea: 7.5rem; /* 120px */
-  --size-drawer: 20rem; /* 320px */
-  --size-icon: 1.375rem; /* 22px */
-  --size-content-narrow: 36rem; /* 576px */
-  --size-content-medium: 56rem; /* 896px */
-  --size-card-min: 12rem; /* 192px */
-  --size-search-min: 10rem; /* 160px */
-  --size-search-flex: 12rem; /* 192px */
+  --border-1: 0.0625rem;
+  --border-2: 0.125rem;
+
   --layout-width: 90%;
   --layout-width-lg: 80%;
-  --size-page-min: 20rem; /* 320px */
   --drawer-width: 70%;
-  --border-1: 0.0625rem; /* 1px */
-  --border-2: 0.125rem; /* 2px */
+
+  --size-page-min: 20rem;
+  --size-drawer: 20rem;
+  --size-content-narrow: 36rem;
+  --size-card-min: 12rem;
+  --size-search-min: 10rem;
+  --size-search-flex: 12rem;
+  --size-input: 2.75rem;
+  --size-textarea: 7.5rem;
+  --size-icon: 1.375rem;
+  --size-header: 4rem;
+  --size-hamburger: 2rem;
+  --size-hamburger-line: 0.1875rem;
 }

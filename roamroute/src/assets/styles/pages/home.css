@@ -1,15 +1,15 @@
 .home {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-lg);
 }
 
 .home__hero {
   text-align: left;
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-2xl);
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-lg);
 }
 
 .home__hero-title {
@@ -20,8 +20,8 @@
 .home__search {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
-  padding: var(--space-2);
+  gap: var(--space-sm);
+  padding: var(--space-sm);
   border-radius: var(--radius-md);
   background-color: var(--color-primary);
 }
@@ -31,7 +31,7 @@
   min-width: var(--size-search-min);
   border: none;
   border-radius: var(--radius-sm);
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-sm) var(--space-md);
 }
 
 .home__search-button {
@@ -44,13 +44,13 @@
 .home__trips {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-md);
 }
 
 .home__destinations-list,
 .home__trip-list {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-lg);
 }
 
 @media (min-width: 48rem) {
