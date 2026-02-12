@@ -1,3 +1,10 @@
+/*
+  Spacing + sizing tokens
+  - Use these for padding, margin, gap, and layout spacing.
+  - Keep spacing consistent by picking from this scale.
+  - Size tokens are for fixed UI dimensions (inputs, header, etc.).
+*/
+
 :root {
   --space-0: 0;
   --space-xs: 0.25rem;

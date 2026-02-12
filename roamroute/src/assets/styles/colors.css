@@ -1,17 +1,27 @@
+/*
+  Color tokens
+  - Use semantic names instead of hardcoded hex values.
+  - Pair text/background tokens to keep contrast consistent.
+*/
+
 :root {
   --color-primary: #0ea7ec;
   --color-primary-strong: #0c8bc9;
   --color-secondary: #455dae;
   --color-accent: #f97316;
+
   --color-text-heading: #0f172a;
   --color-text-body: #3c4455;
   --color-text-muted: #333333;
+
   --color-background: #f0f9ff;
   --color-surface: #ffffff;
   --color-on-primary: var(--color-background);
+
   --color-border: #dddddd;
   --color-border-light: #eeeeee;
   --color-danger: #ef4444;
+
   --color-overlay-light: rgba(255, 255, 255, 0.1);
   --color-shadow-sm: rgba(0, 0, 0, 0.1);
   --color-shadow-md: rgba(0, 0, 0, 0.15);
