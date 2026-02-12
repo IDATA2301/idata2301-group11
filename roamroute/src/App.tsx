@@ -1,24 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import "./assets/styles/app.css"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./assets/styles/global.css";
 
-import Header from "./components/header/header"
-import Home from "./pages/Home"
-import About from "./pages/About"
-import Contact from "./pages/Contact"
-import Favorites from "./pages/Favorites"
-import LoginPage from "./pages/LoginPage"
-import Signup from "./pages/Signup"
-import Search from "./pages/Search"
-import TourDetails from "./pages/TourDetails"
-import Admin from "./pages/Admin"
-
+import Header from "./components/header/header";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Favorites from "./pages/Favorites";
+import LoginPage from "./pages/LoginPage";
+import Signup from "./pages/Signup";
+import Search from "./pages/Search";
+import TourDetails from "./pages/TourDetails";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
     <Router>
       <Header />
 
-      <div style={{ padding: "20px", marginTop: "80px" }}>
+      <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -32,7 +31,7 @@ function App() {
         </Routes>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
