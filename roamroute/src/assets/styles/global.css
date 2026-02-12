@@ -1,0 +1,38 @@
+@import "./resets.css";
+@import "./colors.css";
+@import "./spacing.css";
+@import "./radius.css";
+@import "./shadow.css";
+@import "./z-index.css";
+@import "./typography.css";
+
+:root {
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-width: var(--size-page-min);
+  background-color: var(--color-background);
+}
+
+/* Layout + spacing utilities */
+.layout__container {
+  width: 100%;
+  max-width: var(--layout-width);
+  margin: calc(var(--size-header) + var(--space-6xl)) auto 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+
+@media (min-width: 64rem) {
+  .layout__container {
+    max-width: var(--layout-width-lg);
+  }
+}

@@ -1,73 +1,76 @@
-import "./styling/Signup.css"
-import { UserIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
+import "../assets/styles/pages/signup.css"
+import { EnvelopeIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline"
 
 export default function Signup() {
   return (
-    <>
-      <div className="signup-text">
+    <main className="signup">
+      <div className="signup__text">
         <h1>Create an Account</h1>
         <p>Sign up to start planning your travel adventures.</p>
       </div>
 
       {/* Signup form */}
-      <form className="signup-form">
-        <div className="form-field">
-          <label htmlFor="full-name" className="form-label-name">
+      <form className="signup__form">
+        <div className="signup__field">
+          <label htmlFor="signup-full-name" className="signup__label">
             Full name
           </label>
-          <div className="input-with-icon">
-            <UserIcon className="signup-icon" aria-hidden="true" />
+          <div className="signup__input-wrap">
+            <UserIcon className="signup__icon" aria-hidden="true" />
             <input
               type="text"
-              id="full-name"
-              className="form-input"
+              id="signup-full-name"
+              className="signup__input"
               placeholder="Full name"
               name="fullName"
+              autoComplete="name"
               required
             />
           </div>
         </div>
 
-        <div className="form-field">
-          <label htmlFor="email" className="form-label-email">
+        <div className="signup__field">
+          <label htmlFor="signup-email" className="signup__label">
             E-mail
           </label>
-          <div className="input-with-icon">
-            <EnvelopeIcon className="signup-icon" aria-hidden="true" />
+          <div className="signup__input-wrap">
+            <EnvelopeIcon className="signup__icon" aria-hidden="true" />
             <input
               type="email"
-              id="email"
-              className="form-input"
+              id="signup-email"
+              className="signup__input"
               placeholder="name@example.com"
               name="email"
+              autoComplete="email"
               required
             />
           </div>
         </div>
 
-        <div className="form-field">
-          <label htmlFor="password" className="form-label-password">
+        <div className="signup__field">
+          <label htmlFor="signup-password" className="signup__label">
             Password
           </label>
-          <div className="input-with-icon">
-            <LockClosedIcon className="signup-icon" aria-hidden="true" />
+          <div className="signup__input-wrap">
+            <LockClosedIcon className="signup__icon" aria-hidden="true" />
             <input
               type="password"
-              id="password"
-              className="form-input"
+              id="signup-password"
+              className="signup__input"
               placeholder="*********"
               name="password"
+              autoComplete="new-password"
               required
             />
           </div>
         </div>
-        <button className="submit" type="submit">Sign Up</button>
+        <button className="btn" type="submit">Sign Up</button>
       </form>
 
       {/* Additional links */}
-      <div className="login-link">
+      <div className="signup__login">
         <p>Already have an account? <a href="/login">Log In</a></p>
       </div>
-    </>
+    </main>
   )
 } 

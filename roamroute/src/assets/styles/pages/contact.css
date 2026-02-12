@@ -1,0 +1,138 @@
+@import "../components/button.css";
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.contact__header {
+  text-align: left;
+  margin-bottom: var(--space-2xl);
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  width: 100%;
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: var(--size-content-narrow);
+}
+
+.contact__label {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.contact__label::after {
+  content: " *";
+  color: var(--color-danger);
+}
+
+.contact__input,
+.contact__textarea {
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  border: var(--border-2) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  font-size: 1rem;
+  width: 100%;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact__input {
+  height: var(--size-input);
+}
+
+.contact__textarea {
+  min-height: var(--size-textarea);
+  resize: vertical;
+}
+
+.contact__input:focus,
+.contact__textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 0.125rem var(--color-primary-glow);
+}
+
+.contact__submit {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.contact__info {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: var(--size-content-narrow);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.contact__details,
+.contact__hours {
+  margin-bottom: var(--space-xl);
+  text-align: left;
+}
+
+.contact__hours {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: var(--border-1) solid var(--color-border-light);
+}
+
+.contact__details p {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+}
+
+.contact__icon {
+  width: var(--size-icon);
+  height: var(--size-icon);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.contact__info p {
+  margin: var(--space-sm) 0;
+}
+
+@media (min-width: 48rem) {
+  .contact__header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .contact__form {
+    align-items: center;
+  }
+
+  .contact__submit {
+    width: auto;
+  }
+
+  .contact__info {
+    margin: 0 auto;
+    padding: var(--space-xl);
+  }
+}
+
+@media (min-width: 64rem) {
+  .contact {
+    gap: var(--space-xl);
+  }
+}

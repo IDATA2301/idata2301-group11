@@ -1,0 +1,12 @@
+/*
+  Breakpoint tokens
+  - These are documentation-only in plain CSS.
+  - Use the rem values directly in @media unless you add @custom-media tooling.
+*/
+
+:root {
+  --bp-sm: 36rem;
+  --bp-md: 48rem;
+  --bp-lg: 64rem;
+  --bp-xl: 80rem;
+}

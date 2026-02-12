@@ -1,0 +1,16 @@
+/*
+  Z-index tokens
+  - Keep stacking contexts consistent and predictable.
+  - Use the closest semantic layer instead of ad-hoc numbers.
+  - For inline components where you need a minor increment, use calc(var(--z-TOKEN) + 1)
+*/
+
+:root {
+  --z-base: 0;
+  --z-header: 100;
+  --z-dropdown: 200;
+  --z-popover: 300;
+  --z-overlay: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+}
