@@ -1,4 +1,4 @@
-import './styling/Contact.css';
+import '../assets/styles/pages/contact.css';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/outline";
 
 function Contact() {

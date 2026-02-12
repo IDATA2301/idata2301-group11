@@ -1,6 +1,6 @@
 import barcelonaImg from '../assets/images/barcelona.png';
 import athensImg from '../assets/images/athens.png';
-import './styling/Home.css';
+import '../assets/styles/pages/home.css';
 
 function Home() {
   const destinations = [

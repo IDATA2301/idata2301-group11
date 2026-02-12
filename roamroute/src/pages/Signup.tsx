@@ -1,4 +1,4 @@
-import "./styling/Signup.css"
+import "../assets/styles/pages/signup.css"
 
 export default function Signup() {
   return (
