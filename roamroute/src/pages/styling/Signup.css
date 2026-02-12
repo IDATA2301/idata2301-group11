@@ -7,6 +7,7 @@
 .signup-text {
     text-align: center;
     margin-top: -50px;
+    font-family: 'Quicksand', sans-serif;
     }
 .signup-text h1 {
     font-size: 2.5em;
@@ -19,10 +20,111 @@
     color: #333;
     font-family: 'Quicksand', sans-serif;
     }
+
+/* ==============================
+  Form Styling
+  =========================== */
+
+.signup-form {
+    margin-top: 20px;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-label-name {
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+    margin-right: 265px;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.form-label-email {
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+    margin-right: 290px;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.form-label-password {
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+    margin-right: 265px;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.form-label-name::after,
+.form-label-email::after,
+.form-label-password::after {
+  content: ' *';
+  color: red;
+}
+
+/* ==============================
+  Form Inputs
+  =========================== */
+
+.input-with-icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: #455DAE;
+}
+
+.signup-icon {
+        position: absolute;
+        left: 12px;
+        width: 20px;
+        height: 20px;
+        color: #455DAE;
+        pointer-events: none;
+}
+
+.form-input {
+    background-color: white;
+    color: #333;
+    border: 1px solid #455DAE;
+    border-radius: 8px;
+    padding: 14px;
+    padding-left: 40px;
+    font-size: 16px;
+    font-family: 'Quicksand', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #455DAE;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(14, 167, 236, 0.2);
+}
 .signup-link {
     margin-top: 20px;
-    font-size: 1em;
     color: black;
+    font-size: 1em;
+    color: #455DAE;
     text-decoration: none;
     font-family: 'Quicksand', sans-serif;
     }
+
+.login-link {
+    color: black;
+}
+
+.submit {
+    margin-top: 10px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0EA7EC;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}

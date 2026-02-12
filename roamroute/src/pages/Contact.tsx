@@ -4,6 +4,7 @@ import { EnvelopeIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/outline
 function Contact() {
   return (
     <main className="contact-page">
+      
       {/* Header Section */}
       <section className="contact-header">
         <h1 className="contact-title">Get in Touch</h1>
@@ -12,8 +13,9 @@ function Contact() {
 
       {/* Contact Form */}
       <form className="contact-form">
+
         <div className="form-field">
-          <label htmlFor="email" className="form-label-email">E-mail</label>
+          <label htmlFor="email" className="form-label">E-mail</label>
           <input 
             type="email"
             id="email"
@@ -25,7 +27,7 @@ function Contact() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="regarding" className="form-label-regarding">Regarding</label>
+          <label htmlFor="regarding" className="form-label">Regarding</label>
           <input 
             type="text"
             id="regarding"
@@ -37,7 +39,7 @@ function Contact() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="message" className="form-label-message">Message</label>
+          <label htmlFor="message" className="form-label">Message</label>
           <textarea
             id="message"
             className="form-textarea"
@@ -54,10 +56,10 @@ function Contact() {
       {/* Contact Information */}
       <section className="contact-info">
         <div className="contact-details">
-        <p><EnvelopeIcon className="icon" /><b>post@roamroute.org</b></p>
-        <p><PhoneIcon className="icon" /><b>+47 929 90 707</b></p>
-        <p><MapPinIcon className="icon" /><b>C215, NTNU Ålesund</b></p>
-      </div>
+          <p><EnvelopeIcon className="icon" /><b>post@roamroute.org</b></p>
+          <p><PhoneIcon className="icon" /><b>+47 929 90 707</b></p>
+          <p><MapPinIcon className="icon" /><b>C215, NTNU Ålesund</b></p>
+        </div>
 
         <div className="contact-hours">
           <p className="hours-title">Available</p>
@@ -65,6 +67,7 @@ function Contact() {
           <p>Sat – Sun: 11:00 – 18:00</p>
         </div>
       </section>
+
     </main>
   );
 }

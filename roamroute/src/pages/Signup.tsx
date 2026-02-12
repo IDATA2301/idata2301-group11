@@ -1,4 +1,5 @@
 import "./styling/Signup.css"
+import { UserIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
 
 export default function Signup() {
   return (
@@ -10,16 +11,57 @@ export default function Signup() {
 
       {/* Signup form */}
       <form className="signup-form">
-        <input 
-        type="text" 
-        placeholder="Full Name" />
-        <input 
-        type="text" 
-        placeholder="name@example.com" />
-        <input 
-        type="password" 
-        placeholder="*********" />
-        <button type="submit">Sign Up</button>
+        <div className="form-field">
+          <label htmlFor="full-name" className="form-label-name">
+            Full name
+          </label>
+          <div className="input-with-icon">
+            <UserIcon className="signup-icon" aria-hidden="true" />
+            <input
+              type="text"
+              id="full-name"
+              className="form-input"
+              placeholder="Full name"
+              name="fullName"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="email" className="form-label-email">
+            E-mail
+          </label>
+          <div className="input-with-icon">
+            <EnvelopeIcon className="signup-icon" aria-hidden="true" />
+            <input
+              type="email"
+              id="email"
+              className="form-input"
+              placeholder="name@example.com"
+              name="email"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="password" className="form-label-password">
+            Password
+          </label>
+          <div className="input-with-icon">
+            <LockClosedIcon className="signup-icon" aria-hidden="true" />
+            <input
+              type="password"
+              id="password"
+              className="form-input"
+              placeholder="*********"
+              name="password"
+              required
+            />
+          </div>
+        </div>
+        <button className="submit" type="submit">Sign Up</button>
       </form>
 
       {/* Additional links */}
