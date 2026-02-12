@@ -1,4 +1,5 @@
 import "../assets/styles/pages/login.css"
+import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
 
 export default function LoginPage() {
   return (
@@ -9,37 +10,45 @@ export default function LoginPage() {
       </div>
 
       {/* Login form */}
-      <form className="login-form">
-        <label className="email-label" htmlFor="login-email">
+      <form className="login__form">
+        <div className="login__field">
+          <label className="login__label" htmlFor="login-email">
           Email address
-        </label>
-        <div className="input-with-icon">
-          <EnvelopeIcon className="login-icon" aria-hidden="true" />
-          <input 
-            id="login-email"
-            type="email" 
-            placeholder="name@example.com"
-          />
+          </label>
+          <div className="login__input-wrap">
+            <EnvelopeIcon className="login__icon" aria-hidden="true" />
+            <input
+              id="login-email"
+              className="login__input"
+              type="email"
+              placeholder="name@example.com"
+              autoComplete="email"
+            />
+          </div>
         </div>
-        <label className="password-label" htmlFor="login-password">
-          Password
-        </label>
-        <div className="input-with-icon">
-          <LockClosedIcon className="login-icon" aria-hidden="true" />
-          <input 
-            id="login-password"
-            type="password" 
-            placeholder="*********"
-          />
+        <div className="login__field">
+          <label className="login__label" htmlFor="login-password">
+            Password
+          </label>
+          <div className="login__input-wrap">
+            <LockClosedIcon className="login__icon" aria-hidden="true" />
+            <input
+              id="login-password"
+              className="login__input"
+              type="password"
+              placeholder="*********"
+              autoComplete="current-password"
+            />
+          </div>
         </div>
-        <div className="forgot-password">
+        <div className="login__forgot">
           <a href="/forgot-password">Forgot password?</a>
         </div>
-        <button type="submit">Sign In</button>
+        <button type="submit" className="btn">Sign In</button>
       </form>
 
       {/* Additional links */}
-      <div className="signup-link">
+      <div className="login__signup">
         <p>
           Don&apos;t have an account? <a href="/signup">Sign Up</a>
         </p>
