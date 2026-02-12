@@ -15,7 +15,7 @@ function App() {
     <Router>
       <Header />
 
-      <div className="container">
+      <div className="layout__container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
