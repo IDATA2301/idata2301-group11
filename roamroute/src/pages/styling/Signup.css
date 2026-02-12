@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
 
 /* ==============================
-  LoginPage Styling
+  SignUp Styling
   =========================== */
 
-.login-text {
+.signup-text {
     text-align: center;
     margin-top: -50px;
     }
-.login-text h1 {
+.signup-text h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
     font-family: 'Quicksand', sans-serif;
     color: black;
     }
-.login-text p {
+.signup-text p {
     font-size: 1.2em;
     color: #333;
     font-family: 'Quicksand', sans-serif;

@@ -1,32 +1,31 @@
-import "./styling/LoginPage.css"
+import "./styling/Signup.css"
 
-export default function LoginPage() {
+export default function Signup() {
   return (
     <>
-      <div className="login-text">
-        <h1>Welcome back</h1>
-        <p>Sign in to manage your travel plan and explore new destinations.</p>
+      <div className="signup-text">
+        <h1>Create an Account</h1>
+        <p>Sign up to start planning your travel adventures.</p>
       </div>
 
-      {/* Login form */}
-      <form className="login-form">
+      {/* Signup form */}
+      <form className="signup-form">
+        <input 
+        type="text" 
+        placeholder="Full Name" />
         <input 
         type="text" 
         placeholder="name@example.com" />
         <input 
         type="password" 
         placeholder="*********" />
-        <button type="submit">Sign In</button>
+        <button type="submit">Sign Up</button>
       </form>
 
       {/* Additional links */}
-      <div className="forgot-password">
-        <a href="/forgot-password">Forgot password?</a>
-      </div>
-
-      <div className="signup-link">
-        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+      <div className="login-link">
+        <p>Already have an account? <a href="/login">Log In</a></p>
       </div>
     </>
   )
-}
+} 
