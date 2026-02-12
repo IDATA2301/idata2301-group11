@@ -35,9 +35,14 @@ function Home() {
 
   return (
     <main className="home">
+      <div className="home__hero-img" aria-hidden="true" />
       {/* Hero section */}
       <section className="home__hero">
-        <h1 className="home__hero-title">Dream away at your destination</h1>
+        <h1 className="home__hero-title">
+          Dream away at
+          <br />
+          your destination.
+        </h1>
         <div className="home__search">
           <input className="home__search-input" type="text" placeholder="Where are you roaming?" />
           <button className="btn btn--accent">Search</button>
