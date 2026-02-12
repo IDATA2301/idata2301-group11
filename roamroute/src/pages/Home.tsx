@@ -44,7 +44,7 @@ function Home() {
             type="text" 
             placeholder="Where are you roaming?" 
             />
-          <button className="home__search-button">Search</button>
+          <button className="btn home__search-button">Search</button>
         </div>
       </section>
 

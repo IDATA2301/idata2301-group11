@@ -1,0 +1,51 @@
+/*
+  Button component
+  - Apply with class="btn" on buttons/links.
+*/
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  border: var(--border-1) solid transparent;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-lg);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--color-primary-strong);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--accent {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+}
+
+.btn--accent:hover {
+  filter: brightness(0.95);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: none;
+}
+
+.btn--ghost:hover {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}

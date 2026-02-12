@@ -30,23 +30,6 @@ main {
   gap: var(--space-lg);
 }
 
-button {
-  border-radius: var(--radius-md);
-  border: var(--border-1) solid transparent;
-  padding: var(--space-sm) var(--space-lg);
-  font-size: 1rem;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  cursor: pointer;
-  transition:
-    background-color 0.25s,
-    border-color 0.25s;
-}
-button:hover {
-  background-color: var(--color-primary-strong);
-}
 
 @media (min-width: 64rem) {
   .layout__container {

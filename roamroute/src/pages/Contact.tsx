@@ -48,7 +48,7 @@ function Contact() {
           />
         </div>
 
-        <button type="submit" className="contact__submit">Submit form</button>
+        <button type="submit" className="btn contact__submit">Submit form</button>
       </form>
 
       {/* Contact Information */}

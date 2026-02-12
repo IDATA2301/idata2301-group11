@@ -16,7 +16,7 @@ export default function LoginPage() {
         <input 
         type="password" 
         placeholder="*********" />
-        <button type="submit">Sign In</button>
+        <button type="submit" className="btn">Sign In</button>
       </form>
 
       {/* Additional links */}

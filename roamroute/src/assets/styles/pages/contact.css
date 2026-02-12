@@ -1,3 +1,5 @@
+@import "../components/button.css";
+
 .contact {
   display: flex;
   flex-direction: column;
@@ -66,25 +68,8 @@
 
 .contact__submit {
   width: 100%;
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  border: none;
-  padding: var(--space-lg) var(--space-xl);
   font-size: 1rem;
   font-weight: 700;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.contact__submit:active {
-  background-color: var(--color-primary-strong);
-  transform: scale(0.98);
-}
-
-.contact__submit:hover {
-  background-color: var(--color-primary-strong);
 }
 
 .contact__info {

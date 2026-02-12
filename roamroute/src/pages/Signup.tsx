@@ -19,7 +19,7 @@ export default function Signup() {
         <input 
         type="password" 
         placeholder="*********" />
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="btn">Sign Up</button>
       </form>
 
       {/* Additional links */}
