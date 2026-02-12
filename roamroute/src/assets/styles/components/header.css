@@ -1,4 +1,4 @@
-.header {
+.site-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,39 +8,41 @@
   background-color: var(--color-primary);
   display: flex;
   align-items: center;
-  z-index: 1000;
+  z-index: var(--z-header);
 }
 
-.nav {
+.site-header__nav {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 100%;
   width: 100%;
-  max-width: 90%;
+  max-width: var(--layout-width);
   margin: 0 auto;
 }
 
-.nav-row {
+.site-header__row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 }
 
-.logo {
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   color: var(--color-on-primary);
-  font-weight: bold;
-  font-size: 1.5rem;
-  font-family:
-    "Quicksand",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  text-decoration: none;
+  font-weight: 700;
 }
 
-.logo:hover {
+.site-header__logo-text {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.site-header__logo:hover {
   color: var(--color-secondary);
 }
 
@@ -48,87 +50,83 @@
    Hamburger Menu Styles (Mobile First)
    ============================================ */
 
-.hamburger {
+.site-header__toggle {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 4px;
-  width: 32px;
-  height: 32px;
+  gap: var(--space-1);
+  width: var(--size-hamburger);
+  height: var(--size-hamburger);
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
   margin-left: auto;
-  z-index: 1001;
+  z-index: var(--z-overlay);
 }
 
-.hamburger:hover {
-  background-color: transparent;
-}
-
-.hamburger-line {
-  width: 32px;
-  height: 3px;
+.site-header__toggle-line {
+  width: var(--size-hamburger);
+  height: var(--size-hamburger-line);
   background-color: var(--color-on-primary);
-  border-radius: 2px;
-  transition: all 0.3s ease;
+  border-radius: var(--radius-sm);
+  transition: transform 0.3s ease, opacity 0.3s ease;
   transform-origin: center;
 }
 
-.hamburger:hover > .hamburger-line {
+.site-header__toggle:hover > .site-header__toggle-line {
   background-color: var(--color-secondary);
 }
 
-.hamburger-line.open:nth-child(1) {
-  transform: rotate(45deg) translate(0px, 10px);
+.site-header__toggle-line--open:nth-child(1) {
+  transform: rotate(45deg) translate(0, var(--space-2-5));
 }
 
-.hamburger-line.open:nth-child(2) {
+.site-header__toggle-line--open:nth-child(2) {
   opacity: 0;
-  transform: translateX(-20px);
+  transform: translateX(calc(var(--space-5) * -1));
 }
 
-.hamburger-line.open:nth-child(3) {
-  transform: rotate(-45deg) translate(0px, -9px);
+.site-header__toggle-line--open:nth-child(3) {
+  transform: rotate(-45deg) translate(0, calc(var(--space-2-5) * -1));
 }
 
 /* ============================================
    Navigation Links (Mobile First)
    ============================================ */
 
-.nav-links {
+.site-header__links {
   position: fixed;
   top: 0;
   right: 0;
   transform: translateX(100%);
   height: 100vh;
-  width: 70%;
-  max-width: 320px;
+  width: var(--drawer-width);
+  max-width: var(--size-drawer);
   background-color: var(--color-primary);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 80px 20px 20px;
+  padding: calc(var(--header-height) + var(--space-4)) var(--space-6) var(--space-6);
   transition: transform 0.3s ease;
-  box-shadow: -2px 0 5px var(--color-shadow-lg);
-  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-overlay);
 }
 
-.nav-links.open {
+.site-header__links--open {
   transform: translateX(0);
 }
 
-.nav-links a {
+.site-header__links a {
   margin: 0;
-  padding: 16px 10px;
+  padding: var(--space-4) var(--space-2);
   text-decoration: none;
   color: var(--color-on-primary);
-  border-bottom: 1px solid var(--color-overlay-light);
+  border-bottom: var(--border-1) solid var(--color-overlay-light);
   transition: background-color 0.3s ease;
 }
 
-.nav-links a:hover {
+.site-header__links a:hover {
   background-color: var(--color-overlay-light);
 }
 
@@ -136,21 +134,20 @@
    Desktop
    ============================================ */
 
-@media (min-width: 1024px) {
-  .nav {
-    justify-content: space-between;
-    max-width: 80%;
+@media (min-width: 64rem) {
+  .site-header__nav {
+    max-width: var(--layout-width-lg);
   }
 
-  .nav-row {
+  .site-header__row {
     width: auto;
   }
 
-  .hamburger {
+  .site-header__toggle {
     display: none;
   }
 
-  .nav-links {
+  .site-header__links {
     position: static;
     transform: none;
     height: auto;
@@ -160,10 +157,11 @@
     flex-direction: row;
     padding: 0;
     box-shadow: none;
+    gap: var(--space-4);
   }
 
-  .nav-links a {
+  .site-header__links a {
     border-bottom: none;
-    padding: 8px 12px;
+    padding: var(--space-2) var(--space-3);
   }
 }

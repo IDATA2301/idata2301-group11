@@ -10,21 +10,39 @@ export default function Header() {
   };
 
   return (
-    <header className="header">
-      <nav className="nav">
-        <div className="nav-row">
-          <Link to="/" className="nav-logo" onClick={() => setIsMenuOpen(false)}>
-            <span className="logo">R.</span>
+    <header className="site-header">
+      <nav className="site-header__nav">
+        <div className="site-header__row">
+          <Link to="/" className="site-header__logo" onClick={() => setIsMenuOpen(false)}>
+            <span className="site-header__logo-text">R.</span>
           </Link>
 
-          <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
-            <span className={isMenuOpen ? "hamburger-line open" : "hamburger-line"}></span>
-            <span className={isMenuOpen ? "hamburger-line open" : "hamburger-line"}></span>
-            <span className={isMenuOpen ? "hamburger-line open" : "hamburger-line"}></span>
+          <button className="site-header__toggle" onClick={toggleMenu} aria-label="Toggle menu">
+            <span
+              className={
+                isMenuOpen
+                  ? "site-header__toggle-line site-header__toggle-line--open"
+                  : "site-header__toggle-line"
+              }
+            ></span>
+            <span
+              className={
+                isMenuOpen
+                  ? "site-header__toggle-line site-header__toggle-line--open"
+                  : "site-header__toggle-line"
+              }
+            ></span>
+            <span
+              className={
+                isMenuOpen
+                  ? "site-header__toggle-line site-header__toggle-line--open"
+                  : "site-header__toggle-line"
+              }
+            ></span>
           </button>
         </div>
 
-        <div className={isMenuOpen ? "nav-links open" : "nav-links"}>
+        <div className={isMenuOpen ? "site-header__links site-header__links--open" : "site-header__links"}>
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
             Home
           </Link>

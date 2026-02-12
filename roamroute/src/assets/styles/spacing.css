@@ -23,6 +23,8 @@
   --size-content-narrow: 36rem; /* 576px */
   --size-content-medium: 56rem; /* 896px */
   --size-card-min: 12rem; /* 192px */
+  --size-search-min: 10rem; /* 160px */
+  --size-search-flex: 12rem; /* 192px */
   --layout-width: 90%;
   --layout-width-lg: 80%;
   --size-page-min: 20rem; /* 320px */

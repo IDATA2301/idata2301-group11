@@ -1,233 +1,153 @@
-/* ============================================
-   MOBILE-FIRST BASE STYLES
-   ============================================ */
-
-.contact-page {
-  padding: 20px;
-  max-width: 100%;
-  margin: 0 auto;
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
-/* ============================================
-   Header Section - Mobile
-   ============================================ */
-
-.contact-header {
+.contact__header {
   text-align: left;
-  margin-bottom: 30px;
+  margin-bottom: var(--space-7);
 }
 
-/* ============================================
-   Contact Form - Mobile
-   ============================================ */
-
-.contact-form {
-  margin-top: 30px;
-  margin-bottom: 40px;
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
 }
 
-.form-field {
-  margin-bottom: 20px;
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: var(--size-content-narrow);
 }
 
-.form-label {
+.contact__label {
   color: var(--color-text-muted);
-  display: block;
-  margin-bottom: 8px;
   font-weight: 600;
-  font-size: 0.95em;
+  font-size: 0.95rem;
 }
 
-.form-label::after {
-  content: ' *';
+.contact__label::after {
+  content: " *";
   color: var(--color-danger);
 }
 
-/* Form Inputs - Mobile */
-.form-input,
-.form-textarea {
+.contact__input,
+.contact__textarea {
   background-color: var(--color-surface);
   color: var(--color-text-muted);
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
-  padding: 14px;
-  font-size: 16px;
+  border: var(--border-2) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3-5);
+  font-size: 1rem;
   width: 100%;
-  box-shadow: 0 2px 4px var(--color-shadow-sm);
-  transition: border-color 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-input {
-  height: 45px;
+.contact__input {
+  height: var(--size-input);
 }
 
-.form-textarea {
-  min-height: 120px;
+.contact__textarea {
+  min-height: var(--size-textarea);
   resize: vertical;
 }
 
-.form-input:focus,
-.form-textarea:focus {
+.contact__input:focus,
+.contact__textarea:focus {
   border-color: var(--color-primary);
   outline: none;
-  box-shadow: 0 2px 8px var(--color-primary-glow);
+  box-shadow: 0 0 0 0.125rem var(--color-primary-glow);
 }
 
-/* Submit Button - Mobile */
-.form-submit {
+.contact__submit {
   width: 100%;
-  margin-top: 20px;
-  margin-left: 0;
   background-color: var(--color-primary);
   color: var(--color-on-primary);
   border: none;
-  padding: 14px 24px;
-  font-size: 1em;
-  font-weight: bold;
-  border-radius: 8px;
+  padding: var(--space-3-5) var(--space-6);
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  box-shadow: 0 4px 4px var(--color-shadow-sm);
-  transition: background-color 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.form-submit:active {
+.contact__submit:active {
   background-color: var(--color-primary-strong);
   transform: scale(0.98);
 }
 
-.form-submit:hover {
+.contact__submit:hover {
   background-color: var(--color-primary-strong);
 }
 
-/* ============================================
-   Contact Information Section - Mobile
-   ============================================ */
-
-.contact-info {
+.contact__info {
   background-color: var(--color-surface);
-  border-radius: 12px;
-  width: 87%;
-  margin: 0;
-  padding: 20px;
-  box-shadow: 0 4px 12px var(--color-shadow-md);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: var(--size-content-narrow);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-md);
 }
 
-.contact-details,
-.contact-hours {
-  margin-bottom: 20px;
+.contact__details,
+.contact__hours {
+  margin-bottom: var(--space-5);
   text-align: left;
 }
 
-.contact-hours {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--color-border-light);
+.contact__hours {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: var(--border-1) solid var(--color-border-light);
 }
 
-.contact-details p {
+.contact__details p {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 12px 0;
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
 }
 
-.contact-info .icon {
-  width: 22px;
-  height: 22px;
+.contact__icon {
+  width: var(--size-icon);
+  height: var(--size-icon);
   color: var(--color-primary);
   flex-shrink: 0;
 }
 
-.contact-info p {
-  margin: 5px 0;
+.contact__info p {
+  margin: var(--space-2) 0;
 }
 
-/* ============================================
-   TABLET - Media Query (768px and up)
-   ============================================ */
-
-@media (min-width: 768px) {
-  .contact-page {
-    padding: 40px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .contact-header {
+@media (min-width: 48rem) {
+  .contact__header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: var(--space-8);
   }
 
-  .contact-form {
-    margin-top: 40px;
-    margin-bottom: 50px;
+  .contact__form {
+    align-items: center;
   }
 
-  .form-field {
-    margin-bottom: 25px;
-  }
-
-  .form-input,
-  .form-textarea {
-    width: 60%;
-    padding: 14px 16px;
-  }
-
-  .form-input {
-    height: 45px;
-  }
-
-  .form-submit {
+  .contact__submit {
     width: auto;
-    padding: 12px 32px;
-    margin-top: 20px;
   }
 
-  .contact-info {
-    width: 60%;
+  .contact__info {
     margin: 0 auto;
-    padding: 30px;
-  }
-
-  .contact-details,
-  .contact-hours {
-    margin-bottom: 25px;
-  }
-
-  .contact-hours {
-    margin-top: 25px;
-    padding-top: 25px;
-  }
-
-  .contact-details p {
-    margin: 14px 0;
-    gap: 14px;
-  }
-
-  .contact-info .icon {
-    width: 24px;
-    height: 24px;
+    padding: var(--space-6);
   }
 }
 
-/* ============================================
-   DESKTOP - Media Query (1024px and up)
-   ============================================ */
-
-@media (min-width: 1024px) {
-  .contact-page {
-    padding: 50px 40px;
-    max-width: 1200px;
+@media (min-width: 64rem) {
+  .contact {
+    gap: var(--space-6);
   }
-
-  .form-input,
-  .form-textarea {
-    width: 50%;
-  }
-
-  .contact-info {
-    width: 50%;
-    padding: 35px;
-  }
-
 }

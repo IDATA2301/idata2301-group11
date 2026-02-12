@@ -34,25 +34,26 @@ function Home() {
   ];
 
   return (
-    <main> 
+    <main className="home"> 
       {/* Hero section */ }
-      <section className="hero">
-        <h1 className="hero-title">Dream away at your destination</h1>
-        <div className="search-bar">
+      <section className="home__hero">
+        <h1 className="home__hero-title">Dream away at your destination</h1>
+        <div className="home__search">
           <input 
+            className="home__search-input"
             type="text" 
             placeholder="Where are you roaming?" 
             />
-          <button>Search</button>
+          <button className="home__search-button">Search</button>
         </div>
       </section>
 
       {/* Popular destinations */ }
-      <section className="destinations">
+      <section className="home__destinations">
         <h2>Top Destinations</h2>
-        <div className="destination-list">
+        <div className="home__destinations-list">
           {destinations.map(dest => (
-            <div key={dest.id} className="destination-card">
+            <div key={dest.id} className="home__destination-card">
               <img src={dest.image} alt={dest.destination}/>
               <p>{dest.destination}</p>  
             </div>
@@ -61,13 +62,13 @@ function Home() {
       </section>
 
       {/* Trip suggestions */ }
-      <section className="trips">
+      <section className="home__trips">
         <h2>Unable to decide?</h2>
         <p>let us help you</p>
 
-        <div className="trip-list">
+        <div className="home__trip-list">
           {trips.map(trip => (
-            <div key={trip.id} className="trip-card">
+            <div key={trip.id} className="home__trip-card">
               <img src={trip.image} alt={trip.destination}/>
               <h3>{trip.title}</h3>
               <p>{trip.destination}</p>

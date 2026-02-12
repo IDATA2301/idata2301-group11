@@ -1,17 +1,61 @@
-/* ============================================
-   Hero Section - Mobile
-   ============================================ */
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
 
-.hero {
+.home__hero {
   text-align: left;
-  margin-bottom: 30px;
+  margin-bottom: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
-.hero-title {
+.home__hero-title {
   font-size: clamp(2.25rem, 5vw, 3.5rem);
-  margin-bottom: 12px;
+  margin: 0;
 }
 
-.search-bar {
+.home__search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
   background-color: var(--color-primary);
+}
+
+.home__search-input {
+  flex: 1 1 var(--size-search-flex);
+  min-width: var(--size-search-min);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+}
+
+.home__search-button {
+  border-radius: var(--radius-sm);
+  background-color: var(--color-on-primary);
+  color: var(--color-primary);
+}
+
+.home__destinations,
+.home__trips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.home__destinations-list,
+.home__trip-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .home__destinations-list,
+  .home__trip-list {
+    grid-template-columns: repeat(auto-fit, minmax(var(--size-card-min), 1fr));
+  }
 }

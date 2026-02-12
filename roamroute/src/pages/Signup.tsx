@@ -2,14 +2,14 @@ import "../assets/styles/pages/signup.css"
 
 export default function Signup() {
   return (
-    <>
-      <div className="signup-text">
+    <main className="signup">
+      <div className="signup__text">
         <h1>Create an Account</h1>
         <p>Sign up to start planning your travel adventures.</p>
       </div>
 
       {/* Signup form */}
-      <form className="signup-form">
+      <form className="signup__form">
         <input 
         type="text" 
         placeholder="Full Name" />
@@ -23,9 +23,9 @@ export default function Signup() {
       </form>
 
       {/* Additional links */}
-      <div className="login-link">
+      <div className="signup__login">
         <p>Already have an account? <a href="/login">Log In</a></p>
       </div>
-    </>
+    </main>
   )
 } 

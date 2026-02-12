@@ -2,14 +2,14 @@ import "../assets/styles/pages/login.css"
 
 export default function LoginPage() {
   return (
-    <>
-      <div className="login-text">
+    <main className="login">
+      <div className="login__text">
         <h1>Welcome back</h1>
         <p>Sign in to manage your travel plan and explore new destinations.</p>
       </div>
 
       {/* Login form */}
-      <form className="login-form">
+      <form className="login__form">
         <input 
         type="text" 
         placeholder="name@example.com" />
@@ -20,13 +20,13 @@ export default function LoginPage() {
       </form>
 
       {/* Additional links */}
-      <div className="forgot-password">
+      <div className="login__forgot">
         <a href="/forgot-password">Forgot password?</a>
       </div>
 
-      <div className="signup-link">
+      <div className="login__signup">
         <p>Don't have an account? <a href="/signup">Sign Up</a></p>
       </div>
-    </>
+    </main>
   )
 }
