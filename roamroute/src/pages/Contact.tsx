@@ -13,7 +13,7 @@ function Contact() {
       {/* Contact Form */}
       <form className="contact-form">
         <div className="form-field">
-          <label htmlFor="email" className="form-label">E-mail</label>
+          <label htmlFor="email" className="form-label-email">E-mail</label>
           <input 
             type="email"
             id="email"
@@ -25,7 +25,7 @@ function Contact() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="regarding" className="form-label">Regarding</label>
+          <label htmlFor="regarding" className="form-label-regarding">Regarding</label>
           <input 
             type="text"
             id="regarding"
@@ -37,7 +37,7 @@ function Contact() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="message" className="form-label">Message</label>
+          <label htmlFor="message" className="form-label-message">Message</label>
           <textarea
             id="message"
             className="form-textarea"
