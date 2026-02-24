@@ -1,0 +1,113 @@
+
+
+.IntroTag {
+    background-color: var(--color-primary);
+    border-radius: 8px;
+    color: #ffffff;
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 16px;
+}
+
+.IntroContent {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    width: fit-content;
+}
+
+.IntroTitle {
+    font-size: large;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.IntroDescription {
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.Services {
+}
+
+.ServicesList {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.ServiceItem {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+}
+
+.ServiceContent {
+    flex: 1;
+}
+
+.ServiceContent h3 {
+    font-size: var(--font-size-h3);
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 8px 0;
+}
+
+.ServiceContent p {
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+
+.Team {
+    background-color: #ffffff;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 48px 24px;
+}
+
+.TeamContent {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.TeamContent h2 {
+    margin-top: 0;
+    margin-bottom: 32px;
+}
+
+.TeamList {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+    scroll-behavior: smooth;
+}
+
+.TeamMember {
+    flex: 0 0 160px;
+    text-align: center;
+}
+
+.TeamMember img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.TeamMember h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #000000;
+}
+
+.TeamMember p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
