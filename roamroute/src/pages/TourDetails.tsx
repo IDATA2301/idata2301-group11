@@ -1,84 +1,133 @@
+import "../assets/styles/pages/tourdetails.css";
+import {
+  SunIcon,
+  PaperAirplaneIcon,
+  CurrencyDollarIcon,
+  InformationCircleIcon,
+  HomeIcon,
+} from "@heroicons/react/24/solid";
+
 export default function TourDetails() {
   return (
     <main>
-      <section>
+      <section className="TourHeader">
         <h1> Barcelona, Spain</h1>
         <p>Feb 13 - Feb 20, 2026</p>
       </section>
 
-      <nav>
+      <nav className="Breadcrumb">
         <p>Home {">"} Trips {">"} Barcelona</p>
       </nav>
 
-      <section>
+      <section className="TourTabs">
         <button>Overview</button>
         <button>Accomodation</button>
         <button>Itinerary</button>
       </section>
 
-      <section>
-        <h2> Trip Overview</h2>
-        <p>
-          A family friendly economy trip from Ålesund to Barcelona,
-          idela for a warm winter escape
-        </p>
-        <div>
+      <section className="TripOverview">
+        <h2>
+          <InformationCircleIcon
+            className="InfoIcon InfoIcon--info"
+            aria-hidden="true"
+          />
+          Trip Overview
+        </h2>
+        <div className="TripOverviewContent">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          </p>
           <div>
-            <p>Weather</p>
-            <strong>18 C</strong>
-          </div>
+            <div className="WeatherInfo">
+              <SunIcon className="InfoIcon InfoIcon--sun" aria-hidden="true" />
+              <p>Weather</p>
+              <strong>18 C</strong>
+            </div>
 
-          <div>
-            <p>Flight</p>
-            <strong>5-7h</strong>
-          </div>
+            <div className="FlightInfo">
+              <PaperAirplaneIcon
+                className="InfoIcon InfoIcon--flight"
+                aria-hidden="true"
+              />
+              <p>Flight</p>
+              <strong>5-7h</strong>
+            </div>
 
-          <div>
-            <p>Budget</p>
-            <strong>Economy</strong>
+            <div className="BudgetInfo">
+              <CurrencyDollarIcon
+                className="InfoIcon InfoIcon--budget"
+                aria-hidden="true"
+              />
+              <p>Budget</p>
+              <strong>Economy</strong>
+            </div>
           </div>
         </div>
       </section>
 
-      <section>
-        <h2>Flight Comparison</h2>
+      <section className="FlightComparison">
+        <h2>
+          <PaperAirplaneIcon 
+          className="InfoIcon InfoIcon--flight" 
+          aria-hidden="true" />
+          Flight Price Comparison
 
-        <div>
-          <h3>Skyscanner</h3>
-          <p>150 USD</p>
+        </h2>
+
+        <div className="Skyscanner">
+          <h3>
+            Skyscanner
+            <span className="FlightCompanyNote">Includes taxes & fees</span>
+          </h3>
+          <p>€150</p>
           <button>Selected</button>
         </div>
 
-        <div>
-          <h3>Expedia</h3>
-          <p>175 USD</p>
+        <div className="Expedia">
+          <h3>
+            Expedia
+            <span className="FlightCompanyNote">Includes taxes & fees</span>
+          </h3>
+          <p>€175</p>
           <button>Select</button>
         </div>
 
-        <div>
-          <h3>Momondo</h3>
-          <p>160 USD</p>
+        <div className="Momondo">
+          <h3>
+            Momondo
+            <span className="FlightCompanyNote">Includes taxes & fees</span>
+          </h3>
+          <p>€160</p>
           <button>Select</button>
         </div>
       </section>
 
-      <section>
-        <h2>Hotel Price Comparison</h2>
+      <section className="HotelComparison">
+        <h2>
+          <HomeIcon className="InfoIcon InfoIcon--home" aria-hidden="true" />
+          Hotel Price Comparison
+        </h2>
 
-        <div>
-          <h3>Booking.com</h3>
-          <p>620 USD</p>
+        <div className="Booking">
+          <h3>
+            Booking.com
+            <span className="HotelCompanyNote">Includes taxes & fees</span>
+          </h3>
+          <p>€620</p>
           <button>Selected</button>
         </div>
 
-        <div>
-          <h3>Hotels.com</h3>
-          <p>645 USD</p>
+        <div className="Hotels">
+          <h3>
+            Hotels.com
+            <span className="HotelCompanyNote">Includes taxes & fees</span>
+          </h3>
+          <p>€645</p>
           <button>Select</button>
         </div>
       </section>
 
-      <section>
+      <section className="LocationSection">
         <h2>Location</h2>
         <div>
           <p>Map goes here</p>

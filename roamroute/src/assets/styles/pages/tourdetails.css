@@ -1,0 +1,374 @@
+/* ====================================
+   Tour Details Page Styles
+   =============================== */
+
+.TourHeader {
+    display: block;
+    text-align: left;
+    margin-bottom: var(--space-lg);    
+}
+
+.TourHeader h1 {
+    font-family: var(--font-heading);
+}
+
+.Breadcrumb {
+}
+
+/* ====================================
+   Tabs
+   =============================== */
+
+.TourTabs {
+    font-weight: 500;
+    background-color: var(--color-border-light);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-sm) var(--space-lg);
+    display: flex;
+    gap: var(--space-6xl);
+}
+
+/* ====================================
+   Trip Overview
+   =============================== */
+
+.TripOverview h2 {
+    background-color: transparent;
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    display: flex;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-2xs);
+    margin-bottom: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.TripOverviewContent {
+    background-color: white;
+    padding: var(--space-md);
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.TripOverviewContent > div {
+    display: flex;
+    gap: var(--space-xl);
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-top: 1px solid var(--color-border-light);
+    padding-top: var(--space-lg);
+}
+
+/* ====================================
+   Flight, Weather & Budget Info
+   =============================== */
+
+.FlightInfo, .WeatherInfo, .BudgetInfo {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-0);
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.FlightInfo p,
+.WeatherInfo p,
+.BudgetInfo p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.FlightInfo strong,
+.WeatherInfo strong,
+.BudgetInfo strong {
+    line-height: 1.9;
+}
+
+.InfoIcon {
+    width: 28px;
+    height: 28px;
+}
+
+.InfoIcon--sun {
+    color: #facc15;
+}
+
+.InfoIcon--flight {
+    color: #3b82f6;
+}
+
+.InfoIcon--budget {
+    color: #22c55e;
+}
+
+.InfoIcon--info {
+    color: #3b82f6;
+}
+
+.InfoIcon--home {
+    color: #3b82f6;
+}
+
+/* ====================================
+   Flight & Hotel Comparison
+   =============================== */
+
+.FlightComparison {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.FlightComparison h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    margin: 0;
+}
+
+.Skyscanner {
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "title price"
+        "button button";
+    align-items: center;
+    column-gap: var(--space-md);
+    row-gap: var(--space-lg);
+}
+
+.Skyscanner h3 {
+    grid-area: title;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.Skyscanner p {
+    grid-area: price;
+    justify-self: end;
+    font-weight: 700;
+    margin: 0;
+}
+
+.Skyscanner button {
+    grid-area: button;
+    justify-self: stretch;
+    width: 100%;
+}
+
+.Skyscanner button {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    border: none;
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
+}
+
+.Expedia {
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "title price"
+        "button button";
+    align-items: center;
+    column-gap: var(--space-md);
+    row-gap: var(--space-lg);
+}
+
+.Expedia h3 {
+    grid-area: title;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.Expedia p {
+    grid-area: price;
+    justify-self: end;
+    font-weight: 700;
+    margin: 0;
+}
+
+.Expedia button {
+    grid-area: button;
+    justify-self: stretch;
+    width: 100%;
+}
+
+.Expedia button {
+    background-color: white;
+    color: var(--color-text-body);
+    border: 1px solid var(--color-border);
+    border-width: 1px;
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
+}
+
+.Momondo {
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+    padding: var(--space-md);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "title price"
+        "button button";
+    align-items: center;
+    column-gap: var(--space-md);
+    row-gap: var(--space-lg);
+}
+
+.Momondo h3 {
+    grid-area: title;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.FlightCompanyNote {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+}
+
+.Momondo p {
+    grid-area: price;
+    justify-self: end;
+    font-weight: 700;
+    margin: 0;
+}
+
+.Momondo button {
+    grid-area: button;
+    justify-self: stretch;
+    width: 100%;
+}
+
+.Momondo button {
+    background-color: white;
+    color: var(--color-text-body);
+    border: 1px solid var(--color-border);
+    border-width: 1px;
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
+}
+
+.HotelComparison {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.HotelComparison h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    margin: 0;
+}
+
+.Booking,
+.Hotels {
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+    padding: var(--space-md);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "title price"
+        "button button";
+    align-items: center;
+    column-gap: var(--space-md);
+    row-gap: var(--space-lg);
+}
+
+.Booking {
+    margin-bottom: var(--space-lg);
+}
+
+.Booking h3,
+.Hotels h3 {
+    grid-area: title;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.Booking p,
+.Hotels p {
+    grid-area: price;
+    justify-self: end;
+    font-weight: 700;
+    margin: 0;
+}
+
+.Booking button,
+.Hotels button {
+    grid-area: button;
+    justify-self: stretch;
+    width: 100%;
+}
+
+.Booking button {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    border: none;
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
+}
+
+.Hotels button {
+    background-color: white;
+    color: var(--color-text-body);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
+}
+
+.HotelCompanyNote {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+}
+
+.LocationSection {
+}
