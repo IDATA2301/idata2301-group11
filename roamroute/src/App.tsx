@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Search from "./pages/Search";
 import TourDetails from "./pages/TourDetails";
 import Admin from "./pages/Admin";
+import Fetch from "./pages/fetch";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/tour/:id" element={<TourDetails />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/fetch" element={<Fetch />} />
         </Routes>
       </div>
     </Router>
