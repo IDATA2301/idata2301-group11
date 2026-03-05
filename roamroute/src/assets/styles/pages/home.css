@@ -1,4 +1,5 @@
 @import "../components/button.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 .home {
   position: relative;
@@ -26,7 +27,7 @@
   min-height: var(--hero-height);
   padding-top: var(--space-6xl);
   text-align: left;
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-10xl);
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
@@ -62,11 +63,10 @@
   border-radius: var(--radius-sm);
 }
 
-.home__destinations,
-.home__trips {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
+.home__destinations {
+  margin-top: calc(-1 * var(--space-md));
+  position: relative;
+  z-index: 1;
 }
 
 .home__destinations-list,
@@ -75,8 +75,68 @@
   gap: var(--space-lg);
 }
 
+.home__destinations-list {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-sm);
+}
+
+.home__destination-card {
+  position: relative;
+  flex: 0 0 clamp(17rem, 32vw, 22rem);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.home__destination-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%);
+  pointer-events: none;
+}
+
+.home__destination-name {
+  position: absolute;
+  left: var(--space-md);
+  bottom: var(--space-md);
+  margin: 0;
+  z-index: 1;
+  color: var(--color-surface);
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.home__destination-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.home__trips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: clamp(4rem, 4vw, 4rem);
+}
+
+.home__trips > h2,
+.home__trips > p {
+  margin: 0;
+}
+
+.home__trip-list {
+  margin-top: var(--space-2xs);
+}
+
 @media (min-width: 48rem) {
-  .home__destinations-list,
   .home__trip-list {
     grid-template-columns: repeat(auto-fit, minmax(var(--size-card-min), 1fr));
   }

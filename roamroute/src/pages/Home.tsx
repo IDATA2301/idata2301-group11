@@ -1,14 +1,18 @@
-import barcelonaImg from "../assets/images/barcelona.png";
+import barcelonaDestImg from "../assets/images/barcelona.png";
 import athensImg from "../assets/images/athens.png";
+import parisDestImg from "../assets/images/paris.jpg";
+import athensDestImg from "../assets/images/athens.jpg";
+import tokyoDestImg from "../assets/images/tokyoDest.jpg";
+import dublinDestImg from "../assets/images/dublinDest.jpg";
 import "../assets/styles/pages/home.css";
 
 function Home() {
   const destinations = [
-    { id: 1, destination: "Barcelona", image: barcelonaImg },
-    { id: 2, destination: "Paris" },
-    { id: 3, destination: "Athens" },
-    { id: 4, destination: "Tokyo" },
-    { id: 5, destination: "Dublin" },
+    { id: 1, destination: "Barcelona", image: barcelonaDestImg },
+    { id: 2, destination: "Paris", image: parisDestImg },
+    { id: 3, destination: "Athens", image: athensDestImg},
+    { id: 4, destination: "Tokyo", image: tokyoDestImg },
+    { id: 5, destination: "Dublin", image: dublinDestImg },
   ];
 
   const trips = [
@@ -56,16 +60,15 @@ function Home() {
           {destinations.map((dest) => (
             <div key={dest.id} className="home__destination-card">
               <img src={dest.image} alt={dest.destination} />
-              <p>{dest.destination}</p>
+              <p className ="home__destination-name">{dest.destination}</p>
             </div>
           ))}
         </div>
       </section>
-
       {/* Trip suggestions */}
       <section className="home__trips">
         <h2>Unable to decide?</h2>
-        <p>let us help you</p>
+        <p>Let us help you</p>
 
         <div className="home__trip-list">
           {trips.map((trip) => (
