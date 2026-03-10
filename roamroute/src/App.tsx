@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Home from "./pages/Home";
@@ -10,11 +10,15 @@ import Signup from "./pages/Signup";
 import Search from "./pages/Search";
 import TourDetails from "./pages/TourDetails";
 import Admin from "./pages/Admin";
-import Fetch from "./pages/fetch";
+import AdminUsers from "./pages/AdminUsers";
+import AdminUserDetails from "./pages/AdminUserDetails";
 
-function App() {
+function AppLayout() {
+  const { pathname } = useLocation();
+  const hideFooter = pathname.startsWith("/admin");
+
   return (
-    <Router>
+    <>
       <Header />
 
       <div className="layout__container">
@@ -28,11 +32,20 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/tour/:id" element={<TourDetails />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/fetch" element={<Fetch />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/users/:id" element={<AdminUserDetails />} />
         </Routes>
       </div>
 
-      <Footer />
+      {!hideFooter && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppLayout />
     </Router>
   );
 }

@@ -1,0 +1,132 @@
+@import "../components/button.css";
+
+.admin-users {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.admin-users h1,
+.admin-users h2 {
+  margin: 0;
+}
+
+.admin-users__mobile-list {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.admin-users__mobile-card {
+  border: 1px solid var(--color-border-light);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+  text-align: left;
+  color: var(--color-text-body);
+}
+
+.admin-users__mobile-card--active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-glow);
+}
+
+.admin-users__mobile-name {
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+  font-weight: 700;
+}
+
+.admin-users__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.admin-users__header h1,
+.admin-users__header p {
+  margin: 0;
+}
+
+.admin-users__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.admin-users__description {
+  margin-top: var(--space-xs);
+}
+
+.admin-users__table-wrap {
+  display: none;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-md);
+  overflow-x: auto;
+}
+
+.admin-users__table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 36rem;
+}
+
+.admin-users__table th,
+.admin-users__table td {
+  text-align: left;
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.admin-users__table th {
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+}
+
+.admin-users__table tbody tr:hover {
+  background-color: var(--color-background);
+}
+
+.admin-users__row {
+  cursor: pointer;
+}
+
+.admin-users__row--active {
+  background-color: var(--color-background);
+}
+
+.admin-users__details {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.admin-users__details p {
+  margin: 0;
+}
+
+@media (min-width: 48rem) {
+  .admin-users__mobile-list {
+    display: none;
+  }
+
+  .admin-users__table-wrap {
+    display: block;
+  }
+}
