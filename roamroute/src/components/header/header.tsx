@@ -34,6 +34,9 @@ export default function Header() {
           <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
             Contact
           </Link>
+          <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
+            Profile
+          </Link>
           <Link to="/login" onClick={() => setIsMenuOpen(false)}>
             Login
           </Link>
