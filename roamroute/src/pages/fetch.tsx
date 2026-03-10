@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+/* import { useEffect, useState } from "react";
+
+type Trip = {
+  trip_description: string;
+};
 
 function Fetch() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Trip[]>([]);
   useEffect(() => {
     async function fetchData() {
       await fetch("http://localhost:8080/api/trips")
@@ -25,4 +29,4 @@ function Fetch() {
   );
 }
 
-export default Fetch;
+export default Fetch; */
