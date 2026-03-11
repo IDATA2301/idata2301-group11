@@ -7,3 +7,10 @@ export interface User {
   user_address: string;
   user_country: string;
 }
+
+export interface AuthUser {
+  id: number;
+  userName: string;
+  email: string;
+  role: string;
+}

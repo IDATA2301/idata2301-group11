@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Home from "./pages/Home";
@@ -46,9 +47,11 @@ function AppLayout() {
 
 function App() {
   return (
-    <Router>
-      <AppLayout />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppLayout />
+      </Router>
+    </AuthProvider>
   );
 }
 
