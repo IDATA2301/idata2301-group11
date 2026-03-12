@@ -5,23 +5,72 @@
     border-radius: 8px;
     color: #ffffff;
     display: inline-block;
+    align-self: flex-start;
+    width: fit-content;
     padding: 4px 12px;
     margin-bottom: 16px;
+}
+
+.Intro {
+    position: relative;
+}
+
+.IntroHero {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 220px;
+}
+
+.IntroHero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 45%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+.IntroHeroImage {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.IntroOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .IntroContent {
     background-color: #ffffff;
     border-radius: 12px;
     padding: 24px;
-    width: fit-content;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.IntroContent > svg {
+    width: clamp(2.25rem, 8vw, 2.75rem);
+    height: clamp(2.25rem, 8vw, 2.75rem);
+    flex-shrink: 0;
 }
 
 .IntroTitle {
-    font-size: large;
-    margin: 0 0 16px 0;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 8px;
+    color: #ffffff;
 }
 
 .IntroDescription {
@@ -30,6 +79,7 @@
 }
 
 .Services {
+    margin-top: var(--space-2xl);
 }
 
 .ServicesList {
@@ -109,5 +159,43 @@
     font-size: 14px;
     color: var(--color-text-secondary);
     margin: 0;
+}
+
+@media (min-width: 64rem) {
+    .Intro {
+        margin-top: calc(-1 * var(--space-6xl));
+    }
+
+    .IntroHero {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        border-radius: 0 0 20px 20px;
+        height: min(42vh, 28rem);
+        min-height: 0;
+    }
+
+    .IntroHeroImage {
+        height: 100%;
+    }
+
+    .IntroOverlay {
+        max-width: var(--layout-width-lg);
+        margin: 0 auto;
+        width: 100%;
+        padding: 32px 24px;
+    }
+
+    .Services {
+        margin-top: var(--space-4xl);
+    }
+
+    .TeamContent {
+        text-align: center;
+    }
+
+    .TeamList {
+        justify-content: center;
+        overflow-x: visible;
+    }
 }
 
