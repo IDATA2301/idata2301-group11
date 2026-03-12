@@ -1,6 +1,7 @@
 import { SparklesIcon, CurrencyDollarIcon, ClockIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import "../assets/styles/pages/about.css";
 import TeamMemberImage from "../assets/images/TeamMember.png";
+import Image from "../assets/images/fly.png";
 
 function About() {
   const services = [
@@ -49,17 +50,23 @@ function About() {
     <main>
       {/*Intro section*/ }
       <section className="Intro">
-        <p className="IntroTag">The RoamRoute standard</p>
+        <div className="IntroHero">
+          <img src={Image} alt="Airplane in flight" className="IntroHeroImage" />
+          <div className="IntroOverlay">
+            <p className="IntroTag">The RoamRoute standard</p>
+            <h1 className="IntroTitle">
+              Elevating travel planning to new heights
+            </h1>
+          </div>
+        </div>
+
         <div className="IntroContent">
-          <h1 className="IntroTitle">
-            <SparklesIcon className="inline-block mr-2" width={32} height={32} color="orange" />
-            Elevating travel planning to new heights
-          </h1>
+          <SparklesIcon className="inline-block mr-2" width={32} height={32} color="orange" />
           <p className="IntroDescription">
             Whether you're seeking hidden gems in distant countries,
-              reuniting with loved ones, or attending important events,
-              every plan made with RoamRoute is backed by reliability
-              and convenience.
+            reuniting with loved ones, or attending important events,
+            every plan made with RoamRoute is backed by reliability
+            and convenience.
           </p>
         </div>
       </section>
