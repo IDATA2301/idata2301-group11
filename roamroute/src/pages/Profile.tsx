@@ -1,11 +1,19 @@
 import "../assets/styles/pages/profile.css";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Profile() {
+  const { authUser } = useAuth();
+
+  if (!authUser) {
+    return <Navigate to="/login" replace />;
+  }
+
   return (
     <main className="profile">
       <section className="profile__hero">
         <div className="profile__avatar" aria-hidden="true">
-          SN
+          {authUser.userName.slice(0, 2).toUpperCase()}
         </div>
         <div className="profile__intro">
           <h1>My Profile</h1>
@@ -19,15 +27,15 @@ export default function Profile() {
           <dl className="profile__list">
             <div className="profile__item">
               <dt>Name</dt>
-              <dd>Placeholder</dd>
+              <dd>{authUser.userName}</dd>
             </div>
             <div className="profile__item">
               <dt>Email</dt>
-              <dd>Placeholder</dd>
+              <dd>{authUser.email}</dd>
             </div>
             <div className="profile__item">
-              <dt>Country</dt>
-              <dd>Placeholder</dd>
+              <dt>Role</dt>
+              <dd>{authUser.role}</dd>
             </div>
           </dl>
         </article>

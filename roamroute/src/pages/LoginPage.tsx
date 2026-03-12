@@ -1,7 +1,40 @@
 import "../assets/styles/pages/login.css"
+import { useState, type FormEvent } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
+import { login } from "../services/auth"
+import { useAuth } from "../context/AuthContext"
 
 export default function LoginPage() {
+  const navigate = useNavigate()
+  const { signIn } = useAuth()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setError("")
+
+    if (!email.trim() || !password.trim()) {
+      setError("Please fill in all fields.")
+      return
+    }
+
+    try {
+      setLoading(true)
+      const user = await login({ email, password })
+      signIn(user)
+      navigate("/profile")
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Login failed. Please try again."
+      setError(message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <main className="login">
       <div className="login__text">
@@ -10,7 +43,7 @@ export default function LoginPage() {
       </div>
 
       {/* Login form */}
-      <form className="login__form">
+      <form className="login__form" onSubmit={handleSubmit}>
         <div className="login__field">
           <label className="login__label" htmlFor="login-email">
           Email address
@@ -23,6 +56,8 @@ export default function LoginPage() {
               type="email"
               placeholder="name@example.com"
               autoComplete="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </div>
         </div>
@@ -38,19 +73,24 @@ export default function LoginPage() {
               type="password"
               placeholder="*********"
               autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </div>
         </div>
+        {error ? <p role="alert">{error}</p> : null}
         <div className="login__forgot">
-          <a href="/forgot-password">Forgot password?</a>
+          <Link to="/forgot-password">Forgot password?</Link>
         </div>
-        <button type="submit" className="btn">Sign In</button>
+        <button type="submit" className="btn" disabled={loading}>
+          {loading ? "Signing in..." : "Sign In"}
+        </button>
       </form>
 
       {/* Additional links */}
       <div className="login__signup">
         <p>
-          Don&apos;t have an account? <a href="/signup">Sign Up</a>
+          Don&apos;t have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </div>
     </main>

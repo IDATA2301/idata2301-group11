@@ -1,12 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import "../../assets/styles/components/header.css";
 
 export default function Header() {
+  const navigate = useNavigate();
+  const { authUser, signOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    signOut();
+    setIsMenuOpen(false);
+    navigate("/login");
   };
 
   return (
@@ -34,12 +43,20 @@ export default function Header() {
           <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
             Contact
           </Link>
-          <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
-            Profile
-          </Link>
-          <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-            Login
-          </Link>
+          {authUser ? (
+            <>
+              <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
+                Profile
+              </Link>
+              <button type="button" onClick={handleLogout} className="site-header__logout-btn">
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+              Login
+            </Link>
+          )}
         </div>
       </nav>
     </header>
