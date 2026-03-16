@@ -18,6 +18,14 @@ type LoginRequest = {
   password: string;
 };
 
+type RegisterRequest = {
+  userName: string;
+  email: string;
+  password: string;
+  address?: string;
+  country?: string;
+};
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export async function login({ email, password }: LoginRequest): Promise<AuthUser> {
@@ -39,6 +47,43 @@ export async function login({ email, password }: LoginRequest): Promise<AuthUser
 
   if (!response.ok) {
     throw new Error("Login failed. Please try again.");
+  }
+
+  const data: AuthUser = await response.json();
+  return data;
+}
+
+export async function register({
+  userName,
+  email,
+  password,
+  address,
+  country,
+}: RegisterRequest): Promise<AuthUser> {
+  const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userName,
+      email,
+      password,
+      address,
+      country,
+    }),
+  });
+
+  if (response.status === 400) {
+    throw new Error("Please fill in name, email, and password.");
+  }
+
+  if (response.status === 409) {
+    throw new Error("An account with this email already exists.");
+  }
+
+  if (!response.ok) {
+    throw new Error("Signup failed. Please try again.");
   }
 
   const data: AuthUser = await response.json();
