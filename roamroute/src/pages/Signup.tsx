@@ -1,7 +1,41 @@
 import "../assets/styles/pages/signup.css"
+import { useState, type SyntheticEvent } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { EnvelopeIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline"
+import { register } from "../services/auth"
+import { useAuth } from "../context/AuthContext"
 
 export default function Signup() {
+  const navigate = useNavigate()
+  const { signIn } = useAuth()
+  const [userName, setUserName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setError("")
+
+    if (!userName.trim() || !email.trim() || !password.trim()) {
+      setError("Please fill in all fields.")
+      return
+    }
+
+    try {
+      setLoading(true)
+      const user = await register({ userName, email, password })
+      signIn(user)
+      navigate("/profile")
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Signup failed. Please try again."
+      setError(message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <main className="signup">
       <div className="signup__text">
@@ -10,7 +44,7 @@ export default function Signup() {
       </div>
 
       {/* Signup form */}
-      <form className="signup__form">
+      <form className="signup__form" onSubmit={handleSubmit}>
         <div className="signup__field">
           <label htmlFor="signup-full-name" className="signup__label">
             Full name
@@ -24,7 +58,8 @@ export default function Signup() {
               placeholder="Full name"
               name="fullName"
               autoComplete="name"
-              required
+              value={userName}
+              onChange={(event) => setUserName(event.target.value)}
             />
           </div>
         </div>
@@ -42,7 +77,8 @@ export default function Signup() {
               placeholder="name@example.com"
               name="email"
               autoComplete="email"
-              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </div>
         </div>
@@ -60,16 +96,20 @@ export default function Signup() {
               placeholder="*********"
               name="password"
               autoComplete="new-password"
-              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </div>
         </div>
-        <button className="btn" type="submit">Sign Up</button>
+        {error ? <p className="signup__error" role="alert">{error}</p> : null}
+        <button className="btn" type="submit" disabled={loading}>
+          {loading ? "Creating account..." : "Sign Up"}
+        </button>
       </form>
 
       {/* Additional links */}
       <div className="signup__login">
-        <p>Already have an account? <a href="/login">Log In</a></p>
+        <p>Already have an account? <Link to="/login">Log In</Link></p>
       </div>
     </main>
   )

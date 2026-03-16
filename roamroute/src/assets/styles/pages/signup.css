@@ -80,6 +80,10 @@
   width: 100%;
 }
 
+.signup__error {
+  color: var(--color-danger);
+}
+
 .signup__login {
   margin-top: var(--space-sm);
 }
