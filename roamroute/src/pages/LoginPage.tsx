@@ -1,5 +1,5 @@
 import "../assets/styles/pages/login.css"
-import { useState, type FormEvent } from "react"
+import { useState, type SyntheticEvent } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
 import { login } from "../services/auth"
@@ -13,7 +13,7 @@ export default function LoginPage() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault()
     setError("")
 
