@@ -1,41 +1,25 @@
-import barcelonaDestImg from "../assets/images/barcelona.png";
-import athensImg from "../assets/images/athens.png";
-import parisDestImg from "../assets/images/paris.jpg";
-import athensDestImg from "../assets/images/athens.jpg";
-import tokyoDestImg from "../assets/images/tokyoDest.jpg";
-import dublinDestImg from "../assets/images/dublinDest.jpg";
+
 import "../assets/styles/pages/home.css";
+import { useEffect, useState } from "react";
 
 function Home() {
   const destinations = [
-    { id: 1, destination: "Barcelona", image: barcelonaDestImg },
-    { id: 2, destination: "Paris", image: parisDestImg },
-    { id: 3, destination: "Athens", image: athensDestImg},
-    { id: 4, destination: "Tokyo", image: tokyoDestImg },
-    { id: 5, destination: "Dublin", image: dublinDestImg },
+    { id: 1, destination: "Barcelona", image: "images/barcelona.png" },
+    { id: 2, destination: "Paris", image: "images/paris.jpg" },
+    { id: 3, destination: "Athens", image: "images/athens.jpg" },
+    { id: 4, destination: "Tokyo", image: "images/tokyoDest.jpg" },
+    { id: 5, destination: "Dublin", image: "images/dublinDest.jpg" },
   ];
 
-  const trips = [
-    {
-      id: 1,
-      title: "Sunshine Escape Bodø-Athens",
-      destination: "Athens",
-      price: "$910",
-      image: athensImg,
-    },
-    {
-      id: 2,
-      title: "Spring exlporer trip Oslo-Tokyo",
-      destination: "Tokyo",
-      price: "$1580",
-    },
-    {
-      id: 3,
-      title: "Cultural Escape Throndheim-Dublin",
-      destination: "Dublin",
-      price: "$854",
-    },
-  ];
+  const [trips, setTrips] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/trips/home")
+    .then(res => res.json())
+    .then(data => setTrips(data))
+    .catch(err => console.error("Error fetching trips:", err));
+    }, []
+  );
 
   return (
     <main className="home">
@@ -73,10 +57,18 @@ function Home() {
         <div className="home__trip-list">
           {trips.map((trip) => (
             <div key={trip.id} className="home__trip-card">
-              <img src={trip.image} alt={trip.destination} />
-              <h3>{trip.title}</h3>
-              <p>{trip.destination}</p>
-              <p>{trip.price}</p>
+              <img 
+                src={`/images/${trip.image_url}`}
+                alt={trip.title}
+              />
+
+              <div className="home__trip-overlay">
+                <h3>{trip.title}</h3>
+                <p className="home__trip-location">
+                  {trip.destination?.city}, {trip.destination?.country}
+                </p>
+                <p className="home__trip-price">From $999</p>
+              </div>
             </div>
           ))}
         </div>

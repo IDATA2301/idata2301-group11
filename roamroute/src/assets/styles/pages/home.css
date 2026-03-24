@@ -136,6 +136,55 @@
   margin-top: var(--space-2xs);
 }
 
+.home__trip-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.home__trip-card img {
+  display: block;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.home__trip-overlay {
+  color: white;
+}
+
+.home__trip-overlay * {
+  color: white;
+}
+
+.home__trip-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-md);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0) 70%);
+  color: white;
+}
+
+.home__trip-overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.home__trip-location {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.home__trip-price {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
 @media (min-width: 48rem) {
   .home__trip-list {
     grid-template-columns: repeat(auto-fit, minmax(var(--size-card-min), 1fr));
