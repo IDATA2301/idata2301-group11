@@ -1,7 +1,5 @@
 import { SparklesIcon, CurrencyDollarIcon, ClockIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import "../assets/styles/pages/about.css";
-import TeamMemberImage from "../assets/images/TeamMember.png";
-import Image from "../assets/images/fly.png";
 
 function About() {
   const services = [
@@ -30,19 +28,19 @@ function About() {
       id: 1,
       name: "Dennis Løvold",
       role: "Chief Executive Officer",
-      image: TeamMemberImage
+      image: "images/TeamMember.png"
     },
     {
       id: 2,
       name: "Sebastian Nesvik",
       role: "Chief Financial Officer",
-      image: TeamMemberImage  
+      image: "images/TeamMember.png" 
     },
     {
       id: 3,
       name: "Jonas Framnes",
       role: "Chief Technology Officer",
-      image: TeamMemberImage
+      image: "images/TeamMember.png"
     }
   ];
 
