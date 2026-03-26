@@ -4,11 +4,13 @@ import type { AuthUser } from "../types/User";
  * Authentication Service
  * ============================
  *
- * This module provides functions to handle user authentication, including login and logout.
- * It interacts with the backend API to authenticate users and manages the authenticated user state.
+ * This module provides functions for authentication-related API requests.
+ * It communicates with the backend API and returns typed `AuthUser` data.
  *
- * The main function is:
- * - login: Authenticates a user with email and password, returning an AuthUser object on success.
+ * Exposed functions:
+ * - `login`: Authenticate using email and password.
+ * - `register`: Create a new account.
+ * - `updateUsername`: Update an existing user's username.
  *
  * The service also defines the API base URL using environment variables for flexibility across environments.
  */
@@ -24,6 +26,11 @@ type RegisterRequest = {
   password: string;
   address?: string;
   country?: string;
+};
+
+type UpdateUsernameRequest = {
+  id: number;
+  userName: string;
 };
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -79,11 +86,44 @@ export async function register({
   }
 
   if (response.status === 409) {
-    throw new Error("An account with this email already exists.");
+    throw new Error("Email or username is already in use.");
   }
 
   if (!response.ok) {
     throw new Error("Signup failed. Please try again.");
+  }
+
+  const data: AuthUser = await response.json();
+  return data;
+}
+
+export async function updateUsername({ id, userName }: UpdateUsernameRequest): Promise<AuthUser> {
+  const response = await fetch(`${API_BASE_URL}/api/auth/profile/${id}/username`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userName }),
+  });
+
+  if (response.status === 400) {
+    throw new Error("Username is required.");
+  }
+
+  if (response.status === 401 || response.status === 403) {
+    throw new Error("You are not authorized to update this profile.");
+  }
+
+  if (response.status === 404) {
+    throw new Error("User not found.");
+  }
+
+  if (response.status === 409) {
+    throw new Error("Username is already taken.");
+  }
+
+  if (!response.ok) {
+    throw new Error("Could not update profile. Please try again.");
   }
 
   const data: AuthUser = await response.json();
