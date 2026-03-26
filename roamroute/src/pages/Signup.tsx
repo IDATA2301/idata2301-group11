@@ -14,18 +14,39 @@ export default function Signup() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
+  const trimmedUserName = userName.trim()
+  const isValidUsernameLength = trimmedUserName.length >= 6
+  const isWithinMaxLength = trimmedUserName.length <= 20
+  const hasNoWhitespace = !/\s/.test(trimmedUserName)
+  const canSubmit = Boolean(trimmedUserName && email.trim() && password.trim()) && isValidUsernameLength && isWithinMaxLength && hasNoWhitespace && !loading
+
   async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault()
     setError("")
 
-    if (!userName.trim() || !email.trim() || !password.trim()) {
+    if (!trimmedUserName || !email.trim() || !password.trim()) {
       setError("Please fill in all fields.")
+      return
+    }
+
+    if (trimmedUserName.length < 6) {
+      setError("Username must be at least 6 characters.")
+      return
+    }
+
+    if (trimmedUserName.length > 20) {
+      setError("Username cannot be longer than 20 characters.")
+      return
+    }
+
+    if (/\s/.test(trimmedUserName)) {
+      setError("Username cannot contain spaces.")
       return
     }
 
     try {
       setLoading(true)
-      const user = await register({ userName, email, password })
+      const user = await register({ userName: trimmedUserName, email, password })
       signIn(user)
       navigate("/profile")
     } catch (err) {
@@ -59,7 +80,13 @@ export default function Signup() {
               name="fullName"
               autoComplete="name"
               value={userName}
-              onChange={(event) => setUserName(event.target.value)}
+              onChange={(event) => {
+                setUserName(event.target.value)
+                if (error) setError("")
+              }}
+              minLength={6}
+              maxLength={20}
+              pattern={"^\\S+$"}
             />
           </div>
         </div>
@@ -102,7 +129,7 @@ export default function Signup() {
           </div>
         </div>
         {error ? <p className="signup__error" role="alert">{error}</p> : null}
-        <button className="btn" type="submit" disabled={loading}>
+        <button className="btn" type="submit" disabled={!canSubmit}>
           {loading ? "Creating account..." : "Sign Up"}
         </button>
       </form>
