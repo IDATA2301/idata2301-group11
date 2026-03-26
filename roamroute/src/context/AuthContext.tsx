@@ -10,6 +10,7 @@ import type { AuthUser } from "../types/User";
 type AuthContextType = {
   authUser: AuthUser | null;
   signIn: (user: AuthUser) => void;
+  updateAuthUser: (user: AuthUser) => void;
   signOut: () => void;
 };
 
@@ -31,13 +32,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setAuthUser(user);
   }
 
+  function updateAuthUser(user: AuthUser) {
+    localStorage.setItem("authUser", JSON.stringify(user));
+    setAuthUser(user);
+  }
+
   function signOut() {
     localStorage.removeItem("authUser");
     setAuthUser(null);
   }
 
   return (
-    <AuthContext.Provider value={{ authUser, signIn, signOut }}>
+    <AuthContext.Provider value={{ authUser, signIn, updateAuthUser, signOut }}>
       {children}
     </AuthContext.Provider>
   );
