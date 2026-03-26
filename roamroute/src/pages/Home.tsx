@@ -11,6 +11,7 @@ function Home() {
     { id: 5, destination: "Dublin", image: "images/dublinDest.jpg" },
   ];
 
+
   const [trips, setTrips] = useState<any[]>([]);
 
   useEffect(() => {
@@ -57,19 +58,25 @@ function Home() {
         <div className="home__trip-list">
           {trips.map((trip) => (
             <div key={trip.id} className="home__trip-card">
-              <img 
-                src={`/images/${trip.image_url}`}
-                alt={trip.title}
-              />
 
-              <div className="home__trip-overlay">
-                <h3>{trip.title}</h3>
-                <p className="home__trip-location">
-                  {trip.destination?.city}, {trip.destination?.country}
-                </p>
-                <p className="home__trip-price">From $999</p>
-              </div>
+            <img 
+              src={`/images/${trip.imageUrl}`}
+              alt={trip.title}
+            />
+
+            <div className="home__trip-overlay">
+              <h3>{trip.title}</h3>
+
+              <p className="home__trip-location">
+                {trip.city}, {trip.country}
+              </p>
+
+              <p className="home__trip-price">
+                From ${trip.lowestPrice}
+              </p>
             </div>
+
+          </div>
           ))}
         </div>
       </section>
