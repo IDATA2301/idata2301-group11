@@ -1,5 +1,13 @@
 @import "../components/button.css";
 
+/* ====================================
+  Login Page Styles
+  =============================== */
+
+/* ====================================
+  Page Layout
+  =============================== */
+
 .login {
   display: flex;
   flex-direction: column;
@@ -13,6 +21,10 @@
   flex-direction: column;
   gap: var(--space-sm);
 }
+
+/* ====================================
+   Form
+   =============================== */
 
 .login__form {
   display: flex;
@@ -71,6 +83,10 @@
   outline: none;
 }
 
+/* ====================================
+   Actions
+   =============================== */
+
 .login__forgot {
   align-self: flex-end;
   font-size: 0.875rem;
@@ -82,4 +98,14 @@
 
 .login__signup {
   margin-top: var(--space-sm);
+}
+
+/* ====================================
+   Responsive
+   =============================== */
+
+@media (min-width: 48rem) {
+  .login {
+    gap: var(--space-lg);
+  }
 }

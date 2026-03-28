@@ -1,5 +1,13 @@
 @import "../components/button.css";
 
+/* ====================================
+  Signup Page Styles
+  =============================== */
+
+/* ====================================
+  Page Layout
+  =============================== */
+
 .signup {
   display: flex;
   flex-direction: column;
@@ -13,6 +21,10 @@
   flex-direction: column;
   gap: var(--space-sm);
 }
+
+/* ====================================
+   Form
+   =============================== */
 
 .signup__form {
   display: flex;
@@ -76,6 +88,10 @@
   outline: none;
 }
 
+/* ====================================
+   Actions & Feedback
+   =============================== */
+
 .signup__form .btn {
   width: 100%;
 }
@@ -86,4 +102,14 @@
 
 .signup__login {
   margin-top: var(--space-sm);
+}
+
+/* ====================================
+   Responsive
+   =============================== */
+
+@media (min-width: 48rem) {
+  .signup {
+    gap: var(--space-lg);
+  }
 }

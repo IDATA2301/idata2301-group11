@@ -1,5 +1,13 @@
 @import "../components/button.css";
 
+/* ====================================
+  Admin User Details Page Styles
+  =============================== */
+
+/* ====================================
+  Page Layout
+  =============================== */
+
 .admin-user-details {
   display: flex;
   flex-direction: column;
@@ -18,6 +26,10 @@
   margin: 0;
 }
 
+/* ====================================
+   User Details Card
+   =============================== */
+
 .admin-user-details__card {
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);
@@ -32,6 +44,10 @@
 .admin-user-details__card p {
   margin: 0;
 }
+
+/* ====================================
+   Bookings List
+   =============================== */
 
 .admin-user-details__bookings {
   display: flex;
@@ -64,6 +80,10 @@
   font-size: 0.95rem;
 }
 
+/* ====================================
+   Booking Status Tags
+   =============================== */
+
 .admin-user-details__status {
   display: inline-block;
   padding: var(--space-2xs) var(--space-sm);
@@ -92,6 +112,10 @@
   background-color: #fee2e2;
   color: #991b1b;
 }
+
+/* ====================================
+   Responsive
+   =============================== */
 
 @media (min-width: 48rem) {
   .admin-user-details__bookings-list {

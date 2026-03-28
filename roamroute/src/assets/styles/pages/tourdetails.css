@@ -372,3 +372,13 @@
 
 .LocationSection {
 }
+
+/* ====================================
+   Responsive
+   =============================== */
+
+@media (min-width: 48rem) {
+    .TourTabs {
+        gap: var(--space-6xl);
+    }
+}
