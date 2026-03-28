@@ -13,4 +13,8 @@ export interface AuthUser {
   userName: string;
   email: string;
   role: string;
+  address?: string;
+  country?: string;
+  user_address?: string;
+  user_country?: string;
 }
