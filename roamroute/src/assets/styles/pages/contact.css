@@ -1,5 +1,13 @@
 @import "../components/button.css";
 
+/* ====================================
+  Contact Page Styles
+  =============================== */
+
+/* ====================================
+  Page Layout
+  =============================== */
+
 .contact {
   display: flex;
   flex-direction: column;
@@ -11,6 +19,10 @@
   text-align: left;
   margin-bottom: var(--space-2xl);
 }
+
+/* ====================================
+   Form
+   =============================== */
 
 .contact__form {
   display: flex;
@@ -73,6 +85,10 @@
   font-weight: 700;
 }
 
+/* ====================================
+   Contact Info Card
+   =============================== */
+
 .contact__info {
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);
@@ -111,6 +127,10 @@
 .contact__info p {
   margin: var(--space-sm) 0;
 }
+
+/* ====================================
+   Responsive
+   =============================== */
 
 @media (min-width: 48rem) {
   .contact__header {

@@ -71,6 +71,18 @@
   color: var(--color-text-muted);
 }
 
+.site-footer__bottom p {
+  margin: 0;
+}
+
+.site-footer__disclaimer {
+  margin-top: var(--space-xs);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+  opacity: 0.9;
+}
+
 @media (min-width: 48rem) {
   .site-footer__inner {
     grid-template-columns: repeat(2, minmax(0, 1fr));

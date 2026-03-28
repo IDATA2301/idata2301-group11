@@ -1,5 +1,13 @@
 @import "../components/button.css";
 
+/* ====================================
+  Admin Users Page Styles
+  =============================== */
+
+/* ====================================
+  Page Layout
+  =============================== */
+
 .admin-users {
   display: flex;
   flex-direction: column;
@@ -10,6 +18,10 @@
 .admin-users h2 {
   margin: 0;
 }
+
+/* ====================================
+   Mobile User List
+   =============================== */
 
 .admin-users__mobile-list {
   display: grid;
@@ -41,6 +53,10 @@
   font-weight: 700;
 }
 
+/* ====================================
+   Header
+   =============================== */
+
 .admin-users__header {
   display: flex;
   justify-content: space-between;
@@ -65,6 +81,10 @@
 .admin-users__description {
   margin-top: var(--space-xs);
 }
+
+/* ====================================
+   Users Table
+   =============================== */
 
 .admin-users__table-wrap {
   display: none;
@@ -106,6 +126,10 @@
   background-color: var(--color-background);
 }
 
+/* ====================================
+   Selected User Details
+   =============================== */
+
 .admin-users__details {
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);
@@ -120,6 +144,10 @@
 .admin-users__details p {
   margin: 0;
 }
+
+/* ====================================
+   Responsive
+   =============================== */
 
 @media (min-width: 48rem) {
   .admin-users__mobile-list {

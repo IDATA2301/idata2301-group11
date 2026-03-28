@@ -1,9 +1,17 @@
 
+/* ====================================
+    About Page Styles
+    =============================== */
+
+/* ====================================
+    Intro Section
+    =============================== */
 
 .IntroTag {
     background-color: var(--color-primary);
     border-radius: 8px;
     color: #ffffff;
+    font-size: 1rem;
     display: inline-block;
     align-self: flex-start;
     width: fit-content;
@@ -13,11 +21,14 @@
 
 .Intro {
     position: relative;
+    margin-top: calc(-1 * (var(--size-header) + var(--space-6xl)));
 }
 
 .IntroHero {
     position: relative;
-    border-radius: 16px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    border-radius: 0;
     overflow: hidden;
     min-height: 220px;
 }
@@ -78,6 +89,10 @@
     margin: 0;
 }
 
+/* ====================================
+   Services Section
+   =============================== */
+
 .Services {
     margin-top: var(--space-2xl);
 }
@@ -111,11 +126,15 @@
     color: var(--color-text-secondary);
 }
 
+/* ====================================
+   Team Section
+   =============================== */
 
 .Team {
     background-color: #ffffff;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
+    margin-top: var(--space-2xl);
     padding: 48px 24px;
 }
 
@@ -161,15 +180,23 @@
     margin: 0;
 }
 
+/* ====================================
+   Responsive
+   =============================== */
+
 @media (min-width: 64rem) {
+    .IntroTag {
+        font-size: 1.3rem;
+    }
+
     .Intro {
-        margin-top: calc(-1 * var(--space-6xl));
+        margin-top: calc(-1 * (var(--size-header) + var(--space-6xl)));
     }
 
     .IntroHero {
         width: 100vw;
         margin-left: calc(50% - 50vw);
-        border-radius: 0 0 20px 20px;
+        border-radius: 0;
         height: min(42vh, 28rem);
         min-height: 0;
     }
@@ -186,6 +213,10 @@
     }
 
     .Services {
+        margin-top: var(--space-4xl);
+    }
+
+    .Team {
         margin-top: var(--space-4xl);
     }
 

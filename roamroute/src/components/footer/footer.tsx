@@ -45,7 +45,13 @@ export default function Footer() {
       </div>
 
       <div className="site-footer__bottom">
-        © {year} RoamRoute. All rights reserved.
+        <p>© {year} RoamRoute. All rights reserved.</p>
+        <p className="site-footer__disclaimer">
+          This website is a result of a university group project, performed in the course IDATA2301
+          Web technologies and IDATA2306 Application Development, at NTNU. All the information
+          provided here is a result of imagination. Any resemblance with real companies or products
+          is a coincidence.
+        </p>
       </div>
     </footer>
   );

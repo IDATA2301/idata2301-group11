@@ -49,7 +49,7 @@ function About() {
       {/*Intro section*/ }
       <section className="Intro">
         <div className="IntroHero">
-          <img src={Image} alt="Airplane in flight" className="IntroHeroImage" />
+          <img src="/images/fly.png" alt="Airplane in flight" className="IntroHeroImage" />
           <div className="IntroOverlay">
             <p className="IntroTag">The RoamRoute standard</p>
             <h1 className="IntroTitle">
