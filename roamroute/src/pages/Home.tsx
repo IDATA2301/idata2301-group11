@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 function Home() {
   const destinations = [
     { id: 1, destination: "Barcelona", image: "images/barcelona.png" },
-    { id: 2, destination: "Paris", image: "images/paris.jpg" },
+    { id: 2, destination: "Paris", image: "images/parisDest.jpg" },
     { id: 3, destination: "Athens", image: "images/athens.jpg" },
     { id: 4, destination: "Tokyo", image: "images/tokyoDest.jpg" },
     { id: 5, destination: "Dublin", image: "images/dublinDest.jpg" },
