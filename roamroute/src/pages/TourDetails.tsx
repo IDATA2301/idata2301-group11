@@ -7,16 +7,55 @@ import {
   HomeIcon,
 } from "@heroicons/react/24/solid";
 
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+
 export default function TourDetails() {
+  const { id } = useParams();
+  const [trip, setTrip] = useState<any>(null);
+  const [selectedFlightId, setSelectedFlightId] = useState<number | null>(null);
+  const [selectedHotelId, setSelectedHotelId] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/trips/${id}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to load trip details (${res.status})`);
+        }
+        return res.json();
+      })
+      .then((data) => setTrip(data))
+      .catch((err) => {
+        console.error("Error fetching trip details:", err);
+        setError("Could not load trip details.");
+      });
+  }, [id]);
+
+  useEffect(() => {
+    if (trip) {
+      if (trip.flightOptions.length > 0) {
+        setSelectedFlightId(trip.flightOptions[0].id);
+      }
+      if (trip.hotelOptions.length > 0) {
+        setSelectedHotelId(trip.hotelOptions[0].id);
+      }
+    }
+  }, [trip]);
+
+  if (error) return <p>{error}</p>;
+  if (!trip) return <p>Loading...</p>;
+
   return (
     <main>
       <section className="TourHeader">
-        <h1> Barcelona, Spain</h1>
-        <p>Feb 13 - Feb 20, 2026</p>
+        <h1>{trip.title}</h1>
+        <p>{trip.startDate} - {trip.endDate}</p>
       </section>
 
       <nav className="Breadcrumb">
-        <p>Home {">"} Trips {">"} Barcelona</p>
+        <p>Home {">"} Trips {">"} {trip.city}, {trip.country}</p>
       </nav>
 
       <section className="TourTabs">
@@ -35,7 +74,7 @@ export default function TourDetails() {
         </h2>
         <div className="TripOverviewContent">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            {trip.trip_description}
           </p>
           <div>
             <div className="WeatherInfo">
@@ -50,7 +89,7 @@ export default function TourDetails() {
                 aria-hidden="true"
               />
               <p>Flight</p>
-              <strong>5-7h</strong>
+              <strong>{trip.flightDuration}</strong>
             </div>
 
             <div className="BudgetInfo">
@@ -74,32 +113,25 @@ export default function TourDetails() {
 
         </h2>
 
-        <div className="Skyscanner">
-          <h3>
-            Skyscanner
-            <span className="FlightCompanyNote">Includes taxes & fees</span>
-          </h3>
-          <p>€150</p>
-          <button>Selected</button>
-        </div>
+        {trip.flightOptions.map((flight: any) => (
+          <div
+            key={flight.id}
+            className={`FlightCard ${selectedFlightId === flight.id ? "selected" : ""}`}
+          >
+            <h3>
+              {flight.provider}
+              <span className = "FlightCompanyNote">
+                Includes taxes & fees
+              </span>
+            </h3>
 
-        <div className="Expedia">
-          <h3>
-            Expedia
-            <span className="FlightCompanyNote">Includes taxes & fees</span>
-          </h3>
-          <p>€175</p>
-          <button>Select</button>
-        </div>
+            <p>${flight.price}</p>
 
-        <div className="Momondo">
-          <h3>
-            Momondo
-            <span className="FlightCompanyNote">Includes taxes & fees</span>
-          </h3>
-          <p>€160</p>
-          <button>Select</button>
-        </div>
+            <button onClick={() => setSelectedFlightId(flight.id)}>
+              {selectedFlightId === flight.id ? "Selected" : "Select"}
+            </button>
+          </div>
+        ))}
       </section>
 
       <section className="HotelComparison">
@@ -108,23 +140,26 @@ export default function TourDetails() {
           Hotel Price Comparison
         </h2>
 
-        <div className="Booking">
-          <h3>
-            Booking.com
-            <span className="HotelCompanyNote">Includes taxes & fees</span>
-          </h3>
-          <p>€620</p>
-          <button>Selected</button>
-        </div>
+        {trip.hotelOptions.map((hotel: any) => (
+          <div
+            key={hotel.id}
+            className={`HotelCard ${selectedHotelId === hotel.id ? "selected" : ""}`}
+          >
+            <h3>
+              {hotel.provider}
+              <span className = "HotelCompanyNote">
+                Includes taxes & fees
+              </span>
+            </h3>
 
-        <div className="Hotels">
-          <h3>
-            Hotels.com
-            <span className="HotelCompanyNote">Includes taxes & fees</span>
-          </h3>
-          <p>€645</p>
-          <button>Select</button>
-        </div>
+            <p>${hotel.price}</p>
+
+            <button onClick={() => setSelectedHotelId(hotel.id)}>
+              {selectedHotelId === hotel.id ? "Selected" : "Select"}
+            </button>
+          </div>
+        ))}
+
       </section>
 
       <section className="LocationSection">

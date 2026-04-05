@@ -1,6 +1,7 @@
 
 import "../assets/styles/pages/home.css";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   const destinations = [
@@ -57,26 +58,28 @@ function Home() {
 
         <div className="home__trip-list">
           {trips.map((trip) => (
-            <div key={trip.id} className="home__trip-card">
+            <Link to={`/tour/${trip.id}`} key={trip.id} className="home__trip-card-link">
+              <div key={trip.id} className="home__trip-card">
 
-            <img 
-              src={`/images/${trip.imageUrl}`}
-              alt={trip.title}
-            />
+              <img 
+                src={`/images/${trip.imageUrl}`}
+                alt={trip.title}
+              />
 
-            <div className="home__trip-overlay">
-              <h3>{trip.title}</h3>
+              <div className="home__trip-overlay">
+                <h3>{trip.title}</h3>
 
-              <p className="home__trip-location">
-                {trip.city}, {trip.country}
-              </p>
+                <p className="home__trip-location">
+                  {trip.city}, {trip.country}
+                </p>
 
-              <p className="home__trip-price">
-                From ${trip.lowestPrice}
-              </p>
+                <p className="home__trip-price">
+                  From ${trip.lowestPrice}
+                </p>
+              </div>
+
             </div>
-
-          </div>
+          </Link>
           ))}
         </div>
       </section>
