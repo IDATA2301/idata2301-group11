@@ -134,12 +134,11 @@
     margin: 0;
 }
 
-.Skyscanner {
+.FlightCard {
     background-color: white;
     border-radius: 12px;
     border: 1px solid var(--color-border-light);
     padding: var(--space-md);
-    margin-bottom: var(--space-lg);
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-areas:
@@ -150,7 +149,7 @@
     row-gap: var(--space-lg);
 }
 
-.Skyscanner h3 {
+.FlightCard h3 {
     grid-area: title;
     margin: 0;
     font-size: 1.1rem;
@@ -160,100 +159,31 @@
     gap: var(--space-xs);
 }
 
-.Skyscanner p {
+.FlightCard p {
     grid-area: price;
     justify-self: end;
     font-weight: 700;
     margin: 0;
 }
 
-.Skyscanner button {
+.FlightCard button {
     grid-area: button;
-    justify-self: stretch;
     width: 100%;
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
 }
 
-.Skyscanner button {
+.FlightCard.selected button {
     background-color: var(--color-primary);
     color: var(--color-on-primary);
     border: none;
-    border-radius: 6px;
-    padding: var(--space-sm) var(--space-md);
-    cursor: pointer;
 }
 
-.Expedia {
-    background-color: white;
-    border-radius: 12px;
-    border: 1px solid var(--color-border-light);
-    padding: var(--space-md);
-    margin-bottom: var(--space-lg);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-        "title price"
-        "button button";
-    align-items: center;
-    column-gap: var(--space-md);
-    row-gap: var(--space-lg);
-}
-
-.Expedia h3 {
-    grid-area: title;
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-}
-
-.Expedia p {
-    grid-area: price;
-    justify-self: end;
-    font-weight: 700;
-    margin: 0;
-}
-
-.Expedia button {
-    grid-area: button;
-    justify-self: stretch;
-    width: 100%;
-}
-
-.Expedia button {
+.FlightCard:not(.selected) button {
     background-color: white;
     color: var(--color-text-body);
     border: 1px solid var(--color-border);
-    border-width: 1px;
-    border-radius: 6px;
-    padding: var(--space-sm) var(--space-md);
-    cursor: pointer;
-}
-
-.Momondo {
-    background-color: white;
-    border-radius: 12px;
-    border: 1px solid var(--color-border-light);
-    padding: var(--space-md);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-        "title price"
-        "button button";
-    align-items: center;
-    column-gap: var(--space-md);
-    row-gap: var(--space-lg);
-}
-
-.Momondo h3 {
-    grid-area: title;
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
 }
 
 .FlightCompanyNote {
@@ -262,28 +192,6 @@
     color: var(--color-text-muted);
 }
 
-.Momondo p {
-    grid-area: price;
-    justify-self: end;
-    font-weight: 700;
-    margin: 0;
-}
-
-.Momondo button {
-    grid-area: button;
-    justify-self: stretch;
-    width: 100%;
-}
-
-.Momondo button {
-    background-color: white;
-    color: var(--color-text-body);
-    border: 1px solid var(--color-border);
-    border-width: 1px;
-    border-radius: 6px;
-    padding: var(--space-sm) var(--space-md);
-    cursor: pointer;
-}
 
 .HotelComparison {
     display: flex;
@@ -300,8 +208,7 @@
     margin: 0;
 }
 
-.Booking,
-.Hotels {
+.HotelCard {
     background-color: white;
     border-radius: 12px;
     border: 1px solid var(--color-border-light);
@@ -316,12 +223,7 @@
     row-gap: var(--space-lg);
 }
 
-.Booking {
-    margin-bottom: var(--space-lg);
-}
-
-.Booking h3,
-.Hotels h3 {
+.HotelCard h3 {
     grid-area: title;
     margin: 0;
     font-size: 1.1rem;
@@ -331,38 +233,34 @@
     gap: var(--space-xs);
 }
 
-.Booking p,
-.Hotels p {
+.HotelCard p {
     grid-area: price;
     justify-self: end;
     font-weight: 700;
     margin: 0;
 }
 
-.Booking button,
-.Hotels button {
+.HotelCard button {
     grid-area: button;
-    justify-self: stretch;
     width: 100%;
+    border-radius: 6px;
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
 }
 
-.Booking button {
+.HotelCard.selected button {
     background-color: var(--color-primary);
     color: var(--color-on-primary);
     border: none;
-    border-radius: 6px;
-    padding: var(--space-sm) var(--space-md);
-    cursor: pointer;
 }
 
-.Hotels button {
+.HotelCard:not(.selected) button {
     background-color: white;
     color: var(--color-text-body);
     border: 1px solid var(--color-border);
-    border-radius: 6px;
-    padding: var(--space-sm) var(--space-md);
-    cursor: pointer;
 }
+
+
 
 .HotelCompanyNote {
     font-size: 0.85rem;
