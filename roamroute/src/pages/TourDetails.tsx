@@ -1,6 +1,5 @@
 import "../assets/styles/pages/tourdetails.css";
 import {
-  SunIcon,
   PaperAirplaneIcon,
   CurrencyDollarIcon,
   InformationCircleIcon,
@@ -9,6 +8,7 @@ import {
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 
 export default function TourDetails() {
@@ -47,9 +47,15 @@ export default function TourDetails() {
   if (error) return <p>{error}</p>;
   if (!trip) return <p>Loading...</p>;
 
+  const latitude = Number(trip.latitude);
+  const longitude = Number(trip.longitude);
+  const hasValidCoordinates = Number.isFinite(latitude) && Number.isFinite(longitude);
+  const position: [number, number] = [latitude, longitude];
+
   return (
     <main>
-      <section className="TourHeader">
+      <section className="TourHeader"
+      style={{ backgroundImage: `url(/images/${trip.imageUrl})` }}>
         <h1>{trip.title}</h1>
         <p>{trip.startDate} - {trip.endDate}</p>
       </section>
@@ -77,10 +83,12 @@ export default function TourDetails() {
             {trip.trip_description}
           </p>
           <div>
-            <div className="WeatherInfo">
-              <SunIcon className="InfoIcon InfoIcon--sun" aria-hidden="true" />
-              <p>Weather</p>
-              <strong>18 C</strong>
+            <div className="Keywords">
+              {trip.keywords.map((keyword: string, index: number) => (
+                <span key={index} className="keyword">
+                  {keyword}
+                </span>
+              ))}
             </div>
 
             <div className="FlightInfo">
@@ -88,7 +96,7 @@ export default function TourDetails() {
                 className="InfoIcon InfoIcon--flight"
                 aria-hidden="true"
               />
-              <p>Flight</p>
+              <p>{trip.departureAirport} -{">"} {trip.arrivalAirport}</p>
               <strong>{trip.flightDuration}</strong>
             </div>
 
@@ -134,9 +142,33 @@ export default function TourDetails() {
         ))}
       </section>
 
+      <section className="AccommodationSection">
+
+        <h2>
+          <HomeIcon className="InfoIcon InfoIcon--home" />
+          Accommodation
+        </h2>
+
+        <div className="AccommodationCard">
+
+          <h3>{trip.hotelName}</h3>
+
+          <p>{trip.hotelType}</p>
+
+          <p>{trip.hotelLocation}</p>
+
+          <p>{trip.nights} nights</p>
+
+          <p className="Amenities">
+            {trip.amenities}
+          </p>
+
+        </div>
+
+      </section>
+
       <section className="HotelComparison">
         <h2>
-          <HomeIcon className="InfoIcon InfoIcon--home" aria-hidden="true" />
           Hotel Price Comparison
         </h2>
 
@@ -164,9 +196,25 @@ export default function TourDetails() {
 
       <section className="LocationSection">
         <h2>Location</h2>
-        <div>
-          <p>Map goes here</p>
-        </div>
+        {hasValidCoordinates ? (
+          <MapContainer
+            center={position}
+            zoom={13}
+            scrollWheelZoom={true}
+            className="Map"
+          >
+            <TileLayer
+              attribution="&copy; OpenStreetMap contributors"
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+
+            <Marker position={position}>
+              <Popup>{trip.hotelName}</Popup>
+            </Marker>
+          </MapContainer>
+        ) : (
+          <p>Location is not available for this trip.</p>
+        )}
       </section>    
 
     </main>

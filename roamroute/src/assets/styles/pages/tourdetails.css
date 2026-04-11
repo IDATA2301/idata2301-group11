@@ -3,13 +3,41 @@
    =============================== */
 
 .TourHeader {
-    display: block;
-    text-align: left;
-    margin-bottom: var(--space-lg);    
+  position: relative;
+  height: 250px;
+  border-radius: 16px;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-md);  
+}
+
+.TourHeader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.2),
+    transparent
+  );
 }
 
 .TourHeader h1 {
     font-family: var(--font-heading);
+}
+
+.TourHeader h1, .TourHeader p {
+    color: white;
+    position: relative;
+    z-index: 1;
+    margin: 0;
 }
 
 .Breadcrumb {
@@ -67,7 +95,7 @@
    Flight, Weather & Budget Info
    =============================== */
 
-.FlightInfo, .WeatherInfo, .BudgetInfo {
+.FlightInfo, .Keywords, .BudgetInfo {
     background-color: transparent;
     display: flex;
     flex-direction: column;
@@ -75,6 +103,10 @@
     gap: var(--space-0);
     flex: 1 1 0;
     min-width: 0;
+}
+
+.Keywords {
+    font-weight: bold;
 }
 
 .FlightInfo p,
@@ -192,6 +224,34 @@
     color: var(--color-text-muted);
 }
 
+.AccommodationSection {
+    margin-top: var(--space-lg);
+}
+
+.AccommodationSection h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    margin: 0 0 var(--space-md);
+}
+
+.AccommodationCard {
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+    padding: var(--space-md);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.Amenities {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
 
 .HotelComparison {
     display: flex;
@@ -269,6 +329,12 @@
 }
 
 .LocationSection {
+}
+
+.Map {
+    height: 250px;
+    width: 100%;
+    border-radius: 12px;
 }
 
 /* ====================================
