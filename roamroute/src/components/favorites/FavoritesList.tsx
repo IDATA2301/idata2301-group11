@@ -21,18 +21,13 @@ function asNumber(value: unknown): number | null {
 function toImageUrl(value: string): string {
   if (!value) return "";
   if (value.startsWith("http://") || value.startsWith("https://") || value.startsWith("/")) return value;
+  if (value.startsWith("images/")) return `/${value}`;
   return `/images/${value}`;
 }
 
-function normalizeFavorite(favorite: unknown, index: number): FavoriteItem {
+function normalizeFavorite(favorite: unknown, index: number): FavoriteItem | null {
   if (!favorite || typeof favorite !== "object") {
-    return {
-      id: `favorite-${index}`,
-      title: `Favorite #${index + 1}`,
-      subtitle: "Saved item",
-      meta: "Details unavailable",
-      priceLabel: "",
-    };
+    return null;
   }
 
   const item = favorite as Record<string, unknown>;
@@ -43,8 +38,11 @@ function normalizeFavorite(favorite: unknown, index: number): FavoriteItem {
     asString(item.title) ||
     asString(item.trip_name) ||
     asString(item.destination) ||
-    asString(item.city) ||
-    `Favorite #${index + 1}`;
+    asString(item.city);
+
+  if (!title) {
+    return null;
+  }
 
   const subtitleParts = [asString(item.city), asString(item.country)].filter(Boolean);
   const subtitle = subtitleParts.join(", ") || asString(item.subtitle) || asString(item.hotel) || "Saved item";
@@ -62,10 +60,13 @@ function normalizeFavorite(favorite: unknown, index: number): FavoriteItem {
 }
 
 export default function FavoritesList({ favorites }: FavoritesListProps) {
+  const favoriteItems = favorites
+    .map((favorite, index) => normalizeFavorite(favorite, index))
+    .filter((item): item is FavoriteItem => Boolean(item));
+
   return (
     <section className={styles.list} aria-label="Favorite bookings">
-      {favorites.map((favorite, index) => {
-        const item = normalizeFavorite(favorite, index);
+      {favoriteItems.map((item, index) => {
         return <FavoriteCard key={item.id || `favorite-${index}`} item={item} />;
       })}
     </section>
