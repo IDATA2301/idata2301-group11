@@ -1,19 +1,47 @@
-import "../assets/styles/pages/tourdetails.css";
-import {
-  PaperAirplaneIcon,
-  CurrencyDollarIcon,
-  InformationCircleIcon,
-  HomeIcon,
-} from "@heroicons/react/24/solid";
-
+import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import AccommodationSummary from "../components/tour-details/AccommodationSummary";
+import Breadcrumb from "../components/tour-details/Breadcrumb";
+import LocationMap from "../components/tour-details/LocationMap";
+import OptionComparisonCard from "../components/tour-details/OptionComparisonCard";
+import Tabs from "../components/tour-details/Tabs";
+import TourHeader from "../components/tour-details/TourHeader";
+import TripOverview from "../components/tour-details/TripOverview";
+import styles from "./TourDetails.module.css";
 
+type ComparisonOption = {
+  id: number;
+  provider: string;
+  price: number;
+};
+
+type TripDetailsResponse = {
+  imageUrl: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+  city: string;
+  country: string;
+  trip_description: string;
+  keywords: string[];
+  departureAirport: string;
+  arrivalAirport: string;
+  flightDuration: string;
+  flightOptions: ComparisonOption[];
+  hotelName: string;
+  hotelType: string;
+  hotelLocation: string;
+  nights: number;
+  amenities: string;
+  hotelOptions: ComparisonOption[];
+  latitude: number | string;
+  longitude: number | string;
+};
 
 export default function TourDetails() {
   const { id } = useParams();
-  const [trip, setTrip] = useState<any>(null);
+  const [trip, setTrip] = useState<TripDetailsResponse | null>(null);
   const [selectedFlightId, setSelectedFlightId] = useState<number | null>(null);
   const [selectedHotelId, setSelectedHotelId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -26,23 +54,22 @@ export default function TourDetails() {
         }
         return res.json();
       })
-      .then((data) => setTrip(data))
+      .then((data: TripDetailsResponse) => {
+        setTrip(data);
+
+        if (data.flightOptions.length > 0) {
+          setSelectedFlightId(data.flightOptions[0].id);
+        }
+
+        if (data.hotelOptions.length > 0) {
+          setSelectedHotelId(data.hotelOptions[0].id);
+        }
+      })
       .catch((err) => {
         console.error("Error fetching trip details:", err);
         setError("Could not load trip details.");
       });
   }, [id]);
-
-  useEffect(() => {
-    if (trip) {
-      if (trip.flightOptions.length > 0) {
-        setSelectedFlightId(trip.flightOptions[0].id);
-      }
-      if (trip.hotelOptions.length > 0) {
-        setSelectedHotelId(trip.hotelOptions[0].id);
-      }
-    }
-  }, [trip]);
 
   if (error) return <p>{error}</p>;
   if (!trip) return <p>Loading...</p>;
@@ -54,169 +81,64 @@ export default function TourDetails() {
 
   return (
     <main>
-      <section className="TourHeader"
-      style={{ backgroundImage: `url(/images/${trip.imageUrl})` }}>
-        <h1>{trip.title}</h1>
-        <p>{trip.startDate} - {trip.endDate}</p>
-      </section>
+      <TourHeader
+        title={trip.title}
+        startDate={trip.startDate}
+        endDate={trip.endDate}
+        imageUrl={trip.imageUrl}
+      />
 
-      <nav className="Breadcrumb">
-        <p>Home {">"} Trips {">"} {trip.city}, {trip.country}</p>
-      </nav>
+      <Breadcrumb city={trip.city} country={trip.country} />
+      <Tabs />
 
-      <section className="TourTabs">
-        <button>Overview</button>
-        <button>Accomodation</button>
-        <button>Itinerary</button>
-      </section>
+      <TripOverview
+        description={trip.trip_description}
+        keywords={trip.keywords}
+        departureAirport={trip.departureAirport}
+        arrivalAirport={trip.arrivalAirport}
+        flightDuration={trip.flightDuration}
+      />
 
-      <section className="TripOverview">
-        <h2>
-          <InformationCircleIcon
-            className="InfoIcon InfoIcon--info"
-            aria-hidden="true"
-          />
-          Trip Overview
-        </h2>
-        <div className="TripOverviewContent">
-          <p>
-            {trip.trip_description}
-          </p>
-          <div>
-            <div className="Keywords">
-              {trip.keywords.map((keyword: string, index: number) => (
-                <span key={index} className="keyword">
-                  {keyword}
-                </span>
-              ))}
-            </div>
-
-            <div className="FlightInfo">
-              <PaperAirplaneIcon
-                className="InfoIcon InfoIcon--flight"
-                aria-hidden="true"
-              />
-              <p>{trip.departureAirport} -{">"} {trip.arrivalAirport}</p>
-              <strong>{trip.flightDuration}</strong>
-            </div>
-
-            <div className="BudgetInfo">
-              <CurrencyDollarIcon
-                className="InfoIcon InfoIcon--budget"
-                aria-hidden="true"
-              />
-              <p>Budget</p>
-              <strong>Economy</strong>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="FlightComparison">
-        <h2>
-          <PaperAirplaneIcon 
-          className="InfoIcon InfoIcon--flight" 
-          aria-hidden="true" />
+      <section className={styles.comparisonSection}>
+        <h2 className={styles.comparisonTitle}>
+          <PaperAirplaneIcon className={styles.flightIcon} aria-hidden="true" />
           Flight Price Comparison
-
         </h2>
 
-        {trip.flightOptions.map((flight: any) => (
-          <div
+        {trip.flightOptions.map((flight) => (
+          <OptionComparisonCard
             key={flight.id}
-            className={`FlightCard ${selectedFlightId === flight.id ? "selected" : ""}`}
-          >
-            <h3>
-              {flight.provider}
-              <span className = "FlightCompanyNote">
-                Includes taxes & fees
-              </span>
-            </h3>
-
-            <p>${flight.price}</p>
-
-            <button onClick={() => setSelectedFlightId(flight.id)}>
-              {selectedFlightId === flight.id ? "Selected" : "Select"}
-            </button>
-          </div>
+            provider={flight.provider}
+            price={flight.price}
+            selected={selectedFlightId === flight.id}
+            onSelect={() => setSelectedFlightId(flight.id)}
+          />
         ))}
       </section>
 
-      <section className="AccommodationSection">
+      <AccommodationSummary
+        hotelName={trip.hotelName}
+        hotelType={trip.hotelType}
+        hotelLocation={trip.hotelLocation}
+        nights={trip.nights}
+        amenities={trip.amenities}
+      />
 
-        <h2>
-          <HomeIcon className="InfoIcon InfoIcon--home" />
-          Accommodation
-        </h2>
+      <section className={styles.comparisonSection}>
+        <h2 className={styles.comparisonTitle}>Hotel Price Comparison</h2>
 
-        <div className="AccommodationCard">
-
-          <h3>{trip.hotelName}</h3>
-
-          <p>{trip.hotelType}</p>
-
-          <p>{trip.hotelLocation}</p>
-
-          <p>{trip.nights} nights</p>
-
-          <p className="Amenities">
-            {trip.amenities}
-          </p>
-
-        </div>
-
-      </section>
-
-      <section className="HotelComparison">
-        <h2>
-          Hotel Price Comparison
-        </h2>
-
-        {trip.hotelOptions.map((hotel: any) => (
-          <div
+        {trip.hotelOptions.map((hotel) => (
+          <OptionComparisonCard
             key={hotel.id}
-            className={`HotelCard ${selectedHotelId === hotel.id ? "selected" : ""}`}
-          >
-            <h3>
-              {hotel.provider}
-              <span className = "HotelCompanyNote">
-                Includes taxes & fees
-              </span>
-            </h3>
-
-            <p>${hotel.price}</p>
-
-            <button onClick={() => setSelectedHotelId(hotel.id)}>
-              {selectedHotelId === hotel.id ? "Selected" : "Select"}
-            </button>
-          </div>
+            provider={hotel.provider}
+            price={hotel.price}
+            selected={selectedHotelId === hotel.id}
+            onSelect={() => setSelectedHotelId(hotel.id)}
+          />
         ))}
-
       </section>
 
-      <section className="LocationSection">
-        <h2>Location</h2>
-        {hasValidCoordinates ? (
-          <MapContainer
-            center={position}
-            zoom={13}
-            scrollWheelZoom={true}
-            className="Map"
-          >
-            <TileLayer
-              attribution="&copy; OpenStreetMap contributors"
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-
-            <Marker position={position}>
-              <Popup>{trip.hotelName}</Popup>
-            </Marker>
-          </MapContainer>
-        ) : (
-          <p>Location is not available for this trip.</p>
-        )}
-      </section>    
-
+      <LocationMap hasValidCoordinates={hasValidCoordinates} position={position} hotelName={trip.hotelName} />
     </main>
   );
 }

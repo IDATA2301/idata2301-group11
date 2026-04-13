@@ -1,0 +1,20 @@
+.comparisonSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.comparisonTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  margin: 0;
+}
+
+.flightIcon {
+  width: 28px;
+  height: 28px;
+  color: #3b82f6;
+}
