@@ -103,29 +103,6 @@
     padding: 16px;
 }
 
-.ServiceItem {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 24px;
-    align-items: flex-start;
-}
-
-.ServiceContent {
-    flex: 1;
-}
-
-.ServiceContent h3 {
-    font-size: var(--font-size-h3);
-    font-weight: 700;
-    color: #000000;
-    margin: 0 0 8px 0;
-}
-
-.ServiceContent p {
-    margin: 0;
-    color: var(--color-text-secondary);
-}
-
 /* ====================================
    Team Section
    =============================== */
@@ -154,30 +131,6 @@
     overflow-x: auto;
     padding-bottom: 16px;
     scroll-behavior: smooth;
-}
-
-.TeamMember {
-    flex: 0 0 160px;
-    text-align: center;
-}
-
-.TeamMember img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 12px;
-}
-
-.TeamMember h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0 0 4px 0;
-    color: #000000;
-}
-
-.TeamMember p {
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    margin: 0;
 }
 
 /* ====================================
@@ -229,4 +182,3 @@
         overflow-x: visible;
     }
 }
-

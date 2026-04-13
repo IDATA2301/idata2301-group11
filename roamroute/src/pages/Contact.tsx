@@ -1,5 +1,6 @@
 import '../assets/styles/pages/contact.css';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import ContactInfoItem from "../components/contact/ContactInfoItem";
 import FormField from "../components/forms/FormField";
 import TextInput from "../components/forms/TextInput";
 
@@ -60,9 +61,9 @@ function Contact() {
         {/* Contact Information */}
         <section className="contact__info">
           <div className="contact__details">
-            <p className="contact__detail-item"><EnvelopeIcon className="contact__icon" /><b>post@roamroute.org</b></p>
-            <p className="contact__detail-item"><PhoneIcon className="contact__icon" /><b>+47 929 90 707</b></p>
-            <p className="contact__detail-item"><MapPinIcon className="contact__icon" /><b>C215, NTNU Ålesund</b></p>
+            <ContactInfoItem icon={EnvelopeIcon}>post@roamroute.org</ContactInfoItem>
+            <ContactInfoItem icon={PhoneIcon}>+47 929 90 707</ContactInfoItem>
+            <ContactInfoItem icon={MapPinIcon}>C215, NTNU Ålesund</ContactInfoItem>
           </div>
 
           <div className="contact__hours contact__hours-box">

@@ -1,5 +1,7 @@
 import { SparklesIcon, CurrencyDollarIcon, ClockIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import "../assets/styles/pages/about.css";
+import ServiceCard from "../components/about/ServiceCard";
+import TeamMemberCard from "../components/about/TeamMemberCard";
 
 function About() {
   const services = [
@@ -75,18 +77,14 @@ function About() {
         <p>RoamRoute provides the precision tools needed for any journey, whether its a weekend getaway or a global expedition</p>
 
         <div className="ServicesList">
-          {services.map(service => {
-            const IconComponent = service.icon;
-            return (
-              <div key={service.id} className="ServiceItem">
-                <IconComponent width={32} height={32} color="var(--color-primary)" />
-                <div className="ServiceContent">
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                </div>
-              </div>
-            );
-          })}
+          {services.map((service) => (
+            <ServiceCard
+              key={service.id}
+              title={service.title}
+              description={service.description}
+              icon={service.icon}
+            />
+          ))}
         </div>
       </section>
 
@@ -96,12 +94,13 @@ function About() {
           <h2>Meet the Team</h2>
 
           <div className="TeamList">
-            {team.map(member => (
-              <div key={member.id} className="TeamMember">
-                <img src={member.image} alt={member.name}/>
-                <h3>{member.name}</h3>
-                <p>{member.role}</p>
-              </div>
+            {team.map((member) => (
+              <TeamMemberCard
+                key={member.id}
+                name={member.name}
+                role={member.role}
+                image={member.image}
+              />
             ))}
           </div>
         </div>
