@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import Footer from "../footer/footer";
-import Header from "../header/header";
+import Footer from "../footer/Footer";
+import Header from "../header/Header";
 import styles from "./PageLayout.module.css";
 
 type PageLayoutProps = {

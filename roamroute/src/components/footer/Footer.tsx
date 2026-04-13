@@ -1,21 +1,21 @@
 import { Link } from "react-router-dom";
-import "../../assets/styles/components/footer.css";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="site-footer">
-      <div className="site-footer__inner">
-        <div className="site-footer__brand">
-          <span className="site-footer__logo">RoamRoute</span>
+    <footer className={styles.siteFooter}>
+      <div className={styles.inner}>
+        <div className={styles.brand}>
+          <span className={styles.logo}>RoamRoute</span>
           <p>
             Where every journey begins with clarity, confidence, and a touch of adventure.
             Compare travel prices from 12+ trusted platforms in one place.
           </p>
         </div>
 
-        <div className="site-footer__section">
+        <div className={styles.section}>
           <h4>Quick Links</h4>
           <ul>
             <li>
@@ -30,7 +30,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="site-footer__section">
+        <div className={styles.section}>
           <h4>Contact</h4>
           <ul>
             <li>
@@ -44,9 +44,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="site-footer__bottom">
+      <div className={styles.bottom}>
         <p>© {year} RoamRoute. All rights reserved.</p>
-        <p className="site-footer__disclaimer">
+        <p className={styles.disclaimer}>
           This website is a result of a university group project, performed in the course IDATA2301
           Web technologies and IDATA2306 Application Development, at NTNU. All the information
           provided here is a result of imagination. Any resemblance with real companies or products

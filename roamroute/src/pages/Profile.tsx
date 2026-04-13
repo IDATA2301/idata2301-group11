@@ -2,7 +2,7 @@ import "../assets/styles/pages/profile.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState, type SyntheticEvent } from "react";
 import { ArrowRightOnRectangleIcon, MapIcon, MapPinIcon } from "@heroicons/react/24/outline";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 import { updateUsername } from "../services/auth";
 import FormField from "../components/forms/FormField";
 import TextInput from "../components/forms/TextInput";

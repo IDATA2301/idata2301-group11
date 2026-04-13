@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/useAuth";
 import HeaderAuthActions from "./HeaderAuthActions";
 import HeaderLogo from "./HeaderLogo";
 import HeaderMobileToggle from "./HeaderMobileToggle";

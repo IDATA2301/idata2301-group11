@@ -3,7 +3,7 @@ import { useState, type SyntheticEvent } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
 import { login } from "../services/auth"
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../context/useAuth"
 import FormField from "../components/forms/FormField"
 import IconInput from "../components/forms/IconInput"
 
