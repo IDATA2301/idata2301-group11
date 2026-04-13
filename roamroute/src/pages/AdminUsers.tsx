@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { adminUsers } from "../data/adminUsers";
 import "../assets/styles/pages/adminusers.css";
-import BaseCard from "../components/ui/BaseCard";
+import AdminUsersMobileCard from "../components/admin/AdminUsersMobileCard";
+import AdminUsersTable from "../components/admin/AdminUsersTable";
 import SectionHeader from "../components/ui/SectionHeader";
 
 export default function AdminUsers() {
@@ -21,47 +22,17 @@ export default function AdminUsers() {
 
       <section className="admin-users__mobile-list" aria-label="Users list">
         {adminUsers.map((user) => (
-          <BaseCard
-            as="button"
+          <AdminUsersMobileCard
             key={user.id}
-            type="button"
-            className="admin-users__mobile-card"
+            name={user.user_name}
+            email={user.email}
+            role={user.user_role}
             onClick={() => navigate(`/admin/users/${user.id}`)}
-          >
-            <span className="admin-users__mobile-name">{user.user_name}</span>
-            <span>{user.email}</span>
-            <span>{user.user_role}</span>
-          </BaseCard>
+          />
         ))}
       </section>
 
-      <BaseCard as="section" className="admin-users__table-wrap" aria-label="Users table">
-        <table className="admin-users__table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Role</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {adminUsers.map((user) => (
-              <tr
-                key={user.id}
-                className="admin-users__row"
-                onClick={() => navigate(`/admin/users/${user.id}`)}
-              >
-                <td>{user.id}</td>
-                <td>{user.user_name}</td>
-                <td>{user.email}</td>
-                <td>{user.user_role}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </BaseCard>
+      <AdminUsersTable users={adminUsers} onRowClick={(id) => navigate(`/admin/users/${id}`)} />
     </main>
   );
 }

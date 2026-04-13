@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import "../assets/styles/pages/admin.css";
-import BaseCard from "../components/ui/BaseCard";
+import AdminActionCard from "../components/admin/AdminActionCard";
 import SectionHeader from "../components/ui/SectionHeader";
 
 export default function Admin() {
@@ -16,13 +15,12 @@ export default function Admin() {
       />
 
       <section className="admin-dashboard__cards" aria-label="Admin actions">
-        <BaseCard as="article" className="admin-dashboard__card">
-          <h2>Users</h2>
-          <p>View all registered users and check key account details.</p>
-          <Link to="/admin/users" className="btn">
-            View all users
-          </Link>
-        </BaseCard>
+        <AdminActionCard
+          title="Users"
+          description="View all registered users and check key account details."
+          actionLabel="View all users"
+          to="/admin/users"
+        />
       </section>
     </main>
   );

@@ -1,0 +1,11 @@
+.card {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.95rem;
+}

@@ -27,21 +27,6 @@
 }
 
 /* ====================================
-   User Details Card
-   =============================== */
-
-.admin-user-details__card {
-  padding: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.admin-user-details__card p {
-  margin: 0;
-}
-
-/* ====================================
    Bookings List
    =============================== */
 
@@ -58,18 +43,6 @@
 .admin-user-details__bookings-list {
   display: grid;
   gap: var(--space-md);
-}
-
-.admin-user-details__booking-card {
-  padding: var(--space-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.admin-user-details__booking-card p {
-  margin: 0;
-  font-size: 0.95rem;
 }
 
 /* ====================================

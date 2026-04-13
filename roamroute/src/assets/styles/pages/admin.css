@@ -51,22 +51,6 @@
   gap: var(--space-lg);
 }
 
-.admin-dashboard__card {
-  padding: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.admin-dashboard__card h2,
-.admin-dashboard__card p {
-  margin: 0;
-}
-
-.admin-dashboard__card .btn {
-  width: fit-content;
-}
-
 /* ====================================
    Responsive
    =============================== */
