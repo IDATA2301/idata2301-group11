@@ -1,5 +1,7 @@
 import { useState } from "react";
+import FavoritesList from "../components/favorites/FavoritesList";
 import EmptyState from "../components/ui/EmptyState";
+import styles from "./Favorites.module.css";
 
 export default function Favorites() {
   const [favorites] = useState<unknown[]>(() => {
@@ -14,15 +16,13 @@ export default function Favorites() {
   });
 
   return (
-    <div>
-      <h1>Favorite Bookings</h1>
+    <main className={styles.page}>
+      <h1 className={styles.title}>Favorite Bookings</h1>
       {favorites.length === 0 ? (
         <EmptyState message="No favorite bookings yet" />
       ) : (
-        <div>
-          {/* Favorites content */}
-        </div>
+        <FavoritesList favorites={favorites} />
       )}
-    </div>
+    </main>
   );
 }
