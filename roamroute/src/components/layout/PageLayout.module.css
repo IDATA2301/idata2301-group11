@@ -1,0 +1,12 @@
+.layoutContainer {
+  width: 100%;
+  max-width: var(--layout-width);
+  margin: calc(var(--size-header) + var(--space-6xl)) auto 0;
+  flex: 1;
+}
+
+@media (min-width: 64rem) {
+  .layoutContainer {
+    max-width: var(--layout-width-lg);
+  }
+}
