@@ -29,10 +29,6 @@
 }
 
 .admin-users__mobile-card {
-  border: 1px solid var(--color-border-light);
-  background-color: var(--color-surface);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
   padding: var(--space-md);
   display: flex;
   flex-direction: column;
@@ -88,10 +84,6 @@
 
 .admin-users__table-wrap {
   display: none;
-  background-color: var(--color-surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-light);
-  box-shadow: var(--shadow-sm);
   padding: var(--space-md);
   overflow-x: auto;
 }

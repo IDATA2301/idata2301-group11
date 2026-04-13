@@ -1,0 +1,17 @@
+.rootWithAction {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+}

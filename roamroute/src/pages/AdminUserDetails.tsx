@@ -2,6 +2,10 @@ import { Link, useParams } from "react-router-dom";
 import { adminUsers } from "../data/adminUsers";
 import { userBookings } from "../data/userBookings";
 import "../assets/styles/pages/adminuserdetails.css";
+import BaseCard from "../components/ui/BaseCard";
+import EmptyState from "../components/ui/EmptyState";
+import SectionHeader from "../components/ui/SectionHeader";
+import StatusBadge from "../components/ui/StatusBadge";
 
 export default function AdminUserDetails() {
   const { id } = useParams();
@@ -11,25 +15,32 @@ export default function AdminUserDetails() {
   if (!user) {
     return (
       <main className="admin-user-details">
-        <h1>User Not Found</h1>
-        <p>Could not find a user with id {id}.</p>
-        <Link to="/admin/users" className="btn btn--ghost">
-          Back to users
-        </Link>
+        <EmptyState
+          title="User Not Found"
+          message={`Could not find a user with id ${id}.`}
+          action={
+            <Link to="/admin/users" className="btn btn--ghost">
+              Back to users
+            </Link>
+          }
+        />
       </main>
     );
   }
 
   return (
     <main className="admin-user-details">
-      <section className="admin-user-details__header">
-        <h1>User Details</h1>
-        <Link to="/admin/users" className="btn">
-          Back to users
-        </Link>
-      </section>
+      <SectionHeader
+        title="User Details"
+        action={
+          <Link to="/admin/users" className="btn">
+            Back to users
+          </Link>
+        }
+        className="admin-user-details__header"
+      />
 
-      <section className="admin-user-details__card" aria-label="Selected user details">
+      <BaseCard as="section" className="admin-user-details__card" aria-label="Selected user details">
         <p>
           <strong>ID:</strong> {user.id}
         </p>
@@ -48,18 +59,18 @@ export default function AdminUserDetails() {
         <p>
           <strong>Country:</strong> {user.user_country}
         </p>
-      </section>
+      </BaseCard>
 
       <section className="admin-user-details__bookings" aria-label="User bookings">
         <h2>Bookings</h2>
         {userBookings.filter((booking) => booking.user_id === userId).length === 0 ? (
-          <p>No bookings yet.</p>
+          <EmptyState message="No bookings yet." />
         ) : (
           <div className="admin-user-details__bookings-list">
             {userBookings
               .filter((booking) => booking.user_id === userId)
               .map((booking) => (
-                <div key={booking.order_id} className="admin-user-details__booking-card">
+                <BaseCard key={booking.order_id} className="admin-user-details__booking-card">
                   <p>
                     <strong>Order ID:</strong> {booking.order_id}
                   </p>
@@ -80,11 +91,9 @@ export default function AdminUserDetails() {
                   </p>
                   <p>
                     <strong>Status:</strong>{" "}
-                    <span className={`admin-user-details__status admin-user-details__status--${booking.status}`}>
-                      {booking.status}
-                    </span>
+                    <StatusBadge status={booking.status} />
                   </p>
-                </div>
+                </BaseCard>
               ))}
           </div>
         )}

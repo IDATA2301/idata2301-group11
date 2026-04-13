@@ -1,22 +1,28 @@
 import { Link, useNavigate } from "react-router-dom";
 import { adminUsers } from "../data/adminUsers";
 import "../assets/styles/pages/adminusers.css";
+import BaseCard from "../components/ui/BaseCard";
+import SectionHeader from "../components/ui/SectionHeader";
 
 export default function AdminUsers() {
   const navigate = useNavigate();
 
   return (
     <main className="admin-users">
-      <section className="admin-users__header">
-        <h1>Users</h1>
-        <Link to="/admin" className="btn btn--ghost">
-          Back to admin
-        </Link>
-      </section>
+      <SectionHeader
+        title="Users"
+        action={
+          <Link to="/admin" className="btn btn--ghost">
+            Back to admin
+          </Link>
+        }
+        className="admin-users__header"
+      />
 
       <section className="admin-users__mobile-list" aria-label="Users list">
         {adminUsers.map((user) => (
-          <button
+          <BaseCard
+            as="button"
             key={user.id}
             type="button"
             className="admin-users__mobile-card"
@@ -25,11 +31,11 @@ export default function AdminUsers() {
             <span className="admin-users__mobile-name">{user.user_name}</span>
             <span>{user.email}</span>
             <span>{user.user_role}</span>
-          </button>
+          </BaseCard>
         ))}
       </section>
 
-      <section className="admin-users__table-wrap" aria-label="Users table">
+      <BaseCard as="section" className="admin-users__table-wrap" aria-label="Users table">
         <table className="admin-users__table">
           <thead>
             <tr>
@@ -55,7 +61,7 @@ export default function AdminUsers() {
             ))}
           </tbody>
         </table>
-      </section>
+      </BaseCard>
     </main>
   );
 }
