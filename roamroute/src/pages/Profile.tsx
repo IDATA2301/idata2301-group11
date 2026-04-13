@@ -4,6 +4,8 @@ import { useEffect, useState, type SyntheticEvent } from "react";
 import { ArrowRightOnRectangleIcon, MapIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../context/AuthContext";
 import { updateUsername } from "../services/auth";
+import FormField from "../components/forms/FormField";
+import TextInput from "../components/forms/TextInput";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -113,26 +115,25 @@ export default function Profile() {
 
         {isEditing && (
           <form className="profile__edit" onSubmit={handleUpdateUsername}>
-            <label htmlFor="profile-username" className="profile__edit-label">
-              Name
-            </label>
-            <input
-              id="profile-username"
-              className="profile__input"
-              type="text"
-              value={userName}
-              onChange={(event) => {
-                setUserName(event.target.value);
-                if (error) setError("");
-                if (success) setSuccess("");
-              }}
-              aria-label="Name"
-              autoComplete="username"
-              minLength={6}
-              maxLength={20}
-              pattern={"^\\S+$"}
-              disabled={loading}
-            />
+            <FormField id="profile-username" label="Name" labelClassName="profile__edit-label">
+              <TextInput
+                id="profile-username"
+                className="profile__input"
+                type="text"
+                value={userName}
+                onChange={(event) => {
+                  setUserName(event.target.value);
+                  if (error) setError("");
+                  if (success) setSuccess("");
+                }}
+                aria-label="Name"
+                autoComplete="username"
+                minLength={6}
+                maxLength={20}
+                pattern={"^\\S+$"}
+                disabled={loading}
+              />
+            </FormField>
 
             <div className="profile__edit-actions">
               <button type="submit" className="profile__btn profile__btn--primary" disabled={!canSubmit}>
