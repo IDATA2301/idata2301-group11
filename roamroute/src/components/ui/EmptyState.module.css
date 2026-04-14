@@ -1,0 +1,20 @@
+.emptyState {
+  text-align: center;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-text-heading);
+}
+
+.message {
+  margin: var(--space-xs) 0 0;
+}
+
+.action {
+  margin-top: var(--space-md);
+}

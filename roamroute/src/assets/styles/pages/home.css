@@ -18,59 +18,6 @@
   gap: var(--space-lg);
 }
 
-.home__hero-img {
-  position: absolute;
-  top: calc(-1 * (var(--size-header) + var(--space-6xl)));
-  left: 0;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  height: calc(var(--hero-height) + var(--size-header) + var(--space-6xl));
-  z-index: -1;
-  background-image: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary) 10%, transparent 55%, var(--color-background) 100%), url("../../images/index-hero.webp");
-  background-size: cover;
-  background-position: center;
-}
-
-.home__hero {
-  min-height: var(--hero-height);
-  padding-top: var(--space-6xl);
-  text-align: left;
-  margin-bottom: var(--space-10xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.home__hero-title {
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  margin: 0;
-  color: var(--color-surface);
-}
-
-.home__search {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  padding: var(--space-sm);
-  border-radius: var(--radius-md);
-  background-color: var(--color-surface);
-  box-shadow: var(--shadow-sm);
-}
-
-.home__search-input {
-  flex: 1 1 var(--size-search-flex);
-  min-width: var(--size-search-min);
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: var(--space-sm) var(--space-md);
-  background-color: transparent;
-  color: var(--color-text-body);
-}
-
-.home__search-button {
-  border-radius: var(--radius-sm);
-}
-
 /* ====================================
    Top Destinations
    =============================== */
@@ -97,41 +44,6 @@
   padding-bottom: calc(var(--space-sm) + 6px);
 }
 
-.home__destination-card {
-  position: relative;
-  flex: 0 0 clamp(17rem, 32vw, 22rem);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  scroll-snap-align: start;
-}
-
-.home__destination-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%);
-  pointer-events: none;
-}
-
-.home__destination-name {
-  position: absolute;
-  left: var(--space-md);
-  bottom: var(--space-md);
-  margin: 0;
-  z-index: 1;
-  color: var(--color-surface);
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.home__destination-card img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
 /* ====================================
    Trip Suggestions
    =============================== */
@@ -150,55 +62,6 @@
 
 .home__trip-list {
   margin-top: var(--space-2xs);
-}
-
-.home__trip-card {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.home__trip-card img {
-  display: block;
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-.home__trip-overlay {
-  color: white;
-}
-
-.home__trip-overlay * {
-  color: white;
-}
-
-.home__trip-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: var(--space-md);
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0) 70%);
-  color: white;
-}
-
-.home__trip-overlay h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.home__trip-location {
-  margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-.home__trip-price {
-  margin-top: 4px;
-  font-weight: 600;
 }
 
 /* ====================================

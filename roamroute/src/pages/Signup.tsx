@@ -3,7 +3,9 @@ import { useState, type SyntheticEvent } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { EnvelopeIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline"
 import { register } from "../services/auth"
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../context/useAuth"
+import FormField from "../components/forms/FormField"
+import IconInput from "../components/forms/IconInput"
 
 export default function Signup() {
   const navigate = useNavigate()
@@ -66,68 +68,69 @@ export default function Signup() {
 
       {/* Signup form */}
       <form className="signup__form" onSubmit={handleSubmit}>
-        <div className="signup__field">
-          <label htmlFor="signup-full-name" className="signup__label">
-            Full name
-          </label>
-          <div className="signup__input-wrap">
-            <UserIcon className="signup__icon" aria-hidden="true" />
-            <input
-              type="text"
-              id="signup-full-name"
-              className="signup__input"
-              placeholder="Full name"
-              name="fullName"
-              autoComplete="name"
-              value={userName}
-              onChange={(event) => {
-                setUserName(event.target.value)
-                if (error) setError("")
-              }}
-              minLength={6}
-              maxLength={20}
-              pattern={"^\\S+$"}
-            />
-          </div>
-        </div>
+        <FormField
+          id="signup-full-name"
+          label="Full name"
+          className="signup__field"
+          labelClassName="signup__label"
+        >
+          <IconInput
+            id="signup-full-name"
+            type="text"
+            className="signup__input"
+            placeholder="Full name"
+            name="fullName"
+            autoComplete="name"
+            value={userName}
+            onChange={(event) => {
+              setUserName(event.target.value)
+              if (error) setError("")
+            }}
+            minLength={6}
+            maxLength={20}
+            pattern={"^\\S+$"}
+            icon={UserIcon}
+            wrapperClassName="signup__input-wrap"
+            iconClassName="signup__icon"
+          />
+        </FormField>
 
-        <div className="signup__field">
-          <label htmlFor="signup-email" className="signup__label">
-            E-mail
-          </label>
-          <div className="signup__input-wrap">
-            <EnvelopeIcon className="signup__icon" aria-hidden="true" />
-            <input
-              type="email"
-              id="signup-email"
-              className="signup__input"
-              placeholder="name@example.com"
-              name="email"
-              autoComplete="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
-        </div>
+        <FormField id="signup-email" label="E-mail" className="signup__field" labelClassName="signup__label">
+          <IconInput
+            id="signup-email"
+            type="email"
+            className="signup__input"
+            placeholder="name@example.com"
+            name="email"
+            autoComplete="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            icon={EnvelopeIcon}
+            wrapperClassName="signup__input-wrap"
+            iconClassName="signup__icon"
+          />
+        </FormField>
 
-        <div className="signup__field">
-          <label htmlFor="signup-password" className="signup__label">
-            Password
-          </label>
-          <div className="signup__input-wrap">
-            <LockClosedIcon className="signup__icon" aria-hidden="true" />
-            <input
-              type="password"
-              id="signup-password"
-              className="signup__input"
-              placeholder="*********"
-              name="password"
-              autoComplete="new-password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </div>
-        </div>
+        <FormField
+          id="signup-password"
+          label="Password"
+          className="signup__field"
+          labelClassName="signup__label"
+        >
+          <IconInput
+            id="signup-password"
+            type="password"
+            className="signup__input"
+            placeholder="*********"
+            name="password"
+            autoComplete="new-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            icon={LockClosedIcon}
+            wrapperClassName="signup__input-wrap"
+            iconClassName="signup__icon"
+          />
+        </FormField>
         {error ? <p className="signup__error" role="alert">{error}</p> : null}
         <button className="btn" type="submit" disabled={!canSubmit}>
           {loading ? "Creating account..." : "Sign Up"}

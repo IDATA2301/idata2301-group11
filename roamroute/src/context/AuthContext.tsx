@@ -1,20 +1,12 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import type { AuthUser } from "../types/User";
+import { AuthContext } from "./auth-context";
 
 /*
  * AuthContext provides authentication state and functions to manage user login/logout.
  * It uses localStorage to persist the authenticated user across page reloads.
  * The context includes:
 */
-
-type AuthContextType = {
-  authUser: AuthUser | null;
-  signIn: (user: AuthUser) => void;
-  updateAuthUser: (user: AuthUser) => void;
-  signOut: () => void;
-};
-
-const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [authUser, setAuthUser] = useState<AuthUser | null>(() => {
@@ -47,10 +39,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth(): AuthContextType {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used inside AuthProvider");
-  return context;
 }

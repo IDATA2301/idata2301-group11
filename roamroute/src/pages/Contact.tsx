@@ -1,5 +1,8 @@
 import '../assets/styles/pages/contact.css';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import ContactInfoItem from "../components/contact/ContactInfoItem";
+import FormField from "../components/forms/FormField";
+import TextInput from "../components/forms/TextInput";
 
 function Contact() {
   return (
@@ -17,9 +20,8 @@ function Contact() {
 
           {/* Contact Form */}
           <form className="contact__form">
-            <div className="contact__field">
-              <label htmlFor="email" className="contact__label">E-mail</label>
-              <input 
+            <FormField id="email" label="E-mail" className="contact__field" labelClassName="contact__label">
+              <TextInput
                 type="email"
                 id="email"
                 className="contact__input"
@@ -27,23 +29,22 @@ function Contact() {
                 name="email"
                 required
               />
-            </div>
+            </FormField>
 
-            <div className="contact__field">
-              <label htmlFor="regarding" className="contact__label">Regarding</label>
-              <input 
+            <FormField id="regarding" label="Regarding" className="contact__field" labelClassName="contact__label">
+              <TextInput
                 type="text"
                 id="regarding"
                 className="contact__input"
                 placeholder="Regarding"
                 name="regarding"
                 required
-              />  
-            </div>
+              />
+            </FormField>
 
-            <div className="contact__field">
-              <label htmlFor="message" className="contact__label">Message</label>
-              <textarea
+            <FormField id="message" label="Message" className="contact__field" labelClassName="contact__label">
+              <TextInput
+                as="textarea"
                 id="message"
                 className="contact__textarea"
                 placeholder="Message"
@@ -51,7 +52,7 @@ function Contact() {
                 rows={5}
                 required
               />
-            </div>
+            </FormField>
 
             <button type="submit" className="btn contact__submit">Submit form</button>
           </form>
@@ -60,9 +61,9 @@ function Contact() {
         {/* Contact Information */}
         <section className="contact__info">
           <div className="contact__details">
-            <p className="contact__detail-item"><EnvelopeIcon className="contact__icon" /><b>post@roamroute.org</b></p>
-            <p className="contact__detail-item"><PhoneIcon className="contact__icon" /><b>+47 929 90 707</b></p>
-            <p className="contact__detail-item"><MapPinIcon className="contact__icon" /><b>C215, NTNU Ålesund</b></p>
+            <ContactInfoItem icon={EnvelopeIcon}>post@roamroute.org</ContactInfoItem>
+            <ContactInfoItem icon={PhoneIcon}>+47 929 90 707</ContactInfoItem>
+            <ContactInfoItem icon={MapPinIcon}>C215, NTNU Ålesund</ContactInfoItem>
           </div>
 
           <div className="contact__hours contact__hours-box">

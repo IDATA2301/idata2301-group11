@@ -3,7 +3,9 @@ import { useState, type SyntheticEvent } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
 import { login } from "../services/auth"
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../context/useAuth"
+import FormField from "../components/forms/FormField"
+import IconInput from "../components/forms/IconInput"
 
 export default function LoginPage() {
   const navigate = useNavigate()
@@ -44,40 +46,40 @@ export default function LoginPage() {
 
       {/* Login form */}
       <form className="login__form" onSubmit={handleSubmit}>
-        <div className="login__field">
-          <label className="login__label" htmlFor="login-email">
-          Email address
-          </label>
-          <div className="login__input-wrap">
-            <EnvelopeIcon className="login__icon" aria-hidden="true" />
-            <input
-              id="login-email"
-              className="login__input"
-              type="email"
-              placeholder="name@example.com"
-              autoComplete="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
-        </div>
-        <div className="login__field">
-          <label className="login__label" htmlFor="login-password">
-            Password
-          </label>
-          <div className="login__input-wrap">
-            <LockClosedIcon className="login__icon" aria-hidden="true" />
-            <input
-              id="login-password"
-              className="login__input"
-              type="password"
-              placeholder="*********"
-              autoComplete="current-password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </div>
-        </div>
+        <FormField id="login-email" label="Email address" className="login__field" labelClassName="login__label">
+          <IconInput
+            id="login-email"
+            className="login__input"
+            type="email"
+            placeholder="name@example.com"
+            autoComplete="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            icon={EnvelopeIcon}
+            wrapperClassName="login__input-wrap"
+            iconClassName="login__icon"
+          />
+        </FormField>
+
+        <FormField
+          id="login-password"
+          label="Password"
+          className="login__field"
+          labelClassName="login__label"
+        >
+          <IconInput
+            id="login-password"
+            className="login__input"
+            type="password"
+            placeholder="*********"
+            autoComplete="current-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            icon={LockClosedIcon}
+            wrapperClassName="login__input-wrap"
+            iconClassName="login__icon"
+          />
+        </FormField>
         {error ? <p role="alert">{error}</p> : null}
         <div className="login__forgot">
           <Link to="/forgot-password">Forgot password?</Link>

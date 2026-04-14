@@ -1,0 +1,34 @@
+.header {
+  position: relative;
+  height: 250px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-md);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2), transparent);
+}
+
+.title {
+  margin: 0;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading);
+}
+
+.date {
+  margin: 0;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}

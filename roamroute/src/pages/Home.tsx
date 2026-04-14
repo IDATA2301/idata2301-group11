@@ -1,10 +1,28 @@
-
 import "../assets/styles/pages/home.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import DestinationCard from "../components/home/DestinationCard";
+import HeroImage from "../components/home/HeroImage";
+import HeroSection from "../components/home/HeroSection";
+import TripCard from "../components/home/TripCard";
+
+type Destination = {
+  id: number;
+  destination: string;
+  image: string;
+};
+
+type HomeTrip = {
+  id: number;
+  imageUrl: string;
+  title: string;
+  city: string;
+  country: string;
+  lowestPrice: number;
+};
 
 function Home() {
-  const destinations = [
+  const destinations: Destination[] = [
     { id: 1, destination: "Barcelona", image: "images/barcelona.png" },
     { id: 2, destination: "Paris", image: "images/parisDest.jpg" },
     { id: 3, destination: "Athens", image: "images/athens.jpg" },
@@ -12,46 +30,29 @@ function Home() {
     { id: 5, destination: "Dublin", image: "images/dublinDest.jpg" },
   ];
 
-
-  const [trips, setTrips] = useState<any[]>([]);
+  const [trips, setTrips] = useState<HomeTrip[]>([]);
 
   useEffect(() => {
     fetch("http://localhost:8080/api/trips/home")
-    .then(res => res.json())
-    .then(data => setTrips(data))
-    .catch(err => console.error("Error fetching trips:", err));
-    }, []
-  );
+      .then((res) => res.json())
+      .then((data: HomeTrip[]) => setTrips(data))
+      .catch((err) => console.error("Error fetching trips:", err));
+  }, []);
 
   return (
     <main className="home">
-      <div className="home__hero-img" aria-hidden="true" />
-      {/* Hero section */}
-      <section className="home__hero">
-        <h1 className="home__hero-title">
-          Dream away at
-          <br />
-          your destination.
-        </h1>
-        <div className="home__search">
-          <input className="home__search-input" type="text" placeholder="Where are you roaming?" />
-          <button className="btn btn--accent">Search</button>
-        </div>
-      </section>
+      <HeroImage />
+      <HeroSection />
 
-      {/* Popular destinations */}
       <section className="home__destinations">
         <h2>Top Destinations</h2>
         <div className="home__destinations-list">
           {destinations.map((dest) => (
-            <div key={dest.id} className="home__destination-card">
-              <img src={dest.image} alt={dest.destination} />
-              <p className ="home__destination-name">{dest.destination}</p>
-            </div>
+            <DestinationCard key={dest.id} destination={dest.destination} image={dest.image} />
           ))}
         </div>
       </section>
-      {/* Trip suggestions */}
+
       <section className="home__trips">
         <h2>Unable to decide?</h2>
         <p>Let us help you</p>
@@ -59,27 +60,14 @@ function Home() {
         <div className="home__trip-list">
           {trips.map((trip) => (
             <Link to={`/tour/${trip.id}`} key={trip.id} className="home__trip-card-link">
-              <div key={trip.id} className="home__trip-card">
-
-              <img 
-                src={`/images/${trip.imageUrl}`}
-                alt={trip.title}
+              <TripCard
+                imageUrl={trip.imageUrl}
+                title={trip.title}
+                city={trip.city}
+                country={trip.country}
+                lowestPrice={trip.lowestPrice}
               />
-
-              <div className="home__trip-overlay">
-                <h3>{trip.title}</h3>
-
-                <p className="home__trip-location">
-                  {trip.city}, {trip.country}
-                </p>
-
-                <p className="home__trip-price">
-                  From ${trip.lowestPrice}
-                </p>
-              </div>
-
-            </div>
-          </Link>
+            </Link>
           ))}
         </div>
       </section>

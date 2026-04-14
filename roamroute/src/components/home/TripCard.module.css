@@ -1,0 +1,44 @@
+.tripCard {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tripImage {
+  display: block;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.tripOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-md);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0) 70%);
+  color: #fff;
+}
+
+.tripOverlay * {
+  color: #fff;
+}
+
+.tripTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.tripLocation {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.tripPrice {
+  margin-top: 4px;
+  font-weight: 600;
+}

@@ -1,0 +1,22 @@
+.serviceItem {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.serviceContent {
+  flex: 1;
+}
+
+.serviceTitle {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 8px;
+}
+
+.serviceDescription {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
