@@ -6,9 +6,19 @@ type TripCardProps = {
   city: string;
   country: string;
   lowestPrice: number;
+  startDate: string;
+  endDate: string;
 };
 
-export default function TripCard({ imageUrl, title, city, country, lowestPrice }: TripCardProps) {
+function formatDate(dateString: string): string {
+  if (!dateString) return "";
+  return dateString.includes("T") ? dateString.split("T")[0] : dateString;
+}
+
+export default function TripCard({ imageUrl, title, city, country, lowestPrice, startDate, endDate }: TripCardProps) {
+  const formattedStartDate = formatDate(startDate);
+  const formattedEndDate = formatDate(endDate);
+
   return (
     <article className={styles.tripCard}>
       <img src={`/images/${imageUrl}`} alt={title} className={styles.tripImage} />
@@ -20,7 +30,12 @@ export default function TripCard({ imageUrl, title, city, country, lowestPrice }
           {city}, {country}
         </p>
 
-        <p className={styles.tripPrice}>From ${lowestPrice}</p>
+        <div className={styles.tripMeta}>
+          <p className={styles.tripPrice}>From ${lowestPrice}</p>
+          <p className={styles.tripDates}>
+            {formattedStartDate} - {formattedEndDate}
+          </p>
+        </div>
       </div>
     </article>
   );

@@ -1,5 +1,5 @@
 import {
-  CurrencyDollarIcon,
+  HomeIcon,
   InformationCircleIcon,
   PaperAirplaneIcon,
 } from "@heroicons/react/24/solid";
@@ -11,6 +11,7 @@ type TripOverviewProps = {
   departureAirport: string;
   arrivalAirport: string;
   flightDuration: string;
+  hotelName: string;
 };
 
 export default function TripOverview({
@@ -19,6 +20,7 @@ export default function TripOverview({
   departureAirport,
   arrivalAirport,
   flightDuration,
+  hotelName,
 }: TripOverviewProps) {
   return (
     <section>
@@ -46,9 +48,9 @@ export default function TripOverview({
           </div>
 
           <div className={styles.metaGroup}>
-            <CurrencyDollarIcon className={`${styles.icon} ${styles.iconBudget}`} aria-hidden="true" />
-            <p className={styles.metaText}>Budget</p>
-            <strong className={styles.metaStrong}>Economy</strong>
+            <HomeIcon className={`${styles.icon} ${styles.iconHome}`} aria-hidden="true" />
+            <p className={styles.metaText}>Accommodation</p>
+            <strong className={styles.metaStrong}>{hotelName}</strong>
           </div>
         </div>
       </div>
