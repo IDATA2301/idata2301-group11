@@ -40,5 +40,22 @@
 
 .tripPrice {
   margin-top: 4px;
+  margin-bottom: 0;
   font-weight: 600;
+}
+
+.tripMeta {
+  margin-top: 4px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.tripDates {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  opacity: 0.9;
+  white-space: nowrap;
 }

@@ -19,6 +19,8 @@ type HomeTrip = {
   city: string;
   country: string;
   lowestPrice: number;
+  startDate: string;
+  endDate: string;
 };
 
 function Home() {
@@ -55,7 +57,7 @@ function Home() {
 
       <section className="home__trips">
         <h2>Unable to decide?</h2>
-        <p>Let us help you</p>
+        <p>Let us help you</p>:
 
         <div className="home__trip-list">
           {trips.map((trip) => (
@@ -66,6 +68,8 @@ function Home() {
                 city={trip.city}
                 country={trip.country}
                 lowestPrice={trip.lowestPrice}
+                startDate={trip.startDate}
+                endDate={trip.endDate}
               />
             </Link>
           ))}

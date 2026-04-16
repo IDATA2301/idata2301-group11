@@ -4,11 +4,13 @@ type OptionComparisonCardProps = {
   provider: string;
   price: number;
   selected: boolean;
+  airline?: string;
   onSelect: () => void;
 };
 
 export default function OptionComparisonCard({
   provider,
+  airline,
   price,
   selected,
   onSelect,
@@ -16,11 +18,11 @@ export default function OptionComparisonCard({
   return (
     <div className={`${styles.card} ${selected ? styles.selected : ""}`.trim()}>
       <h3 className={styles.title}>
-        {provider}
+        {airline}
         <span className={styles.note}>Includes taxes & fees</span>
       </h3>
 
-      <p className={styles.price}>${price}</p>
+      <p className={styles.price}>{provider} - ${price}</p>
 
       <button onClick={onSelect} className={styles.button}>
         {selected ? "Selected" : "Select"}
