@@ -1,13 +1,50 @@
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import type { TripCard as TripCardProps } from "../types/Trip";
+import TripCard from "../components/home/TripCard";
+
 
 export default function Trips() {
 
   const [searchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const q = searchParams.get("q");
 
-  return (
-    <div>
-      <h1>Showing results for: {q}</h1>
-    </div>
-  )
+
+
+  const [trips, setTrips] = useState<TripCardProps[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/trips/search?q=" + encodeURIComponent(q || ""))
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data: TripCardProps[]) => setTrips(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+
+  }, [q]);
+
+  if (loading) return <p>Loading trips...</p>;
+  if (error) return <p>{error}</p>;
+
+return (
+    <main>
+      <h1>Showing results for: {q || "all trips"}</h1>
+
+      {trips.length === 0 ? (
+        <p>No trips found.</p>
+      ) : (
+        <div className="home__trip-list">
+          {trips.map((trip) => (
+            <Link key={trip.id} to={`/tour/${trip.id}`} className="home__trip-card-link">
+              <TripCard {...trip} />
+            </Link>
+          ))}
+        </div>
+      )}
+    </main>
+  );
 }
