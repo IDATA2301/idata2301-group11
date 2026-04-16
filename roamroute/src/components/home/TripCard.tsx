@@ -1,14 +1,8 @@
 import styles from "./TripCard.module.css";
 
-type TripCardProps = {
-  imageUrl: string;
-  title: string;
-  city: string;
-  country: string;
-  lowestPrice: number;
-};
+import type { TripCard } from "../../types/Trip";
 
-export default function TripCard({ imageUrl, title, city, country, lowestPrice }: TripCardProps) {
+export default function TripCard({ imageUrl, title, city, country, lowestPrice }: TripCard) {
   return (
     <article className={styles.tripCard}>
       <img src={`/images/${imageUrl}`} alt={title} className={styles.tripImage} />
