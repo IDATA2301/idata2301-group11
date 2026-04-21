@@ -51,3 +51,28 @@ export const userBookings: Booking[] = [
     status: "confirmed",
   },
 ];
+try {
+  if (typeof localStorage !== "undefined") {
+    const stored = localStorage.getItem("userBookings");
+    if (stored) {
+      const parsed = JSON.parse(stored) as Booking[];
+      if (Array.isArray(parsed)) {
+        userBookings.length = 0;
+        parsed.forEach((b) => userBookings.push(b));
+      }
+    }
+  }
+} catch (err) {
+  // ignore storage errors
+}
+
+export function addBooking(booking: Booking) {
+  userBookings.push(booking);
+  try {
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("userBookings", JSON.stringify(userBookings));
+    }
+  } catch (err) {
+    // ignore storage errors
+  }
+}

@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState, type SyntheticEvent } from "react";
 import { ArrowRightOnRectangleIcon, MapIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../context/useAuth";
+import { userBookings } from "../data/userBookings";
 import { updateUsername } from "../services/auth";
 import FormField from "../components/forms/FormField";
 import TextInput from "../components/forms/TextInput";
@@ -34,6 +35,8 @@ export default function Profile() {
   const locationText = [authUser.address ?? authUser.user_address, authUser.country ?? authUser.user_country]
     .filter(Boolean)
     .join(", ") || "Location not set";
+
+  const purchasesCount = authUser ? userBookings.filter((b) => b.user_id === authUser.id).length : 0;
 
   async function handleUpdateUsername(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -100,16 +103,8 @@ export default function Profile() {
 
         <div className="profile__stats" aria-label="Profile statistics">
           <article className="profile__stat">
-            <strong>42</strong>
-            <span>TRIPS TAKEN</span>
-          </article>
-          <article className="profile__stat">
-            <strong>128k</strong>
-            <span>TOTAL MILES</span>
-          </article>
-          <article className="profile__stat">
-            <strong>18</strong>
-            <span>COUNTRIES</span>
+            <strong>{purchasesCount}</strong>
+            <span>PURCHASED TRIPS</span>
           </article>
         </div>
 
@@ -180,6 +175,14 @@ export default function Profile() {
           >
             <MapIcon className="profile__btn-icon" aria-hidden="true" />
             <span>Continue Exploring</span>
+          </button>
+
+          <button
+            type="button"
+            className="profile__btn profile__btn--ghost"
+            onClick={() => navigate("/purchased-trips")}
+          >
+            Purchased Trips
           </button>
 
           <button

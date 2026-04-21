@@ -13,6 +13,8 @@ import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
 import AdminUserDetails from "./pages/AdminUserDetails";
 import Profile from "./pages/Profile";
+import PurchasedTrips from "./pages/PurchasedTrips";
+import PaymentReceipt from "./pages/PaymentReceipt";
 
 function AppLayout() {
   const { pathname } = useLocation();
@@ -29,10 +31,12 @@ function AppLayout() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/purchased-trips" element={<PurchasedTrips />} />
         <Route path="/tour/:id" element={<TourDetails />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/users/:id" element={<AdminUserDetails />} />
+        <Route path="/payment-receipt" element={<PaymentReceipt />} />
       </Routes>
     </PageLayout>
   );
