@@ -1,22 +1,9 @@
+
 import { useState, useEffect } from "react";
 import styles from "./TripCard.module.css";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
-
-
-type TripCardProps = {
-  id: number;
-  imageUrl: string;
-  title: string;
-  city: string;
-  country: string;
-  lowestPrice: number;
-  startDate: string;
-  endDate: string;
-  isFavorite: boolean;
-};
-
-import type { TripCard } from "../../types/Trip";
+import type { TripCard as TripCardProps } from "../../types/Trip";
 
 
 
@@ -54,9 +41,6 @@ export default function TripCard({ id, imageUrl, title, city, country, lowestPri
     .then(() => setIsFavoriteState(!isFav))
     .catch(err => console.error(err));
   }
-
-
-export default function TripCard({ imageUrl, title, city, country, lowestPrice, startDate, endDate }: TripCard) {
 
   const formattedStartDate = formatDate(startDate);
   const formattedEndDate = formatDate(endDate);
