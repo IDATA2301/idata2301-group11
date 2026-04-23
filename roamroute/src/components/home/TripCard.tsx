@@ -1,21 +1,13 @@
 import styles from "./TripCard.module.css";
 
-type TripCardProps = {
-  imageUrl: string;
-  title: string;
-  city: string;
-  country: string;
-  lowestPrice: number;
-  startDate: string;
-  endDate: string;
-};
+import type { TripCard } from "../../types/Trip";
 
 function formatDate(dateString: string): string {
   if (!dateString) return "";
   return dateString.includes("T") ? dateString.split("T")[0] : dateString;
 }
 
-export default function TripCard({ imageUrl, title, city, country, lowestPrice, startDate, endDate }: TripCardProps) {
+export default function TripCard({ imageUrl, title, city, country, lowestPrice, startDate, endDate }: TripCard) {
   const formattedStartDate = formatDate(startDate);
   const formattedEndDate = formatDate(endDate);
 
