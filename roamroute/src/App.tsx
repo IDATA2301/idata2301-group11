@@ -13,6 +13,7 @@ import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
 import AdminUserDetails from "./pages/AdminUserDetails";
 import Profile from "./pages/Profile";
+import React from "react";
 
 function AppLayout() {
   const { pathname } = useLocation();
@@ -40,11 +41,13 @@ function AppLayout() {
 
 function App() {
   return (
+  <React.StrictMode>
     <AuthProvider>
       <Router>
         <AppLayout />
       </Router>
     </AuthProvider>
+  </React.StrictMode>
   );
 }
 

@@ -57,6 +57,9 @@ export async function login({ email, password }: LoginRequest): Promise<AuthUser
   }
 
   const data: AuthUser = await response.json();
+
+  const auth = btoa(email + ":" + password);
+  localStorage.setItem("auth", auth);
   return data;
 }
 
