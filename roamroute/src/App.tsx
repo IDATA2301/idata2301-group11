@@ -7,7 +7,7 @@ import Contact from "./pages/Contact";
 import Favorites from "./pages/Favorites";
 import LoginPage from "./pages/LoginPage";
 import Signup from "./pages/Signup";
-import Search from "./pages/Search";
+import Trips from "./pages/Trips";
 import TourDetails from "./pages/TourDetails";
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
@@ -28,7 +28,7 @@ function AppLayout() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/trips" element={<Trips />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/tour/:id" element={<TourDetails />} />
         <Route path="/admin" element={<Admin />} />
