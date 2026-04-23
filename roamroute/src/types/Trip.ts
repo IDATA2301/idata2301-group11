@@ -7,4 +7,5 @@ export interface TripCard {
   lowestPrice: number;
   startDate: string;
   endDate: string;
+  isFavorite: boolean;
 };
