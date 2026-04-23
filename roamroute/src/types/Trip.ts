@@ -5,4 +5,6 @@ export interface TripCard {
   city: string;
   country: string;
   lowestPrice: number;
+  startDate: string;
+  endDate: string;
 };
