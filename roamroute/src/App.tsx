@@ -7,7 +7,7 @@ import Contact from "./pages/Contact";
 import Favorites from "./pages/Favorites";
 import LoginPage from "./pages/LoginPage";
 import Signup from "./pages/Signup";
-import Search from "./pages/Search";
+import Trips from "./pages/Trips";
 import TourDetails from "./pages/TourDetails";
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
@@ -15,6 +15,8 @@ import AdminUserDetails from "./pages/AdminUserDetails";
 import Profile from "./pages/Profile";
 import PurchasedTrips from "./pages/PurchasedTrips";
 import PaymentReceipt from "./pages/PaymentReceipt";
+import React from "react";
+
 
 function AppLayout() {
   const { pathname } = useLocation();
@@ -29,7 +31,7 @@ function AppLayout() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/trips" element={<Trips />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/purchased-trips" element={<PurchasedTrips />} />
         <Route path="/tour/:id" element={<TourDetails />} />
@@ -44,11 +46,13 @@ function AppLayout() {
 
 function App() {
   return (
+  <React.StrictMode>
     <AuthProvider>
       <Router>
         <AppLayout />
       </Router>
     </AuthProvider>
+  </React.StrictMode>
   );
 }
 
