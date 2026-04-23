@@ -14,6 +14,7 @@ type ComparisonOption = {
   id: number;
   provider: string;
   price: number;
+  airline: string;
 };
 
 type TripDetailsResponse = {
@@ -37,6 +38,7 @@ type TripDetailsResponse = {
   hotelOptions: ComparisonOption[];
   latitude: number | string;
   longitude: number | string;
+  airline: string;
 };
 
 export default function TourDetails() {
@@ -97,6 +99,7 @@ export default function TourDetails() {
         departureAirport={trip.departureAirport}
         arrivalAirport={trip.arrivalAirport}
         flightDuration={trip.flightDuration}
+        hotelName={trip.hotelName}
       />
 
       <section className={styles.comparisonSection}>
@@ -111,6 +114,7 @@ export default function TourDetails() {
             provider={flight.provider}
             price={flight.price}
             selected={selectedFlightId === flight.id}
+            airline={flight.airline}
             onSelect={() => setSelectedFlightId(flight.id)}
           />
         ))}
