@@ -4,8 +4,7 @@ import styles from "./TripCard.module.css";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
 import type { TripCard as TripCardProps } from "../../types/Trip";
-
-
+import { useAuth } from "../../context/useAuth";
 
 function formatDate(dateString: string): string {
   if (!dateString) return "";
@@ -15,6 +14,7 @@ function formatDate(dateString: string): string {
 
 export default function TripCard({ id, imageUrl, title, city, country, lowestPrice, startDate, endDate, isFavorite }: TripCardProps) {
 
+  const { authUser } = useAuth();
   const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
   const navigate = useNavigate();
 
@@ -23,6 +23,11 @@ export default function TripCard({ id, imageUrl, title, city, country, lowestPri
   }, [isFavorite]);
 
   function toggleFavorite(tripId: number) {
+
+    if (!authUser) {
+      alert("You must be logged in to manage favorites.");
+      return;
+    }
 
     const isFav = isFavoriteState;
 
