@@ -8,6 +8,7 @@ import OptionComparisonCard from "../components/tour-details/OptionComparisonCar
 import Tabs from "../components/tour-details/Tabs";
 import TourHeader from "../components/tour-details/TourHeader";
 import TripOverview from "../components/tour-details/TripOverview";
+import TripPayment from "../components/tour-details/TripPayment";
 import styles from "./TourDetails.module.css";
 
 type ComparisonOption = {
@@ -141,6 +142,22 @@ export default function TourDetails() {
           />
         ))}
       </section>
+
+      {/* find selected flight/hotel objects and pass to payment component */}
+      {
+        (() => {
+          const flight = trip.flightOptions.find((f) => f.id === selectedFlightId) ?? null;
+          const hotel = trip.hotelOptions.find((h) => h.id === selectedHotelId) ?? null;
+          return (
+            <TripPayment
+              selectedFlight={flight}
+              selectedHotel={hotel}
+              tripTitle={trip.title}
+              tripDate={trip.startDate}
+            />
+          );
+        })()
+      }
 
       <LocationMap hasValidCoordinates={hasValidCoordinates} position={position} hotelName={trip.hotelName} />
     </main>

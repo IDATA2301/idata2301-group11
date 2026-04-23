@@ -1,0 +1,45 @@
+@import "../../assets/styles/components/button.css";
+
+.checkmark {
+  width: 60px;
+  height: 60px;
+  color: #10b981;
+  animation: easeIn 0.6s ease-in forwards;
+}
+
+.statusWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.pendingText {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  animation: easeIn 0.6s ease-in forwards;
+}
+
+@keyframes easeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.paymentSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg);
+  gap: var(--space-md);
+}
+
+.btn {
+  min-width: 200px;
+}
