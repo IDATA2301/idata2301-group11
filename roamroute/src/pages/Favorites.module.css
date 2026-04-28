@@ -7,3 +7,12 @@
 .title {
   margin: 0;
 }
+
+.favoritesContainer {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(640px, 480px));
+  justify-content: start;
+}
+
+

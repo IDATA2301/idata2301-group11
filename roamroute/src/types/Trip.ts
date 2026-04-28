@@ -8,4 +8,5 @@ export interface TripCard {
   startDate: string;
   endDate: string;
   isFavorite: boolean;
+  onRemoveFavorite?: (tripId: number) => void;
 };

@@ -6,6 +6,9 @@ export type AuthContextType = {
   signIn: (user: AuthUser) => void;
   updateAuthUser: (user: AuthUser) => void;
   signOut: () => void;
+
+  favoriteCount: number;
+  setFavoriteCount: (count: number) => void;
 };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
