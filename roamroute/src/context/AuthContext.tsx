@@ -9,6 +9,7 @@ import { AuthContext } from "./auth-context";
 */
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const [favoriteCount, setFavoriteCount] = useState(0);
   const [authUser, setAuthUser] = useState<AuthUser | null>(() => {
     const stored = localStorage.getItem("authUser");
     if (!stored) return null;
@@ -36,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ authUser, signIn, updateAuthUser, signOut }}>
+    <AuthContext.Provider value={{ authUser, signIn, updateAuthUser, signOut, favoriteCount, setFavoriteCount }}>
       {children}
     </AuthContext.Provider>
   );

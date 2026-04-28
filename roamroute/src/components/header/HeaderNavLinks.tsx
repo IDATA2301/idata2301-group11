@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
+import { useAuth } from "../../context/useAuth";
 
 type HeaderNavLinksProps = {
   isAuthenticated: boolean;
@@ -11,6 +12,8 @@ function getLinkClassName(isActive: boolean) {
 }
 
 export default function HeaderNavLinks({ isAuthenticated, onNavigate }: HeaderNavLinksProps) {
+  const { favoriteCount } = useAuth();
+
   return (
     <div className={styles.linksMain}>
       <NavLink
@@ -41,7 +44,7 @@ export default function HeaderNavLinks({ isAuthenticated, onNavigate }: HeaderNa
           className={({ isActive }) => getLinkClassName(isActive)}
           onClick={onNavigate}
         >
-          Favorites
+          Favorites ({favoriteCount})
         </NavLink>
       )}
     </div>

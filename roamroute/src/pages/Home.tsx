@@ -46,6 +46,7 @@ function Home() {
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const { authUser } = useAuth();
   const auth = localStorage.getItem("auth");
+  const { setFavoriteCount } = useAuth();
 
   useEffect(() => {
     if (!authUser || !auth) {
@@ -68,6 +69,7 @@ function Home() {
         const ids = data.map((fav: any) => fav.trip?.id);
         console.log("TRIP ID:", data[0].trip.id);
         setFavoriteIds(ids);
+        setFavoriteCount(ids.length);
       })
       .catch(err => console.error("Error fetching favorites:", err));
   }, [authUser]);

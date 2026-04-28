@@ -12,11 +12,12 @@ function formatDate(dateString: string): string {
 }
 
 
-export default function TripCard({ id, imageUrl, title, city, country, lowestPrice, startDate, endDate, isFavorite }: TripCardProps) {
+export default function TripCard({ id, imageUrl, title, city, country, lowestPrice, startDate, endDate, isFavorite, onRemoveFavorite }: TripCardProps) {
 
   const { authUser } = useAuth();
   const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
   const navigate = useNavigate();
+  const { favoriteCount, setFavoriteCount } = useAuth();
 
   useEffect(() => {
     setIsFavoriteState(isFavorite);
@@ -43,7 +44,18 @@ export default function TripCard({ id, imageUrl, title, city, country, lowestPri
         Authorization: "Basic " + localStorage.getItem("auth")
       }
     })
-    .then(() => setIsFavoriteState(!isFav))
+    .then(() => {
+      setIsFavoriteState(!isFav);
+      
+      if (isFav && onRemoveFavorite) {  
+        onRemoveFavorite(tripId);
+      }
+      if (isFav) {
+        setFavoriteCount(favoriteCount - 1);
+      } else {
+        setFavoriteCount(favoriteCount + 1);
+      }
+    })
     .catch(err => console.error(err));
   }
 
