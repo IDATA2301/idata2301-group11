@@ -22,7 +22,7 @@ type LoginRequest = {
 };
 
 type RegisterRequest = {
-  userName: string;
+  fullName: string;
   email: string;
   password: string;
   address?: string;
@@ -58,14 +58,11 @@ export async function login({ email, password }: LoginRequest): Promise<AuthUser
   }
 
   const data: AuthUser = await response.json();
-
-  const auth = btoa(email + ":" + password);
-  localStorage.setItem("auth", auth);
   return data;
 }
 
 export async function register({
-  userName,
+  fullName,
   email,
   password,
   address,
@@ -77,7 +74,7 @@ export async function register({
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      userName,
+      fullName,
       email,
       password,
       address,
@@ -90,7 +87,7 @@ export async function register({
   }
 
   if (response.status === 409) {
-    throw new Error("Email or username is already in use.");
+    throw new Error("An account with this email already exists.");
   }
 
   if (!response.ok) {

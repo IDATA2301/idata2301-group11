@@ -10,45 +10,38 @@ import IconInput from "../components/forms/IconInput"
 export default function Signup() {
   const navigate = useNavigate()
   const { signIn } = useAuth()
-  const [userName, setUserName] = useState("")
+  const [fullName, setFullName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
-  const trimmedUserName = userName.trim()
-  const isValidUsernameLength = trimmedUserName.length >= 6
-  const isWithinMaxLength = trimmedUserName.length <= 20
-  const hasNoWhitespace = !/\s/.test(trimmedUserName)
-  const canSubmit = Boolean(trimmedUserName && email.trim() && password.trim()) && isValidUsernameLength && isWithinMaxLength && hasNoWhitespace && !loading
+  const trimmedFullName = fullName.trim().replace(/\s+/g, " ")
+  const isValidNameLength = trimmedFullName.length >= 2 && trimmedFullName.length <= 100
+  const canSubmit = Boolean(trimmedFullName && email.trim() && password.trim()) && isValidNameLength && !loading
 
   async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault()
     setError("")
 
-    if (!trimmedUserName || !email.trim() || !password.trim()) {
+    if (!trimmedFullName || !email.trim() || !password.trim()) {
       setError("Please fill in all fields.")
       return
     }
 
-    if (trimmedUserName.length < 6) {
-      setError("Username must be at least 6 characters.")
+    if (trimmedFullName.length < 2) {
+      setError("Full name must be at least 2 characters.")
       return
     }
 
-    if (trimmedUserName.length > 20) {
-      setError("Username cannot be longer than 20 characters.")
-      return
-    }
-
-    if (/\s/.test(trimmedUserName)) {
-      setError("Username cannot contain spaces.")
+    if (trimmedFullName.length > 100) {
+      setError("Full name cannot be longer than 100 characters.")
       return
     }
 
     try {
       setLoading(true)
-      const user = await register({ userName: trimmedUserName, email, password })
+      const user = await register({ fullName: trimmedFullName, email, password })
       signIn(user)
       navigate("/profile")
     } catch (err) {
@@ -81,14 +74,13 @@ export default function Signup() {
             placeholder="Full name"
             name="fullName"
             autoComplete="name"
-            value={userName}
+            value={fullName}
             onChange={(event) => {
-              setUserName(event.target.value)
+              setFullName(event.target.value)
               if (error) setError("")
             }}
-            minLength={6}
-            maxLength={20}
-            pattern={"^\\S+$"}
+            minLength={2}
+            maxLength={100}
             icon={UserIcon}
             wrapperClassName="signup__input-wrap"
             iconClassName="signup__icon"
