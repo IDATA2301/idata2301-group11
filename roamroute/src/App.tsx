@@ -15,6 +15,7 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminUserDetails from "./pages/AdminUserDetails";
 import Profile from "./pages/Profile";
 import PurchasedTrips from "./pages/PurchasedTrips";
+import PurchasedTripDetails from "./pages/PurchasedTripDetails";
 import PaymentReceipt from "./pages/PaymentReceipt";
 import React from "react";
 
@@ -40,6 +41,7 @@ function AppLayout() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/purchased-trips" element={<PurchasedTrips />} />
+          <Route path="/purchased-trips/:orderId" element={<PurchasedTripDetails />} />
           <Route path="/payment-receipt" element={<PaymentReceipt />} />
         </Route>
 
