@@ -9,6 +9,7 @@ interface ComparisonOption {
   id: number;
   provider: string;
   price: number;
+  airline?: string;
 }
 
 interface TripPaymentProps {
@@ -16,9 +17,13 @@ interface TripPaymentProps {
   selectedHotel: ComparisonOption | null;
   tripTitle: string;
   tripDate: string;
+  tripImageUrl?: string | null;
+  hotelName?: string | null;
+  nights?: number | null;
+  tripAirline?: string | null;
 }
 
-export default function TripPayment({ selectedFlight, selectedHotel, tripTitle, tripDate }: TripPaymentProps) {
+export default function TripPayment({ selectedFlight, selectedHotel, tripTitle, tripDate, tripImageUrl, hotelName, nights, tripAirline }: TripPaymentProps) {
   const [showCheckmark, setShowCheckmark] = useState(false);
   const navigate = useNavigate();
   const { authUser } = useAuth();
@@ -28,18 +33,21 @@ export default function TripPayment({ selectedFlight, selectedHotel, tripTitle, 
   const handlePayment = () => {
     setShowCheckmark(true);
 
-    // Build booking and persist to simulated store
     if (authUser && selectedFlight && selectedHotel) {
       const orderId = `ORD-${Date.now().toString().slice(-6)}`;
       const booking = {
         order_id: orderId,
         user_id: authUser.id,
         trip_name: tripTitle,
-        flight: selectedFlight.provider,
+      flight: (selectedFlight as ComparisonOption).provider,
+      airline: (selectedFlight as ComparisonOption).airline || tripAirline || undefined,
         hotel: selectedHotel.provider,
+        hotelName: hotelName || undefined,
+        nights: typeof nights === "number" ? nights : undefined,
+        imageUrl: tripImageUrl,
         price: selectedFlight.price + selectedHotel.price,
         date: tripDate,
-        status: "confirmed" as const,
+        status: "Confirmed" as const,
       };
 
       try {
