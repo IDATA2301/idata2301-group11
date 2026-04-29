@@ -1,0 +1,45 @@
+.container {
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.topRow { display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+.title { font-size: 1.5rem; margin: 0; }
+.order { color:#6b7280; margin:0.25rem 0; }
+.titleWrap { display:flex; flex-direction:column; }
+.priceUnder { font-weight:600; margin-top:6px; color:#0f172a; }
+.statusWrapTop { display:flex; align-items:center; justify-content:flex-end; }
+.statusBadge { display:inline-block; background:#ecfdf5; color:#059669; padding:10px 14px; border-radius:12px; font-weight:700; font-size:0.95rem; }
+
+.bigImageWrap { margin-top: 1rem; border-radius:8px; overflow:hidden; box-shadow: var(--shadow-sm, 0 6px 18px rgba(0,0,0,0.12)); }
+.bigImage { width:100%; height:320px; object-fit:cover; display:block; }
+
+.boxes { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem; }
+.box { background: #ffffff; border-radius:10px; padding:1rem; display:flex; gap:0.75rem; align-items:flex-start; box-shadow: 0 4px 12px rgba(2,6,23,0.06); }
+.boxIcon { width:44px; height:44px; background:linear-gradient(135deg,#eef2ff,#e0f2fe); border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.heroIcon { width:22px; height:22px; color:#0f172a; }
+.boxBody { flex:1; }
+.boxTitle { margin:0 0 0.25rem 0; font-weight:600; font-size:1rem; }
+.boxLine { margin:0; color:#374151; }
+.details { margin-top: 1rem; }
+.details dt { font-weight: 600; }
+.details dd { margin: 0 0 0.75rem 0; color: #374151; }
+.actions { margin-top: 1.25rem; display:flex; gap:0.5rem; }
+.btn { padding: 0.5rem 0.75rem; border-radius: 6px; background:#0f766e; color:white; border:none; cursor:pointer; }
+.ghost { background: transparent; color:#0f766e; border:1px solid #0f766e; }
+
+.status {
+  font-weight: 700;
+}
+.statusConfirmed {
+  color: #10b981;
+}
+.statusPending {
+  color: #f59e0b;
+}
+.statusCancelled {
+  color: #ef4444;
+}
+.statusCompleted {
+  color: #06b6d4;
+}
