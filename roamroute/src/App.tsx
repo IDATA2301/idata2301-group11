@@ -14,6 +14,7 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminUserDetails from "./pages/AdminUserDetails";
 import Profile from "./pages/Profile";
 import PurchasedTrips from "./pages/PurchasedTrips";
+import PurchasedTripDetails from "./pages/PurchasedTripDetails";
 import PaymentReceipt from "./pages/PaymentReceipt";
 import React from "react";
 
@@ -34,6 +35,7 @@ function AppLayout() {
         <Route path="/trips" element={<Trips />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/purchased-trips" element={<PurchasedTrips />} />
+        <Route path="/purchased-trips/:orderId" element={<PurchasedTripDetails />} />
         <Route path="/tour/:id" element={<TourDetails />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/users" element={<AdminUsers />} />
