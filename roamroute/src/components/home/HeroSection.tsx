@@ -1,18 +1,10 @@
 import styles from "./HeroSection.module.css";
 
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TripSearchForm from "./TripSearchForm";
 
 export default function HeroSection() {
-  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/trips?q=${encodeURIComponent(searchQuery)}`);
-    }
-  };
 
   return (
     <section className={styles.hero}>
@@ -21,17 +13,18 @@ export default function HeroSection() {
         <br />
         your destination.
       </h1>
-        <form className={styles.search} onSubmit={handleSearch}>
-          <input
-            className={styles.searchInput}
-            type="text"
-            placeholder="Where are you roaming?"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        <button className={`btn btn--accent ${styles.searchButton}`}>Search</button>
-        </form>
-
+      <TripSearchForm
+        showLiveResults
+        onSubmit={({ q, minPrice, maxPrice, destinationId }) => {
+          const params = new URLSearchParams();
+          if (q) params.set("q", q);
+          if (minPrice) params.set("minPrice", minPrice);
+          if (maxPrice) params.set("maxPrice", maxPrice);
+          if (destinationId) params.set("destinationId", destinationId);
+          const qs = params.toString();
+          navigate(qs ? `/trips?${qs}` : "/trips");
+        }}
+      />
     </section>
   );
 }
