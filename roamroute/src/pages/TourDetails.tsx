@@ -154,6 +154,10 @@ export default function TourDetails() {
               selectedHotel={hotel}
               tripTitle={trip.title}
               tripDate={trip.startDate}
+              tripImageUrl={trip.imageUrl}
+              hotelName={trip.hotelName}
+              nights={trip.nights}
+              tripAirline={trip.airline}
             />
           );
         })()
