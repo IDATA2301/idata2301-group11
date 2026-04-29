@@ -5,6 +5,7 @@ import { HeartIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
 import type { TripCard as TripCardProps } from "../../types/Trip";
 import { useAuth } from "../../context/useAuth";
+import { apiFetch } from "../../services/apiFetch";
 
 function formatDate(dateString: string): string {
   if (!dateString) return "";
@@ -38,12 +39,7 @@ export default function TripCard({ id, imageUrl, title, city, country, lowestPri
       ? `http://localhost:8080/api/favorites/${tripId}`
       : `http://localhost:8080/api/favorites?tripId=${tripId}`;
 
-    fetch(url, {
-      method,
-      headers: {
-        Authorization: "Basic " + localStorage.getItem("auth")
-      }
-    })
+    apiFetch(url, { method })
     .then(() => {
       setIsFavoriteState(!isFav);
       

@@ -6,6 +6,7 @@ import HeroImage from "../components/home/HeroImage";
 import HeroSection from "../components/home/HeroSection";
 import TripCard from "../components/home/TripCard";
 import { useAuth } from "../context/useAuth";
+import { apiFetch } from "../services/apiFetch";
 
 type Destination = {
   id: number;
@@ -44,30 +45,22 @@ function Home() {
   }, []);
 
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
-  const { authUser } = useAuth();
-  const auth = localStorage.getItem("auth");
-  const { setFavoriteCount } = useAuth();
+  const { authUser, setFavoriteCount } = useAuth();
 
   useEffect(() => {
-    if (!authUser || !auth) {
+    if (!authUser) {
       setFavoriteIds([]);
       return;
     }
 
-    fetch("http://localhost:8080/api/favorites", {
-      headers: {
-        Authorization: "Basic " + auth
-      }
-    })
+    apiFetch("http://localhost:8080/api/favorites")
       .then(res => res.json())
       .then(data => {
         if (!Array.isArray(data)) {
           console.error("Unexpected favorites response:", data);
           return;
         }
-        console.log("FAVORITES:", data);
-        const ids = data.map((fav: any) => fav.trip?.id);
-        console.log("TRIP ID:", data[0].trip.id);
+        const ids = data.map((fav: any) => fav.trip?.id).filter((id: number | undefined) => id != null);
         setFavoriteIds(ids);
         setFavoriteCount(ids.length);
       })
