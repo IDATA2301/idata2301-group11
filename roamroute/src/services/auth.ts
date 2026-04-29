@@ -1,4 +1,5 @@
 import type { AuthUser } from "../types/User";
+import { apiFetch } from "./apiFetch";
 
 /* ============================
  * Authentication Service
@@ -101,11 +102,8 @@ export async function register({
 }
 
 export async function updateUsername({ id, userName }: UpdateUsernameRequest): Promise<AuthUser> {
-  const response = await fetch(`${API_BASE_URL}/api/auth/profile/${id}/username`, {
+  const response = await apiFetch(`${API_BASE_URL}/api/auth/profile/${id}/username`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify({ userName }),
   });
 

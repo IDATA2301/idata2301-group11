@@ -13,6 +13,7 @@ export interface AuthUser {
   userName: string;
   email: string;
   role: string;
+  token: string;
   address?: string;
   country?: string;
   user_address?: string;
