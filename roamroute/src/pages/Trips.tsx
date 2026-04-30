@@ -1,31 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import type { TripCard as TripCardProps } from "../types/Trip";
 import TripCard from "../components/home/TripCard";
+import TripSearchForm from "../components/home/TripSearchForm";
 
 
 export default function Trips() {
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const q = searchParams.get("q");
-  const normalizedQuery = (q ?? "").trim();
-  const shouldFetchAllTrips = normalizedQuery === "" || normalizedQuery === "0";
-
-
-
   const [trips, setTrips] = useState<TripCardProps[]>([]);
+
+  const q = (searchParams.get("q") ?? "").trim();
+  const minParam = searchParams.get("minPrice") ?? "";
+  const maxParam = searchParams.get("maxPrice") ?? "";
+  const destParam = searchParams.get("destinationId") ?? "";
+
+  const url = useMemo(() => {
+    const params = new URLSearchParams();
+    if (q) params.set("q", q);
+    if (minParam) params.set("minPrice", minParam);
+    if (maxParam) params.set("maxPrice", maxParam);
+    if (destParam) params.set("destinationId", destParam);
+    const qs = params.toString();
+    return `http://localhost:8080/api/trips/search${qs ? `?${qs}` : ""}`;
+  }, [q, minParam, maxParam, destParam]);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    const endpoint = shouldFetchAllTrips
-      ? "http://localhost:8080/api/trips/home"
-      : "http://localhost:8080/api/trips/search?q=" + encodeURIComponent(normalizedQuery);
-
-    fetch(endpoint)
+    fetch(url)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
@@ -33,17 +39,33 @@ export default function Trips() {
       .then((data: TripCardProps[]) => setTrips(data))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
+  }, [url]);
 
-  }, [normalizedQuery, shouldFetchAllTrips]);
-
-  if (loading) return <p>Loading trips...</p>;
-  if (error) return <p>{error}</p>;
-
-return (
+  return (
     <main>
-      <h1>Showing results for: {shouldFetchAllTrips ? "all trips" : normalizedQuery}</h1>
+      <h1>Browse trips</h1>
 
-      {trips.length === 0 ? (
+      <div style={{ margin: "1rem 0" }}>
+        <TripSearchForm
+          initialValues={{ q, minPrice: minParam, maxPrice: maxParam, destinationId: destParam }}
+          submitLabel="Apply"
+          liveSubmit
+          onSubmit={({ q: nextQ, minPrice, maxPrice, destinationId }) => {
+            const next = new URLSearchParams();
+            if (nextQ) next.set("q", nextQ);
+            if (minPrice) next.set("minPrice", minPrice);
+            if (maxPrice) next.set("maxPrice", maxPrice);
+            if (destinationId) next.set("destinationId", destinationId);
+            setSearchParams(next, { replace: true });
+          }}
+        />
+      </div>
+
+      {loading ? (
+        <p>Loading trips...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : trips.length === 0 ? (
         <p>No trips found.</p>
       ) : (
         <div className="home__trip-list">
