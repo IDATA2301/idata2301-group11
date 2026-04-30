@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PageLayout from "./components/layout/PageLayout";
+import { ProtectedRoute } from "./components/layout/ProtectedRoute";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -26,21 +27,30 @@ function AppLayout() {
   return (
     <PageLayout hideFooter={hideFooter}>
       <Routes>
+        {/* Public */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/favorites" element={<Favorites />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/trips" element={<Trips />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/purchased-trips" element={<PurchasedTrips />} />
-        <Route path="/purchased-trips/:orderId" element={<PurchasedTripDetails />} />
         <Route path="/tour/:id" element={<TourDetails />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin/users" element={<AdminUsers />} />
-        <Route path="/admin/users/:id" element={<AdminUserDetails />} />
-        <Route path="/payment-receipt" element={<PaymentReceipt />} />
+
+        {/* Authenticated */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/purchased-trips" element={<PurchasedTrips />} />
+          <Route path="/purchased-trips/:orderId" element={<PurchasedTripDetails />} />
+          <Route path="/payment-receipt" element={<PaymentReceipt />} />
+        </Route>
+
+        {/* Admin only */}
+        <Route element={<ProtectedRoute adminOnly />}>
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/users/:id" element={<AdminUserDetails />} />
+        </Route>
       </Routes>
     </PageLayout>
   );

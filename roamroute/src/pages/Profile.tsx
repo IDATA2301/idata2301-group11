@@ -38,6 +38,13 @@ export default function Profile() {
 
   const purchasesCount = authUser ? userBookings.filter((b) => b.user_id === authUser.id).length : 0;
 
+  const displayName = authUser.fullName ?? authUser.userName;
+  const nameParts = displayName.trim().split(/\s+/).filter(Boolean);
+  const initials = (nameParts.length >= 2
+    ? nameParts[0][0] + nameParts[nameParts.length - 1][0]
+    : (nameParts[0] ?? "").slice(0, 2)
+  ).toUpperCase();
+
   async function handleUpdateUsername(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
@@ -86,13 +93,13 @@ export default function Profile() {
         <div className="profile__identity">
           <div className="profile__avatar-wrap">
             <div className="profile__avatar" aria-hidden="true">
-              {authUser.userName.slice(0, 2).toUpperCase()}
+              {initials}
             </div>
             <span className="profile__badge" aria-hidden="true">✓</span>
           </div>
 
           <div className="profile__intro">
-            <h1>{authUser.userName}</h1>
+            <h1>{displayName}</h1>
             <p>{authUser.email}</p>
             <p className="profile__location">
               <MapPinIcon className="profile__location-icon" aria-hidden="true" />
@@ -110,7 +117,7 @@ export default function Profile() {
 
         {isEditing && (
           <form className="profile__edit" onSubmit={handleUpdateUsername}>
-            <FormField id="profile-username" label="Name" labelClassName="profile__edit-label">
+            <FormField id="profile-username" label="Username" labelClassName="profile__edit-label">
               <TextInput
                 id="profile-username"
                 className="profile__input"
@@ -121,7 +128,7 @@ export default function Profile() {
                   if (error) setError("");
                   if (success) setSuccess("");
                 }}
-                aria-label="Name"
+                aria-label="Username"
                 autoComplete="username"
                 minLength={6}
                 maxLength={20}

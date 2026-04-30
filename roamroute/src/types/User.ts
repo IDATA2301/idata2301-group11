@@ -11,8 +11,10 @@ export interface User {
 export interface AuthUser {
   id: number;
   userName: string;
+  fullName: string;
   email: string;
   role: string;
+  token: string;
   address?: string;
   country?: string;
   user_address?: string;

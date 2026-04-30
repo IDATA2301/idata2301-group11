@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/useAuth";
+import { apiFetch } from "../services/apiFetch";
 import EmptyState from "../components/ui/EmptyState";
 import styles from "./Favorites.module.css";
 import TripCard from "../components/home/TripCard";
@@ -9,26 +10,20 @@ export default function Favorites() {
   const [favorites, setFavorites] = useState<any[]>([]);
   const { authUser } = useAuth();
 
-  function removeFavorite(tripId: number) { 
+  function removeFavorite(tripId: number) {
     setFavorites(prev => prev.filter(trip => trip.id !== tripId));
   }
 
   useEffect(() => {
-    const auth = localStorage.getItem("auth");
-    if (!authUser || !auth) {
+    if (!authUser) {
       setFavorites([]);
       return;
     }
 
-    fetch("http://localhost:8080/api/favorites/trips", {
-      headers: {
-        Authorization: "Basic " + auth
-      }
-    })
+    apiFetch("http://localhost:8080/api/favorites/trips")
       .then(res => res.json())
       .then(data => {
-        console.log("Fetched favorites:", data);
-        setFavorites(data);
+        setFavorites(Array.isArray(data) ? data : []);
       })
       .catch(err => console.error(err));
   }, [authUser]);
