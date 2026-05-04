@@ -1,6 +1,5 @@
 import "../assets/styles/pages/home.css";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import DestinationCard from "../components/home/DestinationCard";
 import HeroImage from "../components/home/HeroImage";
 import HeroSection from "../components/home/HeroSection";
@@ -27,11 +26,11 @@ type HomeTrip = {
 
 function Home() {
   const destinations: Destination[] = [
-    { id: 1, destination: "Barcelona", image: "images/barcelona.png" },
-    { id: 2, destination: "Paris", image: "images/parisDest.jpg" },
-    { id: 3, destination: "Athens", image: "images/athens.jpg" },
-    { id: 4, destination: "Tokyo", image: "images/tokyoDest.jpg" },
-    { id: 5, destination: "Dublin", image: "images/dublinDest.jpg" },
+    { id: 1, destination: "Barcelona", image: "images/destination/barcelona.png" },
+    { id: 2, destination: "Paris", image: "images/destination/parisDest.jpg" },
+    { id: 3, destination: "Athens", image: "images/destination/athens.jpg" },
+    { id: 4, destination: "Tokyo", image: "images/destination/tokyoDest.jpg" },
+    { id: 5, destination: "Dublin", image: "images/destination/dublinDest.jpg" },
   ];
 
   const [trips, setTrips] = useState<HomeTrip[]>([]);

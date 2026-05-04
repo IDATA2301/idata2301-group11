@@ -68,7 +68,7 @@ export default function TripCard({ id, imageUrl, title, city, country, lowestPri
         console.log("ARTICLE CLICK")
       }}
     >
-      <img src={`/images/${imageUrl}`} alt={title} className={styles.tripImage} />
+      <img src={`/images/trip/${imageUrl}`} alt={title} className={styles.tripImage} />
 
       <button className={styles.favoriteButton} onClick={(e) => {
         e.stopPropagation();
