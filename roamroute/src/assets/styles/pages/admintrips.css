@@ -1,0 +1,40 @@
+@import "../components/button.css";
+
+/* ====================================
+  Admin Trips Page Styles
+  =============================== */
+
+.admin-trips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.admin-trips h1,
+.admin-trips h2 {
+  margin: 0;
+}
+
+.admin-trips__mobile-list {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.admin-trips__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.admin-trips__header h1,
+.admin-trips__header p {
+  margin: 0;
+}
+
+@media (min-width: 48rem) {
+  .admin-trips__mobile-list {
+    display: none;
+  }
+}
