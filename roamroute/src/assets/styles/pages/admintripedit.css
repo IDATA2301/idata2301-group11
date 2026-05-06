@@ -1,0 +1,60 @@
+@import "../components/button.css";
+
+.admin-trip-edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.admin-trip-edit h1,
+.admin-trip-edit h2 {
+  margin: 0;
+}
+
+.admin-trip-edit__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.admin-trip-edit__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.admin-trip-edit__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.admin-trip-edit__group-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: var(--color-text-heading);
+}
+
+.admin-trip-edit__row {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+.admin-trip-edit__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+}
+
+@media (min-width: 48rem) {
+  .admin-trip-edit__row--two {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-trip-edit__row--three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
