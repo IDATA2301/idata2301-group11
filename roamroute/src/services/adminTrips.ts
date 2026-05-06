@@ -1,4 +1,5 @@
 import type { TripCard } from "../types/Trip";
+import { apiFetch } from "./apiFetch";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -37,5 +38,38 @@ export async function fetchAdminTripDetails(id: number): Promise<AdminTripDetail
   if (!response.ok) {
     throw new Error(`Failed to load trip (HTTP ${response.status})`);
   }
+  return response.json();
+}
+
+export type UpdateAdminTripRequest = {
+  title?: string;
+  description?: string;
+  imageUrl?: string;
+  startDate?: string;
+  endDate?: string;
+  keywords?: string[];
+};
+
+export async function updateAdminTrip(
+  id: number,
+  payload: UpdateAdminTripRequest,
+): Promise<AdminTripDetails> {
+  const response = await apiFetch(`${API_BASE_URL}/api/admin/trips/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+
+  if (response.status === 401 || response.status === 403) {
+    throw new Error("You are not authorized to update this trip.");
+  }
+
+  if (response.status === 404) {
+    throw new Error("Trip not found.");
+  }
+
+  if (!response.ok) {
+    throw new Error(`Failed to save trip (HTTP ${response.status})`);
+  }
+
   return response.json();
 }

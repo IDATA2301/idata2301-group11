@@ -1,11 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SyntheticEvent } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../assets/styles/pages/admintripedit.css";
 import FormField from "../components/forms/FormField";
 import TextInput from "../components/forms/TextInput";
 import EmptyState from "../components/ui/EmptyState";
 import SectionHeader from "../components/ui/SectionHeader";
-import { fetchAdminTripDetails, type AdminTripDetails } from "../services/adminTrips";
+import {
+  fetchAdminTripDetails,
+  updateAdminTrip,
+  type AdminTripDetails,
+} from "../services/adminTrips";
+
+type EditableFields = {
+  title: string;
+  description: string;
+  imageUrl: string;
+  startDate: string;
+  endDate: string;
+  keywords: string;
+};
 
 function toDateInputValue(value: string): string {
   if (!value) return "";
@@ -15,23 +28,41 @@ function toDateInputValue(value: string): string {
   return date.toISOString().slice(0, 10);
 }
 
+function toEditable(trip: AdminTripDetails): EditableFields {
+  return {
+    title: trip.title ?? "",
+    description: trip.description ?? "",
+    imageUrl: trip.imageUrl ?? "",
+    startDate: toDateInputValue(trip.startDate),
+    endDate: toDateInputValue(trip.endDate),
+    keywords: trip.keywords?.join(", ") ?? "",
+  };
+}
+
 export default function AdminTripEdit() {
   const { id } = useParams();
   const tripId = Number(id);
   const [trip, setTrip] = useState<AdminTripDetails | null>(null);
+  const [form, setForm] = useState<EditableFields | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     if (!Number.isFinite(tripId)) {
-      setError(`Invalid trip id: ${id}`);
+      setLoadError(`Invalid trip id: ${id}`);
       setLoading(false);
       return;
     }
 
     fetchAdminTripDetails(tripId)
-      .then((data) => setTrip(data))
-      .catch((err) => setError(err instanceof Error ? err.message : "Failed to load trip"))
+      .then((data) => {
+        setTrip(data);
+        setForm(toEditable(data));
+      })
+      .catch((err) => setLoadError(err instanceof Error ? err.message : "Failed to load trip"))
       .finally(() => setLoading(false));
   }, [id, tripId]);
 
@@ -43,12 +74,12 @@ export default function AdminTripEdit() {
     );
   }
 
-  if (error || !trip) {
+  if (loadError || !trip || !form) {
     return (
       <main className="admin-trip-edit">
         <EmptyState
           title="Trip Not Found"
-          message={error ?? `Could not find a trip with id ${id}.`}
+          message={loadError ?? `Could not find a trip with id ${id}.`}
           action={
             <Link to="/admin/trips" className="btn btn--ghost">
               Back to trips
@@ -57,6 +88,55 @@ export default function AdminTripEdit() {
         />
       </main>
     );
+  }
+
+  function updateField<K extends keyof EditableFields>(key: K, value: EditableFields[K]) {
+    setForm((prev) => (prev ? { ...prev, [key]: value } : prev));
+    if (saveError) setSaveError(null);
+    if (success) setSuccess(null);
+  }
+
+  async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!form) return;
+
+    const title = form.title.trim();
+    if (!title) {
+      setSaveError("Title is required.");
+      return;
+    }
+
+    if (form.startDate && form.endDate && form.startDate > form.endDate) {
+      setSaveError("Start date must be on or before end date.");
+      return;
+    }
+
+    const keywords = form.keywords
+      .split(",")
+      .map((keyword) => keyword.trim())
+      .filter(Boolean);
+
+    setSaving(true);
+    setSaveError(null);
+    setSuccess(null);
+
+    try {
+      const updated = await updateAdminTrip(tripId, {
+        title,
+        description: form.description,
+        imageUrl: form.imageUrl,
+        startDate: form.startDate || undefined,
+        endDate: form.endDate || undefined,
+        keywords,
+      });
+      setTrip(updated);
+      setForm(toEditable(updated));
+      setSuccess("Trip updated.");
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : "Failed to save trip.");
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -71,36 +151,50 @@ export default function AdminTripEdit() {
         className="admin-trip-edit__header"
       />
 
-      <form className="admin-trip-edit__form" onSubmit={(event) => event.preventDefault()}>
+      <form className="admin-trip-edit__form" onSubmit={handleSubmit}>
         <section className="admin-trip-edit__group" aria-label="Trip basics">
           <h2 className="admin-trip-edit__group-title">Basics</h2>
 
           <FormField id="trip-title" label="Title">
-            <TextInput id="trip-title" type="text" value={trip.title} disabled readOnly />
+            <TextInput
+              id="trip-title"
+              type="text"
+              value={form.title}
+              onChange={(event) => updateField("title", event.target.value)}
+              disabled={saving}
+              required
+              maxLength={255}
+            />
           </FormField>
 
           <FormField id="trip-description" label="Description">
             <TextInput
               as="textarea"
               id="trip-description"
-              value={trip.description}
-              disabled
-              readOnly
+              value={form.description}
+              onChange={(event) => updateField("description", event.target.value)}
+              disabled={saving}
               rows={5}
             />
           </FormField>
 
           <FormField id="trip-image" label="Image filename">
-            <TextInput id="trip-image" type="text" value={trip.imageUrl} disabled readOnly />
+            <TextInput
+              id="trip-image"
+              type="text"
+              value={form.imageUrl}
+              onChange={(event) => updateField("imageUrl", event.target.value)}
+              disabled={saving}
+            />
           </FormField>
 
-          <FormField id="trip-keywords" label="Keywords">
+          <FormField id="trip-keywords" label="Keywords (comma separated)">
             <TextInput
               id="trip-keywords"
               type="text"
-              value={trip.keywords?.join(", ") ?? ""}
-              disabled
-              readOnly
+              value={form.keywords}
+              onChange={(event) => updateField("keywords", event.target.value)}
+              disabled={saving}
             />
           </FormField>
         </section>
@@ -151,9 +245,9 @@ export default function AdminTripEdit() {
               <TextInput
                 id="trip-start-date"
                 type="date"
-                value={toDateInputValue(trip.startDate)}
-                disabled
-                readOnly
+                value={form.startDate}
+                onChange={(event) => updateField("startDate", event.target.value)}
+                disabled={saving}
               />
             </FormField>
 
@@ -161,9 +255,9 @@ export default function AdminTripEdit() {
               <TextInput
                 id="trip-end-date"
                 type="date"
-                value={toDateInputValue(trip.endDate)}
-                disabled
-                readOnly
+                value={form.endDate}
+                onChange={(event) => updateField("endDate", event.target.value)}
+                disabled={saving}
               />
             </FormField>
           </div>
@@ -245,9 +339,16 @@ export default function AdminTripEdit() {
           </div>
         </section>
 
+        {saveError ? (
+          <p className="profile__message profile__message--error" role="alert">
+            {saveError}
+          </p>
+        ) : null}
+        {success ? <p className="profile__message profile__message--success">{success}</p> : null}
+
         <div className="admin-trip-edit__actions">
-          <button type="submit" className="btn" disabled>
-            Save changes
+          <button type="submit" className="btn" disabled={saving}>
+            {saving ? "Saving..." : "Save changes"}
           </button>
         </div>
       </form>
