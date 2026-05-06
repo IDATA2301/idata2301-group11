@@ -1,8 +1,14 @@
+.layoutShell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .layoutContainer {
   width: 100%;
   max-width: var(--layout-width);
   margin: calc(var(--size-header) + var(--space-6xl)) auto 0;
-  flex: 1;
+  flex: 1 0 auto;
 }
 
 @media (min-width: 64rem) {

@@ -10,10 +10,10 @@ type PageLayoutProps = {
 
 export default function PageLayout({ children, hideFooter = false }: PageLayoutProps) {
   return (
-    <>
+    <div className={styles.layoutShell}>
       <Header />
       <div className={styles.layoutContainer}>{children}</div>
       {!hideFooter && <Footer />}
-    </>
+    </div>
   );
 }
