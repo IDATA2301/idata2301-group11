@@ -182,7 +182,7 @@ export default function TripSearchForm({
                 }}
               >
                 {trip.imageUrl && (
-                  <img src={`/images/${trip.imageUrl}`} alt="" className={styles.dropdownThumb} />
+                  <img src={`/images/trip/${trip.imageUrl}`} alt="" className={styles.dropdownThumb} />
                 )}
                 <div className={styles.dropdownText}>
                   <span className={styles.dropdownTitle}>{trip.title}</span>

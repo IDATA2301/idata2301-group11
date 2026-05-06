@@ -22,7 +22,7 @@ function toImageUrl(value: string): string {
   if (!value) return "";
   if (value.startsWith("http://") || value.startsWith("https://") || value.startsWith("/")) return value;
   if (value.startsWith("images/")) return `/${value}`;
-  return `/images/${value}`;
+  return `/images/trip/${value}`;
 }
 
 function normalizeFavorite(favorite: unknown, index: number): FavoriteItem | null {

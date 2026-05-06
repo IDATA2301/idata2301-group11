@@ -24,7 +24,7 @@ const PurchasedTrips: React.FC = () => {
     if (value.startsWith('http://') || value.startsWith('https://')) return value
     if (value.startsWith('/')) return value
     if (value.startsWith('images/')) return `/${value}`
-    return `/images/${value}`
+    return `/images/trip/${value}`
   }
 
   return (

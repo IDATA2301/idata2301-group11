@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import styles from "./PurchasedTripDetails.module.css";
 import { useAuth } from "../context/useAuth";
@@ -11,7 +11,7 @@ function toImageSrc(value?: string) {
   if (value.startsWith("http://") || value.startsWith("https://")) return value;
   if (value.startsWith("/")) return value;
   if (value.startsWith("images/")) return `/${value}`;
-  return `/images/${value}`;
+  return `/images/trip/${value}`;
 }
 
 export default function PurchasedTripDetails() {
