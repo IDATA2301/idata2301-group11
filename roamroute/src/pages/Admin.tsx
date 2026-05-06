@@ -21,6 +21,12 @@ export default function Admin() {
           actionLabel="View all users"
           to="/admin/users"
         />
+        <AdminActionCard
+          title="Trips"
+          description="Browse all trips and update their details."
+          actionLabel="Manage trips"
+          to="/admin/trips"
+        />
       </section>
     </main>
   );
