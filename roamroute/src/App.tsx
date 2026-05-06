@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PageLayout from "./components/layout/PageLayout";
 import { ProtectedRoute } from "./components/layout/ProtectedRoute";
@@ -23,11 +23,8 @@ import React from "react";
 
 
 function AppLayout() {
-  const { pathname } = useLocation();
-  const hideFooter = pathname.startsWith("/admin");
-
   return (
-    <PageLayout hideFooter={hideFooter}>
+    <PageLayout>
       <Routes>
         {/* Public */}
         <Route path="/" element={<Home />} />
