@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PageLayout from "./components/layout/PageLayout";
 import { ProtectedRoute } from "./components/layout/ProtectedRoute";
@@ -13,6 +13,8 @@ import TourDetails from "./pages/TourDetails";
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
 import AdminUserDetails from "./pages/AdminUserDetails";
+import AdminTrips from "./pages/AdminTrips";
+import AdminTripEdit from "./pages/AdminTripEdit";
 import Profile from "./pages/Profile";
 import PurchasedTrips from "./pages/PurchasedTrips";
 import PurchasedTripDetails from "./pages/PurchasedTripDetails";
@@ -21,11 +23,8 @@ import React from "react";
 
 
 function AppLayout() {
-  const { pathname } = useLocation();
-  const hideFooter = pathname.startsWith("/admin");
-
   return (
-    <PageLayout hideFooter={hideFooter}>
+    <PageLayout>
       <Routes>
         {/* Public */}
         <Route path="/" element={<Home />} />
@@ -50,6 +49,8 @@ function AppLayout() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/users/:id" element={<AdminUserDetails />} />
+          <Route path="/admin/trips" element={<AdminTrips />} />
+          <Route path="/admin/trips/:id/edit" element={<AdminTripEdit />} />
         </Route>
       </Routes>
     </PageLayout>

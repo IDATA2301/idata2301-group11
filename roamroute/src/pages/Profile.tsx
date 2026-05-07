@@ -1,7 +1,7 @@
 import "../assets/styles/pages/profile.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState, type SyntheticEvent } from "react";
-import { ArrowRightOnRectangleIcon, MapIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import { ArrowRightOnRectangleIcon, MapIcon, MapPinIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../context/useAuth";
 import { userBookings } from "../data/userBookings";
 import { updateUsername } from "../services/auth";
@@ -172,6 +172,17 @@ export default function Profile() {
               }}
             >
               Edit Username
+            </button>
+          )}
+
+          {authUser.role === "ADMIN" && (
+            <button
+              type="button"
+              className="profile__btn profile__btn--primary profile__btn--icon"
+              onClick={() => navigate("/admin")}
+            >
+              <ShieldCheckIcon className="profile__btn-icon" aria-hidden="true" />
+              <span>Admin Dashboard</span>
             </button>
           )}
 
