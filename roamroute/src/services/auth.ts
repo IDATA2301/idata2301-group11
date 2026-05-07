@@ -58,6 +58,7 @@ export async function login({ email, password }: LoginRequest): Promise<AuthUser
   }
 
   const data: AuthUser = await response.json();
+  localStorage.setItem("token", data.token);
   return data;
 }
 

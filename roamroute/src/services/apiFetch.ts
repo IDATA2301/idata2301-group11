@@ -23,11 +23,14 @@ export async function apiFetch(input: string, init: RequestInit = {}): Promise<R
 
   const response = await fetch(input, { ...init, headers });
 
-  if (response.status === 401) {
+  if (response.status === 401 || response.status === 403) {
     localStorage.removeItem("authUser");
     if (typeof window !== "undefined" && !window.location.pathname.startsWith("/login")) {
+      alert("Session expired. Please log in again.");
       window.location.href = "/login";
     }
+
+    throw new Error("Unauthorized. Please log in again.");
   }
 
   return response;

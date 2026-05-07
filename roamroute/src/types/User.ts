@@ -4,8 +4,6 @@ export interface User {
   email: string;
   user_password: string;
   user_role: string;
-  user_address: string;
-  user_country: string;
 }
 
 export interface AuthUser {

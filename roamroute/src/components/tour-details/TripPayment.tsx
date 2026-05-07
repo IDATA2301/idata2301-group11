@@ -2,8 +2,8 @@ import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./TripPayment.module.css";
-import { addBooking } from "../../data/userBookings";
 import { useAuth } from "../../context/useAuth";
+import { apiFetch } from "../../services/apiFetch";
 
 interface ComparisonOption {
   id: number;
@@ -15,6 +15,7 @@ interface ComparisonOption {
 interface TripPaymentProps {
   selectedFlight: ComparisonOption | null;
   selectedHotel: ComparisonOption | null;
+  tripId: number;
   tripTitle: string;
   tripDate: string;
   tripImageUrl?: string | null;
@@ -23,45 +24,45 @@ interface TripPaymentProps {
   tripAirline?: string | null;
 }
 
-export default function TripPayment({ selectedFlight, selectedHotel, tripTitle, tripDate, tripImageUrl, hotelName, nights, tripAirline }: TripPaymentProps) {
+export default function TripPayment({ selectedFlight, selectedHotel, tripId, tripTitle, tripDate, tripImageUrl, hotelName, nights, tripAirline }: TripPaymentProps) {
   const [showCheckmark, setShowCheckmark] = useState(false);
   const navigate = useNavigate();
   const { authUser } = useAuth();
 
   const isReadyForPayment = selectedFlight !== null && selectedHotel !== null;
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     setShowCheckmark(true);
 
-    if (authUser && selectedFlight && selectedHotel) {
-      const orderId = `ORD-${Date.now().toString().slice(-6)}`;
-      const booking = {
-        order_id: orderId,
-        user_id: authUser.id,
-        trip_name: tripTitle,
-      flight: (selectedFlight as ComparisonOption).provider,
-      airline: (selectedFlight as ComparisonOption).airline || tripAirline || undefined,
-        hotel: selectedHotel.provider,
-        hotelName: hotelName || undefined,
-        nights: typeof nights === "number" ? nights : undefined,
-        imageUrl: tripImageUrl,
-        price: selectedFlight.price + selectedHotel.price,
-        date: tripDate,
-        status: "Confirmed" as const,
-      };
-
-      try {
-        addBooking(booking as any);
-      } catch (err) {
-        // ignore for simulation
-        console.error("Failed to add booking:", err);
-      }
+    if (!authUser || !selectedFlight || !selectedHotel) {
+      console.error("Missing required data for booking");
+      return;
     }
 
-    setTimeout(() => {
-      navigate("/payment-receipt");
-    }, 1500);
-  };
+      try {
+        await apiFetch("http://localhost:8080/api/orders", {
+          method: "POST",
+          body: JSON.stringify({
+            tripId,
+            flightPriceId: selectedFlight.id,
+            accommodationPriceId: selectedHotel.id,
+          })
+        });
+
+      setTimeout(() => {
+        navigate("/payment-receipt");
+      }, 1500);
+
+      console.log("BOOKING DATA:", {
+        tripId,
+        selectedFlight,
+        selectedHotel,
+      });
+
+      } catch (err) {
+        console.error("Failed to add booking:", err);
+      }
+    };
 
   return (
     <section className={styles.paymentSection}>

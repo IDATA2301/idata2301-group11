@@ -1,32 +1,40 @@
 import { Link, useParams } from "react-router-dom";
-import { adminUsers } from "../data/adminUsers";
-import { userBookings } from "../data/userBookings";
+import { use, useEffect, useState } from "react";
 import "../assets/styles/pages/adminuserdetails.css";
 import AdminBookingCard from "../components/admin/AdminBookingCard";
 import AdminUserDetailsCard from "../components/admin/AdminUserDetailsCard";
 import EmptyState from "../components/ui/EmptyState";
 import SectionHeader from "../components/ui/SectionHeader";
+import type { User } from "../types/User";
+import { apiFetch } from "../services/apiFetch";
 
 export default function AdminUserDetails() {
+  const [user, setUser] = useState<User | null>(null);
+  const [bookings, setBookings] = useState<any[]>([]);
   const { id } = useParams();
-  const userId = Number(id);
-  const user = adminUsers.find((entry) => entry.id === userId);
-  const bookings = userBookings.filter((booking) => booking.user_id === userId);
+
+  useEffect(() => {
+    if (!id) return;
+
+    apiFetch(`http://localhost:8080/api/admin/users/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("Fetched user details:", data);
+        setUser(data);
+      })
+      .catch(err => console.error("Error fetching user details:", err));
+
+    apiFetch(`http://localhost:8080/api/admin/users/${id}/orders`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("Fetched user bookings:", data);
+        setBookings(data);
+      })
+      .catch(err => console.error("Error fetching user bookings:", err));
+  }, [id]);
 
   if (!user) {
-    return (
-      <main className="admin-user-details">
-        <EmptyState
-          title="User Not Found"
-          message={`Could not find a user with id ${id}.`}
-          action={
-            <Link to="/admin/users" className="btn btn--ghost">
-              Back to users
-            </Link>
-          }
-        />
-      </main>
-    );
+    return <p>Loading...</p>
   }
 
   return (
@@ -50,7 +58,7 @@ export default function AdminUserDetails() {
         ) : (
           <div className="admin-user-details__bookings-list">
             {bookings.map((booking) => (
-              <AdminBookingCard key={booking.order_id} booking={booking} />
+              <AdminBookingCard key={booking.id} booking={booking} />
             ))}
           </div>
         )}
