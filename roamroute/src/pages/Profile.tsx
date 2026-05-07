@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState, type SyntheticEvent } from "react";
 import { ArrowRightOnRectangleIcon, MapIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../context/useAuth";
-import { userBookings } from "../data/userBookings";
+// import { userBookings } from "../data/userBookings";
 import { updateUsername } from "../services/auth";
 import FormField from "../components/forms/FormField";
 import TextInput from "../components/forms/TextInput";
@@ -36,7 +36,7 @@ export default function Profile() {
     .filter(Boolean)
     .join(", ") || "Location not set";
 
-  const purchasesCount = authUser ? userBookings.filter((b) => b.user_id === authUser.id).length : 0;
+  // const purchasesCount = authUser ? userBookings.filter((b) => b.user_id === authUser.id).length : 0;
 
   const displayName = authUser.fullName ?? authUser.userName;
   const nameParts = displayName.trim().split(/\s+/).filter(Boolean);
@@ -110,7 +110,7 @@ export default function Profile() {
 
         <div className="profile__stats" aria-label="Profile statistics">
           <article className="profile__stat">
-            <strong>{purchasesCount}</strong>
+            {/* <strong>{purchasesCount}</strong> */}
             <span>PURCHASED TRIPS</span>
           </article>
         </div>

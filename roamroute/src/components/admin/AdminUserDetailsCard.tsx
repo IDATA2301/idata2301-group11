@@ -21,12 +21,6 @@ export default function AdminUserDetailsCard({ user }: AdminUserDetailsCardProps
       <p>
         <strong>Role:</strong> {user.user_role}
       </p>
-      <p>
-        <strong>Address:</strong> {user.user_address}
-      </p>
-      <p>
-        <strong>Country:</strong> {user.user_country}
-      </p>
     </BaseCard>
   );
 }

@@ -1,12 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
-import { adminUsers } from "../data/adminUsers";
+import { useState, useEffect } from "react";
 import "../assets/styles/pages/adminusers.css";
 import AdminUsersMobileCard from "../components/admin/AdminUsersMobileCard";
 import AdminUsersTable from "../components/admin/AdminUsersTable";
 import SectionHeader from "../components/ui/SectionHeader";
+import type { AdminUserRow } from "../components/admin/AdminUsersTable";
+import { apiFetch } from "../services/apiFetch";
 
 export default function AdminUsers() {
   const navigate = useNavigate();
+  const [users, setUsers] = useState<AdminUserRow[]>([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    apiFetch("http://localhost:8080/api/admin/users", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch users");
+        }
+        console.log("Response status:", res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log("Fetched users:", data);
+        console.log("AUTH:", localStorage.getItem("auth"));
+        setUsers(data);
+      })
+      .catch((err) => console.error("Error fetching users:", err));
+  }, []);
 
   return (
     <main className="admin-users">
@@ -21,7 +47,7 @@ export default function AdminUsers() {
       />
 
       <section className="admin-users__mobile-list" aria-label="Users list">
-        {adminUsers.map((user) => (
+        {users.map((user) => (
           <AdminUsersMobileCard
             key={user.id}
             name={user.user_name}
@@ -32,7 +58,7 @@ export default function AdminUsers() {
         ))}
       </section>
 
-      <AdminUsersTable users={adminUsers} onRowClick={(id) => navigate(`/admin/users/${id}`)} />
+      <AdminUsersTable users={users} onRowClick={(id) => navigate(`/admin/users/${id}`)} />
     </main>
   );
 }
