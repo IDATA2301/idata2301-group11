@@ -49,7 +49,15 @@ export default function AdminUserDetails() {
         className="admin-user-details__header"
       />
 
-      <AdminUserDetailsCard user={user} />
+      <AdminUserDetailsCard 
+        user={user} 
+        onRoleUpdated={(newRole) =>
+          setUser({
+            ...user,
+            user_role: newRole,
+          })
+        }
+      />
 
       <section className="admin-user-details__bookings" aria-label="User bookings">
         <h2>Bookings</h2>

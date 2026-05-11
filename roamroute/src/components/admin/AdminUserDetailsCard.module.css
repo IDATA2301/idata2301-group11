@@ -8,3 +8,39 @@
 .card p {
   margin: 0;
 }
+
+.roleRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.roleControls {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.roleSelect {
+  width: 180px;
+  padding: 0.45rem 0.75 rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.successMessage {
+  position: absolute;
+  top: 110%;
+  left: 0;
+
+  color: green;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.selfRoleMessage {
+  font-size: 0.85rem;
+  color: #666;
+}
