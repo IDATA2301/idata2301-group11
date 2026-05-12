@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import type { TripCard as TripCardProps } from "../../types/Trip";
 import { useAuth } from "../../context/useAuth";
 import { apiFetch } from "../../services/apiFetch";
+import { getTripImageUrl } from "../../utils/imageUrls";
 
 function formatDate(dateString: string): string {
   if (!dateString) return "";
@@ -68,7 +69,7 @@ export default function TripCard({ id, imageUrl, title, city, country, lowestPri
         console.log("ARTICLE CLICK")
       }}
     >
-      <img src={`/images/trip/${imageUrl}`} alt={title} className={styles.tripImage} />
+      <img src={getTripImageUrl(imageUrl)} alt={title} className={styles.tripImage} />
 
       <button className={styles.favoriteButton} onClick={(e) => {
         e.stopPropagation();

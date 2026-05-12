@@ -1,5 +1,6 @@
 import FavoriteCard, { type FavoriteItem } from "./FavoriteCard";
 import styles from "./FavoritesList.module.css";
+import { getTripImageUrl } from "../../utils/imageUrls";
 
 type FavoritesListProps = {
   favorites: unknown[];
@@ -16,13 +17,6 @@ function asNumber(value: unknown): number | null {
     return Number.isFinite(parsed) ? parsed : null;
   }
   return null;
-}
-
-function toImageUrl(value: string): string {
-  if (!value) return "";
-  if (value.startsWith("http://") || value.startsWith("https://") || value.startsWith("/")) return value;
-  if (value.startsWith("images/")) return `/${value}`;
-  return `/images/trip/${value}`;
 }
 
 function normalizeFavorite(favorite: unknown, index: number): FavoriteItem | null {
@@ -54,7 +48,7 @@ function normalizeFavorite(favorite: unknown, index: number): FavoriteItem | nul
   const priceLabel = priceValue !== null ? `$${priceValue}` : asString(item.priceLabel);
 
   const imageCandidate = asString(item.imageUrl) || asString(item.image_url) || asString(item.image);
-  const imageUrl = imageCandidate ? toImageUrl(imageCandidate) : undefined;
+  const imageUrl = imageCandidate ? getTripImageUrl(imageCandidate) : undefined;
 
   return { id, title, subtitle, meta, priceLabel, imageUrl };
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styles from './PurchasedTrips.module.css'
 import { useAuth } from '../context/useAuth'
 import { apiFetch } from '../services/apiFetch'
+import { getTripImageUrl } from '../utils/imageUrls'
 
 interface Trip {
   id: number
@@ -62,14 +63,6 @@ const PurchasedTrips: React.FC = () => {
       .finally(() => setLoading(false))
   }, [authUser])
 
-  const toImageSrc = (value?: string) => {
-    if (!value) return '/images/placeholder.jpg'
-    if (value.startsWith('http://') || value.startsWith('https://')) return value
-    if (value.startsWith('/')) return value
-    if (value.startsWith('images/')) return `/${value}`
-    return `/images/trip/${value}`
-  }
-
   if (loading) return <div className={styles.container}><p>Loading...</p></div>
   if (error) return <div className={styles.container}><p className={styles.empty}>{error}</p></div>
 
@@ -83,7 +76,7 @@ const PurchasedTrips: React.FC = () => {
           {purchases.map((order) => (
             <li key={order.id} className={styles.card}>
               <Link to={`/purchased-trips/${order.id}`} className={styles.cardLink}>
-                <img src={toImageSrc(order.trip.image_url)} alt={order.trip.title} className={styles.thumb} />
+                <img src={getTripImageUrl(order.trip.image_url)} alt={order.trip.title} className={styles.thumb} />
 
                 <div className={styles.cardBody}>
                   <div className={styles.cardHeader}>

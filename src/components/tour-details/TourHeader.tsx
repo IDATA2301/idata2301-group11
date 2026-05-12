@@ -1,4 +1,5 @@
 import styles from "./TourHeader.module.css";
+import { getTripImageUrl } from "../../utils/imageUrls";
 
 type TourHeaderProps = {
   title: string;
@@ -9,7 +10,7 @@ type TourHeaderProps = {
 
 export default function TourHeader({ title, startDate, endDate, imageUrl }: TourHeaderProps) {
   return (
-    <section className={styles.header} style={{ backgroundImage: `url(/images/trip/${imageUrl})` }}>
+    <section className={styles.header} style={{ backgroundImage: `url(${getTripImageUrl(imageUrl)})` }}>
       <h1 className={styles.title}>{title}</h1>
       <p className={styles.date}>
         {startDate} - {endDate}

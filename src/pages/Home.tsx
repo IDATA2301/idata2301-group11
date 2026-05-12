@@ -6,12 +6,8 @@ import HeroSection from "../components/home/HeroSection";
 import TripCard from "../components/home/TripCard";
 import { useAuth } from "../context/useAuth";
 import { apiFetch } from "../services/apiFetch";
-
-type Destination = {
-  id: number;
-  destination: string;
-  image: string;
-};
+import { fetchDestinations, type Destination } from "../services/destinations";
+import { getDestinationImageUrl } from "../utils/imageUrls";
 
 type HomeTrip = {
   id: number;
@@ -25,15 +21,17 @@ type HomeTrip = {
 };
 
 function Home() {
-  const destinations: Destination[] = [
-    { id: 1, destination: "Barcelona", image: "images/destination/barcelona.png" },
-    { id: 2, destination: "Paris", image: "images/destination/parisDest.jpg" },
-    { id: 3, destination: "Athens", image: "images/destination/athens.jpg" },
-    { id: 4, destination: "Tokyo", image: "images/destination/tokyoDest.jpg" },
-    { id: 5, destination: "Dublin", image: "images/destination/dublinDest.jpg" },
-  ];
-
+  const [destinations, setDestinations] = useState<Destination[]>([]);
   const [trips, setTrips] = useState<HomeTrip[]>([]);
+
+  useEffect(() => {
+    fetchDestinations()
+      .then((all) => {
+        const shuffled = [...all].sort(() => Math.random() - 0.5);
+        setDestinations(shuffled.slice(0, 5));
+      })
+      .catch((err) => console.error("Error fetching destinations:", err));
+  }, []);
 
 
   useEffect(() => {
@@ -75,7 +73,11 @@ function Home() {
         <h2>Top Destinations</h2>
         <div className="home__destinations-list">
           {destinations.map((dest) => (
-            <DestinationCard key={dest.id} destination={dest.destination} image={dest.image} />
+            <DestinationCard
+              key={dest.id}
+              destination={dest.city}
+              image={getDestinationImageUrl(dest.image_url)}
+            />
           ))}
         </div>
       </section>
