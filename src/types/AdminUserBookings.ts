@@ -6,5 +6,5 @@ export type AdminUserBookings = {
   totalPrice: number;
   startDate: string;
   endDate: string;
-  status: string;
+  status: "pending" | "confirmed" | "completed" | "cancelled";
 };

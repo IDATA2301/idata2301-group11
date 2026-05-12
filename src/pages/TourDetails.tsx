@@ -152,13 +152,7 @@ export default function TourDetails() {
             <TripPayment
               selectedFlight={flight}
               selectedHotel={hotel}
-              tripId = {Number(id)}
-              tripTitle={trip.title}
-              tripDate={trip.startDate}
-              tripImageUrl={trip.imageUrl}
-              hotelName={trip.hotelName}
-              nights={trip.nights}
-              tripAirline={trip.airline}
+              tripId={Number(id)}
             />
           );
         })()
