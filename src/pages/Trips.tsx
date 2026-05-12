@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import type { TripCard as TripCardProps } from "../types/Trip";
 import TripCard from "../components/home/TripCard";
 import TripSearchForm from "../components/home/TripSearchForm";
+import { apiFetch } from "../services/apiFetch";
 
 
 export default function Trips() {
@@ -24,14 +25,14 @@ export default function Trips() {
     if (maxParam) params.set("maxPrice", maxParam);
     if (destParam) params.set("destinationId", destParam);
     const qs = params.toString();
-    return `http://localhost:8080/api/trips/search${qs ? `?${qs}` : ""}`;
+    return `/trips/search${qs ? `?${qs}` : ""}`;
   }, [q, minParam, maxParam, destParam]);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    fetch(url)
+    apiFetch(url)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();

@@ -20,7 +20,7 @@ export default function Favorites() {
       return;
     }
 
-    apiFetch("http://localhost:8080/api/favorites/trips")
+    apiFetch("/favorites/trips")
       .then(res => res.json())
       .then(data => {
         setFavorites(Array.isArray(data) ? data : []);

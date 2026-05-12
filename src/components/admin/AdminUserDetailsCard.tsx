@@ -18,7 +18,7 @@ export default function AdminUserDetailsCard({ user, onRoleUpdated }: AdminUserD
 
   async function handleRoleChange(newRole: string) {
     try {
-      const res = await apiFetch(`http://localhost:8080/api/admin/users/${user.id}/role`, {
+      const res = await apiFetch(`/admin/users/${user.id}/role`, {
         method: "PUT",
         body: JSON.stringify({ role: newRole }),
       });

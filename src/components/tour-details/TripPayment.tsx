@@ -34,7 +34,7 @@ export default function TripPayment({ selectedFlight, selectedHotel, tripId }: T
     }
 
       try {
-        await apiFetch("http://localhost:8080/api/orders", {
+        await apiFetch("/orders", {
           method: "POST",
           body: JSON.stringify({
             tripId,

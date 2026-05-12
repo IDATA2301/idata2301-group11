@@ -37,7 +37,7 @@ function Home() {
 
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/trips/home")
+    apiFetch("/trips/home")
       .then((res) => res.json())
       .then((data: HomeTrip[]) => setTrips(data))
       .catch((err) => console.error("Error fetching trips:", err));
@@ -52,7 +52,7 @@ function Home() {
       return;
     }
 
-    apiFetch("http://localhost:8080/api/favorites")
+    apiFetch("/favorites")
       .then(res => res.json())
       .then(data => {
         if (!Array.isArray(data)) {

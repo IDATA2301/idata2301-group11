@@ -14,7 +14,7 @@ export default function AdminUsers() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    apiFetch("http://localhost:8080/api/admin/users", {
+    apiFetch("/admin/users", {
       headers: {
         Authorization: "Bearer " + token,
       },
