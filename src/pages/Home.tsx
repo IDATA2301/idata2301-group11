@@ -1,6 +1,7 @@
 import "../assets/styles/pages/home.css";
 import { useEffect, useState } from "react";
 import DestinationCard from "../components/home/DestinationCard";
+import { Link } from "react-router-dom";
 import HeroImage from "../components/home/HeroImage";
 import HeroSection from "../components/home/HeroSection";
 import TripCard from "../components/home/TripCard";
@@ -70,7 +71,10 @@ function Home() {
       <HeroSection />
 
       <section className="home__destinations">
-        <h2>Top Destinations</h2>
+        <div className="home__destinations-header">
+          <h2>Top Destinations</h2>
+          <Link to="/trips" className="home__destinations-viewall">View all →</Link>
+        </div>
         <div className="home__destinations-list">
           {destinations.map((dest) => (
             <DestinationCard
