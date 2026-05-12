@@ -34,14 +34,9 @@ type UpdateUsernameRequest = {
   userName: string;
 };
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 export async function login({ email, password }: LoginRequest): Promise<AuthUser> {
-  const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+  const response = await apiFetch(`/auth/login`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify({ email, password }),
   });
 
@@ -69,11 +64,8 @@ export async function register({
   address,
   country,
 }: RegisterRequest): Promise<AuthUser> {
-  const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+  const response = await apiFetch(`/auth/register`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify({
       fullName,
       email,
@@ -100,7 +92,7 @@ export async function register({
 }
 
 export async function updateUsername({ id, userName }: UpdateUsernameRequest): Promise<AuthUser> {
-  const response = await apiFetch(`${API_BASE_URL}/api/auth/profile/${id}/username`, {
+  const response = await apiFetch(`/auth/profile/${id}/username`, {
     method: "PUT",
     body: JSON.stringify({ userName }),
   });

@@ -36,8 +36,8 @@ export default function TripCard({ id, imageUrl, title, city, country, lowestPri
     const method = isFav ? "DELETE" : "POST";
 
     const url = isFav
-      ? `http://localhost:8080/api/favorites/${tripId}`
-      : `http://localhost:8080/api/favorites?tripId=${tripId}`;
+      ? `/favorites/${tripId}`
+      : `/favorites?tripId=${tripId}`;
 
     apiFetch(url, { method })
     .then(() => {

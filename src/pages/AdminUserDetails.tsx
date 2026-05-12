@@ -16,7 +16,7 @@ export default function AdminUserDetails() {
   useEffect(() => {
     if (!id) return;
 
-    apiFetch(`http://localhost:8080/api/admin/users/${id}`)
+    apiFetch(`/admin/users/${id}`)
       .then(res => res.json())
       .then(data => {
         console.log("Fetched user details:", data);
@@ -24,7 +24,7 @@ export default function AdminUserDetails() {
       })
       .catch(err => console.error("Error fetching user details:", err));
 
-    apiFetch(`http://localhost:8080/api/admin/users/${id}/orders`)
+    apiFetch(`/admin/users/${id}/orders`)
       .then(res => res.json())
       .then(data => {
         console.log("Fetched user bookings:", data);

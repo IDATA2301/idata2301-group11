@@ -57,7 +57,7 @@ export default function PurchasedTripDetails() {
     if (!orderId) return;
     setLoading(true);
     setError(null);
-    apiFetch(`http://localhost:8080/api/orders/${orderId}`)
+    apiFetch(`/orders/${orderId}`)
       .then((res) => res.json())
       .then((data: Order) => setBooking(data))
       .catch((err) => {
@@ -80,7 +80,7 @@ export default function PurchasedTripDetails() {
 
   const handleCancel = () => {
     if (!confirm("Cancel this booking?")) return;
-    apiFetch(`http://localhost:8080/api/orders/${booking.id}`, { method: "DELETE" })
+    apiFetch(`/orders/${booking.id}`, { method: "DELETE" })
       .then(() => navigate("/purchased-trips"))
       .catch((err) => {
         console.error("Failed to cancel booking:", err);

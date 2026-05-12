@@ -1,8 +1,6 @@
 import type { TripCard } from "../types/Trip";
 import { apiFetch } from "./apiFetch";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 export type AdminTripDetails = {
   id: number;
   title: string;
@@ -26,7 +24,7 @@ export type AdminTripDetails = {
 };
 
 export async function fetchAdminTrips(): Promise<TripCard[]> {
-  const response = await fetch(`${API_BASE_URL}/api/trips/search`);
+  const response = await apiFetch(`/trips/search`);
   if (!response.ok) {
     throw new Error(`Failed to load trips (HTTP ${response.status})`);
   }
@@ -34,7 +32,7 @@ export async function fetchAdminTrips(): Promise<TripCard[]> {
 }
 
 export async function fetchAdminTripDetails(id: number): Promise<AdminTripDetails> {
-  const response = await fetch(`${API_BASE_URL}/api/trips/${id}`);
+  const response = await apiFetch(`/trips/${id}`);
   if (!response.ok) {
     throw new Error(`Failed to load trip (HTTP ${response.status})`);
   }
@@ -54,7 +52,7 @@ export async function updateAdminTrip(
   id: number,
   payload: UpdateAdminTripRequest,
 ): Promise<AdminTripDetails> {
-  const response = await apiFetch(`${API_BASE_URL}/api/admin/trips/${id}`, {
+  const response = await apiFetch(`/admin/trips/${id}`, {
     method: "PUT",
     body: JSON.stringify(payload),
   });

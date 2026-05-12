@@ -50,7 +50,7 @@ const PurchasedTrips: React.FC = () => {
 
     setLoading(true)
     setError(null)
-    apiFetch('http://localhost:8080/api/orders')
+    apiFetch('/orders')
       .then((res) => res.json())
       .then((data: Order[]) => {
         setPurchases(Array.isArray(data) ? data : [])

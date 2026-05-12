@@ -9,6 +9,7 @@ import Tabs from "../components/tour-details/Tabs";
 import TourHeader from "../components/tour-details/TourHeader";
 import TripOverview from "../components/tour-details/TripOverview";
 import TripPayment from "../components/tour-details/TripPayment";
+import { apiFetch } from "../services/apiFetch";
 import styles from "./TourDetails.module.css";
 
 type ComparisonOption = {
@@ -50,7 +51,7 @@ export default function TourDetails() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/trips/${id}`)
+    apiFetch(`/trips/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Failed to load trip details (${res.status})`);

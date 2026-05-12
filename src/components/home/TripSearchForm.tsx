@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./TripSearchForm.module.css";
 import { fetchDestinations, type Destination } from "../../services/destinations";
+import { apiFetch } from "../../services/apiFetch";
 import type { TripCard as TripCardProps } from "../../types/Trip";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const LIVE_RESULTS_LIMIT = 5;
 const DEBOUNCE_MS = 250;
 
@@ -87,7 +87,7 @@ export default function TripSearchForm({
       if (maxPrice.trim()) params.set("maxPrice", maxPrice.trim());
       if (destinationId) params.set("destinationId", destinationId);
 
-      fetch(`${API_BASE_URL}/api/trips/search?${params.toString()}`)
+      apiFetch(`/trips/search?${params.toString()}`)
         .then((res) => (res.ok ? res.json() : []))
         .then((data: TripCardProps[]) => {
           setLiveResults(Array.isArray(data) ? data.slice(0, LIVE_RESULTS_LIMIT) : []);
