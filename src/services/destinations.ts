@@ -4,6 +4,8 @@ export type Destination = {
   id: number;
   city: string;
   country: string;
+  image_url?: string;
+  image_alt?: string;
 };
 
 export async function fetchDestinations(): Promise<Destination[]> {

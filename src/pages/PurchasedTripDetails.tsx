@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import styles from "./PurchasedTripDetails.module.css";
 import { useAuth } from "../context/useAuth";
 import { apiFetch } from "../services/apiFetch";
+import { getTripImageUrl } from "../utils/imageUrls";
 import { PaperAirplaneIcon, BuildingOffice2Icon } from "@heroicons/react/24/solid";
 
 interface Trip {
@@ -35,14 +36,6 @@ interface Order {
   total_price: number
   status: string
   order_date: string
-}
-
-function toImageSrc(value?: string) {
-  if (!value) return "/images/placeholder.jpg";
-  if (value.startsWith("http://") || value.startsWith("https://")) return value;
-  if (value.startsWith("/")) return value;
-  if (value.startsWith("images/")) return `/${value}`;
-  return `/images/trip/${value}`;
 }
 
 export default function PurchasedTripDetails() {
@@ -107,7 +100,7 @@ export default function PurchasedTripDetails() {
 
       <div className={styles.bigImageWrap}>
         {booking.trip.image_url ? (
-          <img src={toImageSrc(booking.trip.image_url)} alt={booking.trip.title} className={styles.bigImage} />
+          <img src={getTripImageUrl(booking.trip.image_url)} alt={booking.trip.title} className={styles.bigImage} />
         ) : null}
       </div>
 

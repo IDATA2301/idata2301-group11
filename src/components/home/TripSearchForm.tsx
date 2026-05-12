@@ -4,6 +4,7 @@ import styles from "./TripSearchForm.module.css";
 import { fetchDestinations, type Destination } from "../../services/destinations";
 import { apiFetch } from "../../services/apiFetch";
 import type { TripCard as TripCardProps } from "../../types/Trip";
+import { getTripImageUrl } from "../../utils/imageUrls";
 
 const LIVE_RESULTS_LIMIT = 5;
 const DEBOUNCE_MS = 250;
@@ -182,7 +183,7 @@ export default function TripSearchForm({
                 }}
               >
                 {trip.imageUrl && (
-                  <img src={`/images/trip/${trip.imageUrl}`} alt="" className={styles.dropdownThumb} />
+                  <img src={getTripImageUrl(trip.imageUrl)} alt="" className={styles.dropdownThumb} />
                 )}
                 <div className={styles.dropdownText}>
                   <span className={styles.dropdownTitle}>{trip.title}</span>
