@@ -26,7 +26,10 @@ function Home() {
 
   useEffect(() => {
     fetchDestinations()
-      .then(setDestinations)
+      .then((all) => {
+        const shuffled = [...all].sort(() => Math.random() - 0.5);
+        setDestinations(shuffled.slice(0, 5));
+      })
       .catch((err) => console.error("Error fetching destinations:", err));
   }, []);
 
