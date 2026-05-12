@@ -1,58 +1,104 @@
-// import React, { useEffect, useState } from 'react'
-// import { Link } from 'react-router-dom'
-// import styles from './PurchasedTrips.module.css'
-// import { useAuth } from '../context/useAuth'
-// import type { Booking } from '../data/userBookings'
-// import { userBookings } from '../data/userBookings'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import styles from './PurchasedTrips.module.css'
+import { useAuth } from '../context/useAuth'
+import { apiFetch } from '../services/apiFetch'
 
-// const PurchasedTrips: React.FC = () => {
-//   const { authUser } = useAuth()
-//   const [purchases, setPurchases] = useState<Booking[]>([])
+interface Trip {
+  id: number
+  title: string
+  start_date: string
+  end_date: string
+  image_url?: string
+}
 
-//   useEffect(() => {
-//     if (!authUser) {
-//       setPurchases([])
-//       return
-//     }
+interface Flight {
+  id: number
+  airline: string
+  departure_city: string
+  destination_city: string
+}
 
-//     const my = userBookings.filter((b) => b.user_id === authUser.id)
-//     setPurchases(my)
-//   }, [authUser])
+interface Accommodation {
+  id: number
+  hotel_name: string
+  nights: number
+}
 
-//   const toImageSrc = (value?: string) => {
-//     if (!value) return '/images/placeholder.jpg'
-//     if (value.startsWith('http://') || value.startsWith('https://')) return value
-//     if (value.startsWith('/')) return value
-//     if (value.startsWith('images/')) return `/${value}`
-//     return `/images/trip/${value}`
-//   }
+interface Order {
+  id: number
+  trip: Trip
+  flight: Flight
+  accommodation: Accommodation
+  total_price: number
+  status: string
+  order_date: string
+}
 
-//   return (
-//     <div className={styles.container}>
-//       <h1 className={styles.title}>Purchased Trips</h1>
-//       {purchases.length === 0 ? (
-//         <p className={styles.empty}>You haven't purchased any trips yet.</p>
-//       ) : (
-//         <ul className={styles.list}>
-//           {purchases.map((trip) => (
-//             <li key={trip.order_id} className={styles.card}>
-//               <Link to={`/purchased-trips/${trip.order_id}`} className={styles.cardLink}>
-//                 <img src={toImageSrc(trip.imageUrl)} alt={trip.trip_name} className={styles.thumb} />
+const PurchasedTrips: React.FC = () => {
+  const { authUser } = useAuth()
+  const [purchases, setPurchases] = useState<Order[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-//                 <div className={styles.cardBody}>
-//                   <div className={styles.cardHeader}>
-//                     <h2 className={styles.tripTitle}>{trip.trip_name}</h2>
-//                     <span className={styles.price}>$ {trip.price}</span>
-//                   </div>
-//                   <p className={styles.meta}>{trip.date} — {trip.flight} / {trip.hotel}</p>
-//                 </div>
-//               </Link>
-//             </li>
-//           ))}
-//         </ul>
-//       )}
-//     </div>
-//   )
-// }
+  useEffect(() => {
+    if (!authUser) {
+      setPurchases([])
+      setLoading(false)
+      return
+    }
 
-// export default PurchasedTrips
+    setLoading(true)
+    setError(null)
+    apiFetch('http://localhost:8080/api/orders')
+      .then((res) => res.json())
+      .then((data: Order[]) => {
+        setPurchases(Array.isArray(data) ? data : [])
+      })
+      .catch((err) => {
+        console.error('Failed to fetch orders:', err)
+        setError('Failed to load your trips')
+      })
+      .finally(() => setLoading(false))
+  }, [authUser])
+
+  const toImageSrc = (value?: string) => {
+    if (!value) return '/images/placeholder.jpg'
+    if (value.startsWith('http://') || value.startsWith('https://')) return value
+    if (value.startsWith('/')) return value
+    if (value.startsWith('images/')) return `/${value}`
+    return `/images/trip/${value}`
+  }
+
+  if (loading) return <div className={styles.container}><p>Loading...</p></div>
+  if (error) return <div className={styles.container}><p className={styles.empty}>{error}</p></div>
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Purchased Trips</h1>
+      {purchases.length === 0 ? (
+        <p className={styles.empty}>You haven't purchased any trips yet.</p>
+      ) : (
+        <ul className={styles.list}>
+          {purchases.map((order) => (
+            <li key={order.id} className={styles.card}>
+              <Link to={`/purchased-trips/${order.id}`} className={styles.cardLink}>
+                <img src={toImageSrc(order.trip.image_url)} alt={order.trip.title} className={styles.thumb} />
+
+                <div className={styles.cardBody}>
+                  <div className={styles.cardHeader}>
+                    <h2 className={styles.tripTitle}>{order.trip.title}</h2>
+                    <span className={styles.price}>$ {order.total_price}</span>
+                  </div>
+                  <p className={styles.meta}>{order.trip.start_date} — {order.flight.airline} / {order.accommodation.hotel_name}</p>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
+export default PurchasedTrips
