@@ -22,12 +22,22 @@
    Top Destinations
    =============================== */
 
-.home__destinations {
-  margin-top: calc(-1 * var(--space-md));
+.home__destinations-header > h2 {
+  display: inline-block;
   position: relative;
-  z-index: 1;
+  /* a bit more space below the heading */
+  margin: 0 0 var(--space-md) 0;
 }
 
+.home__destinations-header > h2::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 6px;
+  background: var(--color-ink-900, #0b1220);
+  border-radius: 6px;
+  margin-top: var(--space-md);
+}
 .home__destinations-list,
 .home__trip-list {
   display: grid;
@@ -42,6 +52,28 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   padding-bottom: calc(var(--space-sm) + 6px);
+  margin-top: var(--space-lg);
+}
+
+/* header wrapper for title + view-all link */
+.home__destinations-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.home__destinations-viewall {
+  color: var(--color-ink-700, #5d6b76);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.home__destinations-viewall:hover {
+  color: var(--color-ink-900, #0b1220);
 }
 
 /* ====================================

@@ -70,7 +70,10 @@ function Home() {
       <HeroSection />
 
       <section className="home__destinations">
-        <h2>Top Destinations</h2>
+        <div className="home__destinations-header">
+          <h2>Top Destinations</h2>
+          <a href="#" className="home__destinations-viewall">View all →</a>
+        </div>
         <div className="home__destinations-list">
           {destinations.map((dest) => (
             <DestinationCard
