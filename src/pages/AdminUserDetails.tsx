@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../assets/styles/pages/adminuserdetails.css";
 import AdminBookingCard from "../components/admin/AdminBookingCard";
 import AdminUserDetailsCard from "../components/admin/AdminUserDetailsCard";

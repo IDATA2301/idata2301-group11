@@ -16,15 +16,9 @@ interface TripPaymentProps {
   selectedFlight: ComparisonOption | null;
   selectedHotel: ComparisonOption | null;
   tripId: number;
-  tripTitle: string;
-  tripDate: string;
-  tripImageUrl?: string | null;
-  hotelName?: string | null;
-  nights?: number | null;
-  tripAirline?: string | null;
 }
 
-export default function TripPayment({ selectedFlight, selectedHotel, tripId, tripTitle, tripDate, tripImageUrl, hotelName, nights, tripAirline }: TripPaymentProps) {
+export default function TripPayment({ selectedFlight, selectedHotel, tripId }: TripPaymentProps) {
   const [showCheckmark, setShowCheckmark] = useState(false);
   const navigate = useNavigate();
   const { authUser } = useAuth();
