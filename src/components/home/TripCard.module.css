@@ -4,6 +4,11 @@
   overflow: hidden;
 }
 
+.tripCard:hover .tripOverlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0) 70%);
+  cursor: pointer;
+}
+
 .tripImage {
   display: block;
   width: 100%;
@@ -70,12 +75,19 @@
   border-radius: 50%;
   padding: 6px;
   border: none;
-  cursor: pointer;
+}
+
+.favoriteButton:hover {
+  background: rgba(119, 143, 174, 0.9);
 }
 
 .heartIcon {
   width: 20px;
   color: white;
+}
+
+.favoriteButton:hover .heartIcon {
+  color: rgba(255, 0, 0, 0.7);
 }
 
 .active {
