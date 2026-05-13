@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PageLayout from "./components/layout/PageLayout";
 import { ProtectedRoute } from "./components/layout/ProtectedRoute";
+import ScrollToTop from "./components/layout/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -25,6 +26,7 @@ import React from "react";
 function AppLayout() {
   return (
     <PageLayout>
+      <ScrollToTop />
       <Routes>
         {/* Public */}
         <Route path="/" element={<Home />} />
