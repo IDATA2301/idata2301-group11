@@ -1,4 +1,9 @@
-import { SparklesIcon, CurrencyDollarIcon, ClockIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
+import {
+  SparklesIcon,
+  CurrencyDollarIcon,
+  ClockIcon,
+  ArrowsRightLeftIcon,
+} from "@heroicons/react/24/outline";
 import "../assets/styles/pages/about.css";
 import ServiceCard from "../components/about/ServiceCard";
 import TeamMemberCard from "../components/about/TeamMemberCard";
@@ -7,22 +12,25 @@ function About() {
   const services = [
     {
       id: 1,
-      title: "Real-Time Prices",
-      description: "Live market data ensures you never overpay for a set",
-      icon: CurrencyDollarIcon
+      title: "Real-time prices",
+      description:
+        "Live market data so you never overpay — fares update the moment carriers do.",
+      icon: CurrencyDollarIcon,
     },
     {
       id: 2,
-      title: "Dynamic Schedules",
-      description: "Live updates on transport schedules to keep your trip on track",
-      icon: ClockIcon
+      title: "Dynamic schedules",
+      description:
+        "Continuous updates on transport schedules keep your itinerary accurate end-to-end.",
+      icon: ClockIcon,
     },
     {
       id: 3,
-      title: "Route Options",
-      description: "Multiple route options to choose from, tailored to your preferences",
-      icon: ArrowRightIcon
-    }
+      title: "Flexible routing",
+      description:
+        "Multiple route options tailored to your preferences — by price, speed, or comfort.",
+      icon: ArrowsRightLeftIcon,
+    },
   ];
 
   const team = [
@@ -30,53 +38,72 @@ function About() {
       id: 1,
       name: "Dennis Løvold",
       role: "Chief Executive Officer",
-      image: "images/TeamMember.png"
+      image: "images/TeamMember.png",
     },
     {
       id: 2,
       name: "Sebastian Nesvik",
       role: "Chief Financial Officer",
-      image: "images/TeamMember.png" 
+      image: "images/TeamMember.png",
     },
     {
       id: 3,
       name: "Jonas Framnes",
       role: "Chief Technology Officer",
-      image: "images/TeamMember.png"
-    }
+      image: "images/TeamMember.png",
+    },
   ];
 
   return (
-    <main>
-      {/*Intro section*/ }
-      <section className="Intro">
-        <div className="IntroHero">
-          <img src="/images/fly.png" alt="Airplane in flight" className="IntroHeroImage" />
-          <div className="IntroOverlay">
-            <p className="IntroTag">The RoamRoute standard</p>
-            <h1 className="IntroTitle">
-              Elevating travel planning to new heights
-            </h1>
-          </div>
-        </div>
+    <main className="about">
+      <div className="about__hero-bg" aria-hidden="true" />
+      <section className="about__hero" aria-labelledby="about-hero-title">
+        <span className="about__eyebrow">The RoamRoute standard</span>
+        <h1 id="about-hero-title" className="about__hero-title">
+          Elevating travel planning to new heights
+        </h1>
+        <p className="about__hero-subtitle">
+          A modern platform built for travellers who expect accuracy,
+          clarity, and choice from the first search to the last leg.
+        </p>
+      </section>
 
-        <div className="IntroContent">
-          <SparklesIcon className="inline-block mr-2" width={32} height={32} color="orange" />
-          <p className="IntroDescription">
-            Whether you're seeking hidden gems in distant countries,
-            reuniting with loved ones, or attending important events,
-            every plan made with RoamRoute is backed by reliability
-            and convenience.
+      <section className="about__mission" aria-labelledby="about-mission-title">
+        <aside className="about__mission-aside">
+          <span className="about__mission-icon" aria-hidden="true">
+            <SparklesIcon width={32} height={32} />
+          </span>
+          <p className="about__mission-eyebrow">Our mission</p>
+          <h2 id="about-mission-title" className="about__mission-heading">
+            Travel, made effortless.
+          </h2>
+        </aside>
+        <div className="about__mission-body">
+          <p className="about__mission-statement">
+            Whether you're seeking hidden gems in distant countries, reuniting
+            with loved ones, or attending important events — every plan made
+            with RoamRoute is backed by{" "}
+            <strong>reliability and convenience</strong>.
+          </p>
+          <p className="about__mission-meta">
+            Built by travellers, for travellers.
           </p>
         </div>
       </section>
 
-      {/* Services */ }
-      <section className="Services">
-        <h2>From Spontaneous Escapes to International itineraries</h2>
-        <p>RoamRoute provides the precision tools needed for any journey, whether its a weekend getaway or a global expedition</p>
+      <section className="about__services" aria-labelledby="about-services-title">
+        <header className="about__section-header">
+          <p className="about__section-eyebrow">What we do</p>
+          <h2 id="about-services-title">
+            From spontaneous escapes to international itineraries
+          </h2>
+          <p className="about__section-lead">
+            RoamRoute provides the precision tools needed for any journey —
+            whether it's a weekend getaway or a global expedition.
+          </p>
+        </header>
 
-        <div className="ServicesList">
+        <div className="about__services-grid">
           {services.map((service) => (
             <ServiceCard
               key={service.id}
@@ -88,12 +115,18 @@ function About() {
         </div>
       </section>
 
-      {/* Team section */ }
-      <section className="Team">
-        <div className="TeamContent">
-          <h2>Meet the Team</h2>
+      <section className="about__team" aria-labelledby="about-team-title">
+        <div className="about__team-inner">
+          <header className="about__section-header about__section-header--centered">
+            <p className="about__section-eyebrow">Meet the team</p>
+            <h2 id="about-team-title">The people behind RoamRoute</h2>
+            <p className="about__section-lead">
+              A small team with a shared belief that travel planning should
+              feel effortless.
+            </p>
+          </header>
 
-          <div className="TeamList">
+          <div className="about__team-grid">
             {team.map((member) => (
               <TeamMemberCard
                 key={member.id}

@@ -1,23 +1,43 @@
 .teamMember {
-  flex: 0 0 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  gap: var(--space-sm);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.image {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 12px;
+.teamMember:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--color-primary);
+}
+
+.avatar {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--color-border-light);
+  border: 3px solid var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-sm);
 }
 
 .name {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 4px;
-  color: #000;
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
 }
 
 .role {
-  font-size: 14px;
-  color: var(--color-text-secondary);
   margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-body);
+  letter-spacing: 0.01em;
 }
