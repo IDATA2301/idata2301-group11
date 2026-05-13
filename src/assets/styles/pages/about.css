@@ -190,7 +190,7 @@
 }
 
 .about__mission-meta::before {
-  content: "— ";
+  content: "– ";
   color: var(--color-primary);
   font-weight: 700;
 }

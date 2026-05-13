@@ -14,7 +14,7 @@ function About() {
       id: 1,
       title: "Real-time prices",
       description:
-        "Live market data so you never overpay — fares update the moment carriers do.",
+        "Live market data so you never overpay. Fares update the moment carriers do.",
       icon: CurrencyDollarIcon,
     },
     {
@@ -28,7 +28,7 @@ function About() {
       id: 3,
       title: "Flexible routing",
       description:
-        "Multiple route options tailored to your preferences — by price, speed, or comfort.",
+        "Multiple route options tailored to your preferences, by price, speed, or comfort.",
       icon: ArrowsRightLeftIcon,
     },
   ];
@@ -81,7 +81,7 @@ function About() {
         <div className="about__mission-body">
           <p className="about__mission-statement">
             Whether you're seeking hidden gems in distant countries, reuniting
-            with loved ones, or attending important events — every plan made
+            with loved ones, or attending important events, every plan made
             with RoamRoute is backed by{" "}
             <strong>reliability and convenience</strong>.
           </p>
@@ -98,7 +98,7 @@ function About() {
             From spontaneous escapes to international itineraries
           </h2>
           <p className="about__section-lead">
-            RoamRoute provides the precision tools needed for any journey —
+            RoamRoute provides the precision tools needed for any journey,
             whether it's a weekend getaway or a global expedition.
           </p>
         </header>
