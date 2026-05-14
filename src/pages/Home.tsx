@@ -81,6 +81,7 @@ function Home() {
               key={dest.id}
               destination={dest.city}
               image={getDestinationImageUrl(dest.image_url)}
+              image_alt={dest.image_alt ?? `${dest.city}, ${dest.country}`}
             />
           ))}
         </div>
