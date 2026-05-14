@@ -9,15 +9,18 @@ type ServiceCardProps = {
   icon: IconComponent;
 };
 
-export default function ServiceCard({ title, description, icon: IconComponent }: ServiceCardProps) {
+export default function ServiceCard({
+  title,
+  description,
+  icon: Icon,
+}: ServiceCardProps) {
   return (
-    <div className={styles.serviceItem}>
-      <IconComponent width={32} height={32} color="var(--color-primary)" />
-
-      <div className={styles.serviceContent}>
-        <h3 className={styles.serviceTitle}>{title}</h3>
-        <p className={styles.serviceDescription}>{description}</p>
-      </div>
-    </div>
+    <article className={styles.card}>
+      <span className={styles.iconBadge} aria-hidden="true">
+        <Icon width={24} height={24} />
+      </span>
+      <h3 className={styles.title}>{title}</h3>
+      <p className={styles.description}>{description}</p>
+    </article>
   );
 }

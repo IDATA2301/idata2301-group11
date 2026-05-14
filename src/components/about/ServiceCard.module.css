@@ -1,22 +1,42 @@
-.serviceItem {
+.card {
   display: flex;
-  gap: 16px;
-  margin-bottom: 24px;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.serviceContent {
-  flex: 1;
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
 }
 
-.serviceTitle {
-  font-size: var(--font-size-h3);
-  font-weight: 700;
-  color: #000;
-  margin: 0 0 8px;
+.iconBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-glow);
+  color: var(--color-primary-strong);
 }
 
-.serviceDescription {
+.title {
   margin: 0;
-  color: var(--color-text-secondary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.description {
+  margin: 0;
+  color: var(--color-text-body);
+  line-height: 1.6;
 }

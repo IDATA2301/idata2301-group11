@@ -8,10 +8,10 @@ type TeamMemberCardProps = {
 
 export default function TeamMemberCard({ name, role, image }: TeamMemberCardProps) {
   return (
-    <div className={styles.teamMember}>
-      <img src={image} alt={name} className={styles.image} />
+    <article className={styles.teamMember}>
+      <img src={image} alt={name} className={styles.avatar} />
       <h3 className={styles.name}>{name}</h3>
       <p className={styles.role}>{role}</p>
-    </div>
+    </article>
   );
 }
