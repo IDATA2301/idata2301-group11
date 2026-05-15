@@ -18,14 +18,32 @@ export default function Admin() {
         <AdminActionCard
           title="Users"
           description="View all registered users and check key account details."
-          actionLabel="View all users"
+          actionLabel="View"
           to="/admin/users"
         />
         <AdminActionCard
           title="Trips"
           description="Browse all trips and update their details."
-          actionLabel="Manage trips"
+          actionLabel="Manage"
           to="/admin/trips"
+        />
+        <AdminActionCard
+          title="Destinations"
+          description="Edit cities, countries, and destination imagery used across trips."
+          actionLabel="Manage"
+          to="/admin/destinations"
+        />
+        <AdminActionCard
+          title="Flights"
+          description="Manage the global flight catalog. Changes apply to every trip linked to a flight."
+          actionLabel="Manage"
+          to="/admin/flights"
+        />
+        <AdminActionCard
+          title="Accommodations"
+          description="Manage the global accommodation catalog used by trips."
+          actionLabel="Manage"
+          to="/admin/accommodations"
         />
       </section>
     </main>

@@ -1,23 +1,50 @@
-import { useEffect, useState, type SyntheticEvent } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../assets/styles/pages/admintripedit.css";
+import AddFlightOption from "../components/admin/AddFlightOption";
+import AddHotelOption from "../components/admin/AddHotelOption";
+import FlightOptionCard from "../components/admin/FlightOptionCard";
+import HotelOptionCard from "../components/admin/HotelOptionCard";
 import FormField from "../components/forms/FormField";
 import TextInput from "../components/forms/TextInput";
 import EmptyState from "../components/ui/EmptyState";
 import SectionHeader from "../components/ui/SectionHeader";
 import {
+  createFlightOption,
+  createHotelOption,
+  deleteFlightOption,
+  deleteHotelOption,
   fetchAdminTripDetails,
+  fetchFlightOptions,
+  fetchHotelOptions,
+  updateAdminDestination,
   updateAdminTrip,
+  updateFlightOption,
+  updateHotelOption,
+  uploadAdminImage,
   type AdminTripDetails,
+  type FlightOption,
+  type FlightOptionInput,
+  type HotelOption,
+  type HotelOptionInput,
 } from "../services/adminTrips";
+import { getDestinationImageUrl, getTripImageUrl } from "../utils/imageUrls";
+import { camelize, convertImageToWebp } from "../utils/imageConvert";
 
-type EditableFields = {
+type EditableTripFields = {
   title: string;
   description: string;
   imageUrl: string;
   startDate: string;
   endDate: string;
   keywords: string;
+};
+
+type EditableDestinationFields = {
+  city: string;
+  country: string;
+  imageUrl: string;
+  imageAlt: string;
 };
 
 function toDateInputValue(value: string): string {
@@ -28,7 +55,7 @@ function toDateInputValue(value: string): string {
   return date.toISOString().slice(0, 10);
 }
 
-function toEditable(trip: AdminTripDetails): EditableFields {
+function toTripFields(trip: AdminTripDetails): EditableTripFields {
   return {
     title: trip.title ?? "",
     description: trip.description ?? "",
@@ -39,16 +66,56 @@ function toEditable(trip: AdminTripDetails): EditableFields {
   };
 }
 
+function toDestinationFields(trip: AdminTripDetails): EditableDestinationFields {
+  return {
+    city: trip.city ?? "",
+    country: trip.country ?? "",
+    imageUrl: trip.destinationImageUrl ?? "",
+    imageAlt: trip.destinationImageAlt ?? "",
+  };
+}
+
 export default function AdminTripEdit() {
   const { id } = useParams();
   const tripId = Number(id);
+
   const [trip, setTrip] = useState<AdminTripDetails | null>(null);
-  const [form, setForm] = useState<EditableFields | null>(null);
+  const [tripForm, setTripForm] = useState<EditableTripFields | null>(null);
+  const [destinationForm, setDestinationForm] = useState<EditableDestinationFields | null>(null);
+  const [flightOptions, setFlightOptions] = useState<FlightOption[]>([]);
+  const [hotelOptions, setHotelOptions] = useState<HotelOption[]>([]);
+
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [saving, setSaving] = useState(false);
-  const [saveError, setSaveError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+
+  const [savingBasics, setSavingBasics] = useState(false);
+  const [basicsError, setBasicsError] = useState<string | null>(null);
+  const [basicsSuccess, setBasicsSuccess] = useState<string | null>(null);
+
+  const [savingDestination, setSavingDestination] = useState(false);
+  const [destinationError, setDestinationError] = useState<string | null>(null);
+  const [destinationSuccess, setDestinationSuccess] = useState<string | null>(null);
+
+  const [pendingTripImage, setPendingTripImage] = useState<Blob | null>(null);
+  const [pendingTripImageName, setPendingTripImageName] = useState<string>("");
+  const [pendingTripImagePreview, setPendingTripImagePreview] = useState<string | null>(null);
+  const [previousTripImageUrl, setPreviousTripImageUrl] = useState<string>("");
+  const [pendingDestImage, setPendingDestImage] = useState<Blob | null>(null);
+  const [pendingDestImageName, setPendingDestImageName] = useState<string>("");
+  const [pendingDestImagePreview, setPendingDestImagePreview] = useState<string | null>(null);
+  const [previousDestImageUrl, setPreviousDestImageUrl] = useState<string>("");
+  const [convertingTripImage, setConvertingTripImage] = useState(false);
+  const [convertingDestImage, setConvertingDestImage] = useState(false);
+
+  const [flightBusyId, setFlightBusyId] = useState<number | "new" | null>(null);
+  const [hotelBusyId, setHotelBusyId] = useState<number | "new" | null>(null);
+  const [showNewFlight, setShowNewFlight] = useState(false);
+  const [showNewHotel, setShowNewHotel] = useState(false);
+  const [flightLoadError, setFlightLoadError] = useState<string | null>(null);
+  const [hotelLoadError, setHotelLoadError] = useState<string | null>(null);
+
+  const tripFileRef = useRef<HTMLInputElement | null>(null);
+  const destFileRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (!Number.isFinite(tripId)) {
@@ -57,14 +124,69 @@ export default function AdminTripEdit() {
       return;
     }
 
-    fetchAdminTripDetails(tripId)
-      .then((data) => {
-        setTrip(data);
-        setForm(toEditable(data));
+    let cancelled = false;
+    setLoading(true);
+    setFlightLoadError(null);
+    setHotelLoadError(null);
+    Promise.all([
+      fetchAdminTripDetails(tripId),
+      fetchFlightOptions(tripId).then(
+        (flights) => ({ ok: true as const, flights }),
+        (err: unknown) => ({ ok: false as const, error: err instanceof Error ? err.message : "Failed to load flight options" }),
+      ),
+      fetchHotelOptions(tripId).then(
+        (hotels) => ({ ok: true as const, hotels }),
+        (err: unknown) => ({ ok: false as const, error: err instanceof Error ? err.message : "Failed to load hotel options" }),
+      ),
+    ])
+      .then(([details, flightResult, hotelResult]) => {
+        if (cancelled) return;
+        setTrip(details);
+        setTripForm(toTripFields(details));
+        setDestinationForm(toDestinationFields(details));
+        if (flightResult.ok) {
+          setFlightOptions(flightResult.flights);
+        } else {
+          setFlightLoadError(flightResult.error);
+        }
+        if (hotelResult.ok) {
+          setHotelOptions(hotelResult.hotels);
+        } else {
+          setHotelLoadError(hotelResult.error);
+        }
       })
-      .catch((err) => setLoadError(err instanceof Error ? err.message : "Failed to load trip"))
-      .finally(() => setLoading(false));
+      .catch((err) => {
+        if (cancelled) return;
+        setLoadError(err instanceof Error ? err.message : "Failed to load trip");
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [id, tripId]);
+
+  useEffect(() => {
+    if (!pendingTripImage) {
+      setPendingTripImagePreview(null);
+      return;
+    }
+    const url = URL.createObjectURL(pendingTripImage);
+    setPendingTripImagePreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [pendingTripImage]);
+
+  useEffect(() => {
+    if (!pendingDestImage) {
+      setPendingDestImagePreview(null);
+      return;
+    }
+    const url = URL.createObjectURL(pendingDestImage);
+    setPendingDestImagePreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [pendingDestImage]);
 
   if (loading) {
     return (
@@ -74,7 +196,7 @@ export default function AdminTripEdit() {
     );
   }
 
-  if (loadError || !trip || !form) {
+  if (loadError || !trip || !tripForm || !destinationForm) {
     return (
       <main className="admin-trip-edit">
         <EmptyState
@@ -90,52 +212,254 @@ export default function AdminTripEdit() {
     );
   }
 
-  function updateField<K extends keyof EditableFields>(key: K, value: EditableFields[K]) {
-    setForm((prev) => (prev ? { ...prev, [key]: value } : prev));
-    if (saveError) setSaveError(null);
-    if (success) setSuccess(null);
+  function updateTripField<K extends keyof EditableTripFields>(key: K, value: EditableTripFields[K]) {
+    setTripForm((prev) => (prev ? { ...prev, [key]: value } : prev));
+    if (basicsError) setBasicsError(null);
+    if (basicsSuccess) setBasicsSuccess(null);
   }
 
-  async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
+  function updateDestinationField<K extends keyof EditableDestinationFields>(
+    key: K,
+    value: EditableDestinationFields[K],
+  ) {
+    setDestinationForm((prev) => (prev ? { ...prev, [key]: value } : prev));
+    if (destinationError) setDestinationError(null);
+    if (destinationSuccess) setDestinationSuccess(null);
+  }
+
+  async function handleBasicsSubmit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!form) return;
+    if (!tripForm) return;
 
-    const title = form.title.trim();
+    const title = tripForm.title.trim();
     if (!title) {
-      setSaveError("Title is required.");
+      setBasicsError("Title is required.");
       return;
     }
 
-    if (form.startDate && form.endDate && form.startDate > form.endDate) {
-      setSaveError("Start date must be on or before end date.");
+    if (tripForm.startDate && tripForm.endDate && tripForm.startDate > tripForm.endDate) {
+      setBasicsError("Start date must be on or before end date.");
       return;
     }
 
-    const keywords = form.keywords
+    const keywords = tripForm.keywords
       .split(",")
       .map((keyword) => keyword.trim())
       .filter(Boolean);
 
-    setSaving(true);
-    setSaveError(null);
-    setSuccess(null);
+    setSavingBasics(true);
+    setBasicsError(null);
+    setBasicsSuccess(null);
 
     try {
+      let imageUrl = tripForm.imageUrl;
+      if (pendingTripImage) {
+        const filename = (tripForm.imageUrl || pendingTripImageName).trim();
+        imageUrl = await uploadAdminImage(pendingTripImage, "trip", filename);
+      }
+
       const updated = await updateAdminTrip(tripId, {
         title,
-        description: form.description,
-        imageUrl: form.imageUrl,
-        startDate: form.startDate || undefined,
-        endDate: form.endDate || undefined,
+        description: tripForm.description,
+        imageUrl,
+        startDate: tripForm.startDate || undefined,
+        endDate: tripForm.endDate || undefined,
         keywords,
       });
       setTrip(updated);
-      setForm(toEditable(updated));
-      setSuccess("Trip updated.");
+      setTripForm(toTripFields(updated));
+      setDestinationForm(toDestinationFields(updated));
+      setPendingTripImage(null);
+      setPendingTripImageName("");
+      setPreviousTripImageUrl("");
+      if (tripFileRef.current) tripFileRef.current.value = "";
+      setBasicsSuccess("Trip basics updated.");
     } catch (err) {
-      setSaveError(err instanceof Error ? err.message : "Failed to save trip.");
+      setBasicsError(err instanceof Error ? err.message : "Failed to save trip.");
     } finally {
-      setSaving(false);
+      setSavingBasics(false);
+    }
+  }
+
+  async function handleDestinationSubmit(event: SyntheticEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!destinationForm) return;
+    if (trip?.destinationId == null) {
+      setDestinationError("This trip has no linked destination.");
+      return;
+    }
+
+    setSavingDestination(true);
+    setDestinationError(null);
+    setDestinationSuccess(null);
+
+    try {
+      let imageUrl = destinationForm.imageUrl.trim();
+      if (pendingDestImage) {
+        const filename = (imageUrl || pendingDestImageName).trim();
+        imageUrl = await uploadAdminImage(pendingDestImage, "destination", filename);
+      }
+
+      const updated = await updateAdminDestination(trip.destinationId, {
+        city: destinationForm.city.trim(),
+        country: destinationForm.country.trim(),
+        imageUrl,
+        imageAlt: destinationForm.imageAlt.trim(),
+      });
+      setTrip((prev) =>
+        prev
+          ? {
+              ...prev,
+              city: updated.city,
+              country: updated.country,
+              destinationImageUrl: updated.imageUrl,
+              destinationImageAlt: updated.imageAlt,
+            }
+          : prev,
+      );
+      setDestinationForm({
+        city: updated.city ?? "",
+        country: updated.country ?? "",
+        imageUrl: updated.imageUrl ?? "",
+        imageAlt: updated.imageAlt ?? "",
+      });
+      setPendingDestImage(null);
+      setPendingDestImageName("");
+      setPreviousDestImageUrl("");
+      if (destFileRef.current) destFileRef.current.value = "";
+      setDestinationSuccess("Destination updated.");
+    } catch (err) {
+      setDestinationError(err instanceof Error ? err.message : "Failed to save destination.");
+    } finally {
+      setSavingDestination(false);
+    }
+  }
+
+  function suggestedTripFilename(): string {
+    const city = trip?.city ?? "";
+    const slug = camelize(city) || "trip";
+    return `${slug}Trip-${tripId}.webp`;
+  }
+
+  function suggestedDestinationFilename(): string {
+    const city = destinationForm?.city ?? trip?.city ?? "";
+    const slug = camelize(city) || "destination";
+    return `${slug}Dest.webp`;
+  }
+
+  async function handleTripImagePick(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setConvertingTripImage(true);
+    setBasicsError(null);
+    setBasicsSuccess(null);
+    try {
+      const webp = await convertImageToWebp(file);
+      const suggested = suggestedTripFilename();
+      if (!pendingTripImage) setPreviousTripImageUrl(tripForm?.imageUrl ?? "");
+      setPendingTripImage(webp);
+      setPendingTripImageName(suggested);
+      updateTripField("imageUrl", suggested);
+    } catch (err) {
+      setBasicsError(err instanceof Error ? err.message : "Failed to process image.");
+      if (tripFileRef.current) tripFileRef.current.value = "";
+    } finally {
+      setConvertingTripImage(false);
+    }
+  }
+
+  async function handleDestinationImagePick(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setConvertingDestImage(true);
+    setDestinationError(null);
+    setDestinationSuccess(null);
+    try {
+      const webp = await convertImageToWebp(file);
+      const suggested = suggestedDestinationFilename();
+      if (!pendingDestImage) setPreviousDestImageUrl(destinationForm?.imageUrl ?? "");
+      setPendingDestImage(webp);
+      setPendingDestImageName(suggested);
+      updateDestinationField("imageUrl", suggested);
+    } catch (err) {
+      setDestinationError(err instanceof Error ? err.message : "Failed to process image.");
+      if (destFileRef.current) destFileRef.current.value = "";
+    } finally {
+      setConvertingDestImage(false);
+    }
+  }
+
+  function clearPendingTripImage() {
+    setPendingTripImage(null);
+    setPendingTripImageName("");
+    updateTripField("imageUrl", previousTripImageUrl);
+    setPreviousTripImageUrl("");
+    if (tripFileRef.current) tripFileRef.current.value = "";
+  }
+
+  function clearPendingDestImage() {
+    setPendingDestImage(null);
+    setPendingDestImageName("");
+    updateDestinationField("imageUrl", previousDestImageUrl);
+    setPreviousDestImageUrl("");
+    if (destFileRef.current) destFileRef.current.value = "";
+  }
+
+  async function handleSaveFlight(optionId: number | "new", input: FlightOptionInput) {
+    setFlightBusyId(optionId);
+    try {
+      if (optionId === "new") {
+        const created = await createFlightOption(tripId, input);
+        setFlightOptions((prev) => [...prev, created]);
+        setShowNewFlight(false);
+      } else {
+        const updated = await updateFlightOption(tripId, optionId, input);
+        setFlightOptions((prev) => prev.map((opt) => (opt.id === optionId ? updated : opt)));
+      }
+    } finally {
+      setFlightBusyId(null);
+    }
+  }
+
+  async function handleDeleteFlight(optionId: number) {
+    if (!window.confirm("Delete this flight option?")) return;
+    setFlightBusyId(optionId);
+    try {
+      await deleteFlightOption(tripId, optionId);
+      setFlightOptions((prev) => prev.filter((opt) => opt.id !== optionId));
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to delete flight option.");
+    } finally {
+      setFlightBusyId(null);
+    }
+  }
+
+  async function handleSaveHotel(optionId: number | "new", input: HotelOptionInput) {
+    setHotelBusyId(optionId);
+    try {
+      if (optionId === "new") {
+        const created = await createHotelOption(tripId, input);
+        setHotelOptions((prev) => [...prev, created]);
+        setShowNewHotel(false);
+      } else {
+        const updated = await updateHotelOption(tripId, optionId, input);
+        setHotelOptions((prev) => prev.map((opt) => (opt.id === optionId ? updated : opt)));
+      }
+    } finally {
+      setHotelBusyId(null);
+    }
+  }
+
+  async function handleDeleteHotel(optionId: number) {
+    if (!window.confirm("Delete this hotel option?")) return;
+    setHotelBusyId(optionId);
+    try {
+      await deleteHotelOption(tripId, optionId);
+      setHotelOptions((prev) => prev.filter((opt) => opt.id !== optionId));
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to delete hotel option.");
+    } finally {
+      setHotelBusyId(null);
     }
   }
 
@@ -151,7 +475,7 @@ export default function AdminTripEdit() {
         className="admin-trip-edit__header"
       />
 
-      <form className="admin-trip-edit__form" onSubmit={handleSubmit}>
+      <form className="admin-trip-edit__form" onSubmit={handleBasicsSubmit}>
         <section className="admin-trip-edit__group" aria-label="Trip basics">
           <h2 className="admin-trip-edit__group-title">Basics</h2>
 
@@ -159,9 +483,9 @@ export default function AdminTripEdit() {
             <TextInput
               id="trip-title"
               type="text"
-              value={form.title}
-              onChange={(event) => updateField("title", event.target.value)}
-              disabled={saving}
+              value={tripForm.title}
+              onChange={(event) => updateTripField("title", event.target.value)}
+              disabled={savingBasics}
               required
               maxLength={255}
             />
@@ -171,70 +495,81 @@ export default function AdminTripEdit() {
             <TextInput
               as="textarea"
               id="trip-description"
-              value={form.description}
-              onChange={(event) => updateField("description", event.target.value)}
-              disabled={saving}
+              value={tripForm.description}
+              onChange={(event) => updateTripField("description", event.target.value)}
+              disabled={savingBasics}
               rows={5}
             />
           </FormField>
 
-          <FormField id="trip-image" label="Image filename">
-            <TextInput
-              id="trip-image"
-              type="text"
-              value={form.imageUrl}
-              onChange={(event) => updateField("imageUrl", event.target.value)}
-              disabled={saving}
-            />
-          </FormField>
+          <div className="admin-trip-edit__image">
+            {pendingTripImagePreview ? (
+              <img
+                src={pendingTripImagePreview}
+                alt="Selected trip image preview"
+                className="admin-trip-edit__image-preview"
+              />
+            ) : tripForm.imageUrl ? (
+              <img
+                src={getTripImageUrl(tripForm.imageUrl)}
+                alt="Current trip preview"
+                className="admin-trip-edit__image-preview"
+              />
+            ) : null}
+            <FormField id="trip-image" label="Image filename">
+              <TextInput
+                id="trip-image"
+                type="text"
+                value={tripForm.imageUrl}
+                onChange={(event) => updateTripField("imageUrl", event.target.value)}
+                disabled={savingBasics}
+              />
+            </FormField>
+            <div className="admin-trip-edit__file-row">
+              <label className="admin-trip-edit__file">
+                <span className="btn btn--ghost">
+                  {convertingTripImage
+                    ? "Converting..."
+                    : pendingTripImage
+                      ? "Choose a different image"
+                      : "Choose image"}
+                </span>
+                <input
+                  ref={tripFileRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleTripImagePick}
+                  disabled={savingBasics || convertingTripImage}
+                  hidden
+                />
+              </label>
+              {pendingTripImage ? (
+                <>
+                  <span className="admin-trip-edit__file-name">
+                    Ready to upload as {tripForm.imageUrl || pendingTripImageName} ({Math.round(pendingTripImage.size / 1024)} KB)
+                  </span>
+                  <button
+                    type="button"
+                    className="btn btn--ghost"
+                    onClick={clearPendingTripImage}
+                    disabled={savingBasics}
+                  >
+                    Clear
+                  </button>
+                </>
+              ) : null}
+            </div>
+          </div>
 
           <FormField id="trip-keywords" label="Keywords (comma separated)">
             <TextInput
               id="trip-keywords"
               type="text"
-              value={form.keywords}
-              onChange={(event) => updateField("keywords", event.target.value)}
-              disabled={saving}
+              value={tripForm.keywords}
+              onChange={(event) => updateTripField("keywords", event.target.value)}
+              disabled={savingBasics}
             />
           </FormField>
-        </section>
-
-        <section className="admin-trip-edit__group" aria-label="Location">
-          <h2 className="admin-trip-edit__group-title">Location</h2>
-
-          <div className="admin-trip-edit__row admin-trip-edit__row--two">
-            <FormField id="trip-city" label="City">
-              <TextInput id="trip-city" type="text" value={trip.city} disabled readOnly />
-            </FormField>
-
-            <FormField id="trip-country" label="Country">
-              <TextInput id="trip-country" type="text" value={trip.country} disabled readOnly />
-            </FormField>
-          </div>
-
-          <div className="admin-trip-edit__row admin-trip-edit__row--two">
-            <FormField id="trip-latitude" label="Latitude">
-              <TextInput
-                id="trip-latitude"
-                type="number"
-                value={trip.latitude}
-                disabled
-                readOnly
-                step="0.000001"
-              />
-            </FormField>
-
-            <FormField id="trip-longitude" label="Longitude">
-              <TextInput
-                id="trip-longitude"
-                type="number"
-                value={trip.longitude}
-                disabled
-                readOnly
-                step="0.000001"
-              />
-            </FormField>
-          </div>
         </section>
 
         <section className="admin-trip-edit__group" aria-label="Dates">
@@ -245,9 +580,9 @@ export default function AdminTripEdit() {
               <TextInput
                 id="trip-start-date"
                 type="date"
-                value={form.startDate}
-                onChange={(event) => updateField("startDate", event.target.value)}
-                disabled={saving}
+                value={tripForm.startDate}
+                onChange={(event) => updateTripField("startDate", event.target.value)}
+                disabled={savingBasics}
               />
             </FormField>
 
@@ -255,103 +590,266 @@ export default function AdminTripEdit() {
               <TextInput
                 id="trip-end-date"
                 type="date"
-                value={form.endDate}
-                onChange={(event) => updateField("endDate", event.target.value)}
-                disabled={saving}
+                value={tripForm.endDate}
+                onChange={(event) => updateTripField("endDate", event.target.value)}
+                disabled={savingBasics}
               />
             </FormField>
           </div>
         </section>
 
-        <section className="admin-trip-edit__group" aria-label="Flight">
-          <h2 className="admin-trip-edit__group-title">Flight</h2>
-
-          <div className="admin-trip-edit__row admin-trip-edit__row--three">
-            <FormField id="trip-departure" label="Departure airport">
-              <TextInput
-                id="trip-departure"
-                type="text"
-                value={trip.departureAirport}
-                disabled
-                readOnly
-              />
-            </FormField>
-
-            <FormField id="trip-arrival" label="Arrival airport">
-              <TextInput
-                id="trip-arrival"
-                type="text"
-                value={trip.arrivalAirport}
-                disabled
-                readOnly
-              />
-            </FormField>
-
-            <FormField id="trip-flight-duration" label="Flight duration">
-              <TextInput
-                id="trip-flight-duration"
-                type="text"
-                value={trip.flightDuration}
-                disabled
-                readOnly
-              />
-            </FormField>
-          </div>
-        </section>
-
-        <section className="admin-trip-edit__group" aria-label="Hotel">
-          <h2 className="admin-trip-edit__group-title">Hotel</h2>
-
-          <div className="admin-trip-edit__row admin-trip-edit__row--two">
-            <FormField id="trip-hotel-name" label="Hotel name">
-              <TextInput id="trip-hotel-name" type="text" value={trip.hotelName} disabled readOnly />
-            </FormField>
-
-            <FormField id="trip-hotel-type" label="Hotel type">
-              <TextInput id="trip-hotel-type" type="text" value={trip.hotelType} disabled readOnly />
-            </FormField>
-          </div>
-
-          <FormField id="trip-hotel-location" label="Hotel location">
-            <TextInput
-              id="trip-hotel-location"
-              type="text"
-              value={trip.hotelLocation}
-              disabled
-              readOnly
-            />
-          </FormField>
-
-          <div className="admin-trip-edit__row admin-trip-edit__row--two">
-            <FormField id="trip-nights" label="Nights">
-              <TextInput id="trip-nights" type="number" value={trip.nights} disabled readOnly />
-            </FormField>
-
-            <FormField id="trip-amenities" label="Amenities">
-              <TextInput
-                id="trip-amenities"
-                type="text"
-                value={trip.amenities}
-                disabled
-                readOnly
-              />
-            </FormField>
-          </div>
-        </section>
-
-        {saveError ? (
+        {basicsError ? (
           <p className="profile__message profile__message--error" role="alert">
-            {saveError}
+            {basicsError}
           </p>
         ) : null}
-        {success ? <p className="profile__message profile__message--success">{success}</p> : null}
+        {basicsSuccess ? (
+          <p className="profile__message profile__message--success">{basicsSuccess}</p>
+        ) : null}
 
         <div className="admin-trip-edit__actions">
-          <button type="submit" className="btn" disabled={saving}>
-            {saving ? "Saving..." : "Save changes"}
+          <button type="submit" className="btn" disabled={savingBasics}>
+            {savingBasics
+              ? pendingTripImage
+                ? "Uploading & saving..."
+                : "Saving..."
+              : "Save trip basics"}
           </button>
         </div>
       </form>
+
+      <form className="admin-trip-edit__form" onSubmit={handleDestinationSubmit}>
+        <section className="admin-trip-edit__group" aria-label="Destination">
+          <h2 className="admin-trip-edit__group-title">Destination</h2>
+
+          <div className="admin-trip-edit__row admin-trip-edit__row--two">
+            <FormField id="dest-city" label="City">
+              <TextInput
+                id="dest-city"
+                type="text"
+                value={destinationForm.city}
+                onChange={(event) => updateDestinationField("city", event.target.value)}
+                disabled={savingDestination}
+              />
+            </FormField>
+            <FormField id="dest-country" label="Country">
+              <TextInput
+                id="dest-country"
+                type="text"
+                value={destinationForm.country}
+                onChange={(event) => updateDestinationField("country", event.target.value)}
+                disabled={savingDestination}
+              />
+            </FormField>
+          </div>
+
+          <FormField id="dest-image-alt" label="Image alt text">
+            <TextInput
+              id="dest-image-alt"
+              type="text"
+              value={destinationForm.imageAlt}
+              onChange={(event) => updateDestinationField("imageAlt", event.target.value)}
+              disabled={savingDestination}
+            />
+          </FormField>
+
+          <div className="admin-trip-edit__image">
+            {pendingDestImagePreview ? (
+              <img
+                src={pendingDestImagePreview}
+                alt={destinationForm.imageAlt || "Selected destination image preview"}
+                className="admin-trip-edit__image-preview"
+              />
+            ) : destinationForm.imageUrl ? (
+              <img
+                src={getDestinationImageUrl(destinationForm.imageUrl)}
+                alt={destinationForm.imageAlt || "Current destination preview"}
+                className="admin-trip-edit__image-preview"
+              />
+            ) : null}
+            <FormField id="dest-image" label="Destination image filename">
+              <TextInput
+                id="dest-image"
+                type="text"
+                value={destinationForm.imageUrl}
+                onChange={(event) => updateDestinationField("imageUrl", event.target.value)}
+                disabled={savingDestination}
+              />
+            </FormField>
+            <div className="admin-trip-edit__file-row">
+              <label className="admin-trip-edit__file">
+                <span className="btn btn--ghost">
+                  {convertingDestImage
+                    ? "Converting..."
+                    : pendingDestImage
+                      ? "Choose a different image"
+                      : "Choose image"}
+                </span>
+                <input
+                  ref={destFileRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleDestinationImagePick}
+                  disabled={savingDestination || convertingDestImage}
+                  hidden
+                />
+              </label>
+              {pendingDestImage ? (
+                <>
+                  <span className="admin-trip-edit__file-name">
+                    Ready to upload as {destinationForm.imageUrl || pendingDestImageName} ({Math.round(pendingDestImage.size / 1024)} KB)
+                  </span>
+                  <button
+                    type="button"
+                    className="btn btn--ghost"
+                    onClick={clearPendingDestImage}
+                    disabled={savingDestination}
+                  >
+                    Clear
+                  </button>
+                </>
+              ) : null}
+            </div>
+          </div>
+
+          {destinationError ? (
+            <p className="profile__message profile__message--error" role="alert">
+              {destinationError}
+            </p>
+          ) : null}
+          {destinationSuccess ? (
+            <p className="profile__message profile__message--success">{destinationSuccess}</p>
+          ) : null}
+
+          <div className="admin-trip-edit__actions">
+            <button type="submit" className="btn" disabled={savingDestination || trip.destinationId == null}>
+              {savingDestination
+                ? pendingDestImage
+                  ? "Uploading & saving..."
+                  : "Saving..."
+                : "Save destination"}
+            </button>
+          </div>
+        </section>
+      </form>
+
+      <section className="admin-trip-edit__group" aria-label="Flight options">
+        <div className="admin-trip-edit__group-header">
+          <h2 className="admin-trip-edit__group-title">Flight options</h2>
+          <button
+            type="button"
+            className="btn btn--ghost"
+            onClick={() => setShowNewFlight((prev) => !prev)}
+          >
+            {showNewFlight ? "Cancel new flight" : "Add flight option"}
+          </button>
+        </div>
+
+        {flightLoadError ? (
+          <p className="profile__message profile__message--error" role="alert">
+            {flightLoadError}
+          </p>
+        ) : null}
+
+        {!flightLoadError && flightOptions.length === 0 && !showNewFlight ? (
+          <p>No flight options yet.</p>
+        ) : null}
+
+        {flightOptions.map((option) => (
+          <FlightOptionCard
+            key={option.id}
+            option={option}
+            busy={flightBusyId === option.id}
+            onSave={(input) => handleSaveFlight(option.id, input)}
+            onDelete={() => handleDeleteFlight(option.id)}
+            onFlightUpdated={(flight) =>
+              setFlightOptions((prev) =>
+                prev.map((opt) =>
+                  opt.flightId === flight.id
+                    ? {
+                        ...opt,
+                        airline: flight.airline,
+                        departureCity: flight.departureCity,
+                        destinationCity: flight.destinationCity,
+                        departureAirport: flight.departureAirport,
+                        destinationAirport: flight.destinationAirport,
+                        flightDuration: flight.flightDuration,
+                      }
+                    : opt,
+                ),
+              )
+            }
+          />
+        ))}
+
+        {showNewFlight ? (
+          <AddFlightOption
+            busy={flightBusyId === "new"}
+            onCreate={(input) => handleSaveFlight("new", input)}
+            onCancel={() => setShowNewFlight(false)}
+          />
+        ) : null}
+      </section>
+
+      <section className="admin-trip-edit__group" aria-label="Hotel options">
+        <div className="admin-trip-edit__group-header">
+          <h2 className="admin-trip-edit__group-title">Hotel options</h2>
+          <button
+            type="button"
+            className="btn btn--ghost"
+            onClick={() => setShowNewHotel((prev) => !prev)}
+          >
+            {showNewHotel ? "Cancel new hotel" : "Add hotel option"}
+          </button>
+        </div>
+
+        {hotelLoadError ? (
+          <p className="profile__message profile__message--error" role="alert">
+            {hotelLoadError}
+          </p>
+        ) : null}
+
+        {!hotelLoadError && hotelOptions.length === 0 && !showNewHotel ? (
+          <p>No hotel options yet.</p>
+        ) : null}
+
+        {hotelOptions.map((option) => (
+          <HotelOptionCard
+            key={option.id}
+            option={option}
+            busy={hotelBusyId === option.id}
+            onSave={(input) => handleSaveHotel(option.id, input)}
+            onDelete={() => handleDeleteHotel(option.id)}
+            onAccommodationUpdated={(acc) =>
+              setHotelOptions((prev) =>
+                prev.map((opt) =>
+                  opt.accommodationId === acc.id
+                    ? {
+                        ...opt,
+                        hotelName: acc.hotelName,
+                        hotelType: acc.hotelType,
+                        hotelCity: acc.hotelCity,
+                        hotelLocation: acc.hotelLocation,
+                        amenities: acc.amenities,
+                        nights: acc.nights,
+                        latitude: acc.latitude,
+                        longitude: acc.longitude,
+                      }
+                    : opt,
+                ),
+              )
+            }
+          />
+        ))}
+
+        {showNewHotel ? (
+          <AddHotelOption
+            busy={hotelBusyId === "new"}
+            onCreate={(input) => handleSaveHotel("new", input)}
+            onCancel={() => setShowNewHotel(false)}
+          />
+        ) : null}
+      </section>
     </main>
   );
 }

@@ -49,6 +49,104 @@
   gap: var(--space-sm);
 }
 
+.admin-trip-edit__group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.admin-trip-edit__image {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.admin-trip-edit__image-preview {
+  max-width: 240px;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border, #d6dee5);
+}
+
+.admin-trip-edit__file {
+  display: inline-flex;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.admin-trip-edit__file-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.admin-trip-edit__file-name {
+  font-size: 0.9rem;
+  color: var(--color-text-muted, #4b5563);
+}
+
+.admin-trip-edit__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-trip-edit__table th,
+.admin-trip-edit__table td {
+  text-align: left;
+  padding: var(--space-sm, 0.5rem) var(--space-md, 1rem);
+  border-bottom: 1px solid var(--color-border, #d6dee5);
+}
+
+.admin-trip-edit__row-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.admin-trip-edit__option-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border: 1px solid var(--color-border, #d6dee5);
+  border-radius: var(--radius-md, 8px);
+  padding: var(--space-md, 1rem);
+  background: var(--color-surface, #fff);
+}
+
+.admin-trip-edit__option-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.admin-trip-edit__option-title {
+  font-weight: 600;
+}
+
+.admin-trip-edit__option-meta {
+  color: var(--color-text-muted, #4b5563);
+  font-size: 0.9rem;
+}
+
+.admin-trip-edit__option-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.admin-trip-edit__option-expand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
 @media (min-width: 48rem) {
   .admin-trip-edit__row--two {
     grid-template-columns: 1fr 1fr;
