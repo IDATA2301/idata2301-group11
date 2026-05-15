@@ -7,6 +7,17 @@ import TextInput from "../components/forms/TextInput";
 function Contact() {
   return (
     <main className="contact">
+      <div className="contact__hero-bg" aria-hidden="true" />
+      <section className="contact__hero" aria-labelledby="contact-hero-title">
+        <span className="contact__eyebrow">Need a hand?</span>
+        <h1 id="contact-hero-title" className="contact__hero-title">
+          Let’s make your next trip a little easier
+        </h1>
+        <p className="contact__hero-subtitle">
+          Send us a message, and we’ll help sort out the details without the travel-planning drama.
+        </p>
+      </section>
+
       <div className="contact__grid">
         <section className="contact__form-card">
           {/* Header Section */}
