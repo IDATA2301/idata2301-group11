@@ -1,6 +1,6 @@
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./TripPayment.module.css";
 import { useAuth } from "../../context/useAuth";
 import { apiFetch } from "../../services/apiFetch";
