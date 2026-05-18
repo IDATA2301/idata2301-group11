@@ -24,6 +24,7 @@ export default function TripPayment({ selectedFlight, selectedHotel, tripId }: T
   const { authUser } = useAuth();
 
   const isReadyForPayment = selectedFlight !== null && selectedHotel !== null;
+  const isLoggedIn = !!authUser;
 
   const handlePayment = async () => {
     setShowCheckmark(true);
@@ -62,18 +63,21 @@ export default function TripPayment({ selectedFlight, selectedHotel, tripId }: T
     <section className={styles.paymentSection}>
       {isReadyForPayment && (
         <>
-          {showCheckmark && (
-            <div className={styles.statusWrap}>
-              <CheckBadgeIcon className={styles.checkmark} aria-hidden="true" />
-              <p className={styles.pendingText}>Payment pending...</p>
-            </div>
-          )}
-          {!showCheckmark && (
-            <button className={styles.btn} onClick={handlePayment}>
-              Proceed to Payment
-            </button>
-          )}
-        </>
+          {!isLoggedIn ? (
+            <Link to="/login" className={styles.btn}>
+               Log in to continue
+            </Link>
+        ) : showCheckmark ? (
+          <div className={styles.statusWrap}>
+            <CheckBadgeIcon className={styles.checkmark} aria-hidden="true" />
+            <p className={styles.pendingText}>Payment pending...</p>
+          </div>
+        ) : (
+          <button className={styles.btn} onClick={handlePayment}>
+            Proceed to Payment
+          </button>
+        )}
+      </>
       )}
     </section>
   );
