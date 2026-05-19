@@ -37,7 +37,7 @@ export async function apiFetch(input: string, init: RequestInit = {}): Promise<R
 
   const response = await fetch(buildUrl(input), { ...init, headers });
 
-  if (response.status === 401 || response.status === 403) {
+  if (response.status === 401) {
     localStorage.removeItem("authUser");
     if (typeof window !== "undefined" && !window.location.pathname.startsWith("/login")) {
       alert("Session expired. Please log in again.");
@@ -45,6 +45,10 @@ export async function apiFetch(input: string, init: RequestInit = {}): Promise<R
     }
 
     throw new Error("Unauthorized. Please log in again.");
+  }
+
+  if (response.status === 403) {
+    throw new Error("You don't have permission to access this resource.");
   }
 
   return response;
