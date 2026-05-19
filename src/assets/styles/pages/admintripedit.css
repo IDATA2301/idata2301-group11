@@ -57,6 +57,48 @@
   flex-wrap: wrap;
 }
 
+.admin-trip-edit__toggle {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+.admin-trip-edit__toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.admin-trip-edit__slider {
+  position: absolute;
+  inset: 0;
+  background-color: #ccc;
+  border-radius: 999px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.admin-trip-edit__slider::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.admin-trip-edit__toggle input:checked + .admin-trip-edit__slider {
+  background-color: #22c55e;
+}
+
+.admin-trip-edit__toggle input:checked + .admin-trip-edit__slider::before {
+  transform: translateX(24px);
+}
+
 .admin-trip-edit__image {
   display: flex;
   flex-direction: column;

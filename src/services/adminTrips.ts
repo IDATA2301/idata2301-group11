@@ -24,6 +24,7 @@ export type AdminTripDetails = {
   nights: number;
   latitude: number;
   longitude: number;
+  active: boolean;
 };
 
 export type FlightOption = {
@@ -82,7 +83,7 @@ export type DestinationDetails = {
 };
 
 export async function fetchAdminTrips(): Promise<TripCard[]> {
-  const response = await apiFetch(`/trips/search`);
+  const response = await apiFetch(`/admin/trips`);
   if (!response.ok) {
     throw new Error(`Failed to load trips (HTTP ${response.status})`);
   }
