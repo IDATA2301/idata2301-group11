@@ -24,6 +24,7 @@ type HomeTrip = {
 function Home() {
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [trips, setTrips] = useState<HomeTrip[]>([]);
+  const [destinationPrices, setDestinationPrices] = useState<Record<number, number>>({});
 
   useEffect(() => {
     fetchDestinations()
@@ -33,6 +34,54 @@ function Home() {
       })
       .catch((err) => console.error("Error fetching destinations:", err));
   }, []);
+
+  useEffect(() => {
+    if (destinations.length === 0) {
+      setDestinationPrices({});
+      return;
+    }
+
+    let cancelled = false;
+
+    Promise.all(
+      destinations.map(async (destination) => {
+        try {
+          const response = await apiFetch(`/trips/search?destinationId=${destination.id}`);
+          if (!response.ok) {
+            return [destination.id, undefined] as const;
+          }
+
+          const data: HomeTrip[] = await response.json();
+          const cheapestPrice = data.reduce<number | undefined>((currentLowest, trip) => {
+            if (currentLowest == null || trip.lowestPrice < currentLowest) {
+              return trip.lowestPrice;
+            }
+            return currentLowest;
+          }, undefined);
+
+          return [destination.id, cheapestPrice] as const;
+        } catch (err) {
+          console.error(`Error fetching price for destination ${destination.id}:`, err);
+          return [destination.id, undefined] as const;
+        }
+      }),
+    ).then((entries) => {
+      if (cancelled) return;
+
+      const nextPrices: Record<number, number> = {};
+      for (const [destinationId, price] of entries) {
+        if (price != null) {
+          nextPrices[destinationId] = price;
+        }
+      }
+
+      setDestinationPrices(nextPrices);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [destinations]);
 
 
   useEffect(() => {
@@ -82,6 +131,7 @@ function Home() {
               destination={dest.city}
               image={getDestinationImageUrl(dest.image_url)}
               image_alt={dest.image_alt ?? `${dest.city}, ${dest.country}`}
+              lowestPrice={destinationPrices[dest.id]}
             />
           ))}
         </div>

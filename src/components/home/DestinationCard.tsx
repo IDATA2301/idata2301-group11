@@ -5,14 +5,16 @@ type DestinationCardProps = {
   destination: string;
   image: string;
   image_alt: string;
+  lowestPrice?: number;
 };
 
-export default function DestinationCard({ destination, image, image_alt }: DestinationCardProps) {
+export default function DestinationCard({ destination, image, image_alt, lowestPrice }: DestinationCardProps) {
   const to = `/trips?q=${encodeURIComponent(destination)}`;
+  const priceLabel = lowestPrice != null ? `From $${lowestPrice.toLocaleString()}` : "";
 
   return (
     <Link to={to} className={styles.destinationCard}>
-      <span className={styles.priceBadge}>$899</span>
+      {priceLabel && <span className={styles.priceBadge}>{priceLabel}</span>}
       <img src={image} alt={image_alt} className={styles.destinationImage} />
       <p className={styles.destinationName}>{destination}</p>
     </Link>
