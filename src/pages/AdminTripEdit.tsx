@@ -30,6 +30,7 @@ import {
 } from "../services/adminTrips";
 import { getDestinationImageUrl, getTripImageUrl } from "../utils/imageUrls";
 import { camelize, convertImageToWebp } from "../utils/imageConvert";
+import { apiFetch } from "../services/apiFetch";
 
 type EditableTripFields = {
   title: string;
@@ -38,6 +39,7 @@ type EditableTripFields = {
   startDate: string;
   endDate: string;
   keywords: string;
+  active: boolean;
 };
 
 type EditableDestinationFields = {
@@ -63,6 +65,7 @@ function toTripFields(trip: AdminTripDetails): EditableTripFields {
     startDate: toDateInputValue(trip.startDate),
     endDate: toDateInputValue(trip.endDate),
     keywords: trip.keywords?.join(", ") ?? "",
+    active: trip.active,
   };
 }
 
@@ -217,6 +220,32 @@ export default function AdminTripEdit() {
     if (basicsError) setBasicsError(null);
     if (basicsSuccess) setBasicsSuccess(null);
   }
+
+  async function handleToggleEvent() {
+  try {
+    const response = await apiFetch(
+      `/admin/trips/${tripId}/toggle`,
+      {
+        method: "PATCH",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to toggle trip visibility");
+    }
+
+    setTripForm((prev) =>
+      prev
+        ? {
+          ...prev,
+          active: !prev.active,
+        }
+      : prev
+    );
+  } catch (err) {
+    console.error(err);
+  }
+}
 
   function updateDestinationField<K extends keyof EditableDestinationFields>(
     key: K,
@@ -478,6 +507,17 @@ export default function AdminTripEdit() {
       <form className="admin-trip-edit__form" onSubmit={handleBasicsSubmit}>
         <section className="admin-trip-edit__group" aria-label="Trip basics">
           <h2 className="admin-trip-edit__group-title">Basics</h2>
+
+          <FormField id="trip-active" label="Visible to users">
+            <label className="admin-trip-edit__toggle">
+              <input 
+                type="checkbox"
+                checked={tripForm.active}
+                onChange={handleToggleEvent}
+              />
+              <span className="admin-trip-edit__slider" /></span>
+            </label>
+          </FormField>
 
           <FormField id="trip-title" label="Title">
             <TextInput
