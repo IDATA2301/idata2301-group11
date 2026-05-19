@@ -36,6 +36,11 @@ interface Order {
   order_date: string
 }
 
+function formatDate(dateString: string): string {
+  if (!dateString) return ""
+  return dateString.includes("T") ? dateString.split("T")[0] : dateString
+}
+
 const PurchasedTrips: React.FC = () => {
   const { authUser } = useAuth()
   const [purchases, setPurchases] = useState<Order[]>([])
@@ -83,7 +88,7 @@ const PurchasedTrips: React.FC = () => {
                     <h2 className={styles.tripTitle}>{order.trip.title}</h2>
                     <span className={styles.price}>$ {order.total_price}</span>
                   </div>
-                  <p className={styles.meta}>{order.trip.start_date} — {order.flight.airline} / {order.accommodation.hotel_name}</p>
+                  <p className={styles.meta}>{formatDate(order.trip.start_date)} — {order.flight.airline} / {order.accommodation.hotel_name}</p>
                 </div>
               </Link>
             </li>
