@@ -515,7 +515,7 @@ export default function AdminTripEdit() {
                 checked={tripForm.active}
                 onChange={handleToggleEvent}
               />
-              <span className="admin-trip-edit__slider" /></span>
+              <span className="admin-trip-edit__slider" />
             </label>
           </FormField>
 
