@@ -137,6 +137,20 @@ export type UpdateAdminTripRequest = {
   keywords?: string[];
 };
 
+export async function deleteAdminTrip(id: number): Promise<void> {
+  const response = await apiFetch(`/admin/trips/${id}`, { method: "DELETE" });
+  if (!response.ok && response.status !== 204) {
+    let message = `Failed to delete trip (HTTP ${response.status})`;
+    try {
+      const data = await response.json();
+      if (data?.message) message = data.message;
+    } catch {
+      // ignore
+    }
+    throw new Error(message);
+  }
+}
+
 export async function updateAdminTrip(
   id: number,
   payload: UpdateAdminTripRequest,

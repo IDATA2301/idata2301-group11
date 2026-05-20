@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "../assets/styles/pages/admintripedit.css";
 import AddFlightOption from "../components/admin/AddFlightOption";
 import AddHotelOption from "../components/admin/AddHotelOption";
@@ -12,6 +12,7 @@ import SectionHeader from "../components/ui/SectionHeader";
 import {
   createFlightOption,
   createHotelOption,
+  deleteAdminTrip,
   deleteFlightOption,
   deleteHotelOption,
   fetchAdminTripDetails,
@@ -81,6 +82,7 @@ function toDestinationFields(trip: AdminTripDetails): EditableDestinationFields 
 export default function AdminTripEdit() {
   const { id } = useParams();
   const tripId = Number(id);
+  const navigate = useNavigate();
 
   const [trip, setTrip] = useState<AdminTripDetails | null>(null);
   const [tripForm, setTripForm] = useState<EditableTripFields | null>(null);
@@ -492,14 +494,29 @@ export default function AdminTripEdit() {
     }
   }
 
+  async function handleDeleteTrip() {
+    if (!window.confirm(`Delete "${trip.title}"? This cannot be undone.`)) return;
+    try {
+      await deleteAdminTrip(tripId);
+      navigate("/admin/trips");
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to delete trip.");
+    }
+  }
+
   return (
     <main className="admin-trip-edit">
       <SectionHeader
         title="Edit Trip"
         action={
-          <Link to="/admin/trips" className="btn btn--ghost">
-            Back to trips
-          </Link>
+          <div style={{ display: "flex", gap: "var(--space-sm)" }}>
+            <button type="button" className="btn btn--danger" onClick={handleDeleteTrip}>
+              Delete trip
+            </button>
+            <Link to="/admin/trips" className="btn btn--ghost">
+              Back to trips
+            </Link>
+          </div>
         }
         className="admin-trip-edit__header"
       />
