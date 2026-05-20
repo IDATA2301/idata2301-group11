@@ -28,7 +28,7 @@ function snippet(text: string, max = 90): string {
   return text.length > max ? text.slice(0, max).trimEnd() + "…" : text;
 }
 
-/** Admin inbox for contact form submissions. */
+/** Admin page for viewing and deleting contact form submissions. */
 export default function AdminMessages() {
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -77,26 +77,44 @@ export default function AdminMessages() {
       ) : messages.length === 0 ? (
         <p>No messages yet.</p>
       ) : (
-        <ul className="msg-list" role="list">
-          {messages.map((msg) => (
-            <li
-              key={msg.id}
-              className="msg-list__item"
-              role="button"
-              tabIndex={0}
-              onClick={() => setSelected(msg)}
-              onKeyDown={(e) => e.key === "Enter" && setSelected(msg)}
-            >
-              <div className="msg-list__from">{msg.senderEmail}</div>
-              <div className="msg-list__middle">
-                <span className="msg-list__subject">{msg.contactmessage_subject}</span>
-                <span className="msg-list__sep" aria-hidden>—</span>
-                <span className="msg-list__snippet">{snippet(msg.contactmessage_message)}</span>
-              </div>
-              <div className="msg-list__date">{formatDate(msg.created_at)}</div>
-            </li>
-          ))}
-        </ul>
+        <table className="admin-trip-edit__table">
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>Subject</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th aria-label="Actions"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {messages.map((msg) => (
+              <tr key={msg.id}>
+                <td>{msg.senderEmail}</td>
+                <td>{msg.contactmessage_subject}</td>
+                <td>{snippet(msg.contactmessage_message)}</td>
+                <td>{formatDate(msg.created_at)}</td>
+                <td className="admin-trip-edit__row-actions">
+                  <button
+                    type="button"
+                    className="btn btn--ghost"
+                    onClick={() => setSelected(msg)}
+                  >
+                    View
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn--danger"
+                    onClick={() => handleDelete(msg)}
+                    disabled={busyId === msg.id}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
 
       <Modal
@@ -104,20 +122,6 @@ export default function AdminMessages() {
         title={selected?.contactmessage_subject ?? "Message"}
         onClose={() => setSelected(null)}
         size="lg"
-        footer={
-          selected ? (
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <button
-                type="button"
-                className="btn btn--danger"
-                onClick={() => handleDelete(selected)}
-                disabled={busyId === selected.id}
-              >
-                Delete
-              </button>
-            </div>
-          ) : null
-        }
       >
         {selected && (
           <div className="msg-detail">
