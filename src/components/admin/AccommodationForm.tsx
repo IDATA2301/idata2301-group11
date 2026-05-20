@@ -4,6 +4,7 @@ import TextInput from "../forms/TextInput";
 import type { Accommodation, AccommodationInput } from "../../services/accommodations";
 import styles from "./TripOptionEditor.module.css";
 
+/** Props for the accommodation form editor. */
 type Props = {
   initial?: Accommodation;
   busy?: boolean;
@@ -13,6 +14,7 @@ type Props = {
   warning?: string;
 };
 
+/** Form state representation with all fields as strings for input handling. */
 type Form = {
   hotelName: string;
   hotelType: string;
@@ -24,6 +26,7 @@ type Form = {
   longitude: string;
 };
 
+/** Convert an Accommodation object to form state, or return empty form if undefined. */
 function toForm(acc: Accommodation | undefined): Form {
   return {
     hotelName: acc?.hotelName ?? "",
@@ -37,6 +40,7 @@ function toForm(acc: Accommodation | undefined): Form {
   };
 }
 
+/** Form component for creating or editing accommodation/hotel details. Handles validation and submission. */
 export default function AccommodationForm({
   initial,
   busy,

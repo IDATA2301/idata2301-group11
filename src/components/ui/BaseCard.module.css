@@ -1,3 +1,7 @@
+/* ====================================
+  Base Card Component Styles
+  =============================== */
+
 .baseCard {
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);

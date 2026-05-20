@@ -7,6 +7,9 @@ import { useAuth } from "../context/useAuth"
 import FormField from "../components/forms/FormField"
 import IconInput from "../components/forms/IconInput"
 
+/**
+ * Renders the sign-in page.
+ */
 export default function LoginPage() {
   const navigate = useNavigate()
   const { signIn } = useAuth()

@@ -9,6 +9,7 @@ import { getTripImageUrl } from "../../utils/imageUrls";
 const LIVE_RESULTS_LIMIT = 5;
 const DEBOUNCE_MS = 250;
 
+/** Search form values shared by home hero and trips page search. */
 export type SearchFormValues = {
   q: string;
   minPrice: string;
@@ -24,6 +25,7 @@ type Props = {
   submitLabel?: string;
 };
 
+/** Trip search form with live results, filters, and destination select. */
 export default function TripSearchForm({
   initialValues = {},
   onSubmit,

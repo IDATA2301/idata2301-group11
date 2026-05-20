@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import styles from "./Modal.module.css";
 
+/** Props for the shared modal dialog. */
 type Props = {
   open: boolean;
   title: string;
@@ -10,6 +11,7 @@ type Props = {
   size?: "sm" | "md" | "lg";
 };
 
+/** Accessible modal dialog with backdrop, escape handling, and scroll lock. */
 export default function Modal({ open, title, onClose, children, footer, size = "md" }: Props) {
   useEffect(() => {
     if (!open) return;

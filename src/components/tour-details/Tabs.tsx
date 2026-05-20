@@ -1,10 +1,12 @@
 import styles from "./Tabs.module.css";
 
+/** Props for the mobile tabs selector on the tour details page. */
 type TabsProps = {
   activeTab: string;
   onTabChange: (tab: string) => void;
 };
 
+/** Mobile-only tabs control for switching tour sections. */
 export default function Tabs({ activeTab, onTabChange }: TabsProps) {
   return (
     <section className={styles.tabs}>

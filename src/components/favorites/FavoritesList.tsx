@@ -2,14 +2,17 @@ import FavoriteCard, { type FavoriteItem } from "./FavoriteCard";
 import styles from "./FavoritesList.module.css";
 import { getTripImageUrl } from "../../utils/imageUrls";
 
+/** Props for the favorites list wrapper. */
 type FavoritesListProps = {
   favorites: unknown[];
 };
 
+/** Safely coerce a string-like value into a trimmed string. */
 function asString(value: unknown): string {
   return typeof value === "string" && value.trim() ? value.trim() : "";
 }
 
+/** Safely coerce a number-like value into a finite number. */
 function asNumber(value: unknown): number | null {
   if (typeof value === "number" && Number.isFinite(value)) return value;
   if (typeof value === "string" && value.trim()) {
@@ -19,6 +22,7 @@ function asNumber(value: unknown): number | null {
   return null;
 }
 
+/** Normalize an arbitrary favorite payload into the UI card shape. */
 function normalizeFavorite(favorite: unknown, index: number): FavoriteItem | null {
   if (!favorite || typeof favorite !== "object") {
     return null;
@@ -53,6 +57,7 @@ function normalizeFavorite(favorite: unknown, index: number): FavoriteItem | nul
   return { id, title, subtitle, meta, priceLabel, imageUrl };
 }
 
+/** Render the favorites list using normalized card items. */
 export default function FavoritesList({ favorites }: FavoritesListProps) {
   const favoriteItems = favorites
     .map((favorite, index) => normalizeFavorite(favorite, index))

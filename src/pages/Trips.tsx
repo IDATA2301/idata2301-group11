@@ -5,7 +5,9 @@ import TripCard from "../components/home/TripCard";
 import TripSearchForm from "../components/home/TripSearchForm";
 import { apiFetch } from "../services/apiFetch";
 
-
+/**
+ * Renders the trips listing page with search filters.
+ */
 export default function Trips() {
 
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,5 +1,8 @@
 import { apiFetch } from "./apiFetch";
 
+/**
+ * Provides admin destination API helpers.
+ */
 export type AdminDestination = {
   id: number;
   city: string;

@@ -1,5 +1,8 @@
 import { apiFetch } from "./apiFetch";
 
+/**
+ * Provides public destination API helpers.
+ */
 export type Destination = {
   id: number;
   city: string;

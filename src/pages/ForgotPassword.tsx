@@ -6,6 +6,9 @@ import FormField from "../components/forms/FormField";
 import IconInput from "../components/forms/IconInput";
 import { requestPasswordReset } from "../services/auth";
 
+/**
+ * Renders the password reset request form.
+ */
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");

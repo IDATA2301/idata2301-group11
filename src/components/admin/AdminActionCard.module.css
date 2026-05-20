@@ -1,3 +1,11 @@
+/* ====================================
+  Admin Action Card Component Styles
+  =============================== */
+
+/* ====================================
+  Card Container
+  =============================== */
+
 .card {
   padding: var(--space-lg);
   display: flex;
@@ -10,11 +18,19 @@
   margin: 0;
 }
 
+/* ====================================
+  Card Content
+  =============================== */
+
 .title {
   font-size: 1.25rem;
   line-height: 1.3;
   word-break: break-word;
 }
+
+/* ====================================
+  Action Button
+  =============================== */
 
 .action {
   margin-top: auto;

@@ -1,3 +1,11 @@
+/* ====================================
+  Destination Card Component Styles
+  =============================== */
+
+/* ====================================
+  Card Layout
+  =============================== */
+
 .destinationCard {
   position: relative;
   flex: 0 0 clamp(17rem, 32vw, 22rem);
@@ -21,6 +29,10 @@
 .destinationCard:hover::after {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0) 70%);
 }
+
+/* ====================================
+  Card Text + Media
+  =============================== */
 
 .destinationName {
   position: absolute;

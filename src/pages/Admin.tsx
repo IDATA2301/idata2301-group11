@@ -2,6 +2,7 @@ import "../assets/styles/pages/admin.css";
 import AdminActionCard from "../components/admin/AdminActionCard";
 import SectionHeader from "../components/ui/SectionHeader";
 
+/** Admin dashboard landing page with quick links to management areas. */
 export default function Admin() {
   return (
     <main className="admin-dashboard">

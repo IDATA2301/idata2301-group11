@@ -1,5 +1,13 @@
 @import "../../assets/styles/components/button.css";
 
+/* ====================================
+  Trip Payment Component Styles
+  =============================== */
+
+/* ====================================
+  Payment Status
+  =============================== */
+
 .checkmark {
   width: 60px;
   height: 60px;
@@ -39,6 +47,10 @@
   padding: var(--space-lg);
   gap: var(--space-md);
 }
+
+/* ====================================
+  Action Button
+  =============================== */
 
 .btn {
   min-width: 200px;

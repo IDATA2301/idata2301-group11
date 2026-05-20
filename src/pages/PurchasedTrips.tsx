@@ -41,6 +41,9 @@ function formatDate(dateString: string): string {
   return dateString.includes("T") ? dateString.split("T")[0] : dateString
 }
 
+/**
+ * Renders the user's purchased trips overview.
+ */
 const PurchasedTrips: React.FC = () => {
   const { authUser } = useAuth()
   const [purchases, setPurchases] = useState<Order[]>([])

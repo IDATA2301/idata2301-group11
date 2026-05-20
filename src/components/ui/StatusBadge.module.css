@@ -1,3 +1,11 @@
+/* ====================================
+  Status Badge Component Styles
+  =============================== */
+
+/* ====================================
+  Badge Base
+  =============================== */
+
 .badge {
   display: inline-block;
   padding: var(--space-2xs) var(--space-sm);

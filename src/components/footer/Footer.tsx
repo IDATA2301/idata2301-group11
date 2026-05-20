@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 
+/** Site footer with branding, quick links, contact details, and disclaimer text. */
 export default function Footer() {
   const year = new Date().getFullYear();
 

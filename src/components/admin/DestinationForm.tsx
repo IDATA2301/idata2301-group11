@@ -7,6 +7,7 @@ import { camelize, convertImageToWebp } from "../../utils/imageConvert";
 import { getDestinationImageUrl } from "../../utils/imageUrls";
 import styles from "./TripOptionEditor.module.css";
 
+/** Props for the destination editor form. */
 type Props = {
   initial?: AdminDestination;
   busy?: boolean;
@@ -22,6 +23,7 @@ type Form = {
   imageAlt: string;
 };
 
+/** Convert destination data into editable form state. */
 function toForm(destination: AdminDestination | undefined): Form {
   return {
     city: destination?.city ?? "",
@@ -31,6 +33,7 @@ function toForm(destination: AdminDestination | undefined): Form {
   };
 }
 
+/** Form for creating or editing destination details and images. */
 export default function DestinationForm({
   initial,
   busy,

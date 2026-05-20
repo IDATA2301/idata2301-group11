@@ -4,6 +4,7 @@ import TextInput from "../forms/TextInput";
 import type { Flight, FlightInput } from "../../services/flights";
 import styles from "./TripOptionEditor.module.css";
 
+/** Props for the flight editor form. */
 type Props = {
   initial?: Flight;
   busy?: boolean;
@@ -22,6 +23,7 @@ type Form = {
   flightDuration: string;
 };
 
+/** Convert flight data into editable form state. */
 function toForm(flight: Flight | undefined): Form {
   return {
     airline: flight?.airline ?? "",
@@ -33,6 +35,7 @@ function toForm(flight: Flight | undefined): Form {
   };
 }
 
+/** Form for creating or editing flight details. */
 export default function FlightForm({
   initial,
   busy,

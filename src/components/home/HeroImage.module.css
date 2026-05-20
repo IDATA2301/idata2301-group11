@@ -1,3 +1,7 @@
+/* ====================================
+  Hero Image Component Styles
+  =============================== */
+
 .heroImage {
   position: absolute;
   top: calc(-1 * (var(--size-header) + var(--space-6xl)));

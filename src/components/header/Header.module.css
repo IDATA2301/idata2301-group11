@@ -1,3 +1,11 @@
+/* ====================================
+  Header Component Styles
+  =============================== */
+
+/* ====================================
+  Shell Layout
+  =============================== */
+
 .siteHeader {
   position: fixed;
   top: 0;
@@ -28,6 +36,10 @@
   justify-content: space-between;
   width: 100%;
 }
+
+/* ====================================
+  Logo + Toggle
+  =============================== */
 
 .logo {
   display: inline-flex;
@@ -79,6 +91,10 @@
 .toggle:hover > .toggleLine {
   background-color: var(--color-secondary);
 }
+
+/* ====================================
+  Navigation Drawer
+  =============================== */
 
 .toggleLineOpen:nth-child(1) {
   transform: rotate(45deg) translate(0, 10px);
@@ -172,6 +188,10 @@
   text-align: left;
   cursor: pointer;
 }
+
+/* ====================================
+  Responsive
+  =============================== */
 
 @media (min-width: 64rem) {
   .nav {

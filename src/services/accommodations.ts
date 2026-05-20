@@ -1,5 +1,8 @@
 import { apiFetch } from "./apiFetch";
 
+/**
+ * Provides admin accommodation API helpers.
+ */
 export type Accommodation = {
   id: number;
   hotelName: string;

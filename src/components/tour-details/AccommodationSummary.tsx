@@ -1,6 +1,7 @@
 import { HomeIcon } from "@heroicons/react/24/solid";
 import styles from "./AccommodationSummary.module.css";
 
+/** Props for the accommodation summary section. */
 type AccommodationSummaryProps = {
   hotelName: string;
   hotelType: string;

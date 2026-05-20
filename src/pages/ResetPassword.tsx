@@ -6,6 +6,9 @@ import FormField from "../components/forms/FormField";
 import IconInput from "../components/forms/IconInput";
 import { resetPassword } from "../services/auth";
 
+/**
+ * Renders the password reset form for valid reset links.
+ */
 export default function ResetPassword() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

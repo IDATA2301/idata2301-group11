@@ -1,3 +1,11 @@
+/* ====================================
+  Hero Section Component Styles
+  =============================== */
+
+/* ====================================
+  Hero Layout
+  =============================== */
+
 .hero {
   min-height: var(--hero-height);
   padding-top: var(--space-6xl);
@@ -14,6 +22,10 @@
   color: var(--color-surface);
 
 }
+
+/* ====================================
+  Search Form
+  =============================== */
 
 .search {
   display: flex;

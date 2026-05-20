@@ -12,12 +12,14 @@ import {
 } from "../../services/flights";
 import styles from "./TripOptionEditor.module.css";
 
+/** Props for the add flight option form. */
 type Props = {
   busy?: boolean;
   onCreate: (input: FlightOptionInput) => Promise<void> | void;
   onCancel: () => void;
 };
 
+/** Form for adding a flight option to a trip, with embedded modal to create new flights on-the-fly. */
 export default function AddFlightOption({ busy, onCreate, onCancel }: Props) {
   const [flights, setFlights] = useState<Flight[]>([]);
   const [loadingFlights, setLoadingFlights] = useState(true);

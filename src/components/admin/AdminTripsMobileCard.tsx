@@ -1,6 +1,7 @@
 import BaseCard from "../ui/BaseCard";
 import styles from "./AdminTripsMobileCard.module.css";
 
+/** Props for the mobile-optimized admin trips list card. */
 type AdminTripsMobileCardProps = {
   title: string;
   city: string;
@@ -10,6 +11,7 @@ type AdminTripsMobileCardProps = {
   onClick: () => void;
 };
 
+/** Mobile-friendly clickable trip summary card for admin trips list. */
 export default function AdminTripsMobileCard({
   title,
   city,

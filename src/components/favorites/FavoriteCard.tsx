@@ -1,5 +1,6 @@
 import styles from "./FavoriteCard.module.css";
 
+/** Data model for a favorite card item. */
 export type FavoriteItem = {
   id: string;
   title: string;
@@ -13,6 +14,7 @@ type FavoriteCardProps = {
   item: FavoriteItem;
 };
 
+/** Presentational card for a saved/favorited trip item. */
 export default function FavoriteCard({ item }: FavoriteCardProps) {
   return (
     <article className={styles.card}>

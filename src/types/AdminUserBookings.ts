@@ -1,3 +1,6 @@
+/**
+ * Describes the admin bookings summary shape.
+ */
 export type AdminUserBookings = {
   id: string;
   title: string;

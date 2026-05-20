@@ -1,3 +1,11 @@
+/* ====================================
+  Service Card Component Styles
+  =============================== */
+
+/* ====================================
+  Card Container
+  =============================== */
+
 .card {
   display: flex;
   flex-direction: column;
@@ -16,6 +24,10 @@
   box-shadow: var(--shadow-md);
   border-color: var(--color-primary);
 }
+
+/* ====================================
+  Card Content
+  =============================== */
 
 .iconBadge {
   display: inline-flex;

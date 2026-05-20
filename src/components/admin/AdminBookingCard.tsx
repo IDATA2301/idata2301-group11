@@ -3,14 +3,17 @@ import BaseCard from "../ui/BaseCard";
 import StatusBadge from "../ui/StatusBadge";
 import styles from "./AdminBookingCard.module.css";
 
+/** Props for the admin booking card. */
 type AdminBookingCardProps = {
   booking: AdminUserBookings;
 };
 
+/** Format ISO date string to YYYY-MM-DD. */
 function formatDate(date: string) {
   return date.split("T")[0]; // Simple YYYY-MM-DD format
 }
 
+/** Card displaying a user booking summary for admin review. */
 export default function AdminBookingCard({ booking }: AdminBookingCardProps) {
   return (
     <BaseCard className={styles.card}>

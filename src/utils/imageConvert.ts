@@ -1,6 +1,9 @@
 const WEBP_QUALITY = 0.85;
 const MAX_DIMENSION = 2400;
 
+/**
+ * Converts uploaded images to optimized WebP blobs.
+ */
 export async function convertImageToWebp(file: File): Promise<Blob> {
   if (file.type === "image/webp") {
     return file;
@@ -31,6 +34,9 @@ export async function convertImageToWebp(file: File): Promise<Blob> {
   return blob;
 }
 
+/**
+ * Loads a bitmap using the fastest available browser path.
+ */
 async function loadBitmap(file: File): Promise<ImageBitmap | HTMLImageElement> {
   if (typeof createImageBitmap === "function") {
     try {
@@ -55,6 +61,9 @@ async function loadBitmap(file: File): Promise<ImageBitmap | HTMLImageElement> {
   });
 }
 
+/**
+ * Converts text into a URL-friendly slug.
+ */
 export function slugify(input: string): string {
   return input
     .normalize("NFKD")
@@ -64,6 +73,9 @@ export function slugify(input: string): string {
     .replace(/(^-|-$)+/g, "");
 }
 
+/**
+ * Converts a slug into camelCase.
+ */
 export function camelize(input: string): string {
   const parts = slugify(input).split("-").filter(Boolean);
   if (parts.length === 0) return "";

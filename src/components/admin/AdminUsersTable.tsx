@@ -1,6 +1,7 @@
 import BaseCard from "../ui/BaseCard";
 import styles from "./AdminUsersTable.module.css";
 
+/** Row data shown in the admin users table. */
 export type AdminUserRow = {
   id: number;
   user_name: string;
@@ -13,6 +14,7 @@ type AdminUsersTableProps = {
   onRowClick: (id: number) => void;
 };
 
+/** Desktop users table for the admin users overview. */
 export default function AdminUsersTable({ users, onRowClick }: AdminUsersTableProps) {
   return (
     <BaseCard as="section" className={styles.tableWrap} aria-label="Users table">

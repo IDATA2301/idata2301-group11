@@ -1,3 +1,11 @@
+/* ====================================
+  Modal Component Styles
+  =============================== */
+
+/* ====================================
+  Backdrop + Dialog
+  =============================== */
+
 .backdrop {
   position: fixed;
   inset: 0;
@@ -22,6 +30,10 @@
 .dialog--sm { max-width: 24rem; }
 .dialog--md { max-width: 40rem; }
 .dialog--lg { max-width: 60rem; }
+
+/* ====================================
+  Modal Chrome
+  =============================== */
 
 .header {
   display: flex;

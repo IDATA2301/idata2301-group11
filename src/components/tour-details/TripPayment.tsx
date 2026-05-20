@@ -5,6 +5,7 @@ import styles from "./TripPayment.module.css";
 import { useAuth } from "../../context/useAuth";
 import { apiFetch } from "../../services/apiFetch";
 
+/** Selected payment option shared between flight and hotel comparisons. */
 interface ComparisonOption {
   id: number;
   provider: string;
@@ -18,6 +19,7 @@ interface TripPaymentProps {
   tripId: number;
 }
 
+/** Payment call-to-action for booking the selected trip options. */
 export default function TripPayment({ selectedFlight, selectedHotel, tripId }: TripPaymentProps) {
   const [showCheckmark, setShowCheckmark] = useState(false);
   const navigate = useNavigate();

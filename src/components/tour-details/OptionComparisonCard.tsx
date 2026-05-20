@@ -1,5 +1,6 @@
 import styles from "./OptionComparisonCard.module.css";
 
+/** Props for the selectable option comparison card. */
 type OptionComparisonCardProps = {
   provider: string;
   price: number;

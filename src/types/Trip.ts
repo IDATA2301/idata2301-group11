@@ -1,3 +1,6 @@
+/**
+ * Shared trip card data used across listing views.
+ */
 export interface TripCard {
   id: number;
   imageUrl: string;

@@ -1,3 +1,11 @@
+/* ====================================
+  Page Layout Component Styles
+  =============================== */
+
+/* ====================================
+  Layout Shell
+  =============================== */
+
 .layoutShell {
   display: flex;
   flex-direction: column;

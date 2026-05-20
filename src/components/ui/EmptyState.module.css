@@ -1,3 +1,11 @@
+/* ====================================
+  Empty State Component Styles
+  =============================== */
+
+/* ====================================
+  Container
+  =============================== */
+
 .emptyState {
   text-align: center;
   padding: var(--space-2xl);
