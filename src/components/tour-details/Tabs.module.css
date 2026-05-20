@@ -1,20 +1,44 @@
-/* ====================================
-  Tabs Component Styles
-  =============================== */
-
 .tabs {
-  font-weight: 500;
-  background-color: var(--color-border-light);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: var(--space-sm) var(--space-lg);
-  display: flex;
-  gap: var(--space-6xl);
-  overflow-x: auto;
+display: flex;
+align-items: center;
+background-color: var(--color-border-light);
+border: 1px solid var(--color-border);
+border-radius: 12px;
+overflow: hidden;
+margin-block: var(--space-lg);
+}
+
+.tabs button {
+flex: 1;
+padding: var(--space-md) var(--space-lg);
+border: none;
+background: transparent;
+font-weight: 500;
+color: var(--color-text);
+cursor: pointer;
+transition:
+background-color 0.2s ease,
+color 0.2s ease;
+}
+
+.tabs button:not(:last-child) {
+border-right: 1px solid var(--color-border);
+}
+
+
+.active {
+background-color: white;
+color: var(--color-primary);
+font-weight: 600;
+}
+
+
+.tabs button:active {
+transform: scale(0.98);
 }
 
 @media (min-width: 48rem) {
-  .tabs {
-    display: none;
-  }
+.tabs {
+display: none;
+}
 }
