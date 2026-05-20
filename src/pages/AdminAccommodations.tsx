@@ -108,12 +108,12 @@ export default function AdminAccommodations() {
         title="Accommodations"
         action={
           <div className="admin-trip-edit__group-header">
-            <Link to="/admin" className="btn btn--ghost">
-              Back to admin
-            </Link>
             <button type="button" className="btn" onClick={() => setCreating(true)}>
               Add accommodation
             </button>
+            <Link to="/admin" className="btn btn--ghost">
+              Back to admin
+            </Link>
           </div>
         }
         className="admin-trip-edit__header"

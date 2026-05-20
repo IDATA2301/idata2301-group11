@@ -22,7 +22,7 @@ import AdminTripCreate from "./pages/AdminTripCreate";
 import AdminFlights from "./pages/AdminFlights";
 import AdminAccommodations from "./pages/AdminAccommodations";
 import AdminDestinations from "./pages/AdminDestinations";
-import AdminContactMessages from "./pages/AdminContactMessages";
+import AdminMessages from "./pages/AdminMessages";
 import Profile from "./pages/Profile";
 import PurchasedTrips from "./pages/PurchasedTrips";
 import PurchasedTripDetails from "./pages/PurchasedTripDetails";
@@ -66,7 +66,7 @@ function AppLayout() {
           <Route path="/admin/flights" element={<AdminFlights />} />
           <Route path="/admin/accommodations" element={<AdminAccommodations />} />
           <Route path="/admin/destinations" element={<AdminDestinations />} />
-          <Route path="/admin/contact" element={<AdminContactMessages />} />
+          <Route path="/admin/contact" element={<AdminMessages />} />
         </Route>
       </Routes>
     </PageLayout>

@@ -1,0 +1,141 @@
+@import "../components/button.css";
+
+/* ====================================
+  Admin Messages — Inbox List
+  =============================== */
+
+.msg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--color-border, #d6dee5);
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+}
+
+.msg-list__item {
+  display: grid;
+  grid-template-columns: 14rem 1fr auto;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border, #d6dee5);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.msg-list__item:last-child {
+  border-bottom: none;
+}
+
+.msg-list__item:hover,
+.msg-list__item:focus-visible {
+  background: var(--color-bg-subtle, #f4f8fb);
+  outline: none;
+}
+
+.msg-list__from {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.msg-list__middle {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.msg-list__subject {
+  font-weight: 500;
+  color: var(--color-text-heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+  max-width: 16rem;
+}
+
+.msg-list__sep {
+  color: var(--color-text-muted, #9ca3af);
+  flex-shrink: 0;
+}
+
+.msg-list__snippet {
+  color: var(--color-text-muted, #6b7280);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.msg-list__date {
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #6b7280);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ====================================
+  Message Detail (modal body)
+  =============================== */
+
+.msg-detail__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.msg-detail__row {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.msg-detail__label {
+  width: 4.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #6b7280);
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.msg-detail__value {
+  font-size: 0.925rem;
+  color: var(--color-text-heading);
+}
+
+.msg-detail__hr {
+  border: none;
+  border-top: 1px solid var(--color-border, #d6dee5);
+  margin: var(--space-md) 0;
+}
+
+.msg-detail__body {
+  font-size: 0.925rem;
+  line-height: 1.75;
+  color: var(--color-text, #374151);
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* ====================================
+  Responsive
+  =============================== */
+
+@media (max-width: 48rem) {
+  .msg-list__item {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: var(--space-xs, 0.25rem) var(--space-md);
+  }
+
+  .msg-list__middle {
+    grid-column: 1 / -1;
+  }
+}

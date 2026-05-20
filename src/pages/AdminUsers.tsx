@@ -1,13 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "../assets/styles/pages/adminusers.css";
-import AdminUsersMobileCard from "../components/admin/AdminUsersMobileCard";
-import AdminUsersTable from "../components/admin/AdminUsersTable";
+import "../assets/styles/pages/admintripedit.css";
 import SectionHeader from "../components/ui/SectionHeader";
-import type { AdminUserRow } from "../components/admin/AdminUsersTable";
 import { apiFetch } from "../services/apiFetch";
 
-/** Admin page for browsing users in mobile and table layouts. */
+type AdminUserRow = {
+  id: number;
+  user_name: string;
+  email: string;
+  user_role: string;
+};
+
+/** Admin page for browsing users. */
 export default function AdminUsers() {
   const navigate = useNavigate();
   const [users, setUsers] = useState<AdminUserRow[]>([]);
@@ -26,7 +30,7 @@ export default function AdminUsers() {
   }, []);
 
   return (
-    <main className="admin-users">
+    <main className="admin-trip-edit">
       <SectionHeader
         title="Users"
         action={
@@ -34,7 +38,7 @@ export default function AdminUsers() {
             Back to admin
           </Link>
         }
-        className="admin-users__header"
+        className="admin-trip-edit__header"
       />
 
       {loading ? (
@@ -44,21 +48,34 @@ export default function AdminUsers() {
       ) : users.length === 0 ? (
         <p>No users found.</p>
       ) : (
-        <>
-          <section className="admin-users__mobile-list" aria-label="Users list">
+        <table className="admin-trip-edit__table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th aria-label="Actions"></th>
+            </tr>
+          </thead>
+          <tbody>
             {users.map((user) => (
-              <AdminUsersMobileCard
-                key={user.id}
-                name={user.user_name}
-                email={user.email}
-                role={user.user_role}
-                onClick={() => navigate(`/admin/users/${user.id}`)}
-              />
+              <tr key={user.id}>
+                <td>{user.user_name}</td>
+                <td>{user.email}</td>
+                <td>{user.user_role}</td>
+                <td className="admin-trip-edit__row-actions">
+                  <button
+                    type="button"
+                    className="btn btn--ghost"
+                    onClick={() => navigate(`/admin/users/${user.id}`)}
+                  >
+                    View
+                  </button>
+                </td>
+              </tr>
             ))}
-          </section>
-
-          <AdminUsersTable users={users} onRowClick={(id) => navigate(`/admin/users/${id}`)} />
-        </>
+          </tbody>
+        </table>
       )}
     </main>
   );

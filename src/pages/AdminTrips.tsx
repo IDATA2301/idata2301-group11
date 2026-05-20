@@ -1,10 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../assets/styles/pages/admintrips.css";
-import AdminTripsMobileCard from "../components/admin/AdminTripsMobileCard";
-import AdminTripsTable, { type AdminTripRow } from "../components/admin/AdminTripsTable";
+import "../assets/styles/pages/admintripedit.css";
 import SectionHeader from "../components/ui/SectionHeader";
 import { fetchAdminTrips } from "../services/adminTrips";
+
+type AdminTripRow = {
+  id: number;
+  title: string;
+  city: string;
+  country: string;
+  lowestPrice: number;
+  startDate: string;
+  endDate: string;
+};
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
   day: "numeric",
@@ -12,7 +20,6 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
   year: "numeric",
 });
 
-/** Format a trip date for display in the admin list. */
 function formatTripDate(value: string): string {
   if (!value) return "";
   const date = new Date(value);
@@ -20,7 +27,7 @@ function formatTripDate(value: string): string {
   return dateFormatter.format(date);
 }
 
-/** Admin trip overview with desktop and mobile list views. */
+/** Admin trip overview. */
 export default function AdminTrips() {
   const navigate = useNavigate();
   const [trips, setTrips] = useState<AdminTripRow[]>([]);
@@ -45,11 +52,11 @@ export default function AdminTrips() {
   );
 
   return (
-    <main className="admin-trips">
+    <main className="admin-trip-edit">
       <SectionHeader
         title="Trips"
         action={
-          <div style={{ display: "flex", gap: "var(--space-sm)" }}>
+          <div className="admin-trip-edit__group-header">
             <Link to="/admin/trips/create" className="btn btn--primary">
               Create trip
             </Link>
@@ -58,7 +65,7 @@ export default function AdminTrips() {
             </Link>
           </div>
         }
-        className="admin-trips__header"
+        className="admin-trip-edit__header"
       />
 
       {loading ? (
@@ -68,23 +75,38 @@ export default function AdminTrips() {
       ) : trips.length === 0 ? (
         <p>No trips found.</p>
       ) : (
-        <>
-          <section className="admin-trips__mobile-list" aria-label="Trips list">
+        <table className="admin-trip-edit__table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Destination</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>From</th>
+              <th aria-label="Actions"></th>
+            </tr>
+          </thead>
+          <tbody>
             {formattedTrips.map((trip) => (
-              <AdminTripsMobileCard
-                key={trip.id}
-                title={trip.title}
-                city={trip.city}
-                country={trip.country}
-                startDate={trip.startDate}
-                endDate={trip.endDate}
-                onClick={() => navigate(`/admin/trips/${trip.id}/edit`)}
-              />
+              <tr key={trip.id}>
+                <td>{trip.title}</td>
+                <td>{trip.city}, {trip.country}</td>
+                <td>{trip.startDate}</td>
+                <td>{trip.endDate}</td>
+                <td>${trip.lowestPrice}</td>
+                <td className="admin-trip-edit__row-actions">
+                  <button
+                    type="button"
+                    className="btn btn--ghost"
+                    onClick={() => navigate(`/admin/trips/${trip.id}/edit`)}
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
             ))}
-          </section>
-
-          <AdminTripsTable trips={formattedTrips} onRowClick={(id) => navigate(`/admin/trips/${id}/edit`)} />
-        </>
+          </tbody>
+        </table>
       )}
     </main>
   );
