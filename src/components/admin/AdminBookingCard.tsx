@@ -24,7 +24,7 @@ export default function AdminBookingCard({ booking, onEdit, onDelete, deleting }
       <p><strong>Hotel:</strong> {booking.hotelName}</p>
       <p><strong>Price:</strong> ${booking.totalPrice}</p>
       <p><strong>Date:</strong> {formatDate(booking.startDate)} - {formatDate(booking.endDate)}</p>
-      <p><strong>Status:</strong> <StatusBadge status={booking.status} /></p>
+      <p><strong>Status:</strong> <StatusBadge status={booking.status.toLowerCase() as "pending" | "confirmed" | "completed" | "cancelled"} /></p>
       <div className={styles.actions}>
         <button
           type="button"
