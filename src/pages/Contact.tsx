@@ -1,27 +1,54 @@
 import '../assets/styles/pages/contact.css';
-import { EnvelopeIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import { EnvelopeIcon, PhoneIcon, MapPinIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import ContactInfoItem from "../components/contact/ContactInfoItem";
 import FormField from "../components/forms/FormField";
 import TextInput from "../components/forms/TextInput";
 
+type Status = "idle" | "submitting" | "success" | "error";
+
 /** Contact page with inquiry form and direct contact details. */
 function Contact() {
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+
+  async function handleSubmit(e: { preventDefault(): void }) {
+    e.preventDefault();
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          senderEmail: email,
+          contactmessage_subject: subject,
+          contactmessage_message: message,
+        }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <main className="contact">
       <div className="contact__hero-bg" aria-hidden="true" />
       <section className="contact__hero" aria-labelledby="contact-hero-title">
         <span className="contact__eyebrow">Need a hand?</span>
         <h1 id="contact-hero-title" className="contact__hero-title">
-          Let’s make your next trip a little easier
+          Let's make your next trip a little easier
         </h1>
         <p className="contact__hero-subtitle">
-          Send us a message, and we’ll help sort out the details without the travel-planning drama.
+          Send us a message, and we'll help sort out the details without the travel-planning drama.
         </p>
       </section>
 
       <div className="contact__grid">
         <section className="contact__form-card">
-          {/* Header Section */}
           <div className="contact__header">
             <h1>Get in Touch</h1>
             <p>
@@ -30,50 +57,76 @@ function Contact() {
             </p>
           </div>
 
-          {/* Contact Form */}
-          <form className="contact__form">
-            <FormField id="email" label="E-mail" className="contact__field" labelClassName="contact__label">
-              <TextInput
-                type="email"
-                id="email"
-                className="contact__input"
-                placeholder="E-mail"
-                name="email"
-                required
-              />
-            </FormField>
+          {status === "success" ? (
+            <div className="contact__success">
+              <CheckCircleIcon className="contact__success-icon" aria-hidden="true" />
+              <h2>Message sent!</h2>
+              <p>Thanks for reaching out. We'll get back to you as soon as possible.</p>
+              <button
+                className="btn contact__submit"
+                onClick={() => { setStatus("idle"); setEmail(""); setSubject(""); setMessage(""); }}
+              >
+                Send another message
+              </button>
+            </div>
+          ) : (
+            <form className="contact__form" onSubmit={handleSubmit} noValidate>
+              <FormField id="email" label="E-mail" className="contact__field" labelClassName="contact__label">
+                <TextInput
+                  type="email"
+                  id="email"
+                  className="contact__input"
+                  placeholder="E-mail"
+                  name="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </FormField>
 
-            <FormField id="regarding" label="Regarding" className="contact__field" labelClassName="contact__label">
-              <TextInput
-                type="text"
-                id="regarding"
-                className="contact__input"
-                placeholder="Regarding"
-                name="regarding"
-                required
-              />
-            </FormField>
+              <FormField id="regarding" label="Regarding" className="contact__field" labelClassName="contact__label">
+                <TextInput
+                  type="text"
+                  id="regarding"
+                  className="contact__input"
+                  placeholder="Regarding"
+                  name="regarding"
+                  required
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                />
+              </FormField>
 
-            <FormField id="message" label="Message" className="contact__field" labelClassName="contact__label">
-              <TextInput
-                as="textarea"
-                id="message"
-                className="contact__textarea"
-                placeholder="Message"
-                name="message"
-                rows={5}
-                required
-              />
-            </FormField>
+              <FormField id="message" label="Message" className="contact__field" labelClassName="contact__label">
+                <TextInput
+                  as="textarea"
+                  id="message"
+                  className="contact__textarea"
+                  placeholder="Message"
+                  name="message"
+                  rows={5}
+                  required
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
+              </FormField>
 
-            <button type="submit" className="btn contact__submit">Submit form</button>
-          </form>
+              {status === "error" && (
+                <p className="contact__error" role="alert">
+                  Something went wrong. Please try again.
+                </p>
+              )}
+
+              <button type="submit" className="btn contact__submit" disabled={status === "submitting"}>
+                {status === "submitting" ? "Sending…" : "Submit form"}
+              </button>
+            </form>
+          )}
         </section>
 
-        {/* Contact Information */}
         <section className="contact__info">
           <div className="contact__details">
-            <ContactInfoItem icon={EnvelopeIcon}>post@roamroute.org</ContactInfoItem>
+            <ContactInfoItem icon={EnvelopeIcon}>post@ntnuroamroute.tech</ContactInfoItem>
             <ContactInfoItem icon={PhoneIcon}>+47 929 90 707</ContactInfoItem>
             <ContactInfoItem icon={MapPinIcon}>C215, NTNU Ålesund</ContactInfoItem>
           </div>
@@ -91,7 +144,6 @@ function Contact() {
           </div>
         </section>
       </div>
-
     </main>
   );
 }
