@@ -1,5 +1,6 @@
 import "../assets/styles/pages/admin.css";
 import AdminActionCard from "../components/admin/AdminActionCard";
+import BaseCard from "../components/ui/BaseCard";
 import SectionHeader from "../components/ui/SectionHeader";
 
 /** Admin dashboard landing page with quick links to management areas. */
@@ -7,7 +8,7 @@ export default function Admin() {
   return (
     <main className="admin-dashboard">
       <SectionHeader
-        title="Admin Dashboard"
+        title="Dashboard"
         eyebrow="Administration"
         description="Manage users and keep the platform organized from one place."
         className="admin-dashboard__header"
@@ -15,7 +16,7 @@ export default function Admin() {
         descriptionClassName="admin-dashboard__description"
       />
 
-      <section className="admin-dashboard__cards" aria-label="Admin actions">
+      <BaseCard as="ul" className="admin-dashboard__nav" aria-label="Admin sections">
         <AdminActionCard
           title="Users"
           description="View all registered users and check key account details."
@@ -52,7 +53,7 @@ export default function Admin() {
           actionLabel="View"
           to="/admin/contact"
         />
-      </section>
+      </BaseCard>
     </main>
   );
 }

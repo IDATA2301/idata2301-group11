@@ -1,13 +1,5 @@
 @import "../components/button.css";
 
-/* ====================================
-  Admin Page Styles
-  =============================== */
-
-/* ====================================
-  Dashboard Layout
-  =============================== */
-
 .admin-dashboard {
   display: flex;
   flex-direction: column;
@@ -39,23 +31,8 @@
   max-width: 50ch;
 }
 
-/* ====================================
-   Dashboard Cards
-   =============================== */
-
-.admin-dashboard__cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  gap: var(--space-lg);
-  width: 100%;
-}
-
-/* ====================================
-   Responsive
-   =============================== */
-
-@media (min-width: 48rem) {
-  .admin-dashboard {
-    gap: var(--space-xl);
-  }
+.admin-dashboard__nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
