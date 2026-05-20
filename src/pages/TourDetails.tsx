@@ -49,6 +49,7 @@ export default function TourDetails() {
   const [selectedFlightId, setSelectedFlightId] = useState<number | null>(null);
   const [selectedHotelId, setSelectedHotelId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState("overview");
 
   useEffect(() => {
     apiFetch(`/trips/${id}`)
@@ -82,6 +83,7 @@ export default function TourDetails() {
   const longitude = Number(trip.longitude);
   const hasValidCoordinates = Number.isFinite(latitude) && Number.isFinite(longitude);
   const position: [number, number] = [latitude, longitude];
+  const isMobile = window.innerWidth < 768;
 
   return (
     <main>
@@ -93,56 +95,64 @@ export default function TourDetails() {
       />
 
       <Breadcrumb city={trip.city} country={trip.country} />
-      <Tabs />
+      <Tabs activeTab={activeTab} onTabChange={setActiveTab} />
 
-      <TripOverview
-        description={trip.trip_description}
-        keywords={trip.keywords}
-        departureAirport={trip.departureAirport}
-        arrivalAirport={trip.arrivalAirport}
-        flightDuration={trip.flightDuration}
-        hotelName={trip.hotelName}
-      />
+      {(!isMobile || activeTab === "overview") && (
+        <TripOverview
+          description={trip.trip_description}
+          keywords={trip.keywords}
+          departureAirport={trip.departureAirport}
+          arrivalAirport={trip.arrivalAirport}
+          flightDuration={trip.flightDuration}
+          hotelName={trip.hotelName}
+        />
+      )}
 
-      <section className={styles.comparisonSection}>
-        <h2 className={styles.comparisonTitle}>
-          <PaperAirplaneIcon className={styles.flightIcon} aria-hidden="true" />
-          Flight Price Comparison
-        </h2>
+      {(!isMobile || activeTab === "flights") && (
+        <section className={styles.comparisonSection}>
+          <h2 className={styles.comparisonTitle}>
+            <PaperAirplaneIcon className={styles.flightIcon} aria-hidden="true" />
+            Flight Price Comparison
+          </h2>
 
-        {trip.flightOptions.map((flight) => (
-          <OptionComparisonCard
-            key={flight.id}
-            provider={flight.provider}
-            price={flight.price}
-            selected={selectedFlightId === flight.id}
-            airline={flight.airline}
-            onSelect={() => setSelectedFlightId(flight.id)}
+          {trip.flightOptions.map((flight) => (
+            <OptionComparisonCard
+              key={flight.id}
+              provider={flight.provider}
+              price={flight.price}
+              selected={selectedFlightId === flight.id}
+              airline={flight.airline}
+              onSelect={() => setSelectedFlightId(flight.id)}
+            />
+          ))}
+        </section>
+      )}
+
+      {isMobile || activeTab === "hotels" && (
+        <>
+          <AccommodationSummary
+            hotelName={trip.hotelName}
+            hotelType={trip.hotelType}
+            hotelLocation={trip.hotelLocation}
+            nights={trip.nights}
+            amenities={trip.amenities}
           />
-        ))}
-      </section>
 
-      <AccommodationSummary
-        hotelName={trip.hotelName}
-        hotelType={trip.hotelType}
-        hotelLocation={trip.hotelLocation}
-        nights={trip.nights}
-        amenities={trip.amenities}
-      />
+         <section className={styles.comparisonSection}>
+          <h2 className={styles.comparisonTitle}>Hotel Price Comparison</h2>
 
-      <section className={styles.comparisonSection}>
-        <h2 className={styles.comparisonTitle}>Hotel Price Comparison</h2>
-
-        {trip.hotelOptions.map((hotel) => (
-          <OptionComparisonCard
-            key={hotel.id}
-            provider={hotel.provider}
-            price={hotel.price}
-            selected={selectedHotelId === hotel.id}
-            onSelect={() => setSelectedHotelId(hotel.id)}
-          />
-        ))}
-      </section>
+          {trip.hotelOptions.map((hotel) => (
+            <OptionComparisonCard
+              key={hotel.id}
+              provider={hotel.provider}
+              price={hotel.price}
+              selected={selectedHotelId === hotel.id}
+              onSelect={() => setSelectedHotelId(hotel.id)}
+            />
+          ))}
+        </section>
+        </>
+      )}
 
       {/* find selected flight/hotel objects and pass to payment component */}
       {
