@@ -98,6 +98,36 @@ export async function fetchAdminTripDetails(id: number): Promise<AdminTripDetail
   return response.json();
 }
 
+export type CreateTripRequest = {
+  title: string;
+  description?: string;
+  imageUrl?: string;
+  startDate?: string;
+  endDate?: string;
+  keywords?: string[];
+  destinationId?: number;
+};
+
+export async function createAdminTrip(payload: CreateTripRequest): Promise<AdminTripDetails> {
+  const response = await apiFetch("/admin/trips", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    let message = `Failed to create trip (HTTP ${response.status})`;
+    try {
+      const data = await response.json();
+      if (data?.message) message = data.message;
+    } catch {
+      // ignore
+    }
+    throw new Error(message);
+  }
+
+  return response.json();
+}
+
 export type UpdateAdminTripRequest = {
   title?: string;
   description?: string;
