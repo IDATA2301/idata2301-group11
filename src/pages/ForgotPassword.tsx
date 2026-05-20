@@ -40,6 +40,7 @@ export default function ForgotPassword() {
 
   return (
     <main className="login">
+      <div className="login__hero-bg" aria-hidden="true" />
       <div className="login__text">
         <h1>Forgot password</h1>
         <p>Enter your email address and we’ll send you a reset link.</p>

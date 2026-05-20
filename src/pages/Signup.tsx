@@ -57,6 +57,7 @@ export default function Signup() {
 
   return (
     <main className="signup">
+      <div className="signup__hero-bg" aria-hidden="true" />
       <div className="signup__text">
         <h1>Create an Account</h1>
         <p>Sign up to start planning your travel adventures.</p>
