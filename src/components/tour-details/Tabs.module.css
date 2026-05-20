@@ -6,10 +6,11 @@
   padding: var(--space-sm) var(--space-lg);
   display: flex;
   gap: var(--space-6xl);
+  overflow-x: auto;
 }
 
 @media (min-width: 48rem) {
   .tabs {
-    gap: var(--space-6xl);
+    display: none;
   }
 }
