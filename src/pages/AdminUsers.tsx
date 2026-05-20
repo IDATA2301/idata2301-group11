@@ -6,7 +6,7 @@ import { apiFetch } from "../services/apiFetch";
 
 type AdminUserRow = {
   id: number;
-  user_name: string;
+  username: string;
   email: string;
   user_role: string;
 };
@@ -60,7 +60,7 @@ export default function AdminUsers() {
           <tbody>
             {users.map((user) => (
               <tr key={user.id}>
-                <td>{user.user_name}</td>
+                <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>{user.user_role}</td>
                 <td className="admin-trip-edit__row-actions">
