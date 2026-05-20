@@ -149,7 +149,7 @@ export default function AdminAccommodations() {
                   </button>
                   <button
                     type="button"
-                    className="btn btn--ghost"
+                    className="btn btn--danger"
                     onClick={() => handleDelete(acc)}
                     disabled={busyId === acc.id}
                   >

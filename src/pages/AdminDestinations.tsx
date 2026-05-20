@@ -158,7 +158,7 @@ export default function AdminDestinations() {
                   </button>
                   <button
                     type="button"
-                    className="btn btn--ghost"
+                    className="btn btn--danger"
                     onClick={() => handleDelete(dest)}
                     disabled={busyId === dest.id}
                   >

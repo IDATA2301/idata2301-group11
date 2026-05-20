@@ -149,7 +149,7 @@ export default function AdminFlights() {
                   </button>
                   <button
                     type="button"
-                    className="btn btn--ghost"
+                    className="btn btn--danger"
                     onClick={() => handleDelete(flight)}
                     disabled={busyId === flight.id}
                   >
