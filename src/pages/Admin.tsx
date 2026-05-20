@@ -46,6 +46,12 @@ export default function Admin() {
           actionLabel="Manage"
           to="/admin/accommodations"
         />
+        <AdminActionCard
+          title="Contact Messages"
+          description="View and delete messages submitted through the contact form."
+          actionLabel="View"
+          to="/admin/contact"
+        />
       </section>
     </main>
   );

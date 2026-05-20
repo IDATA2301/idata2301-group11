@@ -11,28 +11,18 @@ import { apiFetch } from "../services/apiFetch";
 export default function AdminUsers() {
   const navigate = useNavigate();
   const [users, setUsers] = useState<AdminUserRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    apiFetch("/admin/users", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
+    apiFetch("/admin/users")
       .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch users");
-        }
-        console.log("Response status:", res.status);
+        if (!res.ok) throw new Error("Failed to fetch users");
         return res.json();
       })
-      .then(data => {
-        console.log("Fetched users:", data);
-        console.log("AUTH:", localStorage.getItem("auth"));
-        setUsers(data);
-      })
-      .catch((err) => console.error("Error fetching users:", err));
+      .then((data) => setUsers(data))
+      .catch((err) => setError(err instanceof Error ? err.message : "Failed to load users"))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -47,19 +37,29 @@ export default function AdminUsers() {
         className="admin-users__header"
       />
 
-      <section className="admin-users__mobile-list" aria-label="Users list">
-        {users.map((user) => (
-          <AdminUsersMobileCard
-            key={user.id}
-            name={user.user_name}
-            email={user.email}
-            role={user.user_role}
-            onClick={() => navigate(`/admin/users/${user.id}`)}
-          />
-        ))}
-      </section>
+      {loading ? (
+        <p>Loading users...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : users.length === 0 ? (
+        <p>No users found.</p>
+      ) : (
+        <>
+          <section className="admin-users__mobile-list" aria-label="Users list">
+            {users.map((user) => (
+              <AdminUsersMobileCard
+                key={user.id}
+                name={user.user_name}
+                email={user.email}
+                role={user.user_role}
+                onClick={() => navigate(`/admin/users/${user.id}`)}
+              />
+            ))}
+          </section>
 
-      <AdminUsersTable users={users} onRowClick={(id) => navigate(`/admin/users/${id}`)} />
+          <AdminUsersTable users={users} onRowClick={(id) => navigate(`/admin/users/${id}`)} />
+        </>
+      )}
     </main>
   );
 }

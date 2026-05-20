@@ -15,30 +15,28 @@
 }
 
 .admin-dashboard__header {
-  padding: var(--space-xl);
-  border-radius: var(--radius-lg);
-  background: linear-gradient(120deg, var(--color-primary), var(--color-secondary));
-  color: var(--color-surface);
-  box-shadow: var(--shadow-md);
+  padding-left: var(--space-lg);
+  border-left: 3px solid var(--color-primary);
 }
 
 .admin-dashboard__header h1,
 .admin-dashboard__header p {
-  color: inherit;
   margin: 0;
 }
 
 .admin-dashboard__eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 0.8rem;
-  margin-bottom: var(--space-sm);
-  opacity: 0.9;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
 }
 
 .admin-dashboard__description {
-  margin-top: var(--space-sm);
-  max-width: 40ch;
+  margin-top: var(--space-xs);
+  color: var(--color-text-muted);
+  max-width: 50ch;
 }
 
 /* ====================================
