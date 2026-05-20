@@ -2,11 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/styles/pages/admintripedit.css";
 import SectionHeader from "../components/ui/SectionHeader";
-import { fetchAdminTrips } from "../services/adminTrips";
+import { deleteAdminTrip, fetchAdminTrips } from "../services/adminTrips";
+import { getTripImageUrl } from "../utils/imageUrls";
 
 type AdminTripRow = {
   id: number;
   title: string;
+  imageUrl: string;
   city: string;
   country: string;
   lowestPrice: number;
@@ -33,6 +35,20 @@ export default function AdminTrips() {
   const [trips, setTrips] = useState<AdminTripRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [busyId, setBusyId] = useState<number | null>(null);
+
+  async function handleDelete(trip: AdminTripRow) {
+    if (!window.confirm(`Delete trip "${trip.title}"?`)) return;
+    setBusyId(trip.id);
+    try {
+      await deleteAdminTrip(trip.id);
+      setTrips((prev) => prev.filter((t) => t.id !== trip.id));
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to delete trip.");
+    } finally {
+      setBusyId(null);
+    }
+  }
 
   useEffect(() => {
     fetchAdminTrips()
@@ -78,6 +94,7 @@ export default function AdminTrips() {
         <table className="admin-trip-edit__table">
           <thead>
             <tr>
+              <th>Image</th>
               <th>Title</th>
               <th>Destination</th>
               <th>Start</th>
@@ -89,6 +106,17 @@ export default function AdminTrips() {
           <tbody>
             {formattedTrips.map((trip) => (
               <tr key={trip.id}>
+                <td>
+                  {trip.imageUrl ? (
+                    <img
+                      src={getTripImageUrl(trip.imageUrl)}
+                      alt={trip.title}
+                      style={{ width: 80, height: 56, objectFit: "cover", borderRadius: 6 }}
+                    />
+                  ) : (
+                    <span aria-hidden>—</span>
+                  )}
+                </td>
                 <td>{trip.title}</td>
                 <td>{trip.city}, {trip.country}</td>
                 <td>{trip.startDate}</td>
@@ -99,8 +127,17 @@ export default function AdminTrips() {
                     type="button"
                     className="btn btn--ghost"
                     onClick={() => navigate(`/admin/trips/${trip.id}/edit`)}
+                    disabled={busyId === trip.id}
                   >
                     Edit
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn--danger"
+                    onClick={() => handleDelete(trip)}
+                    disabled={busyId === trip.id}
+                  >
+                    Delete
                   </button>
                 </td>
               </tr>

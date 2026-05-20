@@ -17,3 +17,9 @@
   margin: 0;
   font-size: 0.95rem;
 }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-sm);
+}

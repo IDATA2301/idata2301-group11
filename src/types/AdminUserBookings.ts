@@ -2,12 +2,15 @@
  * Describes the admin bookings summary shape.
  */
 export type AdminUserBookings = {
-  id: string;
+  id: number;
   title: string;
-  airline: string;
-  hotelName: string;
+  airline: string | null;
+  hotelName: string | null;
   totalPrice: number;
   startDate: string;
   endDate: string;
-  status: "pending" | "confirmed" | "completed" | "cancelled";
+  status: string;
+  tripId: number;
+  flightId: number | null;
+  accommodationId: number | null;
 };
