@@ -1,0 +1,36 @@
+@import "../components/button.css";
+
+.admin-contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.admin-contact h1,
+.admin-contact h2 {
+  margin: 0;
+}
+
+.admin-contact__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.admin-contact__header h1,
+.admin-contact__header p {
+  margin: 0;
+}
+
+.admin-contact__mobile-list {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+@media (min-width: 48rem) {
+  .admin-contact__mobile-list {
+    display: none;
+  }
+}

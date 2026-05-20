@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import BaseCard from "../ui/BaseCard";
 import styles from "./AdminActionCard.module.css";
 
-/** Props for an admin action card that links to a section. */
 type AdminActionCardProps = {
   title: string;
   description: string;
@@ -10,15 +8,17 @@ type AdminActionCardProps = {
   to: string;
 };
 
-/** Action card displayed on admin dashboard linking to key sections (users, trips, flights, etc.). */
+/** Row entry on the admin dashboard linking to a management section. */
 export default function AdminActionCard({ title, description, actionLabel, to }: AdminActionCardProps) {
   return (
-    <BaseCard as="article" className={styles.card}>
-      <h2 className={styles.title}>{title}</h2>
-      <p className={styles.description}>{description}</p>
-      <Link to={to} className={`btn ${styles.action}`}>
+    <li className={styles.row}>
+      <div className={styles.text}>
+        <span className={styles.title}>{title}</span>
+        <span className={styles.description}>{description}</span>
+      </div>
+      <Link to={to} className={`btn btn--ghost ${styles.action}`}>
         {actionLabel}
       </Link>
-    </BaseCard>
+    </li>
   );
 }
