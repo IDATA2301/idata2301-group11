@@ -131,7 +131,7 @@ export default function TourDetails() {
         </section>
       )}
 
-      {isMobile || activeTab === "hotels" && (
+      {(!isMobile || activeTab === "hotels") && (
         <>
           <AccommodationSummary
             hotelName={trip.hotelName}
