@@ -46,6 +46,12 @@ export default function Admin() {
           actionLabel="Manage"
           to="/admin/accommodations"
         />
+        <AdminActionCard
+          title="Messages"
+          description="Read and manage contact form submissions from users."
+          actionLabel="View"
+          to="/admin/messages"
+        />
       </section>
     </main>
   );
