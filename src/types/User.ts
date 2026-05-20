@@ -1,3 +1,6 @@
+/**
+ * Backend user and authenticated user data shapes.
+ */
 export interface User {
   id: number;
   user_name: string;

@@ -43,6 +43,9 @@ type TripDetailsResponse = {
   airline: string;
 };
 
+/**
+ * Renders the detailed trip booking experience.
+ */
 export default function TourDetails() {
   const { id } = useParams();
   const [trip, setTrip] = useState<TripDetailsResponse | null>(null);

@@ -3,6 +3,7 @@ import styles from "./HeroSection.module.css";
 import { useNavigate } from "react-router-dom";
 import TripSearchForm from "./TripSearchForm";
 
+/** Homepage hero section with headline and search form. */
 export default function HeroSection() {
   const navigate = useNavigate();
 

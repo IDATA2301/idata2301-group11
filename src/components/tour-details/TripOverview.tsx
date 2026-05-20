@@ -5,6 +5,7 @@ import {
 } from "@heroicons/react/24/solid";
 import styles from "./TripOverview.module.css";
 
+/** Props for the trip overview section. */
 type TripOverviewProps = {
   description: string;
   keywords: string[];
@@ -14,6 +15,7 @@ type TripOverviewProps = {
   hotelName: string;
 };
 
+/** Detailed summary section for the selected trip. */
 export default function TripOverview({
   description,
   keywords,

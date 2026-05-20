@@ -8,6 +8,9 @@ import { updateUsername } from "../services/auth";
 import FormField from "../components/forms/FormField";
 import TextInput from "../components/forms/TextInput";
 
+/**
+ * Renders the authenticated user's profile page.
+ */
 export default function Profile() {
   const navigate = useNavigate();
   const { authUser, updateAuthUser, signOut } = useAuth();

@@ -12,6 +12,7 @@ import {
 } from "../../services/accommodations";
 import styles from "./TripOptionEditor.module.css";
 
+/** Props for a single hotel option card. */
 type Props = {
   option: HotelOption;
   busy?: boolean;
@@ -20,6 +21,7 @@ type Props = {
   onAccommodationUpdated: (acc: Accommodation) => void;
 };
 
+/** Editable card for a hotel option attached to a trip. */
 export default function HotelOptionCard({ option, busy, onSave, onDelete, onAccommodationUpdated }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [provider, setProvider] = useState(option.provider ?? "");

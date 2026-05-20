@@ -33,6 +33,7 @@ import { getDestinationImageUrl, getTripImageUrl } from "../utils/imageUrls";
 import { camelize, convertImageToWebp } from "../utils/imageConvert";
 import { apiFetch } from "../services/apiFetch";
 
+/** Editable trip fields used by the trip edit form. */
 type EditableTripFields = {
   title: string;
   description: string;
@@ -43,6 +44,7 @@ type EditableTripFields = {
   active: boolean;
 };
 
+/** Editable destination fields used by the linked destination form. */
 type EditableDestinationFields = {
   city: string;
   country: string;
@@ -50,6 +52,7 @@ type EditableDestinationFields = {
   imageAlt: string;
 };
 
+/** Convert a stored date string into a date input value when possible. */
 function toDateInputValue(value: string): string {
   if (!value) return "";
   if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
@@ -58,6 +61,7 @@ function toDateInputValue(value: string): string {
   return date.toISOString().slice(0, 10);
 }
 
+/** Map loaded trip data into editable form fields. */
 function toTripFields(trip: AdminTripDetails): EditableTripFields {
   return {
     title: trip.title ?? "",
@@ -70,6 +74,7 @@ function toTripFields(trip: AdminTripDetails): EditableTripFields {
   };
 }
 
+/** Map loaded trip data into editable destination fields. */
 function toDestinationFields(trip: AdminTripDetails): EditableDestinationFields {
   return {
     city: trip.city ?? "",
@@ -79,6 +84,7 @@ function toDestinationFields(trip: AdminTripDetails): EditableDestinationFields 
   };
 }
 
+/** Admin page for editing a trip, linked destination, and its options. */
 export default function AdminTripEdit() {
   const { id } = useParams();
   const tripId = Number(id);
@@ -495,7 +501,8 @@ export default function AdminTripEdit() {
   }
 
   async function handleDeleteTrip() {
-    if (!window.confirm(`Delete "${trip.title}"? This cannot be undone.`)) return;
+    const tripTitle = trip?.title ?? "this trip";
+    if (!window.confirm(`Delete "${tripTitle}"? This cannot be undone.`)) return;
     try {
       await deleteAdminTrip(tripId);
       navigate("/admin/trips");

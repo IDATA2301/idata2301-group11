@@ -8,6 +8,7 @@ import SectionHeader from "../components/ui/SectionHeader";
 import type { User } from "../types/User";
 import { apiFetch } from "../services/apiFetch";
 
+/** Admin page for inspecting a user and their bookings. */
 export default function AdminUserDetails() {
   const [user, setUser] = useState<User | null>(null);
   const [bookings, setBookings] = useState<any[]>([]);

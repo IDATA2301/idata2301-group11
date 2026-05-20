@@ -8,6 +8,7 @@ import { createAdminTrip, uploadAdminImage } from "../services/adminTrips";
 import { fetchAdminDestinations, type AdminDestination } from "../services/adminDestinations";
 import { camelize, convertImageToWebp } from "../utils/imageConvert";
 
+/** Form values used when creating a new trip. */
 type CreateFields = {
   title: string;
   description: string;
@@ -18,6 +19,7 @@ type CreateFields = {
   destinationId: string;
 };
 
+/** Default empty form state for trip creation. */
 const empty: CreateFields = {
   title: "",
   description: "",
@@ -28,6 +30,7 @@ const empty: CreateFields = {
   destinationId: "",
 };
 
+/** Admin page for creating a new trip and optionally linking a destination. */
 export default function AdminTripCreate() {
   const navigate = useNavigate();
   const [form, setForm] = useState<CreateFields>(empty);

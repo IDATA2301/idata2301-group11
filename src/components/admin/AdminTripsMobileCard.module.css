@@ -1,3 +1,11 @@
+/* ====================================
+  Admin Trips Mobile Card Component Styles
+  =============================== */
+
+/* ====================================
+  Card Container
+  =============================== */
+
 .card {
   padding: var(--space-md);
   display: flex;
@@ -7,6 +15,10 @@
   text-align: left;
   color: var(--color-text-body);
 }
+
+/* ====================================
+  Card Content
+  =============================== */
 
 .title {
   font-family: var(--font-heading);

@@ -1,3 +1,11 @@
+/* ====================================
+  Section Header Component Styles
+  =============================== */
+
+/* ====================================
+  Header Layout
+  =============================== */
+
 .rootWithAction {
   display: flex;
   justify-content: space-between;

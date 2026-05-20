@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import '../assets/styles/components/button.css';
 
+/**
+ * Shows a simple confirmation page after payment.
+ */
 export default function PaymentReceipt() {
   return (
     <main>

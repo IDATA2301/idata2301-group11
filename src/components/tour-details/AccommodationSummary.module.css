@@ -1,3 +1,11 @@
+/* ====================================
+  Accommodation Summary Component Styles
+  =============================== */
+
+/* ====================================
+  Summary Layout
+  =============================== */
+
 .section {
   margin-top: var(--space-lg);
 }
@@ -25,6 +33,10 @@
   flex-direction: column;
   gap: var(--space-xs);
 }
+
+/* ====================================
+  Summary Text
+  =============================== */
 
 .amenities {
   color: var(--color-text-muted);

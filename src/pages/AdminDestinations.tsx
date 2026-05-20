@@ -15,6 +15,7 @@ import {
 } from "../services/adminDestinations";
 import { getDestinationImageUrl } from "../utils/imageUrls";
 
+/** Admin page for managing destination records and destination imagery. */
 export default function AdminDestinations() {
   const [destinations, setDestinations] = useState<AdminDestination[]>([]);
   const [loading, setLoading] = useState(true);

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import styles from "./SectionHeader.module.css";
 
+/** Props for the reusable section header component. */
 type SectionHeaderProps = {
   title: ReactNode;
   description?: ReactNode;
@@ -15,10 +16,12 @@ type SectionHeaderProps = {
   headingTag?: "h1" | "h2" | "h3";
 };
 
+/** Merge multiple class names into a single string. */
 function mergeClasses(...classes: Array<string | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
+/** Flexible section header with optional eyebrow, description, and action. */
 export default function SectionHeader({
   title,
   description,

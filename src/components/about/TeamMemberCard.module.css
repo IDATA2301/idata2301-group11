@@ -1,3 +1,11 @@
+/* ====================================
+  Team Member Card Component Styles
+  =============================== */
+
+/* ====================================
+  Card Container
+  =============================== */
+
 .teamMember {
   display: flex;
   flex-direction: column;
@@ -16,6 +24,10 @@
   box-shadow: var(--shadow-sm);
   border-color: var(--color-primary);
 }
+
+/* ====================================
+  Card Content
+  =============================== */
 
 .avatar {
   width: 7rem;

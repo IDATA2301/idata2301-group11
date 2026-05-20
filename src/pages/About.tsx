@@ -8,6 +8,7 @@ import "../assets/styles/pages/about.css";
 import ServiceCard from "../components/about/ServiceCard";
 import TeamMemberCard from "../components/about/TeamMemberCard";
 
+/** About page highlighting platform benefits and the team. */
 function About() {
   const services = [
     {

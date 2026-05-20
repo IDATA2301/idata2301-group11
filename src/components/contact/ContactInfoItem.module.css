@@ -1,3 +1,11 @@
+/* ====================================
+  Contact Info Item Component Styles
+  =============================== */
+
+/* ====================================
+  Item Container
+  =============================== */
+
 .item {
   display: flex;
   align-items: center;
@@ -15,6 +23,10 @@
   border-color: var(--color-primary);
   box-shadow: var(--shadow-sm);
 }
+
+/* ====================================
+  Icon
+  =============================== */
 
 .icon {
   width: var(--size-icon);

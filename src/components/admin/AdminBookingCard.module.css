@@ -1,3 +1,11 @@
+/* ====================================
+  Admin Booking Card Component Styles
+  =============================== */
+
+/* ====================================
+  Card Container
+  =============================== */
+
 .card {
   padding: var(--space-md);
   display: flex;

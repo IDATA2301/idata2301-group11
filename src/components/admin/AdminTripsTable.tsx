@@ -1,6 +1,7 @@
 import BaseCard from "../ui/BaseCard";
 import styles from "./AdminTripsTable.module.css";
 
+/** Row data shown in the admin trips table. */
 export type AdminTripRow = {
   id: number;
   title: string;
@@ -16,6 +17,7 @@ type AdminTripsTableProps = {
   onRowClick: (id: number) => void;
 };
 
+/** Desktop trips table for the admin trips overview. */
 export default function AdminTripsTable({ trips, onRowClick }: AdminTripsTableProps) {
   return (
     <BaseCard as="section" className={styles.tableWrap} aria-label="Trips table">

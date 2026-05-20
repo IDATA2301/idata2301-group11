@@ -12,12 +12,14 @@ import {
 } from "../../services/accommodations";
 import styles from "./TripOptionEditor.module.css";
 
+/** Props for the add hotel option form. */
 type Props = {
   busy?: boolean;
   onCreate: (input: HotelOptionInput) => Promise<void> | void;
   onCancel: () => void;
 };
 
+/** Form for adding a hotel option to a trip, with embedded modal to create new accommodations on-the-fly. */
 export default function AddHotelOption({ busy, onCreate, onCancel }: Props) {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [loadingList, setLoadingList] = useState(true);

@@ -1,3 +1,11 @@
+/* ====================================
+  Admin User Details Card Component Styles
+  =============================== */
+
+/* ====================================
+  Card Container
+  =============================== */
+
 .card {
   padding: var(--space-lg);
   display: flex;
@@ -8,6 +16,10 @@
 .card p {
   margin: 0;
 }
+
+/* ====================================
+  Role Controls
+  =============================== */
 
 .roleRow {
   display: flex;

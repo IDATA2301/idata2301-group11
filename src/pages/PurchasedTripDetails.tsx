@@ -38,6 +38,9 @@ interface Order {
   order_date: string
 }
 
+/**
+ * Renders details for a single purchased trip.
+ */
 export default function PurchasedTripDetails() {
   const { orderId } = useParams<{ orderId: string }>();
   const { authUser } = useAuth();

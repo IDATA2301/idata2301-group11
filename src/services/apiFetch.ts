@@ -2,6 +2,9 @@ import type { AuthUser } from "../types/User";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
 
+/**
+ * Sends API requests with the stored auth token and shared error handling.
+ */
 function readToken(): string | null {
   const stored = localStorage.getItem("authUser");
   if (!stored) return null;

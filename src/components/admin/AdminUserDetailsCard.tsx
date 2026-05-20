@@ -5,11 +5,13 @@ import styles from "./AdminUserDetailsCard.module.css";
 import { useState } from "react";
 import { useAuth } from "../../context/useAuth";
 
+/** Props for the admin user details card. */
 type AdminUserDetailsCardProps = {
   user: User;
   onRoleUpdated: (newRole: string) => void;
 };
 
+/** Displays the selected user's details and supports admin role updates. */
 export default function AdminUserDetailsCard({ user, onRoleUpdated }: AdminUserDetailsCardProps) {
   const [selectedRole, setSelectedRole] = useState("");
   const [successMessage, setSuccessMessage] = useState("");

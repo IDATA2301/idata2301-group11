@@ -7,6 +7,7 @@ import SectionHeader from "../components/ui/SectionHeader";
 import type { AdminUserRow } from "../components/admin/AdminUsersTable";
 import { apiFetch } from "../services/apiFetch";
 
+/** Admin page for browsing users in mobile and table layouts. */
 export default function AdminUsers() {
   const navigate = useNavigate();
   const [users, setUsers] = useState<AdminUserRow[]>([]);

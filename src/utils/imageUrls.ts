@@ -2,6 +2,9 @@ const TRIP_PREFIX = "/images/trip";
 const DESTINATION_PREFIX = "/images/destination";
 const PLACEHOLDER = "/images/placeholder.jpg";
 
+/**
+ * Resolves image filenames to public asset URLs.
+ */
 function buildUrl(prefix: string, filename: string | undefined | null): string {
   if (!filename) return PLACEHOLDER;
   const trimmed = filename.trim();

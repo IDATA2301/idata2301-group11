@@ -12,6 +12,7 @@ import {
 } from "../../services/flights";
 import styles from "./TripOptionEditor.module.css";
 
+/** Props for a single flight option card. */
 type Props = {
   option: FlightOption;
   busy?: boolean;
@@ -20,6 +21,7 @@ type Props = {
   onFlightUpdated: (flight: Flight) => void;
 };
 
+/** Editable card for a flight option attached to a trip. */
 export default function FlightOptionCard({ option, busy, onSave, onDelete, onFlightUpdated }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [provider, setProvider] = useState(option.provider ?? "");

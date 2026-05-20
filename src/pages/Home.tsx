@@ -21,6 +21,9 @@ type HomeTrip = {
   endDate: string;
 };
 
+/**
+ * Renders the homepage with featured destinations and trips.
+ */
 function Home() {
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [trips, setTrips] = useState<HomeTrip[]>([]);

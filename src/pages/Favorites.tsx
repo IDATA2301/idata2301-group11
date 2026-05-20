@@ -6,6 +6,7 @@ import styles from "./Favorites.module.css";
 import TripCard from "../components/home/TripCard";
 
 
+/** Favorites page showing saved trips for the signed-in user. */
 export default function Favorites() {
   const [favorites, setFavorites] = useState<any[]>([]);
   const { authUser } = useAuth();

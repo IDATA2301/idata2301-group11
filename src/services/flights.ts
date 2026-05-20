@@ -1,5 +1,8 @@
 import { apiFetch } from "./apiFetch";
 
+/**
+ * Provides admin flight API helpers.
+ */
 export type Flight = {
   id: number;
   airline: string;

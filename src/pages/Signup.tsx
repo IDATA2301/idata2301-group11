@@ -7,6 +7,9 @@ import { useAuth } from "../context/useAuth"
 import FormField from "../components/forms/FormField"
 import IconInput from "../components/forms/IconInput"
 
+/**
+ * Renders the account creation page.
+ */
 export default function Signup() {
   const navigate = useNavigate()
   const { signIn } = useAuth()

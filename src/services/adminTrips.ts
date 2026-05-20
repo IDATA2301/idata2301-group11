@@ -1,6 +1,9 @@
 import type { TripCard } from "../types/Trip";
 import { apiFetch } from "./apiFetch";
 
+/**
+ * Provides admin trip and trip-option API helpers.
+ */
 export type AdminTripDetails = {
   id: number;
   title: string;

@@ -1,12 +1,14 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import styles from "./LocationMap.module.css";
 
+/** Props for the destination location map. */
 type LocationMapProps = {
   hasValidCoordinates: boolean;
   position: [number, number];
   hotelName: string;
 };
 
+/** Map section showing the trip location or a fallback message. */
 export default function LocationMap({ hasValidCoordinates, position, hotelName }: LocationMapProps) {
   return (
     <section className={styles.section}>

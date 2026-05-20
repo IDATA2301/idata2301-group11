@@ -4,6 +4,7 @@ import ContactInfoItem from "../components/contact/ContactInfoItem";
 import FormField from "../components/forms/FormField";
 import TextInput from "../components/forms/TextInput";
 
+/** Contact page with inquiry form and direct contact details. */
 function Contact() {
   return (
     <main className="contact">

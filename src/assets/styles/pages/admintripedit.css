@@ -1,5 +1,13 @@
 @import "../components/button.css";
 
+/* ====================================
+  Admin Trip Edit Page Styles
+  =============================== */
+
+/* ====================================
+  Page Layout
+  =============================== */
+
 .admin-trip-edit {
   display: flex;
   flex-direction: column;
@@ -10,6 +18,10 @@
 .admin-trip-edit h2 {
   margin: 0;
 }
+
+/* ====================================
+  Header + Form Structure
+  =============================== */
 
 .admin-trip-edit__header {
   display: flex;
@@ -57,6 +69,10 @@
   flex-wrap: wrap;
 }
 
+/* ====================================
+  Publish Toggle
+  =============================== */
+
 .admin-trip-edit__toggle {
   position: relative;
   display: inline-block;
@@ -99,6 +115,10 @@
   transform: translateX(24px);
 }
 
+/* ====================================
+  Image Upload + Preview
+  =============================== */
+
 .admin-trip-edit__image {
   display: flex;
   flex-direction: column;
@@ -131,6 +151,10 @@
   color: var(--color-text-muted, #4b5563);
 }
 
+/* ====================================
+  Comparison Table
+  =============================== */
+
 .admin-trip-edit__table {
   width: 100%;
   border-collapse: collapse;
@@ -149,6 +173,10 @@
   justify-content: flex-end;
   flex-wrap: wrap;
 }
+
+/* ====================================
+  Option Cards
+  =============================== */
 
 .admin-trip-edit__option-card {
   display: flex;
@@ -188,6 +216,10 @@
   flex-direction: column;
   gap: var(--space-md);
 }
+
+/* ====================================
+  Responsive
+  =============================== */
 
 @media (min-width: 48rem) {
   .admin-trip-edit__row--two {

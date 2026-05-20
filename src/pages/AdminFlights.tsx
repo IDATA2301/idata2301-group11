@@ -14,6 +14,7 @@ import {
   type FlightInput,
 } from "../services/flights";
 
+/** Admin page for managing the global flight catalogue. */
 export default function AdminFlights() {
   const [flights, setFlights] = useState<Flight[]>([]);
   const [loading, setLoading] = useState(true);

@@ -14,6 +14,7 @@ import {
   type AccommodationInput,
 } from "../services/accommodations";
 
+/** Admin page for listing, creating, editing, and deleting accommodations. */
 export default function AdminAccommodations() {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
   const [loading, setLoading] = useState(true);

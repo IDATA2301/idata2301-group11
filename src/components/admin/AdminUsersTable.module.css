@@ -1,8 +1,20 @@
+/* ====================================
+  Admin Users Table Component Styles
+  =============================== */
+
+/* ====================================
+  Table Wrapper
+  =============================== */
+
 .tableWrap {
   padding: var(--space-md);
   overflow-x: auto;
   display: none;
 }
+
+/* ====================================
+  Table Structure
+  =============================== */
 
 .table {
   width: 100%;
@@ -25,6 +37,10 @@
 .table tbody tr:hover {
   background-color: var(--color-background);
 }
+
+/* ====================================
+  Interactive Row
+  =============================== */
 
 .row {
   cursor: pointer;

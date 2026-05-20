@@ -8,12 +8,14 @@ import { useAuth } from "../../context/useAuth";
 import { apiFetch } from "../../services/apiFetch";
 import { getTripImageUrl } from "../../utils/imageUrls";
 
+/** Format a date string to a compact display value. */
 function formatDate(dateString: string): string {
   if (!dateString) return "";
   return dateString.includes("T") ? dateString.split("T")[0] : dateString;
 }
 
 
+/** Homepage trip card with favorite toggle and trip navigation. */
 export default function TripCard({ id, imageUrl, title, city, country, lowestPrice, startDate, endDate, isFavorite, onRemoveFavorite }: TripCardProps) {
 
   const { authUser } = useAuth();

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./DestinationCard.module.css";
 
+/** Props for a featured destination card on the homepage. */
 type DestinationCardProps = {
   destination: string;
   image: string;
@@ -8,6 +9,7 @@ type DestinationCardProps = {
   lowestPrice?: number;
 };
 
+/** Card linking a destination tile to filtered trips. */
 export default function DestinationCard({ destination, image, image_alt, lowestPrice }: DestinationCardProps) {
   const to = `/trips?q=${encodeURIComponent(destination)}`;
   const priceLabel = lowestPrice != null ? `From $${lowestPrice.toLocaleString()}` : "";

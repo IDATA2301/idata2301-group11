@@ -7,6 +7,7 @@ import HeaderMobileToggle from "./HeaderMobileToggle";
 import HeaderNavLinks from "./HeaderNavLinks";
 import styles from "./Header.module.css";
 
+/** Site header with responsive navigation and auth actions. */
 export default function Header() {
   const navigate = useNavigate();
   const { authUser, signOut } = useAuth();

@@ -12,6 +12,7 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
   year: "numeric",
 });
 
+/** Format a trip date for display in the admin list. */
 function formatTripDate(value: string): string {
   if (!value) return "";
   const date = new Date(value);
@@ -19,6 +20,7 @@ function formatTripDate(value: string): string {
   return dateFormatter.format(date);
 }
 
+/** Admin trip overview with desktop and mobile list views. */
 export default function AdminTrips() {
   const navigate = useNavigate();
   const [trips, setTrips] = useState<AdminTripRow[]>([]);

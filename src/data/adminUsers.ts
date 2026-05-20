@@ -1,5 +1,6 @@
 import type { User } from "../types/User";
 
+/** Seed data for admin and demo users used by the application. */
 export const adminUsers: User[] = [
   {
     id: 1,
