@@ -26,7 +26,7 @@ export default function AdminContactMessages() {
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
-    apiFetch("/api/contact")
+    apiFetch("/contact")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch messages");
         return res.json();
@@ -39,7 +39,7 @@ export default function AdminContactMessages() {
   async function handleDelete(id: number) {
     setDeletingId(id);
     try {
-      await apiFetch(`/api/contact/${id}`, { method: "DELETE" });
+      await apiFetch(`/contact/${id}`, { method: "DELETE" });
       setMessages((prev) => prev.filter((m) => m.id !== id));
     } catch (err) {
       console.error("Failed to delete message:", err);
