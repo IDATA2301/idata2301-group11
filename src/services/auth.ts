@@ -34,6 +34,15 @@ type UpdateUsernameRequest = {
   userName: string;
 };
 
+type ForgotPasswordRequest = {
+  email: string;
+};
+
+type ResetPasswordRequest = {
+  token: string;
+  password: string;
+};
+
 export async function login({ email, password }: LoginRequest): Promise<AuthUser> {
   const response = await apiFetch(`/auth/login`, {
     method: "POST",
@@ -119,4 +128,42 @@ export async function updateUsername({ id, userName }: UpdateUsernameRequest): P
 
   const data: AuthUser = await response.json();
   return data;
+}
+
+export async function requestPasswordReset({ email }: ForgotPasswordRequest): Promise<void> {
+  const response = await apiFetch(`/auth/forgot-password`, {
+    method: "POST",
+    body: JSON.stringify({ email }),
+  });
+
+  if (response.status === 400) {
+    throw new Error("Please enter a valid email address.");
+  }
+
+  if (response.status === 404) {
+    return;
+  }
+
+  if (!response.ok) {
+    throw new Error("Could not request a password reset. Please try again.");
+  }
+}
+
+export async function resetPassword({ token, password }: ResetPasswordRequest): Promise<void> {
+  const response = await apiFetch(`/auth/reset-password`, {
+    method: "POST",
+    body: JSON.stringify({ token, password }),
+  });
+
+  if (response.status === 400) {
+    throw new Error("Please provide a valid reset token and a new password.");
+  }
+
+  if (response.status === 404) {
+    throw new Error("Reset token is invalid or has expired.");
+  }
+
+  if (!response.ok) {
+    throw new Error("Could not reset password. Please try again.");
+  }
 }
