@@ -47,9 +47,14 @@ export default function AdminTrips() {
       <SectionHeader
         title="Trips"
         action={
-          <Link to="/admin" className="btn btn--ghost">
-            Back to admin
-          </Link>
+          <div style={{ display: "flex", gap: "var(--space-sm)" }}>
+            <Link to="/admin/trips/create" className="btn btn--primary">
+              Create trip
+            </Link>
+            <Link to="/admin" className="btn btn--ghost">
+              Back to admin
+            </Link>
+          </div>
         }
         className="admin-trips__header"
       />

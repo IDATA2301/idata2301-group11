@@ -18,6 +18,7 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminUserDetails from "./pages/AdminUserDetails";
 import AdminTrips from "./pages/AdminTrips";
 import AdminTripEdit from "./pages/AdminTripEdit";
+import AdminTripCreate from "./pages/AdminTripCreate";
 import AdminFlights from "./pages/AdminFlights";
 import AdminAccommodations from "./pages/AdminAccommodations";
 import AdminDestinations from "./pages/AdminDestinations";
@@ -59,6 +60,7 @@ function AppLayout() {
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/users/:id" element={<AdminUserDetails />} />
           <Route path="/admin/trips" element={<AdminTrips />} />
+          <Route path="/admin/trips/create" element={<AdminTripCreate />} />
           <Route path="/admin/trips/:id/edit" element={<AdminTripEdit />} />
           <Route path="/admin/flights" element={<AdminFlights />} />
           <Route path="/admin/accommodations" element={<AdminAccommodations />} />

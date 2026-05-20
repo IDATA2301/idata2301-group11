@@ -98,6 +98,36 @@ export async function fetchAdminTripDetails(id: number): Promise<AdminTripDetail
   return response.json();
 }
 
+export type CreateTripRequest = {
+  title: string;
+  description?: string;
+  imageUrl?: string;
+  startDate?: string;
+  endDate?: string;
+  keywords?: string[];
+  destinationId?: number;
+};
+
+export async function createAdminTrip(payload: CreateTripRequest): Promise<AdminTripDetails> {
+  const response = await apiFetch("/admin/trips", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    let message = `Failed to create trip (HTTP ${response.status})`;
+    try {
+      const data = await response.json();
+      if (data?.message) message = data.message;
+    } catch {
+      // ignore
+    }
+    throw new Error(message);
+  }
+
+  return response.json();
+}
+
 export type UpdateAdminTripRequest = {
   title?: string;
   description?: string;
@@ -106,6 +136,20 @@ export type UpdateAdminTripRequest = {
   endDate?: string;
   keywords?: string[];
 };
+
+export async function deleteAdminTrip(id: number): Promise<void> {
+  const response = await apiFetch(`/admin/trips/${id}`, { method: "DELETE" });
+  if (!response.ok && response.status !== 204) {
+    let message = `Failed to delete trip (HTTP ${response.status})`;
+    try {
+      const data = await response.json();
+      if (data?.message) message = data.message;
+    } catch {
+      // ignore
+    }
+    throw new Error(message);
+  }
+}
 
 export async function updateAdminTrip(
   id: number,

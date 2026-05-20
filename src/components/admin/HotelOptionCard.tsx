@@ -104,7 +104,7 @@ export default function HotelOptionCard({ option, busy, onSave, onDelete, onAcco
           <button type="button" className="btn btn--ghost" onClick={() => setExpanded((p) => !p)}>
             {expanded ? "Collapse" : "Edit"}
           </button>
-          <button type="button" className="btn btn--ghost" onClick={onDelete} disabled={busy}>
+          <button type="button" className="btn btn--danger" onClick={onDelete} disabled={busy}>
             Detach
           </button>
         </div>
