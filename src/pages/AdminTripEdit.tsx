@@ -495,7 +495,7 @@ export default function AdminTripEdit() {
   }
 
   async function handleDeleteTrip() {
-    if (!window.confirm(`Delete "${trip.title}"? This cannot be undone.`)) return;
+    if (!trip || !window.confirm(`Delete "${trip.title}"? This cannot be undone.`)) return;
     try {
       await deleteAdminTrip(tripId);
       navigate("/admin/trips");
