@@ -43,7 +43,7 @@ export async function apiFetch(input: string, init: ApiFetchInit = {}): Promise<
 
   const response = await fetch(buildUrl(input), { ...fetchInit, headers });
 
-  if (response.status === 401) {
+  if (response.status === 401 && !skipAuth) {
     localStorage.removeItem("authUser");
     if (typeof window !== "undefined" && !window.location.pathname.startsWith("/login")) {
       alert("Session expired. Please log in again.");
