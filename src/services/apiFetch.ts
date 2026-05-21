@@ -53,9 +53,5 @@ export async function apiFetch(input: string, init: ApiFetchInit = {}): Promise<
     throw new Error("Unauthorized. Please log in again.");
   }
 
-  if (response.status === 403) {
-    throw new Error("You don't have permission to access this resource.");
-  }
-
   return response;
 }

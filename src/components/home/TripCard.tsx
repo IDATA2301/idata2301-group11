@@ -73,11 +73,15 @@ export default function TripCard({ id, imageUrl, title, city, country, lowestPri
     >
       <img src={getTripImageUrl(imageUrl)} alt={title} className={styles.tripImage} />
 
-      <button className={styles.favoriteButton} onClick={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        toggleFavorite(id);
-        console.log("BUTTON CLICK");
+      <button
+        className={styles.favoriteButton}
+        aria-label={isFavoriteState ? `Remove ${title} from favorites` : `Add ${title} to favorites`}
+        aria-pressed={isFavoriteState}
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          toggleFavorite(id);
+          console.log("BUTTON CLICK");
         }}
       >
       <HeartIcon className={`${styles.heartIcon} ${isFavoriteState ? styles.active : ""}`}/>
