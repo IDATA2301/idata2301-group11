@@ -47,6 +47,7 @@ export async function login({ email, password }: LoginRequest): Promise<AuthUser
   const response = await apiFetch(`/auth/login`, {
     method: "POST",
     body: JSON.stringify({ email, password }),
+    skipAuth: true,
   });
 
   if (response.status === 400) {
@@ -55,6 +56,10 @@ export async function login({ email, password }: LoginRequest): Promise<AuthUser
 
   if (response.status === 401) {
     throw new Error("Invalid email or password.");
+  }
+
+  if (response.status === 403) {
+    throw new Error("Your account has been disabled. Please contact support.");
   }
 
   if (!response.ok) {
@@ -82,6 +87,7 @@ export async function register({
       address,
       country,
     }),
+    skipAuth: true,
   });
 
   if (response.status === 400) {
