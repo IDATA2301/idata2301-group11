@@ -40,6 +40,7 @@ function Contact() {
       <Helmet>
         <title>Contact Us — RoamRoute</title>
         <meta name="description" content="Get in touch with the RoamRoute team. We're here to help with any questions about our travel packages and bookings." />
+        <link rel="preload" as="image" href="/images/contactform.webp" fetchpriority="high" />
       </Helmet>
       <div className="contact__hero-bg" aria-hidden="true">
         <img src="/images/contactform.webp" alt="Scenic coastal view of a turquoise bay with rocky green cliffs under a bright blue sky" fetchPriority="high" className="contact__hero-bg-img" />

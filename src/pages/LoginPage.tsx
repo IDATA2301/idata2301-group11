@@ -46,6 +46,7 @@ export default function LoginPage() {
       <Helmet>
         <title>Sign In — RoamRoute</title>
         <meta name="description" content="Sign in to your RoamRoute account to manage your trips, bookings, and favourites." />
+        <link rel="preload" as="image" href="/images/signin.webp" fetchpriority="high" />
       </Helmet>
       <div className="login__hero-bg" aria-hidden="true">
         <img src="/images/signin.webp" alt="Busy airport terminal with a vaulted steel and glass roof and travellers walking through the departures hall" fetchPriority="high" className="login__hero-bg-img" />
