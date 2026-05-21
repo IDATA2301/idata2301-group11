@@ -61,7 +61,7 @@ function About() {
       <Helmet>
         <title>About Us — RoamRoute</title>
         <meta name="description" content="Learn about RoamRoute's mission to make travel planning effortless. Meet the team behind the platform and discover what drives us." />
-        <link rel="preload" as="image" href="/images/fly.webp" fetchpriority="high" />
+        <link rel="preload" as="image" href="/images/fly.webp" fetchPriority="high" />
       </Helmet>
       <div className="about__hero-bg" aria-hidden="true">
         <img src="/images/fly.webp" alt="Airplane flying between two tall glass skyscrapers viewed from below against a pale blue sky" fetchPriority="high" className="about__hero-bg-img" />

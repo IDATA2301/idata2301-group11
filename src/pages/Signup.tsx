@@ -61,7 +61,7 @@ export default function Signup() {
       <Helmet>
         <title>Create Account — RoamRoute</title>
         <meta name="description" content="Create a free RoamRoute account and start planning your dream vacation today." />
-        <link rel="preload" as="image" href="/images/auth.webp" fetchpriority="high" />
+        <link rel="preload" as="image" href="/images/auth.webp" fetchPriority="high" />
       </Helmet>
       <div className="signup__hero-bg" aria-hidden="true">
         <img src="/images/auth.webp" alt="Aerial view of a sunny beach with colourful umbrellas and sunbathers beside turquoise water" fetchPriority="high" className="signup__hero-bg-img" />
