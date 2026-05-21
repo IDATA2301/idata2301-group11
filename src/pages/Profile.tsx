@@ -104,10 +104,10 @@ export default function Profile() {
           <div className="profile__intro">
             <h1>{displayName}</h1>
             <p>{authUser.email}</p>
-            <p className="profile__location">
+            {/* <p className="profile__location">
               <MapPinIcon className="profile__location-icon" aria-hidden="true" />
               <span>{locationText}</span>
-            </p>
+            </p> */}
           </div>
         </div>
 
@@ -162,63 +162,63 @@ export default function Profile() {
 
         {error ? <p className="profile__message profile__message--error" role="alert">{error}</p> : null}
         {success ? <p className="profile__message profile__message--success">{success}</p> : null}
+      </section>
 
-        <div className="profile__actions">
-          {!isEditing && (
-            <button
-              type="button"
-              className="profile__btn profile__btn--primary"
-              onClick={() => {
-                setIsEditing(true);
-                setError("");
-                setSuccess("");
-              }}
-            >
-              Edit Username
-            </button>
-          )}
+      <div className="profile__actions">
+        {!isEditing && (
+          <button
+            type="button"
+            className="profile__btn profile__btn--primary"
+            onClick={() => {
+              setIsEditing(true);
+              setError("");
+              setSuccess("");
+            }}
+          >
+            Edit Username
+          </button>
+        )}
 
-          {authUser.role === "ADMIN" && (
-            <button
-              type="button"
-              className="profile__btn profile__btn--primary profile__btn--icon"
-              onClick={() => navigate("/admin")}
-            >
-              <ShieldCheckIcon className="profile__btn-icon" aria-hidden="true" />
-              <span>Admin Dashboard</span>
-            </button>
-          )}
-
+        {authUser.role === "ADMIN" && (
           <button
             type="button"
             className="profile__btn profile__btn--primary profile__btn--icon"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/admin")}
           >
-            <MapIcon className="profile__btn-icon" aria-hidden="true" />
-            <span>Continue Exploring</span>
+            <ShieldCheckIcon className="profile__btn-icon" aria-hidden="true" />
+            <span>Admin Dashboard</span>
           </button>
+        )}
 
-          <button
-            type="button"
-            className="profile__btn profile__btn--ghost"
-            onClick={() => navigate("/purchased-trips")}
-          >
-            Purchased Trips
-          </button>
+        <button
+          type="button"
+          className="profile__btn profile__btn--primary profile__btn--icon"
+          onClick={() => navigate("/")}
+        >
+          <MapIcon className="profile__btn-icon" aria-hidden="true" />
+          <span>Continue Exploring</span>
+        </button>
 
-          <button
-            type="button"
-            className="profile__btn profile__btn--ghost profile__btn--icon"
-            onClick={() => {
-              signOut();
-              navigate("/login");
-            }}
-          >
-            <ArrowRightOnRectangleIcon className="profile__btn-icon" aria-hidden="true" />
-            <span>Sign Out</span>
-          </button>
-        </div>
-      </section>
+        <button
+          type="button"
+          className="profile__btn profile__btn--ghost"
+          onClick={() => navigate("/purchased-trips")}
+        >
+          Purchased Trips
+        </button>
+
+        <button
+          type="button"
+          className="profile__btn profile__btn--ghost profile__btn--icon"
+          onClick={() => {
+            signOut();
+            navigate("/login");
+          }}
+        >
+          <ArrowRightOnRectangleIcon className="profile__btn-icon" aria-hidden="true" />
+          <span>Sign Out</span>
+        </button>
+      </div>
     </main>
   );
 }
