@@ -9,9 +9,9 @@
   =============================== */
 
 .signup {
-  min-height: fit-content !important;
+  min-height: calc(100vh - var(--size-header) - var(--space-lg));
   position: relative;
-  z-index: 0;
+  isolation: isolate;
   --hero-height: clamp(24rem, 62vh, 34rem);
   display: flex;
   flex-direction: column;
