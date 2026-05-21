@@ -94,7 +94,7 @@ export async function fetchAdminTrips(): Promise<TripCard[]> {
 }
 
 export async function fetchAdminTripDetails(id: number): Promise<AdminTripDetails> {
-  const response = await apiFetch(`/trips/${id}`);
+  const response = await apiFetch(`/admin/trips/${id}`);
   if (!response.ok) {
     throw new Error(`Failed to load trip (HTTP ${response.status})`);
   }
