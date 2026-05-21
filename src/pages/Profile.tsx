@@ -1,7 +1,7 @@
 import "../assets/styles/pages/profile.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState, type SyntheticEvent } from "react";
-import { ArrowRightOnRectangleIcon, MapIcon, MapPinIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import { ArrowRightOnRectangleIcon, MapIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../context/useAuth";
 // import { userBookings } from "../data/userBookings";
 import { updateUsername } from "../services/auth";
@@ -35,10 +35,6 @@ export default function Profile() {
   const isWithinMaxLength = trimmedUserName.length <= 20;
   const hasNoWhitespace = !/\s/.test(trimmedUserName);
   const canSubmit = hasUsernameChanges && isValidUsernameLength && isWithinMaxLength && hasNoWhitespace && !loading;
-  const locationText = [authUser.address ?? authUser.user_address, authUser.country ?? authUser.user_country]
-    .filter(Boolean)
-    .join(", ") || "Location not set";
-
   // const purchasesCount = authUser ? userBookings.filter((b) => b.user_id === authUser.id).length : 0;
 
   const displayName = authUser.fullName ?? authUser.userName;
