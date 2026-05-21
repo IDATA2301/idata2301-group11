@@ -17,7 +17,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.section}>
-          <h4>Quick Links</h4>
+          <h2>Quick Links</h2>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -32,7 +32,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.section}>
-          <h4>Contact</h4>
+          <h2>Contact</h2>
           <ul>
             <li>
               Email: <a href="mailto:hello@roamroute.no">post@roamroute.org</a>
