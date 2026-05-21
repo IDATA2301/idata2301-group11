@@ -58,7 +58,7 @@ export default function Signup() {
   return (
     <main className="signup">
       <div className="signup__hero-bg" aria-hidden="true">
-        <img src="/images/signup.webp" alt="" fetchPriority="high" className="signup__hero-bg-img" />
+        <img src="/images/signup.webp" alt="Aerial view of a sunny beach with colourful umbrellas and sunbathers beside turquoise water" fetchPriority="high" className="signup__hero-bg-img" />
       </div>
       <div className="signup__text">
         <h1>Create an Account</h1>

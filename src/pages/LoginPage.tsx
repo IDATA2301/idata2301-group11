@@ -43,7 +43,7 @@ export default function LoginPage() {
   return (
     <main className="login">
       <div className="login__hero-bg" aria-hidden="true">
-        <img src="/images/signin.webp" alt="" fetchPriority="high" className="login__hero-bg-img" />
+        <img src="/images/signin.webp" alt="Busy airport terminal with a vaulted steel and glass roof and travellers walking through the departures hall" fetchPriority="high" className="login__hero-bg-img" />
       </div>
       <div className="login__text">
         <h1>Welcome back</h1>

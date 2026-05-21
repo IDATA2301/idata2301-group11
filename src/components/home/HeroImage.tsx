@@ -5,7 +5,7 @@ export default function HeroImage() {
     <div className={styles.heroImage} aria-hidden="true">
       <img
         src="/images/index-hero.webp"
-        alt=""
+        alt="Tropical beach at sunset with turquoise waves washing onto white sand and palm trees in the distance"
         fetchPriority="high"
         className={styles.heroImageImg}
       />

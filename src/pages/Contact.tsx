@@ -37,7 +37,7 @@ function Contact() {
   return (
     <main className="contact">
       <div className="contact__hero-bg" aria-hidden="true">
-        <img src="/images/contactform.webp" alt="" fetchPriority="high" className="contact__hero-bg-img" />
+        <img src="/images/contactform.webp" alt="Scenic coastal view of a turquoise bay with rocky green cliffs under a bright blue sky" fetchPriority="high" className="contact__hero-bg-img" />
       </div>
       <section className="contact__hero" aria-labelledby="contact-hero-title">
         <span className="contact__eyebrow">Need a hand?</span>
