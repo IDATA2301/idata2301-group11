@@ -42,7 +42,9 @@ export default function LoginPage() {
 
   return (
     <main className="login">
-      <div className="login__hero-bg" aria-hidden="true" />
+      <div className="login__hero-bg" aria-hidden="true">
+        <img src="/images/signin.webp" alt="" fetchPriority="high" className="login__hero-bg-img" />
+      </div>
       <div className="login__text">
         <h1>Welcome back</h1>
         <p>Sign in to manage your travel plan and explore new destinations.</p>

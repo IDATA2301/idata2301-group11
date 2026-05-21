@@ -36,7 +36,9 @@ function Contact() {
 
   return (
     <main className="contact">
-      <div className="contact__hero-bg" aria-hidden="true" />
+      <div className="contact__hero-bg" aria-hidden="true">
+        <img src="/images/contactform.webp" alt="" fetchPriority="high" className="contact__hero-bg-img" />
+      </div>
       <section className="contact__hero" aria-labelledby="contact-hero-title">
         <span className="contact__eyebrow">Need a hand?</span>
         <h1 id="contact-hero-title" className="contact__hero-title">

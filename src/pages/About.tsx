@@ -57,7 +57,9 @@ function About() {
 
   return (
     <main className="about">
-      <div className="about__hero-bg" aria-hidden="true" />
+      <div className="about__hero-bg" aria-hidden="true">
+        <img src="/images/fly.webp" alt="" fetchPriority="high" className="about__hero-bg-img" />
+      </div>
       <section className="about__hero" aria-labelledby="about-hero-title">
         <span className="about__eyebrow">The RoamRoute standard</span>
         <h1 id="about-hero-title" className="about__hero-title">
