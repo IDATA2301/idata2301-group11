@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useSearchParams } from "react-router-dom";
 import type { TripCard as TripCardProps } from "../types/Trip";
 import TripCard from "../components/home/TripCard";
@@ -46,6 +47,10 @@ export default function Trips() {
 
   return (
     <main>
+      <Helmet>
+        <title>Browse Trips — RoamRoute</title>
+        <meta name="description" content="Browse all available travel packages on RoamRoute. Filter by destination, price, and dates to find your ideal trip." />
+      </Helmet>
       <h1>Browse trips</h1>
 
       <div style={{ margin: "1rem 0" }}>

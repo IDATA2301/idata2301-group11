@@ -1,5 +1,6 @@
 import "../assets/styles/pages/login.css"
 import { useState, type SyntheticEvent } from "react"
+import { Helmet } from "react-helmet-async"
 import { Link, useNavigate } from "react-router-dom"
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
 import { login } from "../services/auth"
@@ -42,6 +43,10 @@ export default function LoginPage() {
 
   return (
     <main className="login">
+      <Helmet>
+        <title>Sign In — RoamRoute</title>
+        <meta name="description" content="Sign in to your RoamRoute account to manage your trips, bookings, and favourites." />
+      </Helmet>
       <div className="login__hero-bg" aria-hidden="true">
         <img src="/images/signin.webp" alt="Busy airport terminal with a vaulted steel and glass roof and travellers walking through the departures hall" fetchPriority="high" className="login__hero-bg-img" />
       </div>

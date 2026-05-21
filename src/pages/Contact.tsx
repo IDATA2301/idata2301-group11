@@ -1,5 +1,6 @@
 import '../assets/styles/pages/contact.css';
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { EnvelopeIcon, PhoneIcon, MapPinIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import ContactInfoItem from "../components/contact/ContactInfoItem";
 import FormField from "../components/forms/FormField";
@@ -36,6 +37,10 @@ function Contact() {
 
   return (
     <main className="contact">
+      <Helmet>
+        <title>Contact Us — RoamRoute</title>
+        <meta name="description" content="Get in touch with the RoamRoute team. We're here to help with any questions about our travel packages and bookings." />
+      </Helmet>
       <div className="contact__hero-bg" aria-hidden="true">
         <img src="/images/contactform.webp" alt="Scenic coastal view of a turquoise bay with rocky green cliffs under a bright blue sky" fetchPriority="high" className="contact__hero-bg-img" />
       </div>

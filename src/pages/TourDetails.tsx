@@ -1,5 +1,6 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import AccommodationSummary from "../components/tour-details/AccommodationSummary";
 import Breadcrumb from "../components/tour-details/Breadcrumb";
@@ -90,6 +91,10 @@ export default function TourDetails() {
 
   return (
     <main>
+      <Helmet>
+        <title>{trip.title} — RoamRoute</title>
+        <meta name="description" content={trip.trip_description.slice(0, 160)} />
+      </Helmet>
       <TourHeader
         title={trip.title}
         startDate={trip.startDate}
