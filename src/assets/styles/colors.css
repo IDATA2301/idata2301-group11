@@ -27,4 +27,58 @@
   --color-shadow-md: rgba(0, 0, 0, 0.15);
   --color-shadow-lg: rgba(0, 0, 0, 0.2);
   --color-primary-glow: rgba(14, 167, 236, 0.2);
+
+  /* Semantic status colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-info: #06b6d4;
+
+  /* Status badge colors */
+  --color-warning-bg: #fef3c7;
+  --color-warning-text: #92400e;
+  --color-info-bg: #dbeafe;
+  --color-info-text: #0c4a6e;
+  --color-success-bg: #dcfce7;
+  --color-success-text: #166534;
+  --color-success-alt-bg: #ecfdf5;
+  --color-success-alt-text: #059669;
+  --color-danger-bg: #fee2e2;
+  --color-danger-text: #991b1b;
+
+  /* Image card gradient overlays */
+  --color-overlay-20: rgba(0, 0, 0, 0.2);
+  --color-overlay-30: rgba(0, 0, 0, 0.3);
+  --color-overlay-55: rgba(0, 0, 0, 0.55);
+  --color-overlay-60: rgba(0, 0, 0, 0.6);
+  --color-overlay-65: rgba(0, 0, 0, 0.65);
+  --color-overlay-75: rgba(0, 0, 0, 0.75);
+
+  /* Modal overlay */
+  --color-modal-backdrop: rgba(15, 23, 42, 0.55);
+  --color-modal-shadow: rgba(15, 23, 42, 0.25);
+  --color-modal-shadow-subtle: rgba(15, 23, 42, 0.1);
+
+  /* Favorite / interactive overlays */
+  --color-secondary-muted: rgba(119, 143, 174, 0.77);
+  --color-secondary-muted-hover: rgba(119, 143, 174, 0.9);
+  --color-hover-bg: rgba(0, 0, 0, 0.05);
+  --color-card-shadow: rgba(8, 18, 32, 0.14);
+  --color-shadow-subtle: rgba(0, 0, 0, 0.08);
+
+  /* Semi-transparent surface variants */
+  --color-surface-90: rgba(255, 255, 255, 0.9);
+  --color-surface-08: rgba(255, 255, 255, 0.08);
+  --color-surface-18: rgba(255, 255, 255, 0.18);
+  --color-surface-28: rgba(255, 255, 255, 0.28);
+  --color-surface-32: rgba(255, 255, 255, 0.32);
+  --color-surface-85: rgba(255, 255, 255, 0.85);
+  --color-surface-95: rgba(255, 255, 255, 0.95);
+
+  /* Avatar gradient */
+  --color-avatar-dark: #222a33;
+  --color-avatar-light: #4e5964;
+
+  /* Tinted icon backgrounds */
+  --color-primary-tint: #eef2ff;
+  --color-info-tint: #e0f2fe;
 }

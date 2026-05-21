@@ -17,5 +17,5 @@
 .flightIcon {
   width: 28px;
   height: 28px;
-  color: #3b82f6;
+  color: var(--color-primary);
 }

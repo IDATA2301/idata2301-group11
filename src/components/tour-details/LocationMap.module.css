@@ -19,5 +19,5 @@
 .map {
   height: 250px;
   width: 100%;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }

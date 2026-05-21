@@ -13,7 +13,7 @@
 }
 
 .tripCard:hover .tripOverlay {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0) 70%);
+  background: linear-gradient(to top, var(--color-overlay-75) 0%, var(--color-overlay-30) 40%, transparent 70%);
   cursor: pointer;
 }
 
@@ -36,12 +36,12 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: var(--space-md);
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0) 70%);
-  color: #fff;
+  background: linear-gradient(to top, var(--color-overlay-65) 0%, var(--color-overlay-20) 40%, transparent 70%);
+  color: var(--color-surface);
 }
 
 .tripOverlay * {
-  color: #fff;
+  color: var(--color-surface);
 }
 
 .tripTitle {
@@ -57,13 +57,13 @@
 }
 
 .tripPrice {
-  margin-top: 4px;
+  margin-top: var(--space-xs);
   margin-bottom: 0;
   font-weight: 600;
 }
 
 .tripMeta {
-  margin-top: 4px;
+  margin-top: var(--space-xs);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -83,25 +83,25 @@
   top: 10px;
   right: 10px;
   z-index: 10;
-  background: rgba(119, 143, 174, 0.767);
+  background: var(--color-secondary-muted);
   border-radius: 50%;
   padding: 6px;
   border: none;
 }
 
 .favoriteButton:hover {
-  background: rgba(119, 143, 174, 0.9);
+  background: var(--color-secondary-muted-hover);
 }
 
 .heartIcon {
   width: 20px;
-  color: white;
+  color: var(--color-surface);
 }
 
 .favoriteButton:hover .heartIcon {
-  color: rgba(255, 0, 0, 0.7);
+  color: var(--color-danger);
 }
 
 .active {
-  color: red;
+  color: var(--color-danger);
 }

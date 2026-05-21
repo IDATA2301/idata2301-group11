@@ -22,12 +22,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%);
+  background: linear-gradient(to top, var(--color-overlay-55) 0%, transparent 45%);
   pointer-events: none;
 }
 
 .destinationCard:hover::after {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0) 70%);
+  background: linear-gradient(to top, var(--color-overlay-75) 0%, var(--color-overlay-30) 40%, transparent 70%);
 }
 
 /* ====================================
@@ -60,10 +60,10 @@
   background: var(--color-surface);
   color: var(--color-ink-900, #0b1220);
   padding: 0.25rem 0.6rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   font-weight: 700;
   z-index: 2;
-  box-shadow: 0 6px 18px rgba(8, 18, 32, 0.14);
+  box-shadow: 0 6px 18px var(--color-card-shadow);
   font-family: "Inter", sans-serif;
   font-size: 0.95rem;
 }
