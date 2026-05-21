@@ -7,7 +7,7 @@
 .admin-trips {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
 .admin-trips h1,

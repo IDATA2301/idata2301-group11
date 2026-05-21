@@ -7,7 +7,7 @@
   =============================== */
 
 .section {
-  margin-top: var(--space-lg);
+  margin-top: var(--space-md);
 }
 
 .title {
@@ -21,12 +21,12 @@
 .icon {
   width: 28px;
   height: 28px;
-  color: #3b82f6;
+  color: var(--color-primary);
 }
 
 .card {
-  background-color: #fff;
-  border-radius: 12px;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-light);
   padding: var(--space-md);
   display: flex;

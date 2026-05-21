@@ -6,7 +6,7 @@
   margin-bottom: 1rem;
 }
 .empty {
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 .list {
   list-style: none;
@@ -17,7 +17,7 @@
   gap: 1rem;
 }
 .card {
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
 }
@@ -39,8 +39,8 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: 1.25rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
-  color: #fff;
+  background: linear-gradient(to top, var(--color-overlay-55) 0%, var(--color-overlay-20) 50%, transparent 100%);
+  color: var(--color-surface);
 }
 .cardHeader {
   display: flex;
@@ -51,19 +51,19 @@
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--color-surface);
   max-width: calc(100% - 100px);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .price {
-  color: #fff;
+  color: var(--color-surface);
   font-weight: 700;
   white-space: nowrap;
 }
 .meta {
   margin: 0.35rem 0 0;
-  color: rgba(255,255,255,0.9);
+  color: var(--color-surface-90);
   font-size: 0.9rem;
 }

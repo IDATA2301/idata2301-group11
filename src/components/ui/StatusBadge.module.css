@@ -8,7 +8,7 @@
 
 .badge {
   display: inline-block;
-  padding: var(--space-2xs) var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-sm);
   font-size: 0.8rem;
   font-weight: 600;
@@ -16,21 +16,21 @@
 }
 
 .pending {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning-text);
 }
 
 .confirmed {
-  background-color: #dbeafe;
-  color: #0c4a6e;
+  background-color: var(--color-info-bg);
+  color: var(--color-info-text);
 }
 
 .completed {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
 }
 
 .cancelled {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger-text);
 }

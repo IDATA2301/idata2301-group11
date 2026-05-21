@@ -9,7 +9,7 @@
 .page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
 .title {
@@ -18,9 +18,14 @@
 
 .favoritesContainer {
   display: grid;
-  gap: var(--space-lg);
-  grid-template-columns: repeat(auto-fit, minmax(640px, 480px));
-  justify-content: start;
+  gap: var(--space-md);
+  margin-top: var(--space-xs);
+}
+
+@media (min-width: 48rem) {
+  .favoritesContainer {
+    grid-template-columns: repeat(auto-fit, minmax(var(--size-card-min), 1fr));
+  }
 }
 
 

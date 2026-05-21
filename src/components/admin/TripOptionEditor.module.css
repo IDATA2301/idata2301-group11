@@ -44,8 +44,8 @@
 }
 
 .warning {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
   padding: var(--space-sm, 0.5rem) var(--space-md, 1rem);
   border-radius: var(--radius-sm, 6px);
   margin: 0;

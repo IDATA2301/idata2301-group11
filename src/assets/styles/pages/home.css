@@ -14,7 +14,7 @@
   --hero-height: clamp(26rem, 75vh, 38rem);
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
 /* ====================================
@@ -40,18 +40,18 @@
 .home__destinations-list,
 .home__trip-list {
   display: grid;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
 .home__destinations-list {
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   padding-bottom: calc(var(--space-sm) + 6px);
-  margin-top: var(--space-lg);
+  margin-top: var(--space-md);
 }
 
 /* header wrapper for title + view-all link */
@@ -92,7 +92,7 @@
 }
 
 .home__trip-list {
-  margin-top: var(--space-2xs);
+  margin-top: var(--space-xs);
 }
 
 /* ====================================

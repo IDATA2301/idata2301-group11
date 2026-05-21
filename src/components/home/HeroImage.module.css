@@ -4,11 +4,11 @@
 
 .heroImage {
   position: absolute;
-  top: calc(-1 * (var(--size-header) + var(--space-6xl)));
+  top: calc(-1 * (var(--size-header) + var(--space-lg)));
   left: 0;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  height: calc(var(--hero-height) + var(--size-header) + var(--space-6xl));
+  height: calc(var(--hero-height) + var(--size-header) + var(--space-lg));
   z-index: -1;
   overflow: hidden;
 }
