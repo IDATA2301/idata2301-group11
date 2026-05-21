@@ -58,7 +58,7 @@ function Contact() {
       <div className="contact__grid">
         <section className="contact__form-card">
           <div className="contact__header">
-            <h1>Get in Touch</h1>
+            <h2>Get in Touch</h2>
             <p>
               Whether you're planning your next adventure or need help with existing bookings, our
               team is here to ensure your journey is seamless.
@@ -68,7 +68,7 @@ function Contact() {
           {status === "success" ? (
             <div className="contact__success">
               <CheckCircleIcon className="contact__success-icon" aria-hidden="true" />
-              <h2>Message sent!</h2>
+              <h3>Message sent!</h3>
               <p>Thanks for reaching out. We'll get back to you as soon as possible.</p>
               <button
                 className="btn contact__submit"
@@ -140,7 +140,7 @@ function Contact() {
           </div>
 
           <div className="contact__hours contact__hours-box">
-            <h4>Available</h4>
+            <h2>Available</h2>
             <div className="contact__hours-row">
               <span className="contact__hours-day">Mon – Fri</span>
               <span className="contact__hours-time">08:00 – 21:00</span>
