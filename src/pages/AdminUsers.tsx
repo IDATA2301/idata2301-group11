@@ -63,6 +63,7 @@ export default function AdminUsers() {
       ) : users.length === 0 ? (
         <p>No users found.</p>
       ) : (
+        <div className="admin-trip-edit__table-wrap">
         <table className="admin-trip-edit__table">
           <thead>
             <tr>
@@ -100,6 +101,7 @@ export default function AdminUsers() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </main>
   );

@@ -122,6 +122,7 @@ export default function AdminAccommodations() {
       {accommodations.length === 0 ? (
         <p>No accommodations yet.</p>
       ) : (
+        <div className="admin-trip-edit__table-wrap">
         <table className="admin-trip-edit__table">
           <thead>
             <tr>
@@ -161,6 +162,7 @@ export default function AdminAccommodations() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       <Modal open={creating} onClose={() => setCreating(false)} title="Add accommodation" size="lg">

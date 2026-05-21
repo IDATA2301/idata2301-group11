@@ -122,6 +122,7 @@ export default function AdminFlights() {
       {flights.length === 0 ? (
         <p>No flights yet.</p>
       ) : (
+        <div className="admin-trip-edit__table-wrap">
         <table className="admin-trip-edit__table">
           <thead>
             <tr>
@@ -161,6 +162,7 @@ export default function AdminFlights() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       <Modal open={creating} onClose={() => setCreating(false)} title="Add flight" size="lg">

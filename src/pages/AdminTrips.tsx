@@ -91,6 +91,7 @@ export default function AdminTrips() {
       ) : trips.length === 0 ? (
         <p>No trips found.</p>
       ) : (
+        <div className="admin-trip-edit__table-wrap">
         <table className="admin-trip-edit__table">
           <thead>
             <tr>
@@ -144,6 +145,7 @@ export default function AdminTrips() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </main>
   );

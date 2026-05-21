@@ -123,6 +123,7 @@ export default function AdminDestinations() {
       {destinations.length === 0 ? (
         <p>No destinations yet.</p>
       ) : (
+        <div className="admin-trip-edit__table-wrap">
         <table className="admin-trip-edit__table">
           <thead>
             <tr>
@@ -170,6 +171,7 @@ export default function AdminDestinations() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       <Modal open={creating} onClose={() => setCreating(false)} title="Add destination" size="lg">

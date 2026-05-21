@@ -77,6 +77,7 @@ export default function AdminMessages() {
       ) : messages.length === 0 ? (
         <p>No messages yet.</p>
       ) : (
+        <div className="admin-trip-edit__table-wrap">
         <table className="admin-trip-edit__table">
           <thead>
             <tr>
@@ -115,6 +116,7 @@ export default function AdminMessages() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       <Modal
