@@ -34,7 +34,7 @@
     transparent 55%,
     var(--color-background) 100%
   ),
-  url("/images/signinup.webp");
+  url("/images/signup.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
