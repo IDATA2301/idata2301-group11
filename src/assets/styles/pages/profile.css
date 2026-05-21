@@ -123,8 +123,8 @@
   border-radius: var(--radius-md);
   min-height: 7.5rem;
   padding: var(--space-md);
+  display: grid;
   align-content: center;
-  justify-items: center;
   gap: var(--space-xs);
 }
 
