@@ -9,23 +9,31 @@
   =============================== */
 
 .profile {
+  min-height: fit-content !important;
   display: grid;
-  place-items: center;
+  grid-template-columns: minmax(0, 34rem) minmax(0, 20rem);
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-2xl);
+  padding: var(--space-6xl) var(--space-lg) var(--space-4xl);
+  width: 100%;
 }
 
 .profile__card {
   width: 100%;
   max-width: 34rem;
+  flex-shrink: 0;
   padding: var(--space-2xl) var(--space-xl);
-  background-color: transparent;
+  background-color: #ffffff;
   border-radius: var(--radius-lg);
-  box-shadow: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  gap: clamp(var(--space-lg), 3vh, var(--space-3xl));
-  min-height: clamp(36rem, 78vh, 49rem);
+  justify-content: flex-start;
+  gap: var(--space-lg);
+  min-height: auto;
+  height: fit-content;
 }
 
 .profile__identity {
@@ -169,19 +177,27 @@
   outline: none;
 }
 
-.profile__edit-actions,
-.profile__actions {
+.profile__edit-actions {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
 }
 
+.profile__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4xl);
+  width: 100%;
+  max-width: 20rem;
+  justify-self: start;
+  align-self: start;
+}
+
 .profile__btn {
   width: 100%;
   min-height: 3.9rem;
-  border-radius: var(--radius-pill);
-  font-size: 1.85rem;
+  border-radius: var(--radius-lg);
   font-size: clamp(1.25rem, 3.6vw, 2rem);
   font-weight: 700;
   cursor: pointer;
@@ -244,6 +260,21 @@
    Responsive
    =============================== */
 
+/* Stack buttons below the card on small screens */
+@media (max-width: 47.99rem) {
+  .profile {
+    grid-template-columns: 1fr;
+  }
+
+  .profile__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .profile__actions {
+    max-width: 100%;
+  }
+}
+
 @media (min-width: 48rem) {
   .profile__edit-actions {
     flex-direction: row;
@@ -257,6 +288,7 @@
 
 @media (min-width: 64rem) {
   .profile {
+    grid-template-columns: minmax(0, 30rem) minmax(0, 20rem);
     place-items: start;
   }
 
@@ -266,7 +298,7 @@
     align-items: flex-start;
     justify-content: space-evenly;
     gap: clamp(var(--space-xl), 3.5vh, var(--space-4xl));
-    min-height: 42rem;
+    min-height: auto;
   }
 
   .profile__identity {
