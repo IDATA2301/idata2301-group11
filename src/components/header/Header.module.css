@@ -146,7 +146,7 @@
   transition: background-color 0.3s ease;
 }
 
-.links a:hover {
+.links a:not(.signupLink):hover {
   background-color: var(--color-overlay-light);
 }
 
@@ -175,7 +175,7 @@
 }
 
 .signupLink:hover {
-  background-color: var(--color-surface);
+  background-color: var(--color-surface-85);
   color: var(--color-primary) !important;
 }
 
