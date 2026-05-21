@@ -26,19 +26,22 @@ function buildUrl(input: string): string {
   return `${base}${normalizedPath}`;
 }
 
-export async function apiFetch(input: string, init: RequestInit = {}): Promise<Response> {
-  const token = readToken();
-  const headers = new Headers(init.headers);
+type ApiFetchInit = RequestInit & { skipAuth?: boolean };
 
-  if (!headers.has("Content-Type") && init.body && !(init.body instanceof FormData)) {
+export async function apiFetch(input: string, init: ApiFetchInit = {}): Promise<Response> {
+  const { skipAuth, ...fetchInit } = init;
+  const token = readToken();
+  const headers = new Headers(fetchInit.headers);
+
+  if (!headers.has("Content-Type") && fetchInit.body && !(fetchInit.body instanceof FormData)) {
     headers.set("Content-Type", "application/json");
   }
 
-  if (token) {
+  if (token && !skipAuth) {
     headers.set("Authorization", `Bearer ${token}`);
   }
 
-  const response = await fetch(buildUrl(input), { ...init, headers });
+  const response = await fetch(buildUrl(input), { ...fetchInit, headers });
 
   if (response.status === 401) {
     localStorage.removeItem("authUser");

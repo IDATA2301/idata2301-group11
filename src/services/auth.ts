@@ -47,6 +47,7 @@ export async function login({ email, password }: LoginRequest): Promise<AuthUser
   const response = await apiFetch(`/auth/login`, {
     method: "POST",
     body: JSON.stringify({ email, password }),
+    skipAuth: true,
   });
 
   if (response.status === 400) {
@@ -82,6 +83,7 @@ export async function register({
       address,
       country,
     }),
+    skipAuth: true,
   });
 
   if (response.status === 400) {
