@@ -57,10 +57,15 @@
 .section a {
   color: var(--color-primary);
   text-decoration: none;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-xs);
+  margin-left: calc(var(--space-sm) * -1);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .section a:hover {
-  color: var(--color-secondary);
+  background-color: var(--color-surface-18);
+  color: var(--color-surface);
 }
 
 .bottom {
