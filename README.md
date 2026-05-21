@@ -1,6 +1,11 @@
 # RoamRoute — Frontend
 
 React + TypeScript + Vite frontend for the RoamRoute trip-booking app. Companion to the Spring Boot backend at https://github.com/IDATA2301/idata2306-group-11.
+RoamRoute is a student project website, aiming to make trip planning easier by combinging destinations, flights and hotels into single trip packages.
+
+<img width="2541" height="1283" alt="Screenshot 2026-05-21 201324" src="https://github.com/user-attachments/assets/1839dcf8-dc05-45d8-bd2e-5e03d9f4f495" />
+RoamRoute home page on desktop
+
 
 ## Stack
 
