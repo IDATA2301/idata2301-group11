@@ -66,11 +66,11 @@ export default function TourDetails() {
       .then((data: TripDetailsResponse) => {
         setTrip(data);
 
-        if (data.flightOptions.length > 0) {
+        if (data.flightOptions?.length > 0) {
           setSelectedFlightId(data.flightOptions[0].id);
         }
 
-        if (data.hotelOptions.length > 0) {
+        if (data.hotelOptions?.length > 0) {
           setSelectedHotelId(data.hotelOptions[0].id);
         }
       })
@@ -93,7 +93,7 @@ export default function TourDetails() {
     <main>
       <Helmet>
         <title>{trip.title} — RoamRoute</title>
-        <meta name="description" content={trip.trip_description.slice(0, 160)} />
+        <meta name="description" content={(trip.trip_description ?? "").slice(0, 160)} />
       </Helmet>
       <TourHeader
         title={trip.title}
@@ -123,7 +123,7 @@ export default function TourDetails() {
             Flight Price Comparison
           </h2>
 
-          {trip.flightOptions.map((flight) => (
+          {(trip.flightOptions ?? []).map((flight) => (
             <OptionComparisonCard
               key={flight.id}
               provider={flight.provider}
@@ -149,7 +149,7 @@ export default function TourDetails() {
          <section className={styles.comparisonSection}>
           <h2 className={styles.comparisonTitle}>Hotel Price Comparison</h2>
 
-          {trip.hotelOptions.map((hotel) => (
+          {(trip.hotelOptions ?? []).map((hotel) => (
             <OptionComparisonCard
               key={hotel.id}
               provider={hotel.provider}
@@ -165,8 +165,8 @@ export default function TourDetails() {
       {/* find selected flight/hotel objects and pass to payment component */}
       {
         (() => {
-          const flight = trip.flightOptions.find((f) => f.id === selectedFlightId) ?? null;
-          const hotel = trip.hotelOptions.find((h) => h.id === selectedHotelId) ?? null;
+          const flight = trip.flightOptions?.find((f) => f.id === selectedFlightId) ?? null;
+          const hotel = trip.hotelOptions?.find((h) => h.id === selectedHotelId) ?? null;
           return (
             <TripPayment
               selectedFlight={flight}

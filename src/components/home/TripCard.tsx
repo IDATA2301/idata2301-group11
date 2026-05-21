@@ -68,7 +68,6 @@ export default function TripCard({ id, imageUrl, title, city, country, lowestPri
         if ((e.target as HTMLElement).closest("button")) return;
 
         navigate(`/tour/${id}`);
-        console.log("ARTICLE CLICK")
       }}
     >
       <img src={getTripImageUrl(imageUrl)} alt={title} className={styles.tripImage} />
