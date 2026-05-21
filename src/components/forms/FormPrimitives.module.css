@@ -41,7 +41,7 @@
 
 .textarea {
   min-height: var(--size-textarea);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   resize: vertical;
 }
 

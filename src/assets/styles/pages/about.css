@@ -8,8 +8,8 @@
   --hero-height: clamp(26rem, 75vh, 38rem);
   display: flex;
   flex-direction: column;
-  gap: var(--space-6xl);
-  padding-bottom: var(--space-6xl);
+  gap: var(--space-lg);
+  padding-bottom: var(--space-lg);
 }
 
 /* ====================================
@@ -18,11 +18,11 @@
 
 .about__hero-bg {
   position: absolute;
-  top: calc(-1 * (var(--size-header) + var(--space-6xl)));
+  top: calc(-1 * (var(--size-header) + var(--space-lg)));
   left: 0;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  height: calc(var(--hero-height) + var(--size-header) + var(--space-6xl));
+  height: calc(var(--hero-height) + var(--size-header) + var(--space-lg));
   z-index: -1;
   overflow: hidden;
 }
@@ -59,7 +59,7 @@
 
 .about__hero {
   min-height: var(--hero-height);
-  padding-top: var(--space-6xl);
+  padding-top: var(--space-lg);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -106,7 +106,7 @@
 
 .about__mission {
   position: relative;
-  margin-top: calc(-1 * var(--space-4xl));
+  margin-top: calc(-1 * var(--space-lg));
   background-color: var(--color-surface);
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-xl);
@@ -118,7 +118,7 @@
 
 .about__mission-aside {
   position: relative;
-  padding: var(--space-2xl);
+  padding: var(--space-lg);
   background:
     radial-gradient(circle at 85% 15%, var(--color-surface-18) 0%, transparent 55%),
     linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
@@ -172,7 +172,7 @@
 }
 
 .about__mission-body {
-  padding: var(--space-2xl);
+  padding: var(--space-lg);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -214,7 +214,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-lg);
   max-width: 48rem;
 }
 
@@ -261,7 +261,7 @@
 .about__services-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
 /* ====================================
@@ -274,7 +274,7 @@
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border-light);
   border-bottom: 1px solid var(--color-border-light);
-  padding: var(--space-6xl) 0;
+  padding: var(--space-lg) 0;
 }
 
 .about__team-inner {
@@ -286,8 +286,8 @@
 .about__team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: var(--space-lg);
-  margin-top: var(--space-2xl);
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
 }
 
 /* ====================================
@@ -301,7 +301,7 @@
 
   .about__hero-overlay {
     min-height: 26rem;
-    padding: calc(var(--size-header) + var(--space-6xl)) 0 var(--space-8xl);
+    padding: calc(var(--size-header) + var(--space-lg)) 0 var(--space-xl);
   }
 
   .about__mission {
@@ -310,7 +310,7 @@
 
   .about__mission-aside,
   .about__mission-body {
-    padding: var(--space-4xl);
+    padding: var(--space-lg);
   }
 
   .about__services-grid {

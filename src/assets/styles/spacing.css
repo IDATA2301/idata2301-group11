@@ -7,19 +7,14 @@
 
 :root {
   --space-0: 0;
-  --space-2xs: 0.125rem;
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 0.75rem;
-  --space-lg: 1rem;
-  --space-xl: 1.25rem;
-  --space-2xl: 1.5rem;
-  --space-3xl: 1.75rem;
-  --space-4xl: 2rem;
-  --space-5xl: 2.25rem;
-  --space-6xl: 2.5rem;
-  --space-7xl: 2.75rem;
-  --space-8xl: 3rem;
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 2rem;      /* 32px */
+  --space-xl: 4rem;      /* 64px */
+  --space-2xl: 8rem;     /* 128px */
+  --space-3xl: 16rem;    /* 256px */
+  --space-4xl: 32rem;    /* 512px */
 
   --border-1: 0.0625rem;
   --border-2: 0.125rem;

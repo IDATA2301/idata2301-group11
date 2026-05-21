@@ -14,17 +14,17 @@
   --hero-height: clamp(24rem, 62vh, 34rem);
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
-  padding-bottom: var(--space-2xl);
+  gap: var(--space-md);
+  padding-bottom: var(--space-lg);
 }
 
 .contact__hero-bg {
   position: absolute;
-  top: calc(-1 * (var(--size-header) + var(--space-6xl)));
+  top: calc(-1 * (var(--size-header) + var(--space-lg)));
   left: 0;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  height: calc(var(--hero-height) + var(--size-header) + var(--space-6xl));
+  height: calc(var(--hero-height) + var(--size-header) + var(--space-lg));
   z-index: -1;
   overflow: hidden;
 }
@@ -53,7 +53,7 @@
 
 .contact__hero {
   min-height: var(--hero-height);
-  padding-top: var(--space-6xl);
+  padding-top: var(--space-lg);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -97,14 +97,14 @@
 .contact__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
 .contact__form-card,
 .contact__info {
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);
-  padding: var(--space-xl);
+  padding: var(--space-md);
   box-shadow: var(--shadow-md);
 }
 
@@ -115,7 +115,7 @@
 
 .contact__header {
   text-align: left;
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-md);
 }
 
 /* ====================================
@@ -125,7 +125,7 @@
 .contact__form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-md);
   width: 100%;
   flex: 1;
 }
@@ -154,7 +154,7 @@
   color: var(--color-text-muted);
   border: var(--border-2) solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   font-size: 1rem;
   width: 100%;
   box-shadow: var(--shadow-sm);
@@ -195,7 +195,7 @@
   align-items: center;
   text-align: center;
   gap: var(--space-md);
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-md) var(--space-md);
   flex: 1;
 }
 
@@ -232,12 +232,12 @@
 
 .contact__details,
 .contact__hours {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-md);
   text-align: left;
 }
 
 .contact__hours {
-  margin-top: var(--space-xl);
+  margin-top: var(--space-md);
   margin-bottom: 0;
   padding-top: 0;
   border-top: none;
@@ -247,7 +247,7 @@
   background-color: var(--color-background);
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-md);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
@@ -296,11 +296,11 @@
   }
 
   .contact__grid {
-    gap: var(--space-xl);
+    gap: var(--space-md);
   }
 
   .contact__header {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
   }
 
   .contact__submit {
@@ -310,7 +310,7 @@
 
 @media (min-width: 64rem) {
   .contact {
-    gap: var(--space-xl);
+    gap: var(--space-md);
   }
 
   .contact__hero {

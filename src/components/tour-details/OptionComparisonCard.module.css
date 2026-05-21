@@ -18,7 +18,7 @@
     "button button";
   align-items: center;
   column-gap: var(--space-md);
-  row-gap: var(--space-lg);
+  row-gap: var(--space-md);
 }
 
 .title {

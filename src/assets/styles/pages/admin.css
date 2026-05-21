@@ -3,11 +3,11 @@
 .admin-dashboard {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-md);
 }
 
 .admin-dashboard__header {
-  padding-left: var(--space-lg);
+  padding-left: var(--space-md);
   border-left: 3px solid var(--color-primary);
 }
 

@@ -15,7 +15,7 @@
 .layoutContainer {
   width: 100%;
   max-width: var(--layout-width);
-  margin: calc(var(--size-header) + var(--space-6xl)) auto 0;
+  margin: calc(var(--size-header) + var(--space-lg)) auto 0;
   flex: 1 0 auto;
 }
 

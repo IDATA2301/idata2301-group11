@@ -8,12 +8,12 @@
 
 .hero {
   min-height: var(--hero-height);
-  padding-top: var(--space-6xl);
+  padding-top: var(--space-lg);
   text-align: left;
-  margin-bottom: var(--space-10xl);
+  margin-bottom: var(--space-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--space-6xl);
+  gap: var(--space-lg);
 }
 
 .heroTitle {

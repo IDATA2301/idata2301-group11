@@ -102,7 +102,7 @@
 
 .toggleLineOpen:nth-child(2) {
   opacity: 0;
-  transform: translateX(calc(var(--space-xl) * -1));
+  transform: translateX(calc(var(--space-md) * -1));
 }
 
 .toggleLineOpen:nth-child(3) {
@@ -121,7 +121,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: calc(var(--size-header) + var(--space-lg)) var(--space-xl) var(--space-xl);
+  padding: calc(var(--size-header) + var(--space-md)) var(--space-md) var(--space-md);
   transition: transform 0.3s ease;
   box-shadow: var(--shadow-lg);
   z-index: var(--z-overlay);
@@ -139,7 +139,7 @@
 
 .links a {
   margin: 0;
-  padding: var(--space-lg) var(--space-sm);
+  padding: var(--space-md) var(--space-sm);
   text-decoration: none;
   color: var(--color-on-primary);
   border-bottom: var(--border-1) solid var(--color-overlay-light);
