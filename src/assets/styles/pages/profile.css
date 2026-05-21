@@ -196,7 +196,7 @@
 .profile__btn {
   width: 100%;
   min-height: 3.9rem;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   font-size: clamp(1.25rem, 3.6vw, 2rem);
   font-weight: 700;
   cursor: pointer;
@@ -223,7 +223,7 @@
 }
 
 .profile__btn--primary {
-  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-strong) 100%);
+  background-color: var(--color-primary);
   color: var(--color-surface);
   border: none;
   box-shadow: var(--shadow-sm);
