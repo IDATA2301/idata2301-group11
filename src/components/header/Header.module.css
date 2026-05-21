@@ -189,6 +189,10 @@
   cursor: pointer;
 }
 
+.logoutBtn:hover {
+  background-color: var(--color-overlay-light);
+}
+
 /* ====================================
   Responsive
   =============================== */
