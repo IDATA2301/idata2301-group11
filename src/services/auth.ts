@@ -58,10 +58,6 @@ export async function login({ email, password }: LoginRequest): Promise<AuthUser
     throw new Error("Invalid email or password.");
   }
 
-  if (response.status === 403) {
-    throw new Error("Your account has been disabled. Please contact support.");
-  }
-
   if (!response.ok) {
     throw new Error("Login failed. Please try again.");
   }
