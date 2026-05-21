@@ -205,7 +205,7 @@
   color: var(--color-primary);
 }
 
-.contact__success h2 {
+.contact__success h3 {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
@@ -257,7 +257,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-.contact__hours-box h4 {
+.contact__hours-box h2 {
   margin: 0 0 var(--space-md);
 }
 

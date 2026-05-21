@@ -1,4 +1,5 @@
 import "../assets/styles/pages/profile.css";
+import { Helmet } from "react-helmet-async";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState, type SyntheticEvent } from "react";
 import { ArrowRightOnRectangleIcon, MapIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
@@ -88,6 +89,10 @@ export default function Profile() {
 
   return (
     <main className="profile">
+      <Helmet>
+        <title>My Profile — RoamRoute</title>
+        <meta name="description" content="Manage your RoamRoute account details, update your username, and view your travel history." />
+      </Helmet>
       <section className="profile__card">
         <div className="profile__identity">
           <div className="profile__avatar-wrap">

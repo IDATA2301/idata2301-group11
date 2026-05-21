@@ -37,7 +37,7 @@
   font-family: var(--font-heading);
 }
 
-.section h4 {
+.section h2 {
   font-size: 1.1rem;
   margin: 0 0 var(--space-sm);
   color: var(--color-surface);
