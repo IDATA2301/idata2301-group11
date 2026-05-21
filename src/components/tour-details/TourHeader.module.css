@@ -5,7 +5,7 @@
 .header {
   position: relative;
   height: 250px;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-md);
   overflow: hidden;
   background-size: cover;
   background-position: center;

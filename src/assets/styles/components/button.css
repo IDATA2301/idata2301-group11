@@ -54,11 +54,12 @@
 }
 
 .btn--danger {
-  background-color: #dc2626;
-  color: #fff;
+  background-color: var(--color-danger);
+  color: var(--color-surface);
   border-color: transparent;
 }
 
 .btn--danger:hover {
-  background-color: #b91c1c;
+  background-color: var(--color-danger);
+  filter: brightness(0.9);
 }
