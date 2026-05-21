@@ -7,6 +7,7 @@
 */
 
 :root {
+  --radius-xs: 0.203rem;    /* 3.25px — X Small */
   --radius-sm: 0.469rem;    /* 7.5px  — Small */
   --radius-md: 0.9375rem;   /* 15px   — Default */
   --radius-lg: 1.5625rem;   /* 25px   — Medium */

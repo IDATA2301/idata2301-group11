@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import {
-  SparklesIcon,
   CurrencyDollarIcon,
   ClockIcon,
   ArrowsRightLeftIcon,
@@ -79,9 +78,6 @@ function About() {
 
       <section className="about__mission" aria-labelledby="about-mission-title">
         <aside className="about__mission-aside">
-          <span className="about__mission-icon" aria-hidden="true">
-            <SparklesIcon width={32} height={32} />
-          </span>
           <p className="about__mission-eyebrow">Our mission</p>
           <h2 id="about-mission-title" className="about__mission-heading">
             Travel, made effortless.
