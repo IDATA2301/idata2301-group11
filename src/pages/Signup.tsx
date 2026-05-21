@@ -1,5 +1,6 @@
 import "../assets/styles/pages/signup.css"
 import { useState, type SyntheticEvent } from "react"
+import { Helmet } from "react-helmet-async"
 import { Link, useNavigate } from "react-router-dom"
 import { EnvelopeIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline"
 import { register } from "../services/auth"
@@ -57,7 +58,13 @@ export default function Signup() {
 
   return (
     <main className="signup">
-      <div className="signup__hero-bg" aria-hidden="true" />
+      <Helmet>
+        <title>Create Account — RoamRoute</title>
+        <meta name="description" content="Create a free RoamRoute account and start planning your dream vacation today." />
+      </Helmet>
+      <div className="signup__hero-bg" aria-hidden="true">
+        <img src="/images/signup.webp" alt="Aerial view of a sunny beach with colourful umbrellas and sunbathers beside turquoise water" fetchPriority="high" className="signup__hero-bg-img" />
+      </div>
       <div className="signup__text">
         <h1>Create an Account</h1>
         <p>Sign up to start planning your travel adventures.</p>

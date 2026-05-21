@@ -1,5 +1,6 @@
 import "../assets/styles/pages/home.css";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import DestinationCard from "../components/home/DestinationCard";
 import { Link } from "react-router-dom";
 import HeroImage from "../components/home/HeroImage";
@@ -119,6 +120,10 @@ function Home() {
 
   return (
     <main className="home">
+      <Helmet>
+        <title>RoamRoute — Book Your Next Adventure</title>
+        <meta name="description" content="Discover handpicked travel packages and book your next adventure with RoamRoute. Explore destinations worldwide and find the perfect trip for you." />
+      </Helmet>
       <HeroImage />
       <HeroSection />
 

@@ -1,5 +1,6 @@
 import "../assets/styles/pages/login.css";
 import { useState, type SyntheticEvent } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import FormField from "../components/forms/FormField";
@@ -40,6 +41,10 @@ export default function ForgotPassword() {
 
   return (
     <main className="login">
+      <Helmet>
+        <title>Reset Password — RoamRoute</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="login__hero-bg" aria-hidden="true" />
       <div className="login__text">
         <h1>Forgot password</h1>

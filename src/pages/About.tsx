@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import {
   SparklesIcon,
   CurrencyDollarIcon,
@@ -57,7 +58,13 @@ function About() {
 
   return (
     <main className="about">
-      <div className="about__hero-bg" aria-hidden="true" />
+      <Helmet>
+        <title>About Us — RoamRoute</title>
+        <meta name="description" content="Learn about RoamRoute's mission to make travel planning effortless. Meet the team behind the platform and discover what drives us." />
+      </Helmet>
+      <div className="about__hero-bg" aria-hidden="true">
+        <img src="/images/fly.webp" alt="Airplane flying between two tall glass skyscrapers viewed from below against a pale blue sky" fetchPriority="high" className="about__hero-bg-img" />
+      </div>
       <section className="about__hero" aria-labelledby="about-hero-title">
         <span className="about__eyebrow">The RoamRoute standard</span>
         <h1 id="about-hero-title" className="about__hero-title">
